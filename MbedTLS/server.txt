@@ -1,0 +1,34 @@
+build version: Mbed TLS 3.6.2 (build 50725376)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the server cert. and key... ok (key types: RSA, none)
+  . Loading DHM parameters... ok
+  . Setting up the SSL/TLS structure... ok
+  . Bind on tcp://*:4433/ ... ok
+  . Waiting for a remote connection ... ok
+  . Performing the SSL/TLS handshake...This is ssl_tls13_generate_and_write_key_share() from ssl_tls13_server.c, line 2088
+This is mbedtls_ssl_tls13_generate_and_write_xxdh_key_exchange() from ssl_tls13_generic.c, line 1581, alg 0x9020000
+This is psa_generate_key_custom() from psa_crypto.c, line 8015
+This is psa_driver_wrapper_generate_key() from psa_crypto_driver_wrappers.h, line 813
+This is psa_generate_key_internal() from psa_crypto.c, line 7950
+This is mbedtls_psa_ecp_generate_key() from psa_crypto_ecp.c, line 341, grp_id 9
+This is ecp_mul_restartable_internal() from ecp.c, line 2632
+This is ecp_mul_restartable_internal() from ecp.c, line 2670
+This is ecp_mul_mxz() from ecp.c, line 2550
+This is ecp_mul_restartable_internal() from ecp.c, line 2632
+This is ecp_mul_restartable_internal() from ecp.c, line 2670
+This is ecp_mul_mxz() from ecp.c, line 2550
+This is ecp_mul_restartable_internal() from ecp.c, line 2632
+This is ecp_mul_restartable_internal() from ecp.c, line 2670
+This is ecp_mul_mxz() from ecp.c, line 2550
+This is ssl_tls13_write_certificate_verify_body() from ssl_tls13_generic.c, line 987
+This is mbedtls_pk_sign_ext() from pk.c, line 1364, pk_type 6
+This is rsa_rsassa_pss_sign_no_mode_check() from rsa.c, line 2122
+This is mbedtls_rsa_private() from rsa.c, line 1415
+ failed
+  ! mbedtls_ssl_handshake returned -0x50
+
+Last error was: -80 - NET - Connection was reset by peer
+
+  . Waiting for a remote connection ...
