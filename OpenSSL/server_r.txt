@@ -1,0 +1,9 @@
+80CB2412A3790000:error:0A000412:SSL routines:ssl3_read_bytes:ssl/tls alert bad certificate:ssl/record/rec_layer_s3.c:911:SSL alert number 42
+
+tlsecho : Simple TLS Echo Client/Server : Feb 25 2025 : 16:07:25
+
+We are the server on port: 4433
+
+Client TCP connection accepted
+Server exiting...
+tlsecho exiting
