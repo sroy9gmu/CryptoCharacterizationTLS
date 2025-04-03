@@ -1,0 +1,28 @@
+This is nettle_rsa_compute_root_tr() from rsa-sign-tr.c, line 355
+Server ready. Listening to port '5556'.
+
+- connection from 127.0.0.1, port 53810
+This is handshake_server() from handshake.c, line 3479
+This is ecc_shared_secret() from pk.c, line 243
+
+Start time and date: Wed Apr  2 14:35:10 2025
+
+Number of rounds: 10
+Duration 0 = 297 microseconds
+Duration 1 = 438 microseconds
+Duration 2 = 223 microseconds
+Duration 3 = 296 microseconds
+Duration 4 = 413 microseconds
+Duration 5 = 340 microseconds
+Duration 6 = 336 microseconds
+Duration 7 = 332 microseconds
+Duration 8 = 351 microseconds
+Duration 9 = 321 microseconds
+get_GM: root= 0.100000
+Mean execution time of _nettle_ecc_mul_a = 329.651124 microseconds.
+End time and date: Wed Apr  2 14:35:11 2025
+
+This is nettle_rsa_compute_root_tr() from rsa-sign-tr.c, line 355
+- Handshake was completed
+
+- Peer has closed the GnuTLS connection

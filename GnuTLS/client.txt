@@ -1,0 +1,22 @@
+This is nettle_rsa_compute_root_tr() from rsa-sign-tr.c, line 355
+This is ecc_shared_secret() from pk.c, line 243
+
+Start time and date: Wed Apr  2 14:35:11 2025
+
+Number of rounds: 10
+Duration 0 = 360 microseconds
+Duration 1 = 315 microseconds
+Duration 2 = 342 microseconds
+Duration 3 = 324 microseconds
+Duration 4 = 321 microseconds
+Duration 5 = 321 microseconds
+Duration 6 = 330 microseconds
+Duration 7 = 327 microseconds
+Duration 8 = 340 microseconds
+Duration 9 = 332 microseconds
+get_GM: root= 0.100000
+Mean execution time of _nettle_ecc_mul_a = 330.968981 microseconds.
+End time and date: Wed Apr  2 14:35:11 2025
+
+- Session info: (TLS1.3)-(ECDHE-SECP256R1)-(RSA-PSS-RSAE-SHA256)-(AES-256-GCM)
+- Received 18 bytes: GET / HTTP/1.0
