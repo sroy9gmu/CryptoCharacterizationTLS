@@ -1,0 +1,13 @@
+sunanda@sunanda-OptiPlex-5040:~/Downloads/active/charaterization/wolfssl/TLSEcho$ ./client-tls13 127.0.0.1
+Message for server: 1
+Server: 1
+
+Message for server: 2
+Server: 2
+
+Message for server: 3
+Server: 3
+
+Message for server: shutdown
+Server: 
+Message for server: 
