@@ -10,15 +10,60 @@ This is psa_generate_key_custom() from psa_crypto.c, line 8015
 This is psa_driver_wrapper_generate_key() from psa_crypto_driver_wrappers.h, line 813
 This is psa_generate_key_internal() from psa_crypto.c, line 7950
 This is mbedtls_psa_ecp_generate_key() from psa_crypto_ecp.c, line 341, grp_id 9
-This is ecp_mul_restartable_internal() from ecp.c, line 2632
-This is ecp_mul_restartable_internal() from ecp.c, line 2670
-This is ecp_mul_mxz() from ecp.c, line 2550
-This is ecp_mul_restartable_internal() from ecp.c, line 2632
-This is ecp_mul_restartable_internal() from ecp.c, line 2670
-This is ecp_mul_mxz() from ecp.c, line 2550
-This is ecp_mul_restartable_internal() from ecp.c, line 2632
-This is ecp_mul_restartable_internal() from ecp.c, line 2670
-This is ecp_mul_mxz() from ecp.c, line 2550
+
+Start time and date: Thu Apr  3 13:53:39 2025
+
+Number of rounds: 10
+Duration 0 = 2086 microseconds
+Duration 1 = 1236 microseconds
+Duration 2 = 937 microseconds
+Duration 3 = 970 microseconds
+Duration 4 = 1686 microseconds
+Duration 5 = 1698 microseconds
+Duration 6 = 1804 microseconds
+Duration 7 = 1681 microseconds
+Duration 8 = 1600 microseconds
+Duration 9 = 1540 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 1479.137101 microseconds.
+End time and date: Thu Apr  3 13:53:39 2025
+
+
+Start time and date: Thu Apr  3 13:53:39 2025
+
+Number of rounds: 10
+Duration 0 = 1495 microseconds
+Duration 1 = 1478 microseconds
+Duration 2 = 1421 microseconds
+Duration 3 = 1386 microseconds
+Duration 4 = 738 microseconds
+Duration 5 = 712 microseconds
+Duration 6 = 746 microseconds
+Duration 7 = 865 microseconds
+Duration 8 = 725 microseconds
+Duration 9 = 691 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 970.237437 microseconds.
+End time and date: Thu Apr  3 13:53:39 2025
+
+
+Start time and date: Thu Apr  3 13:53:39 2025
+
+Number of rounds: 10
+Duration 0 = 890 microseconds
+Duration 1 = 1190 microseconds
+Duration 2 = 1237 microseconds
+Duration 3 = 772 microseconds
+Duration 4 = 731 microseconds
+Duration 5 = 1089 microseconds
+Duration 6 = 830 microseconds
+Duration 7 = 835 microseconds
+Duration 8 = 776 microseconds
+Duration 9 = 1307 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 944.663445 microseconds.
+End time and date: Thu Apr  3 13:53:39 2025
+
 
 Verify requested for (Depth 1):
 

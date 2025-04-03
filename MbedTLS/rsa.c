@@ -25,13 +25,30 @@
 
 #include "common.h"
 
+#include <stdio.h>
 #include <sys/time.h>
-// #include <math.h>
+#include <math.h>
 
 #define Mi 1000000
 #define ROUNDS 10
 #define DBG
 #define PWR
+
+static double get_GM(uint64_t *arr){
+    double prod = 1;
+    double root;
+    
+    root = (double)1 / (double)ROUNDS;
+    #ifdef DBG  
+        printf("%s: root= %lf\n", __func__, root);
+    #endif
+
+    for (int i = 0; i < ROUNDS; i++){
+        prod *= arr[i];        
+    }
+    
+    return pow(prod, root);
+}
 
 #if defined(MBEDTLS_RSA_C)
 
@@ -1430,9 +1447,6 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
     struct timeval tstart, tend;
     uint64_t dur[ROUNDS];
 
-    // uint8_t out_org[32];
-    // memcpy(out_org, out, 32); // BACK UP
-
     #ifdef PWR
         time(&traw);
         timeinfo = localtime(&traw);
@@ -1443,12 +1457,12 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
         printf("Number of rounds: %d\n", ROUNDS);
     #endif
     for (int i = 0; i < ROUNDS; i++){
-        uint64_t dur_start, dur_end;
+        uint64_t dur_start = 0, dur_end = 0;
         
         if (gettimeofday(&tstart, NULL) == 0) {
             dur_start = (unsigned long)(tstart.tv_sec) * Mi + (unsigned long)(tstart.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday start %d\n", i);
+            sprintf((char *)stderr,"gettimeofday start %d\n", i);
         } // START PROFILE
 
         size_t olen;
@@ -1639,19 +1653,17 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
         if (gettimeofday(&tend, NULL) == 0) {
             dur_end = (unsigned long)(tend.tv_sec) * Mi + (unsigned long)(tend.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday end %d\n", i);
+            sprintf((char *)stderr,"gettimeofday end %d\n", i);
         } // END PROFILE
 
-        // if (i < ROUNDS - 1){
-        //     memcpy(out, out_org, 32);   // RESTORE BACKUP
-        // }
+
         dur[i] = dur_end - dur_start;   
         #ifdef DBG
-            printf("Duration %u = %u microseconds\n", i, dur[i]);   
+            printf("Duration %d = %lu microseconds\n", i, dur[i]);   
         #endif  
     }
 
-    // printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+    printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
 
     #ifdef PWR
         time(&traw);

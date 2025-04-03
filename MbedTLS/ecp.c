@@ -31,29 +31,30 @@
 
 #include "common.h"
 
+#include <stdio.h>
 #include <sys/time.h>
-// #include <math.h>
+#include <math.h>
 
 #define Mi 1000000
 #define ROUNDS 10
 #define DBG
 #define PWR
 
-// static double get_GM(uint64_t *arr){
-//     double prod = 1;
-//     double root;
+static double get_GM(uint64_t *arr){
+    double prod = 1;
+    double root;
     
-//     root = (double)1 / (double)ROUNDS;
-//     #ifdef DBG  
-//         printf("%s: root= %lf\n", __func__, root);
-//     #endif
+    root = (double)1 / (double)ROUNDS;
+    #ifdef DBG  
+        printf("%s: root= %lf\n", __func__, root);
+    #endif
 
-//     for (int i = 0; i < ROUNDS; i++){
-//         prod *= arr[i];        
-//     }
+    for (int i = 0; i < ROUNDS; i++){
+        prod *= arr[i];        
+    }
     
-//     return pow(prod, root);
-// }
+    return pow(prod, root);
+}
 
 /**
  * \brief Function level alternative implementation.
@@ -2571,7 +2572,7 @@ static int ecp_mul_mxz(mbedtls_ecp_group *grp, mbedtls_ecp_point *R,
                        int (*f_rng)(void *, unsigned char *, size_t),
                        void *p_rng)
 {
-    printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+    
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
 
     #ifdef PWR
@@ -2580,9 +2581,6 @@ static int ecp_mul_mxz(mbedtls_ecp_group *grp, mbedtls_ecp_point *R,
     #endif
     struct timeval tstart, tend;
     uint64_t dur[ROUNDS];
-
-    // uint8_t out_org[32];
-    // memcpy(out_org, out, 32); // BACK UP
 
     #ifdef PWR
         time(&traw);
@@ -2594,12 +2592,12 @@ static int ecp_mul_mxz(mbedtls_ecp_group *grp, mbedtls_ecp_point *R,
         printf("Number of rounds: %d\n", ROUNDS);
     #endif
     for (int cnt = 0; cnt < ROUNDS; cnt++){
-        uint64_t dur_start, dur_end;
+        uint64_t dur_start = 0, dur_end = 0;
         
         if (gettimeofday(&tstart, NULL) == 0) {
             dur_start = (unsigned long)(tstart.tv_sec) * Mi + (unsigned long)(tstart.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday start %d\n", cnt);
+            sprintf((char *)stderr,"gettimeofday start %d\n", cnt);
         } // START PROFILE
 
         size_t i;
@@ -2670,19 +2668,16 @@ static int ecp_mul_mxz(mbedtls_ecp_group *grp, mbedtls_ecp_point *R,
         if (gettimeofday(&tend, NULL) == 0) {
             dur_end = (unsigned long)(tend.tv_sec) * Mi + (unsigned long)(tend.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday end %d\n", add_count);
+            sprintf((char *)stderr,"gettimeofday end %d\n", cnt);
         } // END PROFILE
 
-        // if (i < ROUNDS - 1){
-        //     memcpy(out, out_org, 32);   // RESTORE BACKUP
-        // }
         dur[cnt] = dur_end - dur_start;   
         #ifdef DBG
-            printf("Duration %u = %u microseconds\n", cnt, dur[cnt]);   
+            printf("Duration %d = %lu microseconds\n", cnt, dur[cnt]);   
         #endif  
     }
 
-    // printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+    printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
 
     #ifdef PWR
         time(&traw);
@@ -2706,7 +2701,7 @@ static int ecp_mul_restartable_internal(mbedtls_ecp_group *grp, mbedtls_ecp_poin
                                         int (*f_rng)(void *, unsigned char *, size_t), void *p_rng,
                                         mbedtls_ecp_restart_ctx *rs_ctx)
 {
-    printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+    
     int ret = MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
 #if defined(MBEDTLS_ECP_INTERNAL_ALT)
     char is_grp_capable = 0;
@@ -2744,13 +2739,13 @@ static int ecp_mul_restartable_internal(mbedtls_ecp_group *grp, mbedtls_ecp_poin
     ret = MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
 #if defined(MBEDTLS_ECP_MONTGOMERY_ENABLED)
     if (mbedtls_ecp_get_type(grp) == MBEDTLS_ECP_TYPE_MONTGOMERY) {
-        printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+        
         MBEDTLS_MPI_CHK(ecp_mul_mxz(grp, R, m, P, f_rng, p_rng));
     }
 #endif
 #if defined(MBEDTLS_ECP_SHORT_WEIERSTRASS_ENABLED)
     if (mbedtls_ecp_get_type(grp) == MBEDTLS_ECP_TYPE_SHORT_WEIERSTRASS) {
-        printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+        
         MBEDTLS_MPI_CHK(ecp_mul_comb(grp, R, m, P, f_rng, p_rng, rs_ctx));
     }
 #endif
