@@ -1,0 +1,10 @@
+800B2D8C1D730000:error:0A000086:SSL routines:tls_post_process_server_certificate:certificate verify failed:ssl/statem/statem_clnt.c:2105:
+
+tlsecho : Simple TLS Echo Client/Server : Feb 25 2025 : 16:07:25
+
+We are the client
+
+TCP connection to server successful
+TLS connection to server failed
+
+tlsecho exiting

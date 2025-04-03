@@ -1,0 +1,4 @@
+ /usr/local/bin/openssl dhparam -out dhparam.pem 2048
+Generating DH parameters, 2048 bit long safe prime
+This is dhparam_main() from apps/dhparam.c, line 221
+This is DH_generate_parameters_ex() from crypto/dh/dh_gen.c, line 118
