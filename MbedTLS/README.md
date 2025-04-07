@@ -30,8 +30,8 @@ Steps
         sudo make install
 
     7. Start server process in one window:
-        cd programs/ssl
-        ./ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
+        cd MbedTLS/TLS
+        ../../programs/ssl/ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
 
     8. Start client process in another window of same PC: 
         ./ssl_client2 ca_file=ca-cert.pem crt_file=client-cert.pem key_file=client-key.pem force_version=tls13 tls13_kex_modes=ephemeral
