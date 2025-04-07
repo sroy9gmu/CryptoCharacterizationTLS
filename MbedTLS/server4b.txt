@@ -1,0 +1,90 @@
+build version: Mbed TLS 3.6.2 (build 50725376)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the server cert. and key... ok (key types: RSA, none)
+  . Loading DHM parameters... ok
+  . Setting up the SSL/TLS structure... ok
+  . Bind on tcp://*:4433/ ... ok
+  . Waiting for a remote connection ... ok
+  . Performing the SSL/TLS handshake...
+Start time and date: Mon Apr  7 08:50:00 2025
+
+Number of rounds: 10
+Duration 0 = 2462 microseconds
+Duration 1 = 2418 microseconds
+Duration 2 = 2414 microseconds
+Duration 3 = 2386 microseconds
+Duration 4 = 2446 microseconds
+Duration 5 = 2412 microseconds
+Duration 6 = 2417 microseconds
+Duration 7 = 2408 microseconds
+Duration 8 = 2396 microseconds
+Duration 9 = 2402 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 2416.005261 microseconds.
+End time and date: Mon Apr  7 08:50:00 2025
+
+
+Start time and date: Mon Apr  7 08:50:00 2025
+
+Number of rounds: 10
+Duration 0 = 2397 microseconds
+Duration 1 = 2397 microseconds
+Duration 2 = 2388 microseconds
+Duration 3 = 2378 microseconds
+Duration 4 = 2411 microseconds
+Duration 5 = 2398 microseconds
+Duration 6 = 2394 microseconds
+Duration 7 = 2421 microseconds
+Duration 8 = 2412 microseconds
+Duration 9 = 2410 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 2400.568987 microseconds.
+End time and date: Mon Apr  7 08:50:01 2025
+
+
+Start time and date: Mon Apr  7 08:50:01 2025
+
+Number of rounds: 10
+Duration 0 = 2530 microseconds
+Duration 1 = 2516 microseconds
+Duration 2 = 2458 microseconds
+Duration 3 = 2503 microseconds
+Duration 4 = 2495 microseconds
+Duration 5 = 2507 microseconds
+Duration 6 = 2520 microseconds
+Duration 7 = 2533 microseconds
+Duration 8 = 2538 microseconds
+Duration 9 = 2575 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 2517.331065 microseconds.
+End time and date: Mon Apr  7 08:50:01 2025
+
+This is rsa_rsassa_pss_sign_no_mode_check() from rsa.c, line 2194
+This is mbedtls_rsa_private() from rsa.c, line 1440
+
+Start time and date: Mon Apr  7 08:50:01 2025
+
+Number of rounds: 10
+Duration 0 = 19339 microseconds
+Duration 1 = 13072 microseconds
+Duration 2 = 13196 microseconds
+Duration 3 = 14506 microseconds
+Duration 4 = 13206 microseconds
+Duration 5 = 12984 microseconds
+Duration 6 = 13219 microseconds
+Duration 7 = 13031 microseconds
+Duration 8 = 13151 microseconds
+Duration 9 = 13043 microseconds
+get_GM: root= 0.100000
+Mean execution time of mbedtls_rsa_private = 13770.377470 microseconds.
+End time and date: Mon Apr  7 08:50:01 2025
+
+ failed
+  ! mbedtls_ssl_handshake returned -0x50
+
+Last error was: -80 - NET - Connection was reset by peer
+
+  . Waiting for a remote connection ...
+
