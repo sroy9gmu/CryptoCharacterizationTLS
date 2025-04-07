@@ -1,0 +1,62 @@
+This is nettle_rsa_compute_root_tr() from rsa-sign-tr.c, line 381
+
+Start time and date: Mon Apr  7 09:12:52 2025
+
+Number of rounds: 10
+Duration 0 = 20401 microseconds
+Duration 1 = 20190 microseconds
+Duration 2 = 20079 microseconds
+Duration 3 = 16069 microseconds
+Duration 4 = 8001 microseconds
+Duration 5 = 8003 microseconds
+Duration 6 = 8049 microseconds
+Duration 7 = 8005 microseconds
+Duration 8 = 7994 microseconds
+Duration 9 = 7991 microseconds
+get_GM: root= 0.100000
+Mean execution time of nettle_rsa_compute_root_tr = 11335.441320 microseconds.
+End time and date: Mon Apr  7 09:12:52 2025
+
+Server ready. Listening to port '5556'.
+
+- connection from 127.0.0.1, port 53766
+
+Start time and date: Mon Apr  7 09:13:48 2025
+
+Number of rounds: 10
+Duration 0 = 766 microseconds
+Duration 1 = 723 microseconds
+Duration 2 = 722 microseconds
+Duration 3 = 722 microseconds
+Duration 4 = 725 microseconds
+Duration 5 = 722 microseconds
+Duration 6 = 741 microseconds
+Duration 7 = 725 microseconds
+Duration 8 = 721 microseconds
+Duration 9 = 722 microseconds
+get_GM: root= 0.100000
+Mean execution time of _nettle_ecc_mul_a = 728.776792 microseconds.
+End time and date: Mon Apr  7 09:13:48 2025
+
+This is nettle_rsa_compute_root_tr() from rsa-sign-tr.c, line 381
+
+Start time and date: Mon Apr  7 09:13:48 2025
+
+Number of rounds: 10
+Duration 0 = 8202 microseconds
+Duration 1 = 8072 microseconds
+Duration 2 = 8015 microseconds
+Duration 3 = 8007 microseconds
+Duration 4 = 8169 microseconds
+Duration 5 = 8071 microseconds
+Duration 6 = 8008 microseconds
+Duration 7 = 8120 microseconds
+Duration 8 = 8083 microseconds
+Duration 9 = 7983 microseconds
+get_GM: root= 0.100000
+Mean execution time of nettle_rsa_compute_root_tr = 8072.702202 microseconds.
+End time and date: Mon Apr  7 09:13:48 2025
+
+- Handshake was completed
+
+- Peer has closed the GnuTLS connection
