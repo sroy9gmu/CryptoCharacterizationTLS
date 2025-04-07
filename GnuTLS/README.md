@@ -33,7 +33,8 @@ Steps
         ./configure LIBS=-lm
         make
         sudo make install
-        sudo cp /usr/local/lib64/libhogweed* /usr/lib/x86_64-linux-gnu
+        sudo cp /usr/local/lib64/libhogweed* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
+        sudo cp /usr/local/lib64/libnettle* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
         sudo ldconfig
         cd ../..
 
