@@ -1,0 +1,103 @@
+
+Start time and date: Mon Apr  7 09:36:22 2025
+
+Number of rounds: 10
+Duration 0 = 1888 microseconds
+Duration 1 = 1830 microseconds
+Duration 2 = 1852 microseconds
+Duration 3 = 1828 microseconds
+Duration 4 = 1837 microseconds
+Duration 5 = 1835 microseconds
+Duration 6 = 1857 microseconds
+Duration 7 = 1865 microseconds
+Duration 8 = 1897 microseconds
+Duration 9 = 1837 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecc_mulmod = 1852.457575 microseconds.
+End time and date: Mon Apr  7 09:36:22 2025
+
+
+Start time and date: Mon Apr  7 09:36:22 2025
+
+Number of rounds: 10
+Duration 0 = 1927 microseconds
+Duration 1 = 1872 microseconds
+Duration 2 = 1848 microseconds
+Duration 3 = 1831 microseconds
+Duration 4 = 1839 microseconds
+Duration 5 = 1855 microseconds
+Duration 6 = 1842 microseconds
+Duration 7 = 1829 microseconds
+Duration 8 = 1834 microseconds
+Duration 9 = 1828 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecc_mulmod = 1850.283333 microseconds.
+End time and date: Mon Apr  7 09:36:22 2025
+
+This is RsaFunctionPrivate() from wolfcrypt/src/rsa.c, line 2563
+
+Start time and date: Mon Apr  7 09:36:22 2025
+
+Number of rounds: 10
+Duration 0 = 11579 microseconds
+Duration 1 = 11459 microseconds
+Duration 2 = 11360 microseconds
+Duration 3 = 11440 microseconds
+Duration 4 = 11336 microseconds
+Duration 5 = 11326 microseconds
+Duration 6 = 11462 microseconds
+Duration 7 = 11281 microseconds
+Duration 8 = 11363 microseconds
+Duration 9 = 11370 microseconds
+get_GM: root= 0.100000
+Mean execution time of RsaFunctionPrivate = 11397.300522 microseconds.
+End time and date: Mon Apr  7 09:36:22 2025
+
+SSL_accept error -193, Bad padding, message wrong length
+wolfSSL error: SSL_accept failed
+
+
+****************************************************************************
+
+Start time and date: Mon Apr  7 09:31:27 2025
+
+Number of rounds: 10
+Duration 0 = 1872 microseconds
+Duration 1 = 1827 microseconds
+Duration 2 = 1842 microseconds
+Duration 3 = 1829 microseconds
+Duration 4 = 1839 microseconds
+Duration 5 = 1830 microseconds
+Duration 6 = 1839 microseconds
+Duration 7 = 1830 microseconds
+Duration 8 = 1846 microseconds
+Duration 9 = 1842 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecc_mulmod = 1839.557928 microseconds.
+End time and date: Mon Apr  7 09:31:27 2025
+
+
+Start time and date: Mon Apr  7 09:31:27 2025
+
+Number of rounds: 10
+Duration 0 = 1879 microseconds
+Duration 1 = 1838 microseconds
+Duration 2 = 1896 microseconds
+Duration 3 = 1922 microseconds
+Duration 4 = 1851 microseconds
+Duration 5 = 1831 microseconds
+Duration 6 = 1842 microseconds
+Duration 7 = 1831 microseconds
+Duration 8 = 1840 microseconds
+Duration 9 = 1830 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecc_mulmod = 1855.754682 microseconds.
+End time and date: Mon Apr  7 09:31:27 2025
+
+This is RsaFunctionPrivate() from wolfcrypt/src/rsa.c, line 2563
+Number of rounds: 1
+Duration 0 = 11348 microseconds
+SSL version is TLSv1.3
+SSL cipher suite is TLS_AES_256_GCM_SHA384
+SSL curve name is SECP256R1
+Client message: hello wolfssl!
