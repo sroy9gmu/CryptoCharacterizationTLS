@@ -129,7 +129,7 @@ Steps
 
 Results
 
-  1. Key Exchange: x25519_scalar_mult() [x86_64], ge_scalarmult_base [aarch64] from crypto/ec/curve25519.c
+  1. Key Exchange: x25519_scalar_mult() [x86_64], ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
 
   2. Signing: rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
 
