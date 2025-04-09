@@ -33,13 +33,13 @@ Steps
 
         cd wolfssl
 
-        ./examples/server/server -D ../wolfSSL/TLS/dhparam.pem -c ../wolfSSL/TLS/server-cert.pem -k ../wolfSSL/TLS/server-key.pem -v 4 -A ../wolfSSL/TLS/ca-cert.pem      
+        ./examples/server/server -D ../CryptoCharacterizationTLS/wolfSSL/dhparam.pem -c ../CryptoCharacterizationTLS/wolfSSL/server-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/server-key.pem -v 4 -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem      
 
         ./server-tls13 [For echo only]
 
     3. Start client process in another window of same PC:
 
-        ./examples/client/client -h 127.0.0.1 -v 4 -c ../wolfSSL/TLS/client-cert.pem -k ../wolfSSL/TLS/client-key.pem -A ../wolfSSL/TLS/ca-cert.pem 
+        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/wolfSSL/client-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/client-key.pem -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem 
 
         ./client-tls13 127.0.0.1 [For echo only]
 
