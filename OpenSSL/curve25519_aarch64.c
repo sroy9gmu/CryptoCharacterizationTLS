@@ -4329,11 +4329,11 @@ static void ge_scalarmult_base(ge_p3 *h, const uint8_t *a)
     #ifdef DBG
         printf("Number of rounds: %d\n", ROUNDS);
     #endif
-    for (int i = 0; i < ROUNDS; i++){
+    for (int cnt = 0; cnt < ROUNDS; cnt++){
         if (gettimeofday(&tstart, NULL) == 0) {
             dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday start %d\n", i);
+            sprintf(stderr,"gettimeofday start %d\n", cnt);
         } // START PROFILE
         
         signed char e[64];
@@ -4387,15 +4387,15 @@ static void ge_scalarmult_base(ge_p3 *h, const uint8_t *a)
         if (gettimeofday(&tend, NULL) == 0) {
             dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
         } else {
-            sprintf(stderr,"gettimeofday end %d\n", i);
+            sprintf(stderr,"gettimeofday end %d\n", cnt);
         } // END PROFILE
 
-        if (i < ROUNDS - 1){
+        if (cnt < ROUNDS - 1){
             memcpy(h, &h_org, sizeof(ge_p3));   // RESTORE BACKUP
         }
-        dur[i] = dur_end - dur_start;   
+        dur[cnt] = dur_end - dur_start;   
         #ifdef DBG
-            printf("Duration %u = %u microseconds\n", i, dur[i]);   
+            printf("Duration %u = %u microseconds\n", cnt, dur[cnt]);   
         #endif  
     }
 
