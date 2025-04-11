@@ -129,10 +129,25 @@ Steps
 
 Results
 
-  1. Key Exchange: x25519_scalar_mult() [x86_64], ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
+  1. Key Exchange: 
 
-  2. Signing: rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
+        X25519 [ECDH] from include/crypto/ecx.h
+        x25519_scalar_mulx() [x86_64], 
+        ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
 
-  3. Encryption: CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
+  2. Signing: 
+
+        RSA PKCS#1 PSS from include/crypto/rsa.h
+        rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
+
+  3. Encryption: 
   
-  4. Hashing: SHA512_Update() from crypto/sha/sha512.c
+        AES GCM 128 from openssl/include/openssl/modes.h
+        {Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26}
+        CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
+  
+  4. Hashing: 
+  
+        SHA1_Update() from include/crypto/md32_common.h
+        SHA512_Update() from crypto/sha/sha512.c
+        SHA256_Update() from include/crypto/md32_common.h
