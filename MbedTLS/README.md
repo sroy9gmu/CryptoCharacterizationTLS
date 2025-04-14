@@ -11,40 +11,62 @@ Links
 
 Steps
 
-    1. Packages required: sudo apt-get install bzip2
+    1. Download latest release.
 
-    2. Download repository as a zip file.
-        wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-3.6.2/mbedtls-3.6.2.tar.bz2 
+        wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/mbedtls-3.6.3.tar.gz --no-check-certificate
 
-    3. Install libraries:
-        tar xvf mbedtls-3.6.2.tar.bz2
-        cd mbedtls-3.6.2
+    2. Install libraries:
 
-    4. Comment out the server certificate verifcation in client code for test purpose.
+        tar xvf mbedtls-3.6.3.tar.gz
+        cd mbedtls-3.6.3
 
-    5. Add math library to LDFLAGS in scripts/common.make
+    3. Add math library to LDFLAGS in scripts/common.make
+
         LDFLAGS ?= -lm
 
-    6. Compile:
+    4. Run
+
+        make clean
+
+    5. In file include/mbedtls/mbedtls_config.h, 
+    
+        Disable below features 
+            MBEDTLS_HAVE_ASM MBEDTLS_AESNI_C
+
+        Enable below features
+            
+
+    4. Compile:
+
         make
         sudo make install
 
-    7. Start server process in one window:
-        cd MbedTLS/TLS
-        ../../programs/ssl/ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
+    5. Start server process in one window:
 
-    8. Start client process in another window of same PC: 
-        ./ssl_client2 ca_file=ca-cert.pem crt_file=client-cert.pem key_file=client-key.pem force_version=tls13 tls13_kex_modes=ephemeral
+        cd CryptoCharacterizationTLS/MbedTLS
+
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
+
+    6. Start client process in another window of same PC: 
+
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=ca-cert.pem crt_file=client-cert.pem key_file=client-key.pem force_version=tls13 tls13_kex_modes=ephemeral
 
 Results
 
-    1. Key Exchange: ecp_mul_mxz() from library/ecp.c
+    1. Key Exchange: 
 
-    2. Signing: mbedtls_rsa_private() from library/rsa.c
+        mbedtls_ecdh_setup, ecdh.c, 195
+        ecp_use_curve25519, ecp_curves.c, 4625
+        <!-- ecp_mul_mxz() from library/ecp.c -->
 
-    3. Encryption: 
+    2. Signing:
     
-    4. Hashing: 
+        rsa_rsassa_pss_sign_no_mode_check, rsa.c, 2121
+        <!-- mbedtls_rsa_private() from library/rsa.c -->
+
+    3. Encryption: mbedtls_internal_aes_encrypt, aes.c, 887
+    
+    4. Hashing: mbedtls_sha256_update, sha256.c, 649
 
 
 
