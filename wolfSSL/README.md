@@ -19,7 +19,7 @@ Installation
 
     2. ./autogen.sh (for raspbian, sudo apt-get install autoconf libtool)
 
-    3. ./configure --enable-aesgcm --enable-aesctr --enable-tls13 --enable-curve25519 --enable-rsapss LIBS=-lm
+    3. ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256" --enable-aesgcm --enable-aesctr --enable-tls13 --enable-curve25519 --enable-rsapss LIBS=-lm
 
     4. make
 
