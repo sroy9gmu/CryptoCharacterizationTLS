@@ -19,7 +19,7 @@ Installation
 
     2. ./autogen.sh (for raspbian, sudo apt-get install autoconf libtool)
 
-    3. ./configure --enable-aesgcm --enable-aesctr --enable-tls13 LIBS=-lm
+    3. ./configure --enable-aesgcm --enable-aesctr --enable-tls13 --enable-curve25519 --enable-rsapss LIBS=-lm
 
     4. make
 
@@ -33,13 +33,13 @@ Steps
 
         cd wolfssl
 
-        ./examples/server/server -D ../CryptoCharacterizationTLS/wolfSSL/dhparam.pem -c ../CryptoCharacterizationTLS/wolfSSL/server-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/server-key.pem -v 4 -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem      
+        ./examples/server/server -D ../CryptoCharacterizationTLS/wolfSSL/dhparam.pem -c ../CryptoCharacterizationTLS/wolfSSL/server-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/server-key.pem -v 4 -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem -t   
 
         ./server-tls13 [For echo only]
 
     3. Start client process in another window of same PC:
 
-        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/wolfSSL/client-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/client-key.pem -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem 
+        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/wolfSSL/client-cert.pem -k ../CryptoCharacterizationTLS/wolfSSL/client-key.pem -A ../CryptoCharacterizationTLS/wolfSSL/ca-cert.pem -t
 
         ./client-tls13 127.0.0.1 [For echo only]
 
@@ -52,13 +52,16 @@ Issues
     
 Results
 
-    1. Key Exchange: ecc_mulmod() from wolfcrypt/src/ecc.c
+    1. Key Exchange: 
+        curve25519, wolfcrypt/src/fe_x25519_128.h, 417
 
-    2. Signing: RsaFunctionPrivate() from wolfcrypt/src/rsa.c
+    2. Signing: 
+        RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2528
 
     3. Encryption: 
+        AES_GCM_encrypt_C, wolfcrypt/src/aes.c, 8558
     
     4. Hashing: 
-
+        wc_Sha256Update, wolfcrypt/src/sha256.c, 1504
 
 
