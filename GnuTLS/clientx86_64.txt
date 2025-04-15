@@ -1,0 +1,20 @@
+Processed 1 CA certificate(s).
+Processed 1 client X.509 certificates...
+Resolving '127.0.0.1:5556'...
+Connecting to '127.0.0.1:5556'...
+do_handshake, cli.c, 1856
+- Successfully sent 1 certificate(s) to server.
+- Server has requested a certificate.
+- Certificate type: X.509
+- Got a certificate list of 1 certificates.
+- Certificate[0] info:
+ - subject `EMAIL=sroy9@gmu.edu,CN=sroy9,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', issuer `EMAIL=sroy9@gmu.edu,CN=sroy9,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', serial 0x01, RSA key 2048 bits, signed using RSA-SHA256, activated `2025-03-12 17:35:20 UTC', expires `3024-07-13 17:35:20 UTC', pin-sha256="h209FkqVIXV7zL/vslcasXEMMouRaPAO/6uD5qpXJRA="
+        Public Key ID:
+                sha1:68f973db2a8bf7b50c1b86cd5dd9a6f269d0006b
+                sha256:876d3d164a9521757bccbfefb2571ab1710c328b9168f00effab83e6aa572510
+        Public Key PIN:
+                pin-sha256:h209FkqVIXV7zL/vslcasXEMMouRaPAO/6uD5qpXJRA=
+
+- Status: The certificate is NOT trusted. The name in the certificate does not match the expected. 
+*** PKI verification of server certificate failed...
+*** Fatal error: Error in the certificate.

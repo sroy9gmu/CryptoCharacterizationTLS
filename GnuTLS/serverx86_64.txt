@@ -1,0 +1,9 @@
+Read Diffie-Hellman parameters.
+Processed 1 CA certificate(s).
+HTTP Server listening on IPv4 0.0.0.0 port 5556...done
+HTTP Server listening on IPv6 :: port 5556...done
+
+* Accepted connection from IPv4 127.0.0.1 port 53116 on Tue Apr 15 17:04:43 202
+gnutls_handshake, handshake.c, 2879
+* Received alert '42': Certificate is bad.
+Error in handshake: A TLS fatal alert has been received.
