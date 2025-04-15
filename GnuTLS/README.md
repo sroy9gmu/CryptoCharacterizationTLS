@@ -27,6 +27,7 @@ Steps
     1. (DEBUG/LOGGING purpose only) Compile Nettle library separately using below steps:
 
         git clone https://gitlab.com/gnutls/gnutls.git   
+        cd gnutls
         ./bootstrap     
         cd devel/nettle
         ./.bootstrap
@@ -51,7 +52,7 @@ Steps
 
     5. Refer certificate generation steps in OpenSSL -> TLS.
 
-    6. cd TLS
+    <!-- 6. cd TLS
         NOTE: Comment out the server certificate verifcation in client code for test purpose.
 
     7. Compile:
@@ -60,7 +61,9 @@ Steps
 
     8. Execute:
         Start server process in one window:  ./server > server.txt
-        Start client process in another window of same PC: ./client 127.0.0.1 > client.txt
+        Start client process in another window of same PC: ./client 127.0.0.1 > client.txt -->
+
+    6. Refer gnutls-serv and gnutls-cli commands in https://gnutls.org/manual/html_node/Other-included-programs.html.
 
 Results
 
