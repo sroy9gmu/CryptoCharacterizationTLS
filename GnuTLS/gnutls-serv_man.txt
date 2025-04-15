@@ -1,6 +1,7 @@
 Usage:  gnutls-serv [ -<flag> [<val>] | --<name>[{=| }<val>] ]... 
 
-./gnutls-serv --dhparams=../../CryptoCharacterizationTLS/GnuTLS/dhparam.pem --x509cafile=../../CryptoCharacterizationTLS/GnuTLS/ca-cert.pem --x509keyfile=../../CryptoCharacterizationTLS/GnuTLS/server-key.pem --x509certfile=../../CryptoCharacterizationTLS/GnuTLS/server-cert.pem --priority="NORMAL:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-X25519"
+./gnutls-serv --dhparams=../../CryptoCharacterizationTLS/GnuTLS/dhparam.pem --x509cafile=../../CryptoCharacterizationTLS/GnuTLS/ca-cert.pem \
+--x509keyfile=../../CryptoCharacterizationTLS/GnuTLS/server-key.pem --x509certfile=../../CryptoCharacterizationTLS/GnuTLS/server-cert.pem --priority="NORMAL:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-X25519"
 
 None:
 
