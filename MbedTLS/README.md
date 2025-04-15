@@ -55,18 +55,20 @@ Results
 
     1. Key Exchange: 
 
-        mbedtls_ecdh_setup, ecdh.c, 195
         ecp_use_curve25519, ecp_curves.c, 4625
-        <!-- ecp_mul_mxz() from library/ecp.c -->
+        ecp_mul_mxz, ecp.c, 2550
 
     2. Signing:
     
-        rsa_rsassa_pss_sign_no_mode_check, rsa.c, 2121
-        <!-- mbedtls_rsa_private() from library/rsa.c -->
+        mbedtls_rsa_private, rsa.c, 1415
 
-    3. Encryption: mbedtls_internal_aes_encrypt, aes.c, 887
+    3. Encryption: 
     
-    4. Hashing: mbedtls_sha256_update, sha256.c, 649
+        mbedtls_internal_aes_encrypt, aes.c, 887
+    
+    4. Hashing: 
+    
+        mbedtls_sha256_update, sha256.c, 649
 
 
 

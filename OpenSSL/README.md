@@ -139,7 +139,7 @@ Results
 
   2. Signing: 
 
-        RSA PKCS#1 PSS from include/crypto/rsa.h
+        <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
 
         rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
 
