@@ -24,30 +24,24 @@ Steps
 
         LDFLAGS ?= -lm
 
-    4. Run
-
-        make clean
-
-    5. In file include/mbedtls/mbedtls_config.h, 
+    4. In file include/mbedtls/mbedtls_config.h, 
     
         Disable below features 
             MBEDTLS_HAVE_ASM MBEDTLS_AESNI_C
+            MBEDTLS_CHACHAPOLY_C          
 
-        Enable below features
-            
-
-    4. Compile:
-
+    5. Compile:
+        make clean
         make
         sudo make install
 
-    5. Start server process in one window:
+    6. Start server process in one window:
 
         cd CryptoCharacterizationTLS/MbedTLS
 
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
 
-    6. Start client process in another window of same PC: 
+    7. Start client process in another window of same PC: 
 
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=ca-cert.pem crt_file=client-cert.pem key_file=client-key.pem force_version=tls13 tls13_kex_modes=ephemeral
 
@@ -64,6 +58,10 @@ Results
 
     3. Encryption: 
     
+        mbedtls_cipher_aead_encrypt, cipher.c, 1448
+        mbedtls_gcm_crypt_and_tag, gcm.c, 718
+        mbedtls_internal_aes_encrypt, aes.c, 887
+        mbedtls_gcm_update, gcm.c, 569
         mbedtls_internal_aes_encrypt, aes.c, 887
     
     4. Hashing: 
