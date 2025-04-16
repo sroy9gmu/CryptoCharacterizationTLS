@@ -8,12 +8,22 @@ _wrap_nettle_pk_derive, pk.c, 603
 nettle_curve25519_mul, curve25519-mul.c, 59
 _nettle_ecc_mul_m, ecc-mul-m.c, 52
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x5b826af125b0]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
+ENC[0x6500e6db65b0]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
 generate_hs_traffic_keys, handshake-tls13.c, 317
 gnutls_hash_fast, crypto-api.c, 960
 gnutls_hash_fast, crypto-api.c, 960
 gnutls_hash_fast, crypto-api.c, 960
 - Successfully sent 1 certificate(s) to server.
+_gnutls_session_get_sign_algo, signature.c, 321, 1
+checking cert compat with ML-DSA-44
+checking cert compat with ML-DSA-65
+checking cert compat with ML-DSA-87
+checking cert compat with RSA-SHA256
+_gnutls_privkey_compatible_with_sig, privkey.c, 2035. 6
+checking cert compat with RSA-PSS-SHA256
+_gnutls_privkey_compatible_with_sig, privkey.c, 2035. 32
+checking cert compat with RSA-PSS-RSAE-SHA256
+_gnutls_privkey_compatible_with_sig, privkey.c, 2035. 40
 gnutls_hash_fast, crypto-api.c, 960
 gnutls_hash_fast, crypto-api.c, 960
 - Server has requested a certificate.
@@ -31,6 +41,6 @@ gnutls_hash_fast, crypto-api.c, 960
 *** PKI verification of server certificate failed...
 *** Fatal error: Error in the certificate.
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x5b826af125b0]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+ENC[0x6500e6db65b0]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
 gnutls_aead_cipher_encryptv, crypto-api.c, 1571
 aead_cipher_encryptv, crypto-api.c, 1505
