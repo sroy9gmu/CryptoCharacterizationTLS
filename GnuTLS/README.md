@@ -63,7 +63,8 @@ Steps
         Start server process in one window:  ./server > server.txt
         Start client process in another window of same PC: ./client 127.0.0.1 > client.txt -->
 
-    6. Refer gnutls-serv and gnutls-cli commands in https://gnutls.org/manual/html_node/Other-included-programs.html.
+    6. cd src
+        Refer gnutls-serv and gnutls-cli commands in https://gnutls.org/manual/html_node/Other-included-programs.html.
 
 Results
 
