@@ -68,7 +68,9 @@ Steps
 
 Results
 
-    1. Key Exchange: ecc_mul_a() from devel/nettle/ecc-mul-a.c
+    1. Key Exchange: 
+        nettle_curve25519_mul, curve25519-mul.c, 59
+        _nettle_ecc_mul_m, ecc-mul-m.c, 52
 
     2. Signing: rsa_compute_root_tr() from devel/nettle/rsa-sign-tr.c
 
