@@ -29,5 +29,10 @@ Steps
 
     2. ECDH key exchange + ECDSA signing + 128 bit security level ciphers (AES + SHA)
 
-    3. Vary security level 
+    3. Profile on Raspberry Pi 4B.
+
+    4. Vary security level and compare performance.
+
+    5. Vary target device and compare performance.
+
 
