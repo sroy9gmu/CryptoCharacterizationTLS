@@ -22,6 +22,13 @@ Links
 
     6. DH parameters: https://www.gnutls.org/manual/html_node/Parameter-generation.html
 
+Issues
+
+    1. gnutls with allowlisting doesn't allow enabling sigalgs with priority strings (OPEN)
+        
+        https://gitlab.com/gnutls/gnutls/-/issues/1681 
+
+
 Steps
 
     1. (DEBUG/LOGGING purpose only) Compile Nettle library separately using below steps:

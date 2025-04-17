@@ -2,7 +2,7 @@ Usage:  gnutls-cli [ -<flag> [<val>] | --<name>[{=| }<val>] ]... [hostname]
 
 ./gnutls-cli --x509cafile=../../CryptoCharacterizationTLS/GnuTLS/ca-cert.pem --x509keyfile=../../CryptoCharacterizationTLS/GnuTLS/client-key.pem \
 \--x509certfile=../../CryptoCharacterizationTLS/GnuTLS/client-cert.pem \
---priority="NORMAL:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-X25519" 127.0.0.1:5556
+--priority="NORMAL:+SIGN-RSA-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-X25519" 127.0.0.1:5556
 
 None:
 

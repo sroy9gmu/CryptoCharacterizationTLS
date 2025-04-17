@@ -1,3 +1,4 @@
+Read Diffie-Hellman parameters.
 Processed 1 CA certificate(s).
 _gnutls_privkey_compatible_with_sig, privkey.c, 2035. 32
 _wrap_nettle_pk_sign, pk.c, 2080, 1
@@ -5,7 +6,7 @@ nettle_rsa_pkcs1_sign_tr, rsa-pkcs1-sign-tr.c, 52
 HTTP Server listening on IPv4 0.0.0.0 port 5556...done
 HTTP Server listening on IPv6 :: port 5556...done
 
-* Accepted connection from IPv4 127.0.0.1 port 59786 on Thu Apr 17 11:12:34 202
+* Accepted connection from IPv4 127.0.0.1 port 54342 on Thu Apr 17 11:23:06 202
 gnutls_handshake, handshake.c, 2879
 _gnutls_session_get_sign_algo, signature.c, 321, 1
 0= ML-DSA-44
@@ -52,9 +53,9 @@ nettle_curve25519_mul, curve25519-mul.c, 59
 _nettle_ecc_mul_m, ecc-mul-m.c, 52
 _gnutls13_handshake_server, handshake-tls13.c, 381
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
+ENC[0x60d719ac4f10]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
+ENC[0x60d719ac4f10]: cipher: NULL, MAC: MAC-NULL, Epoch: 0
 generate_hs_traffic_keys, handshake-tls13.c, 317
 gnutls_hash_fast, crypto-api.c, 960
 _gnutls13_handshake_server, handshake-tls13.c, 449
@@ -109,26 +110,26 @@ _wrap_nettle_pk_sign, pk.c, 2127, 6
 _rsa_pss_sign_digest_tr, pk.c, 1469, 6
 gnutls_hash_fast, crypto-api.c, 960
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+ENC[0x60d719ac4f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
 gnutls_aead_cipher_encryptv, crypto-api.c, 1571
 aead_cipher_encryptv, crypto-api.c, 1505
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
-gnutls_aead_cipher_encryptv, crypto-api.c, 1571
-aead_cipher_encryptv, crypto-api.c, 1505
-aead_cipher_encryptv, crypto-api.c, 1505
-encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+ENC[0x60d719ac4f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
 gnutls_aead_cipher_encryptv, crypto-api.c, 1571
 aead_cipher_encryptv, crypto-api.c, 1505
 aead_cipher_encryptv, crypto-api.c, 1505
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+ENC[0x60d719ac4f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
 gnutls_aead_cipher_encryptv, crypto-api.c, 1571
 aead_cipher_encryptv, crypto-api.c, 1505
 aead_cipher_encryptv, crypto-api.c, 1505
 encrypt_packet_tls13, cipher.c, 395
-ENC[0x610fcde06f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+ENC[0x60d719ac4f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
+gnutls_aead_cipher_encryptv, crypto-api.c, 1571
+aead_cipher_encryptv, crypto-api.c, 1505
+aead_cipher_encryptv, crypto-api.c, 1505
+encrypt_packet_tls13, cipher.c, 395
+ENC[0x60d719ac4f10]: cipher: AES-128-GCM, MAC: AEAD, Epoch: 1
 gnutls_aead_cipher_encryptv, crypto-api.c, 1571
 aead_cipher_encryptv, crypto-api.c, 1505
 aead_cipher_encryptv, crypto-api.c, 1505
