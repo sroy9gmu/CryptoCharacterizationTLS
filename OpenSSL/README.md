@@ -61,17 +61,18 @@ In case of shared library errors
 
 Security Parameters
 
-    1. 128-bit:  AES-GCM-128, DH (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383)
+    1. 128-bit:  AES-GCM-128, DH/DSA (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383), SHA-256
 
 Steps
 
-    1. Generate a RSA-PSS key pair for the CA:
+    1. Generate a RSA-PSS private for the CA:
 
-        openssl genpkey -out rsa_sign_pvtkey.pem -outpubkey rsa_sign_pubkey.pem -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:3072
+        openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
 
-    2. Generate a ECC private key for the CA:
+    2. Generate a DSA private key for the CA:
 
-
+        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
+        openssl gendsa -out dsa_pvt.pem dsa_param.pem 
 
     3. Generate the X509 certificate for the CA:
 
