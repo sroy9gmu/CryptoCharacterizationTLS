@@ -61,100 +61,105 @@ In case of shared library errors
 
 Steps
 
-  1. Generate DH parameters for Handshake between server and client:
+    1. Generate DH parameters for Handshake between server and client:
 
-      /usr/local/bin/openssl dhparam -out dhparam.pem 2048 > dhout.txt
+        /usr/local/bin/openssl dhparam -out dhparam.pem 2048 > dhout.txt
 
-  2. Generate a private key for the CA:
+    2. Generate a private key for the CA:
 
-      <!-- certtool --generate-privkey --sec-param Medium --outfile secret.key
+        <!-- certtool --generate-privkey --sec-param Medium --outfile secret.key
 
-      openssl req -new -key secret.key -out srv.csr
+        openssl req -new -key secret.key -out srv.csr
 
-      openssl req -new -newkey rsa:2048 -nodes -out srv.csr -keyout CA_srv_pvt.key -sha256
+        openssl req -new -newkey rsa:2048 -nodes -out srv.csr -keyout CA_srv_pvt.key -sha256
 
-      openssl x509 -signkey CA_srv_pvt.key -days 90 -req -in srv.csr -out CA_srv.cert -sha256
+        openssl x509 -signkey CA_srv_pvt.key -days 90 -req -in srv.csr -out CA_srv.cert -sha256
 
-      openssl x509 -req -days 90 -in srv.csr -CA CA_srv.cert -CAkey CA_srv_pvt.key -out signed_CA_srv.cert -set_serial 01 -sha256 -->
+        openssl x509 -req -days 90 -in srv.csr -CA CA_srv.cert -CAkey CA_srv_pvt.key -out signed_CA_srv.cert -set_serial 01 -sha256 -->
 
-      openssl genrsa 2048 > ca-key.pem 
+        openssl genrsa 2048 > ca-key.pem 
 
-  3. Generate the X509 certificate for the CA:
+    3. Generate the X509 certificate for the CA:
 
-      openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
+        openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
 
-  4. Generate the server's private key and certificate request:
+    4. Generate the server's private key and certificate request:
 
-      openssl req -newkey rsa:2048 -nodes -days 365000 -keyout server-key.pem -out server-req.pem
+        openssl req -newkey rsa:2048 -nodes -days 365000 -keyout server-key.pem -out server-req.pem
 
-  5. Generate the X509 certificate for the server:
+    5. Generate the X509 certificate for the server:
 
-      openssl x509 -req -days 365000 -set_serial 01 -in server-req.pem -out server-cert.pem -CA cacert.pem -CAkey ca-key.pem
+        openssl x509 -req -days 365000 -set_serial 01 -in server-req.pem -out server-cert.pem -CA cacert.pem -CAkey ca-key.pem
 
-  6. Generate the client's private key and certificate request:
+    6. Generate the client's private key and certificate request:
 
-      openssl req -newkey rsa:2048 -nodes -days 365000 -keyout client-key.pem -out client-req.pem
+        openssl req -newkey rsa:2048 -nodes -days 365000 -keyout client-key.pem -out client-req.pem
 
-  7. Generate the X509 certificate for the client:
+    7. Generate the X509 certificate for the client:
 
-      openssl x509 -req -days 365000 -set_serial 01 -in client-req.pem -out client-cert.pem -CA cacert.pem -CAkey ca-key.pem
-      
-  8. Verify server and client certificates:
+        openssl x509 -req -days 365000 -set_serial 01 -in client-req.pem -out client-cert.pem -CA cacert.pem -CAkey ca-key.pem
+        
+    8. Verify server and client certificates:
 
-      openssl verify -CAfile cacert.pem ca-cert.pem server-cert.pem
+        openssl verify -CAfile cacert.pem ca-cert.pem server-cert.pem
 
-      openssl verify -CAfile cacert.pem ca-cert.pem client-cert.pem
+        openssl verify -CAfile cacert.pem ca-cert.pem client-cert.pem
 
-  9. Start SSL server for doing Handshake
+    9. Start SSL server for doing Handshake
 
-      /usr/local/bin/openssl s_server -dhparam dhparam.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg > s_server.txt
+        /usr/local/bin/openssl s_server -dhparam dhparam.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg > s_server.txt
 
-  4. Start SSL client for doing Handshake
+    10. Start SSL client for doing Handshake
 
-      /usr/local/bin/openssl s_client -cert client-cert.pem -key client-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg localhost > s_client.txt 
+        /usr/local/bin/openssl s_client -cert client-cert.pem -key client-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg localhost > s_client.txt 
 
-  5. Run TLS 1.3 record layer encryption test
+    11. Run TLS 1.3 record layer encryption test
 
-      make TESTS='test_tls13encryption' V=1 test
-  
-  6. Run echo between server and client using SSL/TLS and TCP
+        make TESTS='test_tls13encryption' V=1 test
+    
+    12. Run echo between server and client using SSL/TLS and TCP
 
-      cd OpenSSL/TLSEcho
+        cd OpenSSL/TLSEcho
 
-      make
+        make
 
-      ./tlsecho s > server_r.txt
-      
-      ./tlsecho c localhost > client_r.txt
+        ./tlsecho s > server_r.txt
+        
+        ./tlsecho c localhost > client_r.txt
+
+Security Parameters
+
+    1. 128-bit:  AES-GCM-128, DH (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383)
+
 
 Results
 
-  1. Key Exchange: 
+    1. Key Exchange: 
 
-        X25519 [ECDH] from include/crypto/ecx.h
+            X25519 [ECDH] from include/crypto/ecx.h
 
-        x25519_scalar_mulx() [x86_64], 
+            x25519_scalar_mulx() [x86_64], 
 
-        ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
+            ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
 
-  2. Signing: 
+    2. Signing: 
 
-        <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
+            <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
 
-        rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
+            rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
 
-  3. Encryption: 
-  
-        AES GCM 128 from openssl/include/openssl/modes.h
+    3. Encryption: 
+    
+            AES GCM 128 from openssl/include/openssl/modes.h
 
-        {Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26}
+            {Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26}
 
-        CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
-  
-  4. Hashing: 
-  
-        SHA1_Update() from include/crypto/md32_common.h
+            CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
+    
+    4. Hashing: 
+    
+            SHA1_Update() from include/crypto/md32_common.h
 
-        SHA512_Update() from crypto/sha/sha512.c
-        
-        SHA256_Update() from include/crypto/md32_common.h
+            SHA512_Update() from crypto/sha/sha512.c
+            
+            SHA256_Update() from include/crypto/md32_common.h
