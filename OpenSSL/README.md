@@ -71,9 +71,10 @@ Steps
 
     2. Generate a DSA private key for the CA:
 
-        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
+        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 \
+            -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
         openssl gendsa -out dsa_pvt.pem dsa_param.pem 
-
+    -----
     3. Generate the X509 certificate for the CA:
 
         openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
