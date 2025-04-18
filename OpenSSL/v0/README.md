@@ -59,25 +59,19 @@ In case of shared library errors
     1. sudo cp *.so.3 /usr/local/lib
     2. sudo ldconfig  
 
+Security Parameters
+
+    1. 128-bit:  AES-GCM-128, DH (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383)
+
 Steps
 
-    1. Generate DH parameters for Handshake between server and client:
+    1. Generate a RSA-PSS key pair for the CA:
 
-        /usr/local/bin/openssl dhparam -out dhparam.pem 2048 > dhout.txt
+        openssl genpkey -out rsa_sign_pvtkey.pem -outpubkey rsa_sign_pubkey.pem -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:3072
 
-    2. Generate a private key for the CA:
+    2. Generate a ECC private key for the CA:
 
-        <!-- certtool --generate-privkey --sec-param Medium --outfile secret.key
 
-        openssl req -new -key secret.key -out srv.csr
-
-        openssl req -new -newkey rsa:2048 -nodes -out srv.csr -keyout CA_srv_pvt.key -sha256
-
-        openssl x509 -signkey CA_srv_pvt.key -days 90 -req -in srv.csr -out CA_srv.cert -sha256
-
-        openssl x509 -req -days 90 -in srv.csr -CA CA_srv.cert -CAkey CA_srv_pvt.key -out signed_CA_srv.cert -set_serial 01 -sha256 -->
-
-        openssl genrsa 2048 > ca-key.pem 
 
     3. Generate the X509 certificate for the CA:
 
@@ -105,6 +99,10 @@ Steps
 
         openssl verify -CAfile cacert.pem ca-cert.pem client-cert.pem
 
+    1. Generate DH parameters for Handshake between server and client:
+
+        /usr/local/bin/openssl dhparam -out dhparam.pem 2048 > dhout.txt
+
     9. Start SSL server for doing Handshake
 
         /usr/local/bin/openssl s_server -dhparam dhparam.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg > s_server.txt
@@ -127,9 +125,7 @@ Steps
         
         ./tlsecho c localhost > client_r.txt
 
-Security Parameters
 
-    1. 128-bit:  AES-GCM-128, DH (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383)
 
 
 Results
