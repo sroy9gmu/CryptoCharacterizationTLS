@@ -5,24 +5,28 @@ This project implements a simple echo client/server using TLS v1.3.
 
 Links
 
-  1. v1.3 
-  
-    1.1 Specification: https://datatracker.ietf.org/doc/html/rfc8446 
-    1.2 Usage: https://wiki.openssl.org/index.php/TLS1.3
+    1. v1.3 
+    
+        1.1 Specification: https://datatracker.ietf.org/doc/html/rfc8446 
+        1.2 Usage: https://wiki.openssl.org/index.php/TLS1.3
 
-  2. Key Exchange: https://wiki.openssl.org/index.php/EVP_Key_Agreement
+    2. Key Exchange: https://wiki.openssl.org/index.php/EVP_Key_Agreement
 
-  3. Signing: 
-  
-    3.1 Direct invocation: https://wiki.openssl.org/index.php/EVP_Signing_and_Verifying
-    3.2 Specification: https://datatracker.ietf.org/doc/html/rfc8017
+    3. Signing: 
+    
+        3.1 Direct invocation: https://wiki.openssl.org/index.php/EVP_Signing_and_Verifying
+        3.2 Specification: https://datatracker.ietf.org/doc/html/rfc8017
 
-  4. Hashing: https://github.com/openssl/openssl/blob/c2ab75e30a211aa278f8da1f0f040f9368adb81d/doc/man3/EVP_DigestInit.pod
+    4. Hashing: https://github.com/openssl/openssl/blob/c2ab75e30a211aa278f8da1f0f040f9368adb81d/doc/man3/EVP_DigestInit.pod
 
-  5. Creating cerificates: 
+    5. Creating cerificates: 
 
-    5.1 Self-signed: https://www.ibm.com/docs/en/license-metric-tool?topic=communication-configuring-secure-ca-signed-certificate
-    5.2 Certificate authority: https://medium.com/@yakuphanbilgic3/create-self-signed-certificates-and-keys-with-openssl-4064f9165ea3
+        5.1 Self-signed: https://www.ibm.com/docs/en/license-metric-tool?topic=communication-configuring-secure-ca-signed-certificate
+        5.2 Certificate authority: https://medium.com/@yakuphanbilgic3/create-self-signed-certificates-and-keys-with-openssl-4064f9165ea3
+
+    6. Enable/disable build options:
+        https://github.com/openssl/openssl/blob/master/INSTALL.md#enable-and-disable-features
+
 
 Description
 
@@ -49,15 +53,9 @@ Installation
 
     1. git clone https://github.com/openssl/openssl.git
     2. cd openssl
-    3. ./Configure LDLIBS=-lm
-    4. make
-    5. make test (Optional)
-    6. sudo make install
-
-In case of shared library errors
-
-    1. sudo cp *.so.3 /usr/local/lib
-    2. sudo ldconfig  
+    3. ./Configure LDLIBS=-lm no-ecdh no-ecdsa
+    4. make build_sw
+    5. sudo make install_sw
 
 Security Parameters
 
@@ -103,36 +101,15 @@ Steps
         openssl req -in dsa_srv_req.pem -out dsa_srv_cert.pem -verify -x509 -CA dsa_cert.pem -CAkey dsa_pvt.pem
         openssl req -in dsa_cli_req.pem -out dsa_cli_cert.pem -verify -x509 -CA dsa_cert.pem -CAkey dsa_pvt.pem
 
-        ----------------------
+    5. Generate DH parameters for key exchange between server and client:
 
-    1. Generate DH parameters for Handshake between server and client:
+        /usr/local/bin/openssl dhparam -out dh_param.pem 3072
 
-        /usr/local/bin/openssl dhparam -out dhparam.pem 2048 > dhout.txt
+    9. Start SSL server and client in separate windows
 
-    9. Start SSL server for doing Handshake
+        /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -trace -tls1_3 
 
-        /usr/local/bin/openssl s_server -dhparam dhparam.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg > s_server.txt
-
-    10. Start SSL client for doing Handshake
-
-        /usr/local/bin/openssl s_client -cert client-cert.pem -key client-key.pem -verifyCAfile ca-cert.pem -tls1_3 -debug -msg localhost > s_client.txt 
-
-    11. Run TLS 1.3 record layer encryption test
-
-        make TESTS='test_tls13encryption' V=1 test
-    
-    12. Run echo between server and client using SSL/TLS and TCP
-
-        cd OpenSSL/TLSEcho
-
-        make
-
-        ./tlsecho s > server_r.txt
-        
-        ./tlsecho c localhost > client_r.txt
-
-
-
+        /usr/local/bin/openssl s_client -cert client-cert.pem -key client-key.pem -verifyCAfile ca-cert.pem -trace -tls1_3 localhost
 
 Results
 
