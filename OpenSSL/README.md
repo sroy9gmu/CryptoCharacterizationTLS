@@ -65,41 +65,45 @@ Security Parameters
 
 Steps
 
-    1. Generate a RSA-PSS private for the CA:
+    1. Generate a private key for the CA
 
+        RSA-PSS: 
         openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
 
-    2. Generate a DSA private key for the CA:
-
+        DSA: 
         openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 \
             -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
         openssl gendsa -out dsa_pvt.pem dsa_param.pem 
-    -----
-    3. Generate the X509 certificate for the CA:
 
-        openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
+    2. Generate the X509 certificate for the CA:
 
-    4. Generate the server's private key and certificate request:
+        RSA-PSS: 
+        openssl req -new -x509 -nodes -days 365000 -key rsa_pvt.pem -out rsa_cert.pem
 
-        openssl req -newkey rsa:2048 -nodes -days 365000 -keyout server-key.pem -out server-req.pem
+        DSA:
+        openssl req -new -x509 -nodes -days 365000 -key dsa_pvt.pem -out dsa_cert.pem
 
-    5. Generate the X509 certificate for the server:
+    3. Generate the client and server's private key and certificate request:
 
-        openssl x509 -req -days 365000 -set_serial 01 -in server-req.pem -out server-cert.pem -CA cacert.pem -CAkey ca-key.pem
+        RSA-PSS: 
+        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_srv_pvt.pem -out rsa_srv_req.pem
+        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_cli_pvt.pem -out rsa_cli_req.pem
 
-    6. Generate the client's private key and certificate request:
+        DSA:
+        openssl req -newkey dsa:dsa_param.pem -nodes -days 365000 -keyout dsa_srv_pvt.pem -out dsa_srv_req.pem
+        openssl req -newkey dsa:dsa_param.pem -nodes -days 365000 -keyout dsa_cli_pvt.pem -out dsa_cli_req.pem
 
-        openssl req -newkey rsa:2048 -nodes -days 365000 -keyout client-key.pem -out client-req.pem
+    4. Generate the X509 certificate for the server:
 
-    7. Generate the X509 certificate for the client:
+        RSA-PSS: 
+        openssl req -in rsa_srv_req.pem -out rsa_srv_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
+        openssl req -in rsa_cli_req.pem -out rsa_cli_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
 
-        openssl x509 -req -days 365000 -set_serial 01 -in client-req.pem -out client-cert.pem -CA cacert.pem -CAkey ca-key.pem
-        
-    8. Verify server and client certificates:
+        DSA: 
+        openssl req -in dsa_srv_req.pem -out dsa_srv_cert.pem -verify -x509 -CA dsa_cert.pem -CAkey dsa_pvt.pem
+        openssl req -in dsa_cli_req.pem -out dsa_cli_cert.pem -verify -x509 -CA dsa_cert.pem -CAkey dsa_pvt.pem
 
-        openssl verify -CAfile cacert.pem ca-cert.pem server-cert.pem
-
-        openssl verify -CAfile cacert.pem ca-cert.pem client-cert.pem
+        ----------------------
 
     1. Generate DH parameters for Handshake between server and client:
 
