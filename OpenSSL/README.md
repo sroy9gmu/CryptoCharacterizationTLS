@@ -56,7 +56,8 @@ Installation
     3. ./Configure LDLIBS=-lm [no-ec] [no-ecdh] [no-ecdsa]
     4. make build_sw
     5. sudo make install_sw
-    6. sudo cp lib*so* /lib/x86_64-linux-gnu
+    6. sudo cp lib*so /lib/x86_64-linux-gnu/
+    7. sudo ldconfig
 
 Security Parameters
 
@@ -122,6 +123,11 @@ Results
 
     1. Key Exchange: 
 
+            FFDH
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256)
+
+            ECDH
             X25519 [ECDH] from include/crypto/ecx.h
 
             x25519_scalar_mulx() [x86_64], 
@@ -130,6 +136,8 @@ Results
 
     2. Signing: 
 
+            RSA-PSS
+            Signature Algorithm: rsassaPss 
             <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
 
             rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
@@ -144,6 +152,7 @@ Results
     
     4. Hashing: 
     
+            Hash Algorithm: sha256
             SHA1_Update() from include/crypto/md32_common.h
 
             SHA512_Update() from crypto/sha/sha512.c

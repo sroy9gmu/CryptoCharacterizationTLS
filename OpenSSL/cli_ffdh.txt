@@ -1,0 +1,413 @@
+Connecting to 127.0.0.1
+CONNECTED(00000003)
+SSL_connect:before SSL initialization
+Sent TLS Record
+Header:
+  Version = TLS 1.0 (0x301)
+  Content Type = Handshake (22)
+  Length = 410
+    ClientHello, Length=406
+      client_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0xBEE12F77
+        random_bytes (len=28): 1C263903BCC0120221C623067FCF439180F4F9D5A8966CFB6DCC1AD9
+      session_id (len=32): A9D57D4665597AA87BB6BCD2415C61720CC67BA33E007B32DBCC9FFB41C47C87
+      cipher_suites (len=2)
+        {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_methods (len=1)
+        No Compression (0x00)
+      extensions, length = 331
+        extension_type=supported_groups(10), length=6
+          ffdhe2048 (256)
+          ffdhe3072 (257)
+        extension_type=session_ticket(35), length=0
+        extension_type=encrypt_then_mac(22), length=0
+        extension_type=extended_master_secret(23), length=0
+        extension_type=signature_algorithms(13), length=26
+          mldsa65 (0x0905)
+          mldsa87 (0x0906)
+          mldsa44 (0x0904)
+          rsa_pss_pss_sha256 (0x0809)
+          rsa_pss_pss_sha384 (0x080a)
+          rsa_pss_pss_sha512 (0x080b)
+          rsa_pss_rsae_sha256 (0x0804)
+          rsa_pss_rsae_sha384 (0x0805)
+          rsa_pss_rsae_sha512 (0x0806)
+          rsa_pkcs1_sha256 (0x0401)
+          rsa_pkcs1_sha384 (0x0501)
+          rsa_pkcs1_sha512 (0x0601)
+        extension_type=supported_versions(43), length=3
+          TLS 1.3 (772)
+        extension_type=psk_key_exchange_modes(45), length=2
+          psk_dhe_ke (1)
+        extension_type=key_share(51), length=262
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): B86D68CACEA2BBDAA846DBE2B78CF9FC3573EC820B6DB808A79B61E9288DC8E05CF3C0E37920BEAB64492ED06E74643A394621AF809F48BFC7E6111C1B277F6E4BB25C45A6349E8580BD60D7E6720040ED8124FB006F99FA97C14C2C2A027D1C808EFAF17A9D804069EAC926BD81E0D6C7F5A9F423BDDE101C21D87C8DE4BD437974973F4E12D6CD65F603F210AC35541E537C7FF6A1523D4B15AA70D42B235D9D1F526EF53BFAA051BE6FF70FC8FAAED3F323DC1EFE9F426B61A808B40A649B7F6F0EF5606499CE3E651A7C8147E98DC1166578296C814808A939B292911DA326E309E6A70E250DDBD46B874DD8D5C3F40C869CC55ECF1C988B51FEFD65CBE8
+
+SSL_connect:SSLv3/TLS write client hello
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Handshake (22)
+  Length = 346
+SSL_connect:SSLv3/TLS write client hello
+    ServerHello, Length=342
+      server_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x0D0C272F
+        random_bytes (len=28): 650530AC08A8333DA67D9B2CC0D5D322F13E200BD3F727313952E6A6
+      session_id (len=32): A9D57D4665597AA87BB6BCD2415C61720CC67BA33E007B32DBCC9FFB41C47C87
+      cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_method: No Compression (0x00)
+      extensions, length = 270
+        extension_type=supported_versions(43), length=2
+            TLS 1.3 (772)
+        extension_type=key_share(51), length=260
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): E1ADF7B7D6893E77072627D9E4C4007661DA1C6B8099986629BF7F0ACD71885CA24AB3550B9CB97D8448E38B7E5855D79E6D92B945E8452B33AAFB2F08421754BEEF0305E467943473B196D95C553F86AA738C91AEEC97D573352A34A5C6921123CB8BA3F7404774EF6AD3F8F67927A3AEDF1625B67F919472943941795A9148B998AD6A3129EAB64F173AC25A445992A6A0B781B446406B79F42795F3D70E12006C0C2AC3BB94040200DC69DB0A2C839FCBA3A3D58BF12DA3EA2326495E7CA56AD04098C22CEBDCD7213CDDA2EA2934A909E8C8B62F712457129973567E9D9C5ABCD01CB1E7BE34A4A3A9124E68C0DC7EF7AC03D82FFC1D1FC7DE0CCD385350
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 23
+  Inner Content Type = Handshake (22)
+SSL_connect:SSLv3/TLS read server hello
+    EncryptedExtensions, Length=2
+      No extensions
+
+Can't use SSL_get_servername
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 1369
+  Inner Content Type = Handshake (22)
+SSL_connect:TLSv1.3 read encrypted extensions
+    Certificate, Length=1348
+      context (len=0): 
+      certificate_list, length=1344
+        ASN.1Cert, length=1339
+------details-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0f:8e:61:43:a9:5a:eb:15:78:44:f4:82:c4:08:97:5d:28:bf:a4:da
+        Signature Algorithm: rsassaPss        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x015E
+        Trailer Field: 0x01 (default)
+        Issuer: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = sroy9, emailAddress = sroy9@gmu.edu
+        Validity
+            Not Before: Apr 21 16:29:27 2025 GMT
+            Not After : May 21 16:29:27 2025 GMT
+        Subject: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = sroy9, emailAddress = sroy9@gmu.edu
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (3072 bit)
+                Modulus:
+                    00:93:87:54:ca:14:d4:8d:91:ef:cc:18:f5:11:cb:
+                    3e:da:9c:7c:74:4b:cb:f1:a7:e1:b2:1d:63:8c:68:
+                    13:1c:f0:c5:05:59:d1:57:5f:5c:f6:18:a7:83:48:
+                    f9:44:37:08:6b:f3:2d:de:5d:bb:d6:71:b8:7c:e4:
+                    e7:b5:73:df:79:37:7c:6c:2e:ab:08:b8:34:db:3a:
+                    d1:db:c1:c0:63:1d:57:26:8d:1d:f1:ee:8a:7a:fb:
+                    36:cb:9b:b5:4a:67:be:ed:bc:e7:51:0a:65:96:88:
+                    a5:7b:a1:fb:80:72:8b:d9:a5:5a:e0:48:72:1b:f4:
+                    fc:1a:ee:15:73:6d:45:d3:c7:3d:a5:3d:13:38:e5:
+                    19:37:32:7f:59:dc:20:b3:1d:b6:2c:00:b5:65:6f:
+                    1d:86:d9:43:8e:63:4e:08:7d:50:b5:ee:56:44:76:
+                    c8:22:c5:42:c1:17:78:52:d7:7c:e3:ac:0f:3d:c8:
+                    1e:91:0a:06:6b:8f:89:44:82:71:1a:6b:5a:3a:20:
+                    20:97:d0:1c:97:47:cb:80:53:5d:aa:3a:f2:2b:6d:
+                    77:21:f9:57:c4:a9:2f:e9:4c:b5:ef:57:6a:88:10:
+                    dd:b7:ce:18:b2:77:7d:28:42:36:9f:6e:15:6b:7e:
+                    9a:8e:f5:c7:13:fe:49:55:45:e7:04:d3:a1:7c:2d:
+                    8e:0e:6d:9c:4c:a4:a5:db:d5:23:51:3b:d6:b3:49:
+                    38:4f:a1:ca:f1:38:2c:4c:83:f7:42:4a:24:00:a1:
+                    e5:53:19:57:fc:4c:e9:e9:b1:99:75:da:dc:20:ae:
+                    e7:19:2b:f0:79:47:34:1c:7c:ff:5e:05:4d:51:ed:
+                    03:62:36:27:5e:32:23:4d:07:df:cb:8c:e1:bd:6a:
+                    bc:e8:d2:18:f7:df:c0:db:61:79:f2:f5:f5:1d:2d:
+                    fb:cf:35:3a:86:c1:8c:d1:63:c4:9f:19:93:05:fb:
+                    0a:65:4d:6f:5e:72:6f:61:b1:bb:65:ad:44:10:f2:
+                    f9:63:a7:61:49:42:90:39:9d:03
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                62:07:22:5E:7F:B1:BD:B2:86:53:1C:BA:2B:A4:9A:6A:7B:4D:F6:40
+            X509v3 Authority Key Identifier: 
+                D5:33:0F:C6:B1:7A:CF:64:8D:40:FA:2E:33:71:08:7A:51:58:04:31
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: rsassaPss
+    Signature Value:        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x015E
+        Trailer Field: 0x01 (default)
+        02:59:c3:4e:30:19:6a:74:40:e5:6f:aa:37:07:a1:7d:34:6d:
+        8f:01:3b:e4:42:7d:2d:e6:68:43:d2:df:81:42:1a:20:9d:0d:
+        d9:d4:73:19:a9:67:2d:8b:3f:72:54:51:9c:42:17:5a:f2:45:
+        99:1a:80:0c:6c:e8:df:e7:c9:89:73:3f:0d:6f:d8:17:82:83:
+        9d:75:58:63:90:34:aa:5d:c2:2c:cc:9e:26:c6:3d:3e:25:76:
+        a1:8c:0b:37:29:8e:f1:22:21:a5:0b:8e:23:09:f5:fb:f8:7d:
+        2f:2d:1d:07:c8:45:5d:7c:03:9b:d2:e4:a2:ea:55:71:57:64:
+        07:3d:61:3b:58:0d:74:c1:2e:b1:bd:bb:48:e1:36:9d:f5:0a:
+        ae:55:3b:7d:f4:e2:08:3e:cd:9e:1a:65:ca:70:d8:ec:65:8b:
+        7e:54:90:9a:bf:b9:56:45:a8:ca:d2:07:ed:c2:d8:9f:90:0c:
+        30:78:54:64:cc:48:0a:30:f5:e6:99:56:92:1d:00:cb:71:f2:
+        6f:c8:a6:07:16:51:88:5c:98:1a:42:0b:80:0d:a6:d5:cc:9f:
+        3a:84:44:a3:96:a6:7f:94:cd:1c:af:73:69:8d:a7:59:89:27:
+        b5:2c:c2:96:e8:3e:cd:ca:f4:b2:9f:69:d3:63:42:07:4f:17:
+        4e:59:35:f0:8e:d0:f2:c5:0e:a4:aa:c1:97:67:3c:6b:91:34:
+        e1:a3:0a:b1:a8:0f:b9:c6:c0:b2:ed:99:36:c1:d6:d4:5f:c2:
+        6a:d6:6c:f7:11:32:45:fa:bc:62:38:c1:a8:aa:0e:33:3c:a4:
+        67:2e:aa:c0:1e:1a:28:1e:3f:0c:aa:0c:54:46:dd:4c:d1:79:
+        19:53:be:a6:56:ce:e6:80:d4:fd:0d:18:e9:1f:36:c6:95:ce:
+        41:98:e5:a9:e0:55:7d:58:75:06:bd:9b:93:0f:9d:08:41:7c:
+        e8:0c:95:9b:d1:97:f1:b8:ab:ad:50:ab:be:2f:79:6b:10:0c:
+        2b:3f:7d:52:75:5d
+-----BEGIN CERTIFICATE-----
+MIIFNzCCA2qgAwIBAgIUD45hQ6la6xV4RPSCxAiXXSi/pNowQgYJKoZIhvcNAQEK
+MDWgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIEAgIBXjB2MQswCQYDVQQGEwJVUzELMAkGA1UECAwCVkExEDAOBgNVBAcMB0Zh
+aXJmYXgxDDAKBgNVBAoMA0dNVTEMMAoGA1UECwwDRUNFMQ4wDAYDVQQDDAVzcm95
+OTEcMBoGCSqGSIb3DQEJARYNc3JveTlAZ211LmVkdTAeFw0yNTA0MjExNjI5Mjda
+Fw0yNTA1MjExNjI5MjdaMHYxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4G
+A1UEBwwHRmFpcmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxDjAMBgNV
+BAMMBXNyb3k5MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MIIBojANBgkq
+hkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAk4dUyhTUjZHvzBj1Ecs+2px8dEvL8afh
+sh1jjGgTHPDFBVnRV19c9hing0j5RDcIa/Mt3l271nG4fOTntXPfeTd8bC6rCLg0
+2zrR28HAYx1XJo0d8e6Kevs2y5u1Sme+7bznUQplloile6H7gHKL2aVa4EhyG/T8
+Gu4Vc21F08c9pT0TOOUZNzJ/Wdwgsx22LAC1ZW8dhtlDjmNOCH1Qte5WRHbIIsVC
+wRd4Utd846wPPcgekQoGa4+JRIJxGmtaOiAgl9Acl0fLgFNdqjryK213IflXxKkv
+6Uy171dqiBDdt84Ysnd9KEI2n24Va36ajvXHE/5JVUXnBNOhfC2ODm2cTKSl29Uj
+UTvWs0k4T6HK8TgsTIP3QkokAKHlUxlX/Ezp6bGZddrcIK7nGSvweUc0HHz/XgVN
+Ue0DYjYnXjIjTQffy4zhvWq86NIY99/A22F58vX1HS37zzU6hsGM0WPEnxmTBfsK
+ZU1vXnJvYbG7Za1EEPL5Y6dhSUKQOZ0DAgMBAAGjUzBRMB0GA1UdDgQWBBRiByJe
+f7G9soZTHLorpJpqe032QDAfBgNVHSMEGDAWgBTVMw/GsXrPZI1A+i4zcQh6UVgE
+MTAPBgNVHRMBAf8EBTADAQH/MEIGCSqGSIb3DQEBCjA1oA8wDQYJYIZIAWUDBAIB
+BQChHDAaBgkqhkiG9w0BAQgwDQYJYIZIAWUDBAIBBQCiBAICAV4DggGBAAJZw04w
+GWp0QOVvqjcHoX00bY8BO+RCfS3maEPS34FCGiCdDdnUcxmpZy2LP3JUUZxCF1ry
+RZkagAxs6N/nyYlzPw1v2BeCg511WGOQNKpdwizMnibGPT4ldqGMCzcpjvEiIaUL
+jiMJ9fv4fS8tHQfIRV18A5vS5KLqVXFXZAc9YTtYDXTBLrG9u0jhNp31Cq5VO330
+4gg+zZ4aZcpw2Oxli35UkJq/uVZFqMrSB+3C2J+QDDB4VGTMSAow9eaZVpIdAMtx
+8m/IpgcWUYhcmBpCC4ANptXMnzqERKOWpn+UzRyvc2mNp1mJJ7UswpboPs3K9LKf
+adNjQgdPF05ZNfCO0PLFDqSqwZdnPGuRNOGjCrGoD7nGwLLtmTbB1tRfwmrWbPcR
+MkX6vGI4waiqDjM8pGcuqsAeGigePwyqDFRG3UzReRlTvqZWzuaA1P0NGOkfNsaV
+zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
+-----END CERTIFICATE-----
+------------------
+        No extensions
+
+depth=1 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+verify return:1
+depth=0 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+verify return:1
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 409
+  Inner Content Type = Handshake (22)
+SSL_connect:SSLv3/TLS read server certificate
+    CertificateVerify, Length=388
+      Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
+      Signature (len=384): 1D4F8A6AC9CCD18C2BA13FDE8E9162D687BBF0082FE6302457F3D8E5CA3B9191B58C02178E2541E6D8B1DF8C8572A1582B473CE146A9CCD645FC0225B875154B84E646DF4108377E38DCF4956D73D54C8B20C2DAD5912D5C7AB4A219560871934FA06B072DCF6BDBF2476E5CF4E467531EA97137049322A8F5AF4FE6CE75AA85CC7B99269219A72E69144C2385B91180768D8D3F984A7E8BF8354DCCCF353F496B4BAFC487B64346C512CB0C77DA8E7A198032DE63D2BDBCB777F0A1BCCC8B8ACB8DEF9807D1531ADDBBAB038E7C5BFE3FDE0A4F067BAB6FFE5B6340F53E4AA3EDAD5CE835F6623FDF284AC11F3080757EE3934D9ADDE9793C0D02578C2483763F30F6958D4EC6D577F458AC9F9DCEE3F16CB684953C519ACF648B4A47AAEDBE9CAD8E00ED476F5F345FF664DD59D88CF2A046777FF343C5D3B11D45DBA61DFC2ACB3A802C5649F1E32EFF64BB21C631BBD6FE8D53BDDD2E3E34344D24672E83A0ED73E199E92EF476459606C9448C6175C8EBA7C69A548BDDCEA4115DFE0F70
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 53
+  Inner Content Type = Handshake (22)
+SSL_connect:TLSv1.3 read server certificate verify
+    Finished, Length=32
+      verify_data (len=32): C0986A0A681AA55C2862ACCB4512774E56E415F7C8BD5FF605287D86093113A1
+
+SSL_connect:SSLv3/TLS read finished
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+SSL_connect:SSLv3/TLS write change cipher spec
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 53
+  Inner Content Type = Handshake (22)
+    Finished, Length=32
+      verify_data (len=32): F791A9CC77F56D3240DA40DB1F97A20835BE610A006C170D3319D54B62B655CB
+
+SSL_connect:SSLv3/TLS write finished
+---
+Certificate chain
+ 0 s:C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+   i:C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+   a:PKEY: RSA, 3072 (bit); sigalg: rsassaPss
+   v:NotBefore: Apr 21 16:29:27 2025 GMT; NotAfter: May 21 16:29:27 2025 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIFNzCCA2qgAwIBAgIUD45hQ6la6xV4RPSCxAiXXSi/pNowQgYJKoZIhvcNAQEK
+MDWgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIEAgIBXjB2MQswCQYDVQQGEwJVUzELMAkGA1UECAwCVkExEDAOBgNVBAcMB0Zh
+aXJmYXgxDDAKBgNVBAoMA0dNVTEMMAoGA1UECwwDRUNFMQ4wDAYDVQQDDAVzcm95
+OTEcMBoGCSqGSIb3DQEJARYNc3JveTlAZ211LmVkdTAeFw0yNTA0MjExNjI5Mjda
+Fw0yNTA1MjExNjI5MjdaMHYxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4G
+A1UEBwwHRmFpcmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxDjAMBgNV
+BAMMBXNyb3k5MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MIIBojANBgkq
+hkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAk4dUyhTUjZHvzBj1Ecs+2px8dEvL8afh
+sh1jjGgTHPDFBVnRV19c9hing0j5RDcIa/Mt3l271nG4fOTntXPfeTd8bC6rCLg0
+2zrR28HAYx1XJo0d8e6Kevs2y5u1Sme+7bznUQplloile6H7gHKL2aVa4EhyG/T8
+Gu4Vc21F08c9pT0TOOUZNzJ/Wdwgsx22LAC1ZW8dhtlDjmNOCH1Qte5WRHbIIsVC
+wRd4Utd846wPPcgekQoGa4+JRIJxGmtaOiAgl9Acl0fLgFNdqjryK213IflXxKkv
+6Uy171dqiBDdt84Ysnd9KEI2n24Va36ajvXHE/5JVUXnBNOhfC2ODm2cTKSl29Uj
+UTvWs0k4T6HK8TgsTIP3QkokAKHlUxlX/Ezp6bGZddrcIK7nGSvweUc0HHz/XgVN
+Ue0DYjYnXjIjTQffy4zhvWq86NIY99/A22F58vX1HS37zzU6hsGM0WPEnxmTBfsK
+ZU1vXnJvYbG7Za1EEPL5Y6dhSUKQOZ0DAgMBAAGjUzBRMB0GA1UdDgQWBBRiByJe
+f7G9soZTHLorpJpqe032QDAfBgNVHSMEGDAWgBTVMw/GsXrPZI1A+i4zcQh6UVgE
+MTAPBgNVHRMBAf8EBTADAQH/MEIGCSqGSIb3DQEBCjA1oA8wDQYJYIZIAWUDBAIB
+BQChHDAaBgkqhkiG9w0BAQgwDQYJYIZIAWUDBAIBBQCiBAICAV4DggGBAAJZw04w
+GWp0QOVvqjcHoX00bY8BO+RCfS3maEPS34FCGiCdDdnUcxmpZy2LP3JUUZxCF1ry
+RZkagAxs6N/nyYlzPw1v2BeCg511WGOQNKpdwizMnibGPT4ldqGMCzcpjvEiIaUL
+jiMJ9fv4fS8tHQfIRV18A5vS5KLqVXFXZAc9YTtYDXTBLrG9u0jhNp31Cq5VO330
+4gg+zZ4aZcpw2Oxli35UkJq/uVZFqMrSB+3C2J+QDDB4VGTMSAow9eaZVpIdAMtx
+8m/IpgcWUYhcmBpCC4ANptXMnzqERKOWpn+UzRyvc2mNp1mJJ7UswpboPs3K9LKf
+adNjQgdPF05ZNfCO0PLFDqSqwZdnPGuRNOGjCrGoD7nGwLLtmTbB1tRfwmrWbPcR
+MkX6vGI4waiqDjM8pGcuqsAeGigePwyqDFRG3UzReRlTvqZWzuaA1P0NGOkfNsaV
+zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
+-----END CERTIFICATE-----
+subject=C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+issuer=C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: rsa_pss_rsae_sha256
+Peer Temp Key: DH, 2048 bits
+---
+SSL handshake has read 2231 bytes and written 479 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_128_GCM_SHA256
+Protocol: TLSv1.3
+Server public key is 3072 bit
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 234
+  Inner Content Type = Handshake (22)
+SSL_connect:SSL negotiation finished successfully
+SSL_connect:SSL negotiation finished successfully
+    NewSessionTicket, Length=213
+        ticket_lifetime_hint=7200
+        ticket_age_add=1212365804
+        ticket_nonce (len=8): 0000000000000000
+        ticket (len=192): FA7E4D2B5BB42EFAC4E18903F3C40D0F2097C3CEFBD9BF5244EAD01DED6F10919FD08AB44B8B412AF0B585864B64BB4D4CCD5B8DB9D83AF991748C1046D312CEDFF46A3C833FD3F81DE0EF8F14C35BBE47B1CC7F0E2B98E0EA9A525D2730231A8748773B08EBABAFCA2AF3AEADFFF5ED57B23EFC5CF26E385EED1133290A554CE6063FA1C6C8233DE89D164BEEABA4FDE3F944E0A097F465A7E1AB1720B617DF2259DFCBC5C80ED63FD67C8A65FD89EE6CB13675BB210380F7AC45E691FC1FA4
+        No extensions
+
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_128_GCM_SHA256
+    Session-ID: 54375273B12192EA2E9D8E97E0A0799E71069F171C74050BCF9744AB6DA0AADE
+    Session-ID-ctx: 
+    Resumption PSK: 9701E0B9CE99687E968E99A7C44C3447A03FDA9089B5ECB7758A3C7338C27956
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - fa 7e 4d 2b 5b b4 2e fa-c4 e1 89 03 f3 c4 0d 0f   .~M+[...........
+    0010 - 20 97 c3 ce fb d9 bf 52-44 ea d0 1d ed 6f 10 91    ......RD....o..
+    0020 - 9f d0 8a b4 4b 8b 41 2a-f0 b5 85 86 4b 64 bb 4d   ....K.A*....Kd.M
+    0030 - 4c cd 5b 8d b9 d8 3a f9-91 74 8c 10 46 d3 12 ce   L.[...:..t..F...
+    0040 - df f4 6a 3c 83 3f d3 f8-1d e0 ef 8f 14 c3 5b be   ..j<.?........[.
+    0050 - 47 b1 cc 7f 0e 2b 98 e0-ea 9a 52 5d 27 30 23 1a   G....+....R]'0#.
+    0060 - 87 48 77 3b 08 eb ab af-ca 2a f3 ae ad ff f5 ed   .Hw;.....*......
+    0070 - 57 b2 3e fc 5c f2 6e 38-5e ed 11 33 29 0a 55 4c   W.>.\.n8^..3).UL
+    0080 - e6 06 3f a1 c6 c8 23 3d-e8 9d 16 4b ee ab a4 fd   ..?...#=...K....
+    0090 - e3 f9 44 e0 a0 97 f4 65-a7 e1 ab 17 20 b6 17 df   ..D....e.... ...
+    00a0 - 22 59 df cb c5 c8 0e d6-3f d6 7c 8a 65 fd 89 ee   "Y......?.|.e...
+    00b0 - 6c b1 36 75 bb 21 03 80-f7 ac 45 e6 91 fc 1f a4   l.6u.!....E.....
+
+    Start Time: 1745291893
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: no
+    Max Early Data: 0
+---
+SSL_connect:SSLv3/TLS read server session ticket
+read R BLOCK
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 234
+  Inner Content Type = Handshake (22)
+SSL_connect:SSL negotiation finished successfully
+SSL_connect:SSL negotiation finished successfully
+    NewSessionTicket, Length=213
+        ticket_lifetime_hint=7200
+        ticket_age_add=799643461
+        ticket_nonce (len=8): 0000000000000001
+        ticket (len=192): FA7E4D2B5BB42EFAC4E18903F3C40D0FF24A5A502AD4DF544E9979CAA4A44D5F96DF979C152A97C236F71A18F2A9905CD33D1DBE57372B7F63FF47FC6FE36E5A07E5019A576EDF9C386F6F208B783A2BF23F39C7AF3D5D69375DE2CA9EE7326138E827DB5C8678528F8A9DF0F8D866CF6497808C31291F943A3E0A0A7ACC63B1EE3C23427A3DC039A3A5735A9D99534E6A61C4421005AEDB7ECD343C054AFCDC5E2303009015E7B456BACE1C2A035CB5F0B7D2DA2ADD7EBC97DA1504B59E806A
+        No extensions
+
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+    Protocol  : TLSv1.3
+    Cipher    : TLS_AES_128_GCM_SHA256
+    Session-ID: BB652BADAEE8CB21078EB4CA1D1EB26720C4DC5AA4E8B73CCE0C30379E3F6632
+    Session-ID-ctx: 
+    Resumption PSK: 8B01556DE4CB7E5CA47919EB7CCCFA77883E5FC374C314227CF9A75EABA06600
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - fa 7e 4d 2b 5b b4 2e fa-c4 e1 89 03 f3 c4 0d 0f   .~M+[...........
+    0010 - f2 4a 5a 50 2a d4 df 54-4e 99 79 ca a4 a4 4d 5f   .JZP*..TN.y...M_
+    0020 - 96 df 97 9c 15 2a 97 c2-36 f7 1a 18 f2 a9 90 5c   .....*..6......\
+    0030 - d3 3d 1d be 57 37 2b 7f-63 ff 47 fc 6f e3 6e 5a   .=..W7+.c.G.o.nZ
+    0040 - 07 e5 01 9a 57 6e df 9c-38 6f 6f 20 8b 78 3a 2b   ....Wn..8oo .x:+
+    0050 - f2 3f 39 c7 af 3d 5d 69-37 5d e2 ca 9e e7 32 61   .?9..=]i7]....2a
+    0060 - 38 e8 27 db 5c 86 78 52-8f 8a 9d f0 f8 d8 66 cf   8.'.\.xR......f.
+    0070 - 64 97 80 8c 31 29 1f 94-3a 3e 0a 0a 7a cc 63 b1   d...1)..:>..z.c.
+    0080 - ee 3c 23 42 7a 3d c0 39-a3 a5 73 5a 9d 99 53 4e   .<#Bz=.9..sZ..SN
+    0090 - 6a 61 c4 42 10 05 ae db-7e cd 34 3c 05 4a fc dc   ja.B....~.4<.J..
+    00a0 - 5e 23 03 00 90 15 e7 b4-56 ba ce 1c 2a 03 5c b5   ^#......V...*.\.
+    00b0 - f0 b7 d2 da 2a dd 7e bc-97 da 15 04 b5 9e 80 6a   ....*.~........j
+
+    Start Time: 1745291893
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+    Extended master secret: no
+    Max Early Data: 0
+---
+SSL_connect:SSLv3/TLS read server session ticket
+read R BLOCK
