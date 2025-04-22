@@ -114,7 +114,7 @@ Steps
 
         /usr/local/bin/openssl dhparam -out dh_param.pem 3072
 
-    6. Get list of supported ciphers:
+    6. Get list of supported ciphers
 
         /usr/local/bin/openssl ciphers -s -tls1_3
 
@@ -147,8 +147,9 @@ Results
     2. Signing: 
 
         RSA-PSS
-        Signature Algorithm: rsassaPss 
-        rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
+        Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
+        Signature (len=384)
+        rsa_ossl_private_encrypt(), crypto/rsa/rsa_ossl.c
 
         DSA
             
@@ -162,4 +163,4 @@ Results
     
         Hash Algorithm: sha256
         crypto/sha/sha256.c:#define HASH_UPDATE             SHA256_Update        
-        SHA256_Update() from include/crypto/md32_common.h
+        HASH_UPDATE() from include/crypto/md32_common.h
