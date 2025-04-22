@@ -53,9 +53,10 @@ Installation
 
     1. git clone https://github.com/openssl/openssl.git
     2. cd openssl
-    3. ./Configure LDLIBS=-lm no-ecdh no-ecdsa
+    3. ./Configure LDLIBS=-lm [no-ec] [no-ecdh] [no-ecdsa]
     4. make build_sw
     5. sudo make install_sw
+    6. sudo cp lib*so* /lib/x86_64-linux-gnu
 
 Security Parameters
 
@@ -105,11 +106,17 @@ Steps
 
         /usr/local/bin/openssl dhparam -out dh_param.pem 3072
 
+    6. Get list of supported ciphers:
+
+        /usr/local/bin/openssl ciphers -s -tls1_3
+
     9. Start SSL server and client in separate windows
 
-        /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert server-cert.pem -key server-key.pem -verifyCAfile ca-cert.pem -trace -tls1_3 
+        FFDH, RSA-PSS:
+        /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert rsa_srv_cert.pem -key rsa_srv_pvt.pem -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
+        /usr/local/bin/openssl s_client -cert rsa_cli_cert.pem -key rsa_cli_pvt.pem -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
 
-        /usr/local/bin/openssl s_client -cert client-cert.pem -key client-key.pem -verifyCAfile ca-cert.pem -trace -tls1_3 localhost
+        ECDH, ECDSA:
 
 Results
 
