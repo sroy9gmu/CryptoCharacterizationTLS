@@ -37,17 +37,17 @@ The server code was modified to perform the echo function, and client code
 was added to open a connection with the server and to send keyboard input
 to the server.
 The new client code illustrates that:
-  - Connection to the TLS server starts as a standard TCP 'connect'.
-  - Once connected with TCP, the client 'upgrades' to TLS using
-    TLS_connect().
-  - When the TLS connection completes, data is sent and received using
-    TLS_write() and TLS_read().
+    - Connection to the TLS server starts as a standard TCP 'connect'.
+    - Once connected with TCP, the client 'upgrades' to TLS using
+        TLS_connect().
+    - When the TLS connection completes, data is sent and received using
+        TLS_write() and TLS_read().
 The cert.pem and key.pem files included are self signed certificates with the
 "Common Name" of 'localhost'.
 
 Issues
 
-  1. https://github.com/openssl/openssl/issues/19639
+    1. https://github.com/openssl/openssl/issues/19639
 
 Installation
 
