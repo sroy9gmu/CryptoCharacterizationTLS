@@ -58,9 +58,9 @@ Installation
     3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa
        ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec
 
-    4. make build_sw
+    4. make [build_sw]  []: Optional
 
-    5. sudo make install_sw
+    5. sudo make install[_sw]
 
     6. sudo cp lib*so /lib/x86_64-linux-gnu/
 
@@ -78,7 +78,7 @@ Steps
         openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
 
         DSA: 
-        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem ec_paramgen_curve:P-256 -pkeyopt pbits:3072 -pkeyopt qbits:256 \
+        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 \
             -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
         openssl gendsa -out dsa_pvt.pem dsa_param.pem 
 
@@ -150,6 +150,9 @@ Results
             <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
 
             rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
+
+            DSA
+            
 
     3. Encryption: 
     
