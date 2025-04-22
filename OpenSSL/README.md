@@ -55,7 +55,7 @@ Installation
 
     2. cd openssl
 
-    3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa
+    3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa --libdir=lib
        ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec --libdir=lib
 
     4. make [build_sw]  []: Optional
@@ -129,43 +129,37 @@ Steps
         ECDH, ECDSA:
         /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile\
          dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
-        /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
+        /usr/local/bin/openssl s_client -connect localhost -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
          dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
-
+         
 Results
 
     1. Key Exchange: 
 
-            FFDH
-            NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256)
+        FFDH
+        NamedGroup: ffdhe2048 (256)
+        key_exchange:  (len=256)
 
-            ECDH
-            NamedGroup: secp256r1 (P-256) (23)
-            key_exchange:  (len=65)
+        ECDH
+        NamedGroup: secp256r1 (P-256) (23)
+        key_exchange:  (len=65)
 
     2. Signing: 
 
-            RSA-PSS
-            Signature Algorithm: rsassaPss 
-            <!-- RSA PKCS#1 PSS from include/crypto/rsa.h -->
+        RSA-PSS
+        Signature Algorithm: rsassaPss 
+        rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
 
-            rsa_ossl_private_encrypt() from crypto/rsa/rsa_ossl.c
-
-            DSA
+        DSA
             
 
-    3. Encryption: 
-    
-            AES GCM 128 from openssl/include/openssl/modes.h
-
-            {Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26}
-
-            CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
+    3. Encryption:     
+            
+        CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c
+            Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26
     
     4. Hashing: 
     
-            Hash Algorithm: sha256
-            crypto/sha/sha256.c:#define HASH_UPDATE             SHA256_Update
-            
-            SHA256_Update() from include/crypto/md32_common.h
+        Hash Algorithm: sha256
+        crypto/sha/sha256.c:#define HASH_UPDATE             SHA256_Update        
+        SHA256_Update() from include/crypto/md32_common.h
