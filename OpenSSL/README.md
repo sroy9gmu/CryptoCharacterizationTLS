@@ -56,7 +56,7 @@ Installation
     2. cd openssl
 
     3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa
-       ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec
+       ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec --libdir=lib
 
     4. make [build_sw]  []: Optional
 
@@ -121,12 +121,16 @@ Steps
     9. Start SSL server and client in separate windows
 
         FFDH, RSA-PSS:
-        /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert rsa_srv_cert.pem -key rsa_srv_pvt.pem -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
-        /usr/local/bin/openssl s_client -cert rsa_cli_cert.pem -key rsa_cli_pvt.pem -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
+        /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert rsa_srv_cert.pem -key rsa_srv_pvt.pem\
+         -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
+        /usr/local/bin/openssl s_client -cert rsa_cli_cert.pem -key rsa_cli_pvt.pem -verifyCAfile\
+         rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
 
         ECDH, ECDSA:
-        /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
-        /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
+        /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile\
+         dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
+        /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
+         dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
 
 Results
 
@@ -137,11 +141,8 @@ Results
             key_exchange:  (len=256)
 
             ECDH
-            X25519 [ECDH] from include/crypto/ecx.h
-
-            x25519_scalar_mulx() [x86_64], 
-
-            ge_scalarmult_base() [aarch64] from crypto/ec/curve25519.c
+            NamedGroup: secp256r1 (P-256) (23)
+            key_exchange:  (len=65)
 
     2. Signing: 
 
@@ -165,8 +166,6 @@ Results
     4. Hashing: 
     
             Hash Algorithm: sha256
-            SHA1_Update() from include/crypto/md32_common.h
-
-            SHA512_Update() from crypto/sha/sha512.c
+            crypto/sha/sha256.c:#define HASH_UPDATE             SHA256_Update
             
             SHA256_Update() from include/crypto/md32_common.h
