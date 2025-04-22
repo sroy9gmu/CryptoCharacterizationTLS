@@ -52,11 +52,18 @@ Issues
 Installation
 
     1. git clone https://github.com/openssl/openssl.git
+
     2. cd openssl
-    3. ./Configure LDLIBS=-lm [no-ec] [no-ecdh] [no-ecdsa]
+
+    3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa
+       ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec
+
     4. make build_sw
+
     5. sudo make install_sw
+
     6. sudo cp lib*so /lib/x86_64-linux-gnu/
+
     7. sudo ldconfig
 
 Security Parameters
@@ -71,7 +78,7 @@ Steps
         openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
 
         DSA: 
-        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 \
+        openssl genpkey -genparam -algorithm DSA -out dsa_param.pem ec_paramgen_curve:P-256 -pkeyopt pbits:3072 -pkeyopt qbits:256 \
             -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
         openssl gendsa -out dsa_pvt.pem dsa_param.pem 
 
@@ -118,6 +125,8 @@ Steps
         /usr/local/bin/openssl s_client -cert rsa_cli_cert.pem -key rsa_cli_pvt.pem -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
 
         ECDH, ECDSA:
+        /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
+        /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
 
 Results
 
