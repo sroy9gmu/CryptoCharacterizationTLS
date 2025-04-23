@@ -154,6 +154,8 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
 {
     printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     for(int RND=0;RND<10;RND++){
+    HASH_CTX c_loc;
+    memcpy(&c_loc, c, sizeof(HASH_CTX));
     const unsigned char *data = data_;
     unsigned char *p;
     HASH_LONG l;
@@ -209,6 +211,9 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
         p = (unsigned char *)c->data;
         c->num = (unsigned int)len;
         memcpy(p, data, len);
+    }
+    if(RND == 9){
+        memcpy(c, &c_loc, sizeof(HASH_CTX));
     }
     }
     return 1;
