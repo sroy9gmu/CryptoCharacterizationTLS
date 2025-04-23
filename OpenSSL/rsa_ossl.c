@@ -306,10 +306,12 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
 {
     printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     int r = -1;
-    for(int RND=0;RND<10;RND++){
+    for(int RND=0;RND<10;RND++){    
     BIGNUM *f, *ret, *res;
     // int i, num = 0, r = -1;
-    int i, num = 0;
+    int i, num = BN_num_bytes(rsa->n);
+    unsigned char to_loc[num];
+    memcpy(&to_loc, to, num);
     unsigned char *buf = NULL;
     BN_CTX *ctx = NULL;
     int local_blinding = 0;
@@ -326,7 +328,7 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
     BN_CTX_start(ctx);
     f = BN_CTX_get(ctx);
     ret = BN_CTX_get(ctx);
-    num = BN_num_bytes(rsa->n);
+    // num = BN_num_bytes(rsa->n);
     buf = OPENSSL_malloc(num);
     if (ret == NULL || buf == NULL)
         goto err;
@@ -432,6 +434,8 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     OPENSSL_clear_free(buf, num);
+    if(RND == 9)
+        memcpy(to, &to_loc, num);
     }
     return r;
 }
