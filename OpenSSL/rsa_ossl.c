@@ -305,8 +305,11 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
                                    unsigned char *to, RSA *rsa, int padding)
 {
     printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    int r = -1;
+    for(int RND=0;RND<10;RND++){
     BIGNUM *f, *ret, *res;
-    int i, num = 0, r = -1;
+    // int i, num = 0, r = -1;
+    int i, num = 0;
     unsigned char *buf = NULL;
     BN_CTX *ctx = NULL;
     int local_blinding = 0;
@@ -429,6 +432,7 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     OPENSSL_clear_free(buf, num);
+    }
     return r;
 }
 
