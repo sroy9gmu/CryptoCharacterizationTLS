@@ -797,82 +797,33 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                           const unsigned char *in, unsigned char *out,
                           size_t len)
 {
-    // #ifdef PWR
-    //     time_t traw;
-    //     struct tm * timeinfo;
-    // #endif
-    // struct timeval tstart, tend;    
-    // uint64_t dur_start, dur_end;
-    // uint64_t dur[ROUNDS];
+    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    for(int RND=0;RND<10;RND++){
+    DECLARE_IS_ENDIAN;
+    unsigned int n, ctr, mres;
+    size_t i;
+    u64 mlen = ctx->len.u[1];
+    block128_f block = ctx->block;
+    void *key = ctx->key;
 
-    // unsigned char out_org[32];
-    // memcpy(out_org, out, 32 * sizeof( unsigned char)); // BACK UP
-  
-    // #ifdef PWR
-    //     time(&traw);
-    //     timeinfo = localtime(&traw);
-    //     printf("\nStart time and date: %s, %s\n", asctime(timeinfo), __FILE__);
-    // #endif
+    mlen += len;
+    if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len))
+        return -1;
+    ctx->len.u[1] = mlen;
 
-    // #ifdef DBG
-    //     printf("Number of rounds: %d\n", ROUNDS);
-    // #endif
-    // for (int cnt = 0; cnt < ROUNDS; cnt++){
-    //     if (gettimeofday(&tstart, NULL) == 0) {
-    //         dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
-    //     } else {
-    //         sprintf(stderr,"gettimeofday start %d\n", cnt);
-    //     } // START PROFILE
+    mres = ctx->mres;
 
-        DECLARE_IS_ENDIAN;
-        unsigned int n, ctr, mres;
-        size_t i;
-        u64 mlen = ctx->len.u[1];
-        block128_f block = ctx->block;
-        void *key = ctx->key;
-
-        mlen += len;
-        if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len)){
-            printf("End %d\n", __LINE__);
-            return -1;
-        }
-            
-        ctx->len.u[1] = mlen;
-
-        mres = ctx->mres;
-
-        if (ctx->ares) {
-            /* First call to encrypt finalizes GHASH(AAD) */
-    #if defined(GHASH) && !defined(OPENSSL_SMALL_FOOTPRINT)
-            if (len == 0) {
-                GCM_MUL(ctx);
-                ctx->ares = 0;
-
-                // if (gettimeofday(&tend, NULL) == 0) {
-                //     dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
-                // } else {
-                //     sprintf(stderr,"gettimeofday end %d\n", i);
-                // } // END PROFILE
-        
-                // if (cnt < ROUNDS - 1){
-                //     memcpy(out, out_org, 32 * sizeof(unsigned char));   // RESTORE BACKUP
-                // }
-                // dur[cnt] = dur_end - dur_start;   
-                // #ifdef DBG
-                //     printf("Duration %u = %u microseconds\n", cnt, dur[cnt]);   
-                // #endif  
-                // }}
-        
-                // printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-            
-                // #ifdef PWR
-                //     time(&traw);
-                //     timeinfo = localtime(&traw);
-                //     printf("End time and date: %s\n", asctime(timeinfo));   
-                // #endif
-                printf("End %d\n", __LINE__);
+    if (ctx->ares) {
+        /* First call to encrypt finalizes GHASH(AAD) */
+#if defined(GHASH) && !defined(OPENSSL_SMALL_FOOTPRINT)
+        if (len == 0) {
+            GCM_MUL(ctx);
+            ctx->ares = 0;
+            if(RND == 9)
                 return 0;
-            }
+            else
+                continue;
+        }
         memcpy(ctx->Xn, ctx->Xi.c, sizeof(ctx->Xi));
         ctx->Xi.u[0] = 0;
         ctx->Xi.u[1] = 0;
@@ -882,7 +833,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 #endif
         ctx->ares = 0;
     }
-
+    
     if (IS_LITTLE_ENDIAN)
 #ifdef BSWAP4
         ctr = BSWAP4(ctx->Yi.d[3]);
@@ -908,7 +859,6 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                     mres = 0;
                 } else {
                     ctx->mres = mres;
-                    printf("End %d\n", __LINE__);
                     return 0;
                 }
 # else
@@ -1069,7 +1019,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 #endif
     }
 
-    ctx->mres = mres;        
+    ctx->mres = mres;
+    }
     return 0;
 }
 
