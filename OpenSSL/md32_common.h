@@ -150,10 +150,10 @@
 /*
  * Time for some action :-)
  */
-static size_t hash_cnt;
 int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
 {
-    printf("%u\t%d, %s\n", hash_cnt++, __LINE__, __FILE__);
+    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    for(int RND=0;RND<10;RND++){
     const unsigned char *data = data_;
     unsigned char *p;
     HASH_LONG l;
@@ -190,7 +190,10 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
         } else {
             memcpy(p + n, data, len);
             c->num += (unsigned int)len;
-            return 1;
+            if(RND == 9)
+                return 1;
+            else
+                continue;
         }
     }
 
@@ -206,6 +209,7 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
         p = (unsigned char *)c->data;
         c->num = (unsigned int)len;
         memcpy(p, data, len);
+    }
     }
     return 1;
 }
