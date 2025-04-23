@@ -139,7 +139,7 @@ Results
         FFDH
         NamedGroup: ffdhe2048 (256)
         key_exchange:  (len=256)
-        BN_mod_exp_mont(), crypto/bn/bn_exp.c
+        BN_mod_exp_mont, crypto/bn/bn_exp.c line 316-340
 
         ECDH
         NamedGroup: secp256r1 (P-256) (23)
