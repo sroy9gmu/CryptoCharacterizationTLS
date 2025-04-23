@@ -799,6 +799,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 {
     printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     for(int RND=0;RND<10;RND++){
+    unsigned char out_loc[len];
+    memcpy(&out_loc, out, len);
     DECLARE_IS_ENDIAN;
     unsigned int n, ctr, mres;
     size_t i;
@@ -819,8 +821,10 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
         if (len == 0) {
             GCM_MUL(ctx);
             ctx->ares = 0;
-            if(RND == 9)
+            if(RND == 9){
+                memcpy(out, &out_loc, len);
                 return 0;
+            }                
             else
                 continue;
         }
