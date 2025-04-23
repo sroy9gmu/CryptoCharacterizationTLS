@@ -826,8 +826,22 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
     void *key = ctx->key;
 
     mlen += len;
-    if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len))
-        return -1;
+    if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len)){
+        if(RND == 9){
+            memcpy(out, &out_loc, len);
+            printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+
+            #ifdef PWR
+                time(&traw);
+                timeinfo = localtime(&traw);
+                printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+            #endif
+            return -1;
+        }                
+        else
+            continue;
+    }
+        // return -1;
     ctx->len.u[1] = mlen;
 
     mres = ctx->mres;
@@ -1015,7 +1029,19 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
             }
 
             ctx->mres = mres;
-            return 0;
+            if(RND == 9){
+                memcpy(out, &out_loc, len);
+                printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+
+                #ifdef PWR
+                    time(&traw);
+                    timeinfo = localtime(&traw);
+                    printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+                #endif
+                return 0;
+            }                
+            else
+                continue;
         } while (0);
     }
 #endif
@@ -1048,8 +1074,21 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
     }
 
     ctx->mres = mres;
+    if(RND == 9){
+        memcpy(out, &out_loc, len);
+        printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+
+        #ifdef PWR
+            time(&traw);
+            timeinfo = localtime(&traw);
+            printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+        #endif
+        return 0;
+    }                
+    else
+        continue;
     }
-    return 0;
+    // return 0;
 }
 
 int CRYPTO_gcm128_decrypt(GCM128_CONTEXT *ctx,
