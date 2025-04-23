@@ -798,6 +798,23 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                           size_t len)
 {
     printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    #ifdef PWR
+        time_t traw;
+        struct tm * timeinfo;
+    #endif
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end;
+    uint64_t dur[ROUNDS];
+ 
+    #ifdef PWR
+        time(&traw);
+        timeinfo = localtime(&traw);
+        printf("\nStart time and date: %s\n", asctime(timeinfo));
+    #endif
+
+    #ifdef DBG
+        printf("Number of rounds: %d\n", ROUNDS);
+    #endif
     for(int RND=0;RND<10;RND++){
     unsigned char out_loc[len];
     memcpy(&out_loc, out, len);
@@ -823,6 +840,13 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
             ctx->ares = 0;
             if(RND == 9){
                 memcpy(out, &out_loc, len);
+                printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+
+                #ifdef PWR
+                    time(&traw);
+                    timeinfo = localtime(&traw);
+                    printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+                #endif
                 return 0;
             }                
             else
