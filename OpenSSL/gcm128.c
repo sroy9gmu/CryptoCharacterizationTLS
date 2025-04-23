@@ -834,7 +834,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
             #ifdef PWR
                 time(&traw);
                 timeinfo = localtime(&traw);
-                printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+                printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
             #endif
             return -1;
         }                
@@ -859,7 +859,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                 #ifdef PWR
                     time(&traw);
                     timeinfo = localtime(&traw);
-                    printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+                    printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
                 #endif
                 return 0;
             }                
@@ -1036,7 +1036,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                 #ifdef PWR
                     time(&traw);
                     timeinfo = localtime(&traw);
-                    printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+                    printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
                 #endif
                 return 0;
             }                
@@ -1081,7 +1081,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
         #ifdef PWR
             time(&traw);
             timeinfo = localtime(&traw);
-            printf("\nEnd time and date: %s\n", asctime(timeinfo));   
+            printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
         #endif
         return 0;
     }                
