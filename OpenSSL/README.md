@@ -62,7 +62,7 @@ Installation
 
     5. sudo make install[_sw]
 
-    6. sudo cp lib*so /lib/x86_64-linux-gnu/
+    6. sudo cp libssl* libcrypto* /lib/<ARCH>-linux-gnu/
 
     7. sudo ldconfig
 
