@@ -78,7 +78,7 @@ Steps
         openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
 
         DSA: 
-        openssl dsaparam -out dsa_param.pem 2048 256
+        openssl dsaparam -out dsa_param.pem 3072 256
         openssl gendsa -out dsa_pvt.pem dsa_param.pem 
 
     2. Generate the X509 certificate for the CA:
