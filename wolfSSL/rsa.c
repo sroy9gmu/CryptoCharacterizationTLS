@@ -26,15 +26,8 @@ This library provides the interface to the RSA.
 RSA keys can be used to encrypt, decrypt, sign and verify data.
 
 */
-#ifdef HAVE_CONFIG_H
-    #include <config.h>
-#endif
 
-#include <wolfssl/wolfcrypt/settings.h>
-#include <wolfssl/wolfcrypt/error-crypt.h>
-
-#include <sys/time.h>
-#include <math.h>
+#include <wolfssl/wolfcrypt/libwolfssl_sources.h>
 
 #ifndef NO_RSA
 
@@ -98,7 +91,6 @@ RSA Key Size Configuration:
 
 
 #include <wolfssl/wolfcrypt/random.h>
-#include <wolfssl/wolfcrypt/logging.h>
 #ifdef WOLF_CRYPTO_CB
     #include <wolfssl/wolfcrypt/cryptocb.h>
 #endif
@@ -107,16 +99,6 @@ RSA Key Size Configuration:
 #else
     #define WOLFSSL_MISC_INCLUDED
     #include <wolfcrypt/src/misc.c>
-#endif
-
-#define Mi 1000000
-#define DBG
-// #define PWR
-
-#ifdef PWR
-    #define ROUNDS 10
-#else
-    #define ROUNDS 1
 #endif
 
 #if FIPS_VERSION3_GE(6,0,0)
@@ -139,24 +121,6 @@ enum {
     RSA_STATE_DECRYPT_UNPAD,
     RSA_STATE_DECRYPT_RES
 };
-
-#ifdef PWR
-static double get_GM(word32 *arr){
-    double prod = 1;
-    double root;
-    
-    root = (double)1 / (double)ROUNDS;
-    #ifdef DBG  
-        printf("%s: root= %lf\n", __func__, root);
-    #endif
-
-    for (int i = 0; i < ROUNDS; i++){
-        prod *= arr[i];        
-    }
-    
-    return pow(prod, root);
-}
-#endif
 
 static void wc_RsaCleanup(RsaKey* key)
 {
@@ -2560,327 +2524,183 @@ static int RsaFunction_SP(const byte* in, word32 inLen, byte* out,
 #if !defined(WOLFSSL_RSA_PUBLIC_ONLY) && !defined(WOLFSSL_RSA_VERIFY_ONLY)
 static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
 {
-    printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int    ret = 0;
-    #ifdef PWR
-        time_t traw;
-        struct tm * timeinfo;
+#if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
+    mp_digit mp = 0;
+    DECL_MP_INT_SIZE_DYN(rnd, mp_bitsused(&key->n), RSA_MAX_SIZE);
+    DECL_MP_INT_SIZE_DYN(rndi, mp_bitsused(&key->n), RSA_MAX_SIZE);
+#endif /* WC_RSA_BLINDING && !WC_NO_RNG */
+
+    (void)rng;
+
+#if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
+    NEW_MP_INT_SIZE(rnd, mp_bitsused(&key->n), key->heap, DYNAMIC_TYPE_RSA);
+    NEW_MP_INT_SIZE(rndi, mp_bitsused(&key->n), key->heap, DYNAMIC_TYPE_RSA);
+#ifdef MP_INT_SIZE_CHECK_NULL
+    if ((rnd == NULL) || (rndi == NULL)) {
+        FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
+        FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
+        return MEMORY_E;
+    }
+#endif
+
+    if ((INIT_MP_INT_SIZE(rnd, mp_bitsused(&key->n)) != MP_OKAY) ||
+            (INIT_MP_INT_SIZE(rndi, mp_bitsused(&key->n)) != MP_OKAY)) {
+        ret = MP_INIT_E;
+    }
+
+    if (ret == 0) {
+        /* blind */
+        ret = mp_rand(rnd, get_digit_count(&key->n), rng);
+    }
+    if (ret == 0) {
+        /* rndi = 1/rnd mod n */
+        if (mp_invmod(rnd, &key->n, rndi) != MP_OKAY) {
+            ret = MP_INVMOD_E;
+        }
+    }
+    if (ret == 0) {
+    #ifdef WOLFSSL_CHECK_MEM_ZERO
+        mp_memzero_add("RSA Private rnd", rnd);
+        mp_memzero_add("RSA Private rndi", rndi);
     #endif
-    struct timeval tstart, tend;
-    word32 dur[ROUNDS];
- 
-    #ifdef PWR
-        time(&traw);
-        timeinfo = localtime(&traw);
-        printf("\nStart time and date: %s\n", asctime(timeinfo));
-    #endif
 
-    #ifdef DBG
-        printf("Number of rounds: %d\n", ROUNDS);
-    #endif
-    
-    for (int round = 0; round < ROUNDS; round++){
-        word32 dur_start = 0;
-        word32 dur_end = 0;
-        #ifdef PWR
-            DECL_MP_INT_SIZE_DYN(tmp0, mp_bitsused(&key->n), RSA_MAX_SIZE);
-            NEW_MP_INT_SIZE(tmp0, mp_bitsused(&key->n), key->heap, DYNAMIC_TYPE_RSA);
-            #ifdef MP_INT_SIZE_CHECK_NULL
-                if (tmp0 == NULL) {
-                    WOLFSSL_MSG("NEW_MP_INT_SIZE tmp0 is NULL, return MEMORY_E");
-                    return MEMORY_E;
-                }
-            #endif
-
-            if (INIT_MP_INT_SIZE(tmp0, mp_bitsused(&key->n)) != MP_OKAY) {
-                WOLFSSL_MSG("INIT_MP_INT_SIZE failed.");
-                return MP_INIT_E;
-            } 
-            mp_copy(tmp, tmp0);
-        #endif
-
-        if (gettimeofday(&tstart, NULL) == 0) {
-            dur_start = (word32)(tstart.tv_sec) * Mi + (word32)(tstart.tv_usec);
-        } else {
-            sprintf((char *)stderr,"gettimeofday start %d\n", round);
-        } // START PROFILE
-    
-    #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
-        mp_digit mp = 0;
-        DECL_MP_INT_SIZE_DYN(rnd, mp_bitsused(&key->n), RSA_MAX_SIZE);
-        DECL_MP_INT_SIZE_DYN(rndi, mp_bitsused(&key->n), RSA_MAX_SIZE);
-    #endif /* WC_RSA_BLINDING && !WC_NO_RNG */
-
-        (void)rng;
-
-    #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
-        NEW_MP_INT_SIZE(rnd, mp_bitsused(&key->n), key->heap, DYNAMIC_TYPE_RSA);
-        NEW_MP_INT_SIZE(rndi, mp_bitsused(&key->n), key->heap, DYNAMIC_TYPE_RSA);
-    #ifdef MP_INT_SIZE_CHECK_NULL
-        if ((rnd == NULL) || (rndi == NULL)) {
-            FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
-            FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
-            return MEMORY_E;
+        /* rnd = rnd^e */
+    #ifndef WOLFSSL_SP_MATH_ALL
+        if (mp_exptmod(rnd, &key->e, &key->n, rnd) != MP_OKAY) {
+            ret = MP_EXPTMOD_E;
+        }
+    #else
+        if (mp_exptmod_nct(rnd, &key->e, &key->n, rnd) != MP_OKAY) {
+            ret = MP_EXPTMOD_E;
         }
     #endif
+    }
 
-        if ((INIT_MP_INT_SIZE(rnd, mp_bitsused(&key->n)) != MP_OKAY) ||
-                (INIT_MP_INT_SIZE(rndi, mp_bitsused(&key->n)) != MP_OKAY)) {
+    if (ret == 0) {
+        /* tmp = tmp*rnd mod n */
+        if (mp_mulmod(tmp, rnd, &key->n, tmp) != MP_OKAY) {
+            ret = MP_MULMOD_E;
+        }
+    }
+#endif /* WC_RSA_BLINDING && !WC_NO_RNG */
+
+#ifdef RSA_LOW_MEM      /* half as much memory but twice as slow */
+    if (ret == 0) {
+        if (mp_exptmod(tmp, &key->d, &key->n, tmp) != MP_OKAY) {
+            ret = MP_EXPTMOD_E;
+        }
+    }
+#else
+    if (ret == 0 && (mp_iszero(&key->p) || mp_iszero(&key->q) ||
+            mp_iszero(&key->dP) || mp_iszero(&key->dQ))) {
+        if (mp_exptmod(tmp, &key->d, &key->n, tmp) != MP_OKAY) {
+            ret = MP_EXPTMOD_E;
+        }
+    }
+    else if (ret == 0) {
+        mp_int* tmpa = tmp;
+#if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
+        mp_int* tmpb = rnd;
+#else
+        DECL_MP_INT_SIZE_DYN(tmpb, mp_bitsused(&key->n), RSA_MAX_SIZE);
+#endif
+
+#if !defined(WC_RSA_BLINDING) || defined(WC_NO_RNG)
+        NEW_MP_INT_SIZE(tmpb, mp_bitsused(&key->n), key->heap,
+            DYNAMIC_TYPE_RSA);
+    #ifdef MP_INT_SIZE_CHECK_NULL
+        if (tmpb == NULL) {
+            ret = MEMORY_E;
+        }
+    #endif
+        if ((ret == 0) && INIT_MP_INT_SIZE(tmpb, mp_bitsused(&key->n)) !=
+                MP_OKAY) {
             ret = MP_INIT_E;
         }
+#endif
 
+    #ifdef WOLFSSL_CHECK_MEM_ZERO
         if (ret == 0) {
-            /* blind */
-            ret = mp_rand(rnd, get_digit_count(&key->n), rng);
+            mp_memzero_add("RSA Sync tmpb", tmpb);
         }
-        if (ret == 0) {
-            /* rndi = 1/rnd mod n */
-            if (mp_invmod(rnd, &key->n, rndi) != MP_OKAY) {
-                ret = MP_INVMOD_E;
-            }
-        }
-        if (ret == 0) {
-        #ifdef WOLFSSL_CHECK_MEM_ZERO
-            mp_memzero_add("RSA Private rnd", rnd);
-            mp_memzero_add("RSA Private rndi", rndi);
-        #endif
+    #endif
 
-            /* rnd = rnd^e */
-        #ifndef WOLFSSL_SP_MATH_ALL
-            if (mp_exptmod(rnd, &key->e, &key->n, rnd) != MP_OKAY) {
-                ret = MP_EXPTMOD_E;
-            }
-        #else
-            if (mp_exptmod_nct(rnd, &key->e, &key->n, rnd) != MP_OKAY) {
-                ret = MP_EXPTMOD_E;
-            }
-        #endif
-        }
+        /* tmpb = tmp^dQ mod q */
+        if (ret == 0 && mp_exptmod(tmp, &key->dQ, &key->q, tmpb) != MP_OKAY)
+            ret = MP_EXPTMOD_E;
 
-        if (ret == 0) {
-            /* tmp = tmp*rnd mod n */
-            #ifdef PWR
-                if (mp_mulmod(tmp0, rnd, &key->n, tmp0) != MP_OKAY) {
-                    ret = MP_MULMOD_E;
-                }
-            #else
-                if (mp_mulmod(tmp, rnd, &key->n, tmp) != MP_OKAY) {
-                    ret = MP_MULMOD_E;
-                }
-            #endif
-        }
-    #endif /* WC_RSA_BLINDING && !WC_NO_RNG */
+        /* tmpa = tmp^dP mod p */
+        if (ret == 0 && mp_exptmod(tmp, &key->dP, &key->p, tmpa) != MP_OKAY)
+            ret = MP_EXPTMOD_E;
 
-    #ifdef RSA_LOW_MEM      /* half as much memory but twice as slow */
-        if (ret == 0) {
-            #ifdef PWR
-                if (mp_exptmod(tmp0, &key->d, &key->n, tmp0) != MP_OKAY) {
-                    ret = MP_EXPTMOD_E;
-                }
-            #else
-                if (mp_exptmod(tmp, &key->d, &key->n, tmp) != MP_OKAY) {
-                    ret = MP_EXPTMOD_E;
-                }
-            #endif    
-        }
+        /* tmp = (tmp - tmpb) * qInv (mod p) */
+    #if (defined(WOLFSSL_SP_MATH) || (defined(WOLFSSL_SP_MATH_ALL)) && \
+                                              !defined(WOLFSSL_SP_INT_NEGATIVE))
+        if (ret == 0 && mp_submod(tmpa, tmpb, &key->p, tmp) != MP_OKAY)
+            ret = MP_SUB_E;
     #else
-        if (ret == 0 && (mp_iszero(&key->p) || mp_iszero(&key->q) ||
-                mp_iszero(&key->dP) || mp_iszero(&key->dQ))) {
-            #ifdef PWR
-                if (mp_exptmod(tmp0, &key->d, &key->n, tmp0) != MP_OKAY) {
-                    ret = MP_EXPTMOD_E;
-                }
-            #else
-                if (mp_exptmod(tmp, &key->d, &key->n, tmp) != MP_OKAY) {
-                    ret = MP_EXPTMOD_E;
-                }
-            #endif
-        }
-        else if (ret == 0) {
-            #ifdef PWR
-                mp_int* tmpa = tmp0;
-            #else
-                mp_int* tmpa = tmp;
-            #endif
-    #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
-            mp_int* tmpb = rnd;
-    #else
-            DECL_MP_INT_SIZE_DYN(tmpb, mp_bitsused(&key->n), RSA_MAX_SIZE);
+        if (ret == 0 && mp_sub(tmpa, tmpb, tmp) != MP_OKAY)
+            ret = MP_SUB_E;
     #endif
 
-    #if !defined(WC_RSA_BLINDING) || defined(WC_NO_RNG)
-            NEW_MP_INT_SIZE(tmpb, mp_bitsused(&key->n), key->heap,
-                DYNAMIC_TYPE_RSA);
-        #ifdef MP_INT_SIZE_CHECK_NULL
-            if (tmpb == NULL) {
-                ret = MEMORY_E;
-            }
-        #endif
-            if ((ret == 0) && INIT_MP_INT_SIZE(tmpb, mp_bitsused(&key->n)) !=
-                    MP_OKAY) {
-                ret = MP_INIT_E;
-            }
-    #endif
-
-        #ifdef WOLFSSL_CHECK_MEM_ZERO
-            if (ret == 0) {
-                mp_memzero_add("RSA Sync tmpb", tmpb);
-            }
-        #endif
-
-            /* tmpb = tmp^dQ mod q */
-            #ifdef PWR
-                if (ret == 0 && mp_exptmod(tmp0, &key->dQ, &key->q, tmpb) != MP_OKAY)
-                    ret = MP_EXPTMOD_E;
-            #else
-                if (ret == 0 && mp_exptmod(tmp, &key->dQ, &key->q, tmpb) != MP_OKAY)
-                    ret = MP_EXPTMOD_E;
-            #endif
-
-            /* tmpa = tmp^dP mod p */
-            #ifdef PWR
-                if (ret == 0 && mp_exptmod(tmp0, &key->dP, &key->p, tmpa) != MP_OKAY)
-                    ret = MP_EXPTMOD_E;
-            #else
-                if (ret == 0 && mp_exptmod(tmp, &key->dP, &key->p, tmpa) != MP_OKAY)
-                ret = MP_EXPTMOD_E;
-            #endif
-
-            /* tmp = (tmp - tmpb) * qInv (mod p) */
-        #if (defined(WOLFSSL_SP_MATH) || (defined(WOLFSSL_SP_MATH_ALL)) && \
-                                                !defined(WOLFSSL_SP_INT_NEGATIVE))
-            #ifdef PWR
-                if (ret == 0 && mp_submod(tmpa, tmpb, &key->p, tmp0) != MP_OKAY)
-                    ret = MP_SUB_E;
-            #else
-                if (ret == 0 && mp_submod(tmpa, tmpb, &key->p, tmp) != MP_OKAY)
-                    ret = MP_SUB_E;
-            #endif
-        #else
-            #ifdef PWR
-                if (ret == 0 && mp_sub(tmpa, tmpb, tmp0) != MP_OKAY)
-                    ret = MP_SUB_E;
-            #else
-                if (ret == 0 && mp_sub(tmpa, tmpb, tmp) != MP_OKAY)
-                ret = MP_SUB_E;
-            #endif
-        #endif
-
-            #ifdef PWR
-                if (ret == 0 && mp_mulmod(tmp0, &key->u, &key->p, tmp0) != MP_OKAY)
-                    ret = MP_MULMOD_E;
-            #else
-                if (ret == 0 && mp_mulmod(tmp, &key->u, &key->p, tmp) != MP_OKAY)
-                ret = MP_MULMOD_E;
-            #endif
-
-            /* tmp = tmpb + q * tmp */
-            #ifdef PWR
-                if (ret == 0 && mp_mul(tmp0, &key->q, tmp0) != MP_OKAY)
-                    ret = MP_MUL_E;
-            #else
-                if (ret == 0 && mp_mul(tmp, &key->q, tmp) != MP_OKAY)
-                    ret = MP_MUL_E;
-            #endif
-
-            #ifdef PWR
-                if (ret == 0 && mp_add(tmp0, tmpb, tmp0) != MP_OKAY)
-                    ret = MP_ADD_E;
-            #else
-                if (ret == 0 && mp_add(tmp, tmpb, tmp) != MP_OKAY)
-                ret = MP_ADD_E;
-            #endif
-
-    #if !defined(WC_RSA_BLINDING) || defined(WC_NO_RNG)
-            mp_forcezero(tmpb);
-            FREE_MP_INT_SIZE(tmpb, key->heap, DYNAMIC_TYPE_RSA);
-        #if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
-            mp_memzero_check(tmpb);
-        #endif
-    #endif
-        }
-    #endif   /* RSA_LOW_MEM */
-
-    #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
-        /* Multiply result (tmp) by blinding invertor (rndi).
-        * Use Montgomery form to make operation more constant time.
-        */
-        if ((ret == 0) && (mp_montgomery_setup(&key->n, &mp) != MP_OKAY)) {
+        if (ret == 0 && mp_mulmod(tmp, &key->u, &key->p, tmp) != MP_OKAY)
             ret = MP_MULMOD_E;
-        }
-        if ((ret == 0) && (mp_montgomery_calc_normalization(rnd, &key->n) !=
-                MP_OKAY)) {
-            ret = MP_MULMOD_E;
-        }
-        /* Convert blinding invert to Montgomery form. */
-        if ((ret == 0) && (mp_mul(rndi, rnd, rndi) != MP_OKAY)) {
-            ret = MP_MULMOD_E;
-        }
-        if ((ret == 0) && (mp_mod(rndi, &key->n, rndi) != MP_OKAY)) {
-            ret = MP_MULMOD_E;
-        }
-        /* Multiply result by blinding invert. */
-        #ifdef PWR
-            if ((ret == 0) && (mp_mul(tmp0, rndi, tmp0) != MP_OKAY)) {
-                ret = MP_MULMOD_E;
-            }
-        #else
-            if ((ret == 0) && (mp_mul(tmp, rndi, tmp) != MP_OKAY)) {
-                ret = MP_MULMOD_E;
-            }
-        #endif
 
-        /* Reduce result. */
-        #ifdef PWR
-            if ((ret == 0) && (mp_montgomery_reduce_ct(tmp0, &key->n, mp) != MP_OKAY)) {
-                ret = MP_MULMOD_E;
-            }
-        #else
-            if ((ret == 0) && (mp_montgomery_reduce_ct(tmp, &key->n, mp) != MP_OKAY)) {
-                ret = MP_MULMOD_E;
-            }
-        #endif
+        /* tmp = tmpb + q * tmp */
+        if (ret == 0 && mp_mul(tmp, &key->q, tmp) != MP_OKAY)
+            ret = MP_MUL_E;
 
-        mp_forcezero(rndi);
-        mp_forcezero(rnd);
-        FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
-        FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
+        if (ret == 0 && mp_add(tmp, tmpb, tmp) != MP_OKAY)
+            ret = MP_ADD_E;
+
+#if !defined(WC_RSA_BLINDING) || defined(WC_NO_RNG)
+        mp_forcezero(tmpb);
+        FREE_MP_INT_SIZE(tmpb, key->heap, DYNAMIC_TYPE_RSA);
     #if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
-        mp_memzero_check(rnd);
-        mp_memzero_check(rndi);
+        mp_memzero_check(tmpb);
     #endif
-    #endif /* WC_RSA_BLINDING && !WC_NO_RNG */
+#endif
+    }
+#endif   /* RSA_LOW_MEM */
 
-        if (gettimeofday(&tend, NULL) == 0) {
-            dur_end = (word32)(tend.tv_sec) * Mi + (word32)(tend.tv_usec);
-        } else {
-            sprintf((char *)stderr,"gettimeofday end %d\n", round);
-        } // END PROFILE        
+#if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
+    /* Multiply result (tmp) by blinding invertor (rndi).
+     * Use Montgomery form to make operation more constant time.
+     */
+    if ((ret == 0) && (mp_montgomery_setup(&key->n, &mp) != MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
+    if ((ret == 0) && (mp_montgomery_calc_normalization(rnd, &key->n) !=
+            MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
+    /* Convert blinding invert to Montgomery form. */
+    if ((ret == 0) && (mp_mul(rndi, rnd, rndi) != MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
+    if ((ret == 0) && (mp_mod(rndi, &key->n, rndi) != MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
+    /* Multiply result by blinding invert. */
+    if ((ret == 0) && (mp_mul(tmp, rndi, tmp) != MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
+    /* Reduce result. */
+    if ((ret == 0) && (mp_montgomery_reduce_ct(tmp, &key->n, mp) != MP_OKAY)) {
+        ret = MP_MULMOD_E;
+    }
 
-        dur[round] = dur_end - dur_start;   
-        #ifdef DBG
-            printf("Duration %u = %u microseconds\n", round, dur[round]);   
-        #endif  
-
-        #ifdef PWR
-            mp_forcezero(tmp0);
-            FREE_MP_INT_SIZE(tmp0, key->heap, DYNAMIC_TYPE_RSA);
-            #if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
-                mp_memzero_check(tmp0);
-            #endif
-
-            if(round == ROUNDS - 1)
-                mp_copy(tmp0, tmp);
-        #endif
-    }    
-
-    #ifdef PWR
-        printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));    
-        time(&traw);
-        timeinfo = localtime(&traw);
-        printf("End time and date: %s\n", asctime(timeinfo));   
-    #endif
-
+    mp_forcezero(rndi);
+    mp_forcezero(rnd);
+    FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
+    FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
+#if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
+    mp_memzero_check(rnd);
+    mp_memzero_check(rndi);
+#endif
+#endif /* WC_RSA_BLINDING && !WC_NO_RNG */
     return ret;
 }
 #endif
@@ -3341,11 +3161,12 @@ static int wc_RsaFunction_ex(const byte* in, word32 inLen, byte* out,
                              int checkSmallCt)
 {
     int ret = 0;
-    (void)rng;
-    (void)checkSmallCt;
 #if defined(WOLF_CRYPTO_CB) && defined(WOLF_CRYPTO_CB_RSA_PAD)
     RsaPadding padding;
 #endif
+
+    (void)rng;
+    (void)checkSmallCt;
 
     if (key == NULL || in == NULL || inLen == 0 || out == NULL ||
             outLen == NULL || *outLen == 0 || type == RSA_TYPE_UNKNOWN) {
@@ -3779,6 +3600,9 @@ static int RsaPrivateDecryptEx(const byte* in, word32 inLen, byte* out,
         ret = wc_CryptoCb_RsaPad(in, inLen, out,
                             &outLen, rsa_type, key, rng, &padding);
         if (ret != WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE)) {
+            if (ret == 0) {
+                ret = (int)outLen;
+            }
             break;
         }
     }
@@ -4240,11 +4064,12 @@ int wc_RsaPSS_CheckPadding_ex2(const byte* in, word32 inSz, byte* sig,
     int ret = 0;
     byte sigCheckBuf[WC_MAX_DIGEST_SIZE*2 + RSA_PSS_PAD_SZ];
     byte *sigCheck = sigCheckBuf;
-
+    int digSz;
     (void)bits;
 
-    if (in == NULL || sig == NULL ||
-                               inSz != (word32)wc_HashGetDigestSize(hashType)) {
+    digSz = wc_HashGetDigestSize(hashType);
+
+    if (in == NULL || sig == NULL || digSz < 0 || inSz != (word32)digSz) {
         ret = BAD_FUNC_ARG;
     }
 
@@ -4488,6 +4313,7 @@ int wc_RsaPSS_Sign_ex(const byte* in, word32 inLen, byte* out, word32 outLen,
                       enum wc_HashType hash, int mgf, int saltLen, RsaKey* key,
                       WC_RNG* rng)
 {
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int ret;
     SAVE_VECTOR_REGISTERS(return _svr_ret;);
     ret = RsaPublicEncryptEx(in, inLen, out, outLen, key,
@@ -5039,17 +4865,17 @@ int wc_MakeRsaKey(RsaKey* key, int size, long e, WC_RNG* rng)
     #endif
     {
         err = wc_CryptoCb_MakeRsaKey(key, size, e, rng);
-        #ifndef WOLF_CRYPTO_CB_ONLY_RSA
-        if (err != WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE))
-            goto out;
-        /* fall-through when unavailable */
-        #endif
-        #ifdef WOLF_CRYPTO_CB_ONLY_RSA
-        if (err == WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE))
+    #ifdef WOLF_CRYPTO_CB_ONLY_RSA
+        if (err == WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE)) {
             err = NO_VALID_DEVID;
             goto out;
         }
-        #endif
+    #else
+        if (err != WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE)) {
+            goto out;
+        }
+        /* fall-through when unavailable */
+    #endif
     }
 #endif
 

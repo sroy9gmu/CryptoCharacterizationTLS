@@ -62,7 +62,7 @@ Installation
 
     5. sudo make install[_sw]
 
-    6. sudo cp lib*so /lib/x86_64-linux-gnu/
+    6. sudo cp libssl* libcrypto* /lib/<ARCH>-linux-gnu/
 
     7. sudo ldconfig
 
@@ -80,7 +80,7 @@ Steps
         DSA: 
         openssl genpkey -genparam -algorithm DSA -out dsa_param.pem -pkeyopt pbits:3072 -pkeyopt qbits:256 \
             -pkeyopt digest:SHA256 -pkeyopt gindex:1 -text
-        openssl gendsa -out dsa_pvt.pem dsa_param.pem 
+        openssl gendsa -out dsa_pvt.pem dsa_param.pem    
 
     2. Generate the X509 certificate for the CA:
 
@@ -112,13 +112,14 @@ Steps
 
     5. Generate DH parameters for key exchange between server and client:
 
+        FF:
         /usr/local/bin/openssl dhparam -out dh_param.pem 3072
 
     6. Get list of supported ciphers
 
         /usr/local/bin/openssl ciphers -s -tls1_3
 
-    9. Start SSL server and client in separate windows
+    7. Start SSL server and client in separate windows
 
         FFDH, RSA-PSS:
         /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert rsa_srv_cert.pem -key rsa_srv_pvt.pem\
@@ -128,9 +129,9 @@ Steps
 
         ECDH, ECDSA:
         /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile\
-         dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
-        /usr/local/bin/openssl s_client -connect localhost -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
-         dsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
+         dsa_cert.pem -state -trace -no_dhe -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
+        /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
+         dsa_cert.pem -state -trace -no_ssl3 -no_tls1 -no_tls1_1 -no_tls1_2 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
          
 Results
 
@@ -157,7 +158,8 @@ Results
 
     3. Encryption:     
             
-        CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c lines 801-824
+        x86_64: CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c lines 801-824
+        Pi 4B: CRYPTO_gcm128_encrypt_ctr32, crypto/modes/gcm128.c
             Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26
     
     4. Hashing: 
