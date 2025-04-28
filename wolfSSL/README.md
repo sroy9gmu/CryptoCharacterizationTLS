@@ -22,7 +22,7 @@ Installation
     3. FFDH, RSA-PSS:   
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --enable-tls13 --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
        ECDH, DSA:   
-        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-tls13 --enable-curve25519 --enable-dsa LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm
 
     4. make
 
@@ -38,11 +38,15 @@ Steps
     
     2. Start SSL server and client in separate windows
 
-        FFDH, RSA-PSS:
-
         cd wolfssl
+
+        FFDH, RSA-PSS:        
         ./examples/server/server -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/rsa_srv_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/rsa_srv_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem -D ../CryptoCharacterizationTLS/OpenSSL/dh_param.pem
         ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/rsa_cli_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/rsa_cli_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem -y
+
+        ECDH, ECDSA:
+        ./examples/server/server -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/dsa_srv_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/dsa_srv_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/dsa_cert.pem
+        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/dsa_cli_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/dsa_cli_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/dsa_cert.pem -y
 
 Issues
 
