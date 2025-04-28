@@ -1,0 +1,460 @@
+etting temp DH parameters
+156, SHA1_Update, include/crypto/md32_common.h
+ACCEPT
+SSL_accept:before SSL initialization
+Received TLS Record
+Header:
+  Version = TLS 1.0 (0x301)
+  Content Type = Handshake (22)
+  Length = 410
+SSL_accept:before SSL initialization
+    ClientHello, Length=406
+      client_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0xB0B957DE
+        random_bytes (len=28): 09E54FBCDAC63AA33ADA36B5B66440D8B683C74DB787F0F2807C4D49
+      session_id (len=32): E39EA9DD8115EED6C0D0FB6001384CB97A037F240E9468D14B458FC8B32B0A74
+      cipher_suites (len=2)
+        {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_methods (len=1)
+        No Compression (0x00)
+      extensions, length = 331
+        extension_type=supported_groups(10), length=6
+          ffdhe2048 (256)
+          ffdhe3072 (257)
+        extension_type=session_ticket(35), length=0
+        extension_type=encrypt_then_mac(22), length=0
+        extension_type=extended_master_secret(23), length=0
+        extension_type=signature_algorithms(13), length=26
+          mldsa65 (0x0905)
+          mldsa87 (0x0906)
+          mldsa44 (0x0904)
+          rsa_pss_pss_sha256 (0x0809)
+          rsa_pss_pss_sha384 (0x080a)
+          rsa_pss_pss_sha512 (0x080b)
+          rsa_pss_rsae_sha256 (0x0804)
+          rsa_pss_rsae_sha384 (0x0805)
+          rsa_pss_rsae_sha512 (0x0806)
+          rsa_pkcs1_sha256 (0x0401)
+          rsa_pkcs1_sha384 (0x0501)
+          rsa_pkcs1_sha512 (0x0601)
+        extension_type=supported_versions(43), length=3
+          TLS 1.3 (772)
+        extension_type=psk_key_exchange_modes(45), length=2
+          psk_dhe_ke (1)
+        extension_type=key_share(51), length=262
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 8775DD64D4096523C14D92488ED3E589ACC8353150C6A527B9A9C7CD1046A936E020C30E87A77A1AC931863E36D4A0D9C84EC302EC4E2B45260A7CD79B543A4EB4D987592AA6DE4B87169A9E1EEBAA4CCF23C7AEC77355C2B97CB79E86EF6283DFD057BED31B9506F2614F9C4D13DF42C1A1FCB4A389B088B11CFDDA7C78E387AC5B283FD4B926DB65E34517F5DFFCB23713961CAD1E165A8FB3658C3815A9A5BD2FE0D0A04A3E62472E3FEECFF571356820235B78B62CBF6C37D6BB64FC4198B257B3389EE72122752E28C5D9890CC194F698523D3EDB8F2FC1EFE0BE9BCA36E2A3187D93754A0DC5EDACF433EC362C9408F1A76FB91B87A311981BE69B2EDD
+
+SSL_accept:SSLv3/TLS read client hello
+613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Handshake (22)
+  Length = 346
+156, SHA256_Update, include/crypto/md32_common.h
+    ServerHello, Length=342
+      server_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0xB141FBB1
+        random_bytes (len=28): 1F0DA3D1563B3A1F89D0AEAE8712EC5B91C814FE305E70F7588DB2C0
+      session_id (len=32): E39EA9DD8115EED6C0D0FB6001384CB97A037F240E9468D14B458FC8B32B0A74
+      cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_method: No Compression (0x00)
+      extensions, length = 270
+        extension_type=supported_versions(43), length=2
+            TLS 1.3 (772)
+        extension_type=key_share(51), length=260
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 78ADDEB5B52FAA7FC5FE505458F4D8F638F07EDA38C8C39D163FEE8F968A2AC3494361BE94BBD5C61636DA2FED3D4A0C4616201EBB133186324ECA67AD5ED7361E7BD96833E8E7F074655CA945075FBF5C9A5DCB8737DAE963184D23AF943EACEE5633608BCCF85D6478D6BBCAB78DB4B5E13AF5E34B9DFF23783B3C1235F1047E866B057B71335261639E94746A6FD54B0CB4496E91B175B48C086656855600E6BB890E82D9D767D57F21B455B452143978618ECBC8B0D0609F3FCABBA475962EDD2BC5EC350F0103A6275167B581AE0FD3B1BD759953C2DDD96BB991416ED27DC8B316F43CDA59F743DD9DA3B019F2111230F6480F20F186284F63F42A11B9
+
+SSL_accept:SSLv3/TLS write server hello
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+SSL_accept:SSLv3/TLS write change cipher spec
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 23
+  Inner Content Type = Handshake (22)
+156, SHA256_Update, include/crypto/md32_common.h
+    EncryptedExtensions, Length=2
+      No extensions
+
+SSL_accept:TLSv1.3 write encrypted extensions
+156, SHA1_Update, include/crypto/md32_common.h
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 1369
+  Inner Content Type = Handshake (22)
+156, SHA256_Update, include/crypto/md32_common.h
+    Certificate, Length=1348
+      context (len=0): 
+      certificate_list, length=1344
+        ASN.1Cert, length=1339
+------details-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0f:8e:61:43:a9:5a:eb:15:78:44:f4:82:c4:08:97:5d:28:bf:a4:da
+        Signature Algorithm: rsassaPss        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x015E
+        Trailer Field: 0x01 (default)
+        Issuer: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = sroy9, emailAddress = sroy9@gmu.edu
+        Validity
+            Not Before: Apr 21 16:29:27 2025 GMT
+            Not After : May 21 16:29:27 2025 GMT
+        Subject: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = sroy9, emailAddress = sroy9@gmu.edu
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (3072 bit)
+                Modulus:
+                    00:93:87:54:ca:14:d4:8d:91:ef:cc:18:f5:11:cb:
+                    3e:da:9c:7c:74:4b:cb:f1:a7:e1:b2:1d:63:8c:68:
+                    13:1c:f0:c5:05:59:d1:57:5f:5c:f6:18:a7:83:48:
+                    f9:44:37:08:6b:f3:2d:de:5d:bb:d6:71:b8:7c:e4:
+                    e7:b5:73:df:79:37:7c:6c:2e:ab:08:b8:34:db:3a:
+                    d1:db:c1:c0:63:1d:57:26:8d:1d:f1:ee:8a:7a:fb:
+                    36:cb:9b:b5:4a:67:be:ed:bc:e7:51:0a:65:96:88:
+                    a5:7b:a1:fb:80:72:8b:d9:a5:5a:e0:48:72:1b:f4:
+                    fc:1a:ee:15:73:6d:45:d3:c7:3d:a5:3d:13:38:e5:
+                    19:37:32:7f:59:dc:20:b3:1d:b6:2c:00:b5:65:6f:
+                    1d:86:d9:43:8e:63:4e:08:7d:50:b5:ee:56:44:76:
+                    c8:22:c5:42:c1:17:78:52:d7:7c:e3:ac:0f:3d:c8:
+                    1e:91:0a:06:6b:8f:89:44:82:71:1a:6b:5a:3a:20:
+                    20:97:d0:1c:97:47:cb:80:53:5d:aa:3a:f2:2b:6d:
+                    77:21:f9:57:c4:a9:2f:e9:4c:b5:ef:57:6a:88:10:
+                    dd:b7:ce:18:b2:77:7d:28:42:36:9f:6e:15:6b:7e:
+                    9a:8e:f5:c7:13:fe:49:55:45:e7:04:d3:a1:7c:2d:
+                    8e:0e:6d:9c:4c:a4:a5:db:d5:23:51:3b:d6:b3:49:
+                    38:4f:a1:ca:f1:38:2c:4c:83:f7:42:4a:24:00:a1:
+                    e5:53:19:57:fc:4c:e9:e9:b1:99:75:da:dc:20:ae:
+                    e7:19:2b:f0:79:47:34:1c:7c:ff:5e:05:4d:51:ed:
+                    03:62:36:27:5e:32:23:4d:07:df:cb:8c:e1:bd:6a:
+                    bc:e8:d2:18:f7:df:c0:db:61:79:f2:f5:f5:1d:2d:
+                    fb:cf:35:3a:86:c1:8c:d1:63:c4:9f:19:93:05:fb:
+                    0a:65:4d:6f:5e:72:6f:61:b1:bb:65:ad:44:10:f2:
+                    f9:63:a7:61:49:42:90:39:9d:03
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                62:07:22:5E:7F:B1:BD:B2:86:53:1C:BA:2B:A4:9A:6A:7B:4D:F6:40
+            X509v3 Authority Key Identifier: 
+                D5:33:0F:C6:B1:7A:CF:64:8D:40:FA:2E:33:71:08:7A:51:58:04:31
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: rsassaPss
+    Signature Value:        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x015E
+        Trailer Field: 0x01 (default)
+        02:59:c3:4e:30:19:6a:74:40:e5:6f:aa:37:07:a1:7d:34:6d:
+        8f:01:3b:e4:42:7d:2d:e6:68:43:d2:df:81:42:1a:20:9d:0d:
+        d9:d4:73:19:a9:67:2d:8b:3f:72:54:51:9c:42:17:5a:f2:45:
+        99:1a:80:0c:6c:e8:df:e7:c9:89:73:3f:0d:6f:d8:17:82:83:
+        9d:75:58:63:90:34:aa:5d:c2:2c:cc:9e:26:c6:3d:3e:25:76:
+        a1:8c:0b:37:29:8e:f1:22:21:a5:0b:8e:23:09:f5:fb:f8:7d:
+        2f:2d:1d:07:c8:45:5d:7c:03:9b:d2:e4:a2:ea:55:71:57:64:
+        07:3d:61:3b:58:0d:74:c1:2e:b1:bd:bb:48:e1:36:9d:f5:0a:
+        ae:55:3b:7d:f4:e2:08:3e:cd:9e:1a:65:ca:70:d8:ec:65:8b:
+        7e:54:90:9a:bf:b9:56:45:a8:ca:d2:07:ed:c2:d8:9f:90:0c:
+        30:78:54:64:cc:48:0a:30:f5:e6:99:56:92:1d:00:cb:71:f2:
+        6f:c8:a6:07:16:51:88:5c:98:1a:42:0b:80:0d:a6:d5:cc:9f:
+        3a:84:44:a3:96:a6:7f:94:cd:1c:af:73:69:8d:a7:59:89:27:
+        b5:2c:c2:96:e8:3e:cd:ca:f4:b2:9f:69:d3:63:42:07:4f:17:
+        4e:59:35:f0:8e:d0:f2:c5:0e:a4:aa:c1:97:67:3c:6b:91:34:
+        e1:a3:0a:b1:a8:0f:b9:c6:c0:b2:ed:99:36:c1:d6:d4:5f:c2:
+        6a:d6:6c:f7:11:32:45:fa:bc:62:38:c1:a8:aa:0e:33:3c:a4:
+        67:2e:aa:c0:1e:1a:28:1e:3f:0c:aa:0c:54:46:dd:4c:d1:79:
+        19:53:be:a6:56:ce:e6:80:d4:fd:0d:18:e9:1f:36:c6:95:ce:
+        41:98:e5:a9:e0:55:7d:58:75:06:bd:9b:93:0f:9d:08:41:7c:
+        e8:0c:95:9b:d1:97:f1:b8:ab:ad:50:ab:be:2f:79:6b:10:0c:
+        2b:3f:7d:52:75:5d
+-----BEGIN CERTIFICATE-----
+MIIFNzCCA2qgAwIBAgIUD45hQ6la6xV4RPSCxAiXXSi/pNowQgYJKoZIhvcNAQEK
+MDWgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIEAgIBXjB2MQswCQYDVQQGEwJVUzELMAkGA1UECAwCVkExEDAOBgNVBAcMB0Zh
+aXJmYXgxDDAKBgNVBAoMA0dNVTEMMAoGA1UECwwDRUNFMQ4wDAYDVQQDDAVzcm95
+OTEcMBoGCSqGSIb3DQEJARYNc3JveTlAZ211LmVkdTAeFw0yNTA0MjExNjI5Mjda
+Fw0yNTA1MjExNjI5MjdaMHYxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4G
+A1UEBwwHRmFpcmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxDjAMBgNV
+BAMMBXNyb3k5MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MIIBojANBgkq
+hkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAk4dUyhTUjZHvzBj1Ecs+2px8dEvL8afh
+sh1jjGgTHPDFBVnRV19c9hing0j5RDcIa/Mt3l271nG4fOTntXPfeTd8bC6rCLg0
+2zrR28HAYx1XJo0d8e6Kevs2y5u1Sme+7bznUQplloile6H7gHKL2aVa4EhyG/T8
+Gu4Vc21F08c9pT0TOOUZNzJ/Wdwgsx22LAC1ZW8dhtlDjmNOCH1Qte5WRHbIIsVC
+wRd4Utd846wPPcgekQoGa4+JRIJxGmtaOiAgl9Acl0fLgFNdqjryK213IflXxKkv
+6Uy171dqiBDdt84Ysnd9KEI2n24Va36ajvXHE/5JVUXnBNOhfC2ODm2cTKSl29Uj
+UTvWs0k4T6HK8TgsTIP3QkokAKHlUxlX/Ezp6bGZddrcIK7nGSvweUc0HHz/XgVN
+Ue0DYjYnXjIjTQffy4zhvWq86NIY99/A22F58vX1HS37zzU6hsGM0WPEnxmTBfsK
+ZU1vXnJvYbG7Za1EEPL5Y6dhSUKQOZ0DAgMBAAGjUzBRMB0GA1UdDgQWBBRiByJe
+f7G9soZTHLorpJpqe032QDAfBgNVHSMEGDAWgBTVMw/GsXrPZI1A+i4zcQh6UVgE
+MTAPBgNVHRMBAf8EBTADAQH/MEIGCSqGSIb3DQEBCjA1oA8wDQYJYIZIAWUDBAIB
+BQChHDAaBgkqhkiG9w0BAQgwDQYJYIZIAWUDBAIBBQCiBAICAV4DggGBAAJZw04w
+GWp0QOVvqjcHoX00bY8BO+RCfS3maEPS34FCGiCdDdnUcxmpZy2LP3JUUZxCF1ry
+RZkagAxs6N/nyYlzPw1v2BeCg511WGOQNKpdwizMnibGPT4ldqGMCzcpjvEiIaUL
+jiMJ9fv4fS8tHQfIRV18A5vS5KLqVXFXZAc9YTtYDXTBLrG9u0jhNp31Cq5VO330
+4gg+zZ4aZcpw2Oxli35UkJq/uVZFqMrSB+3C2J+QDDB4VGTMSAow9eaZVpIdAMtx
+8m/IpgcWUYhcmBpCC4ANptXMnzqERKOWpn+UzRyvc2mNp1mJJ7UswpboPs3K9LKf
+adNjQgdPF05ZNfCO0PLFDqSqwZdnPGuRNOGjCrGoD7nGwLLtmTbB1tRfwmrWbPcR
+MkX6vGI4waiqDjM8pGcuqsAeGigePwyqDFRG3UzReRlTvqZWzuaA1P0NGOkfNsaV
+zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
+-----END CERTIFICATE-----
+------------------
+        No extensions
+
+SSL_accept:SSLv3/TLS write certificate
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+307, rsa_ossl_private_encrypt, crypto/rsa/rsa_ossl.c
+613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 409
+  Inner Content Type = Handshake (22)
+156, SHA256_Update, include/crypto/md32_common.h
+    CertificateVerify, Length=388
+      Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
+      Signature (len=384): 72D8C00DAB037D5BC5AAAC214F08981E15F2BEBA25C3B025C9CB54DEC6C38D7885856F3F0BE8A7013DCF16B2E812F910056346B1D632CB0A9B56BCC6C2CDF8A4B18F9C0CD7ECBEB997C0035528F723C52486D705CDEF3B58F750D0D141875C00074745D150918D1B7686F4E9A045186CEF95C1516300E0CB6C90E07263F2DB395B029E3C88F2B857C7F2CE327DB0713C3E00E2F54DD6822805EC6773672C427AA5C1C227B440C7BC258809BC51F6B370D0CC93A0E63E78DE50954506E5772E0410C69946E2952EC7E6A63EA015D5BD9813BB82E6D3DA22D417944F5432E7B8AFCDFBB027DD9CE6D10FA1D1DE95A33017AEE2D8A4C1428FA6C2D2FB1F0EFCA93F91AE209AB3EA8350F42AC61BA5441AB76B0F3FF2C9B74A1EA7C668D1C624E86E03179D43ACB6717F8172070F7A25EBB4AFBD198793C468DE0AE5DB8C5609E35657C2E109A066E593C312A204A7182A8FB5C853D6B248FB716B6195465DF6567E5A96C67F5FAE4009B8982BF9EC22EB3D2AD9B5656C3DA0F99855E25B8733D88F
+
+SSL_accept:TLSv1.3 write server certificate verify
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 53
+  Inner Content Type = Handshake (22)
+156, SHA256_Update, include/crypto/md32_common.h
+    Finished, Length=32
+      verify_data (len=32): 3D8834B30ED069C984DB93C15E015A9790DED8F2F797A5C7911A6854EA339552
+
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+SSL_accept:SSLv3/TLS write finished
+SSL_accept:TLSv1.3 early data
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 53
+  Inner Content Type = Handshake (22)
+SSL_accept:TLSv1.3 early data
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+    Finished, Length=32
+      verify_data (len=32): D4A5E38E8A34FB72A027BE4FB6A23BA54B15617FEEE043D01B3EBAE065E979FF
+
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+SSL_accept:SSLv3/TLS read finished
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 234
+  Inner Content Type = Handshake (22)
+    NewSessionTicket, Length=213
+        ticket_lifetime_hint=7200
+        ticket_age_add=1553448807
+        ticket_nonce (len=8): 0000000000000000
+        ticket (len=192): FF61C263BBAB4BFD8DC3094BB33C58FB6A972156C22BBE8ACF252056A70A3F54DC7CCA23B6540BBAB4DFDEEAA8A99962B3E137CCB13F96064C3F378F2BC74A58F4AB2FF98E36D6B00AF1CB95CE949A28C8BEC2BA39B524495B8FBD2A25EF8BC75A1965A1F63A7F979D252B9137C98100B0A8B13DED8D47EC9FB42517EE42005A0B04F157EE5DC0BD258B687D8210652FAA5C4F96F0E1CB491D82B86F4FBCE3C0BD8D4E75147F777C51A354113BFB9EFC2478529538B83D59A5F3A4C18DD36470
+        No extensions
+
+SSL_accept:SSLv3/TLS write session ticket
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+156, SHA256_Update, include/crypto/md32_common.h
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 234
+  Inner Content Type = Handshake (22)
+    NewSessionTicket, Length=213
+        ticket_lifetime_hint=7200
+        ticket_age_add=2352591092
+        ticket_nonce (len=8): 0000000000000001
+        ticket (len=192): FF61C263BBAB4BFD8DC3094BB33C58FB5813C305E150A2133575E8AE0D8CF5A5E3BC6E62AAB16E2E7B4CC0DF8119A061BA2816340A568BC6D8179BB8B0A679D1CA476B87CEC948697D3DB71051BDE306586A0008BA127A15C4E7B1BED32430AA9CA2FC5C702435C0F3C32A6B04B7090E6BDE72F6F3468269CDA95E59C9FCAB6FF9270E6CD0CAFFEABA626DFE10B20BA19482333DCEE751AD925A1FED04EE7A66DB913DF238E2AB0B23CABB7E14DA35066D6C6168BDAFA8FFB6615D01A5E78849
+        No extensions
+
+SSL_accept:SSLv3/TLS write session ticket
+-----BEGIN SSL SESSION PARAMETERS-----
+MHQCAQECAgMEBAITAQQg7ynvk+csfFCBcEB13mz2KbYKSm5H6bPrNRQc1jUp2SgE
+IGpx1c9T3pf5So9LIs6K6Yt7nNMXG/5F50LDBwITi51xoQYCBGgKVBCiBAICHCCk
+BgQEAQAAAK4HAgUAjDmw9LMEAgIBAA==
+-----END SSL SESSION PARAMETERS-----
+Shared ciphers:TLS_AES_128_GCM_SHA256
+Signature Algorithms: id-ml-dsa-65:id-ml-dsa-87:id-ml-dsa-44:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA256:RSA+SHA384:RSA+SHA512
+Shared Signature Algorithms: id-ml-dsa-65:id-ml-dsa-87:id-ml-dsa-44:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA256:RSA+SHA384:RSA+SHA512
+CIPHER is TLS_AES_128_GCM_SHA256
+This TLS version forbids renegotiation.
