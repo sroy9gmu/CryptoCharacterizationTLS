@@ -9,7 +9,7 @@ Links
 
     2. Example: https://github.com/Mbed-TLS/mbedtls/tree/39e2e4c3cb6b0c07f6d1a12d974393c8a0830d89/programs#ssltls-feature-demonstrators
 
-Steps
+Installation
 
     1. Download latest release.
 
@@ -27,42 +27,71 @@ Steps
     4. In file include/mbedtls/mbedtls_config.h, 
     
         Disable below features 
-            MBEDTLS_HAVE_ASM MBEDTLS_AESNI_C
-            MBEDTLS_CHACHAPOLY_C          
+            MBEDTLS_HAVE_ASM 
+            MBEDTLS_AESNI_C
+            MBEDTLS_CHACHAPOLY_C  
+
+            FFDH, RSA-PSS:
+            MBEDTLS_KEY_EXCHANGE_ECDH_ECDSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_ECDHE_ECDSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED
+
+            ECDH, DSA:   
+        
+        Enable below features 
+             
+
+            FFDH, RSA-PSS:   
+            
+
+            ECDH, DSA: 
+               
 
     5. Compile:
-        make clean
         make
         sudo make install
 
-    6. Start server process in one window:
+Security Parameters
 
-        cd CryptoCharacterizationTLS/MbedTLS
+    1. 128-bit:  AES-GCM-128, DH/DSA (L = 3072, N = 256), RSA-3072, ECC (f = 256 - 383), SHA-256
 
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=ca-cert.pem crt_file=server-cert.pem key_file=server-key.pem dhm_file=dhparam.pem force_version=tls13 tls13_kex_modes=ephemeral
+Steps   
 
-    7. Start client process in another window of same PC: 
+    1. Start server and client in separate windows
 
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=ca-cert.pem crt_file=client-cert.pem key_file=client-key.pem force_version=tls13 tls13_kex_modes=ephemeral
+        cd CryptoCharacterizationTLS/OpenSSL
+
+        FFDH, RSA-PSS:  
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem force_version=tls13 tls13_kex_modes=ephemeral_all
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem force_version=tls13 tls13_kex_modes=ephemeral_all
+
+        ECDH, ECDSA:
 
 Results
 
     1. Key Exchange: 
 
-        ecp_use_curve25519, ecp_curves.c, 4625
-        ecp_mul_mxz, ecp.c, 2550
+        FFDH
+        mbedtls_mpi_exp_mod, bignum.c, 1737
+        mbedtls_mpi_exp_mod_optionally_safe, bignum.c, 1622
+
+        ECDH 
+
+        <!-- ecp_use_curve25519, ecp_curves.c, 4625
+        ecp_mul_mxz, ecp.c, 2550 -->
 
     2. Signing:
     
+        RSA-PSS
+        rsa_rsassa_pss_sign_no_mode_check, rsa.c, 2122
         mbedtls_rsa_private, rsa.c, 1415
 
-    3. Encryption: 
-    
-        mbedtls_cipher_aead_encrypt, cipher.c, 1448
-        mbedtls_gcm_crypt_and_tag, gcm.c, 718
-        mbedtls_internal_aes_encrypt, aes.c, 887
+        DSA
+
+    3. Encryption:     
+
         mbedtls_gcm_update, gcm.c, 569
-        mbedtls_internal_aes_encrypt, aes.c, 887
     
     4. Hashing: 
     
