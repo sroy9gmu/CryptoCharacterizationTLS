@@ -38,6 +38,14 @@ Installation
             MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED
 
             ECDH, DSA:   
+            MBEDTLS_KEY_EXCHANGE_ECDH_RSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_DHE_RSA_ENABLED
+            MBEDTLS_KEY_EXCHANGE_RSA_ENABLED
+            MBEDTLS_RSA_C
+            MBEDTLS_X509_RSASSA_PSS_SUPPORT
+            MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED
+            
         
         Enable below features 
              
@@ -46,7 +54,7 @@ Installation
             
 
             ECDH, DSA: 
-               
+            MBEDTLS_PSA_P256M_DRIVER_ENABLED 
 
     5. Compile:
         make
@@ -63,10 +71,12 @@ Steps
         cd CryptoCharacterizationTLS/OpenSSL
 
         FFDH, RSA-PSS:  
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem force_version=tls13 tls13_kex_modes=ephemeral_all
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem force_version=tls13 tls13_kex_modes=ephemeral_all
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all
 
         ECDH, ECDSA:
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=dsa_cert.pem crt_file=dsa_srv_cert.pem key_file=dsa_srv_pvt.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
 
 Results
 
