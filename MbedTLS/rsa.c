@@ -25,31 +25,6 @@
 
 #include "common.h"
 
-#include <stdio.h>
-#include <sys/time.h>
-#include <math.h>
-
-#define Mi 1000000
-#define ROUNDS 10
-#define DBG
-#define PWR
-
-static double get_GM(uint64_t *arr){
-    double prod = 1;
-    double root;
-    
-    root = (double)1 / (double)ROUNDS;
-    #ifdef DBG  
-        printf("%s: root= %lf\n", __func__, root);
-    #endif
-
-    for (int i = 0; i < ROUNDS; i++){
-        prod *= arr[i];        
-    }
-    
-    return pow(prod, root);
-}
-
 #if defined(MBEDTLS_RSA_C)
 
 #include "mbedtls/rsa.h"
@@ -1261,6 +1236,7 @@ int mbedtls_rsa_public(mbedtls_rsa_context *ctx,
                        const unsigned char *input,
                        unsigned char *output)
 {
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     size_t olen;
     mbedtls_mpi T;
@@ -1437,243 +1413,196 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
                         const unsigned char *input,
                         unsigned char *output)
 {
-    printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
+    size_t olen;
 
-    #ifdef PWR
-        time_t traw;
-        struct tm * timeinfo;
-    #endif
-    struct timeval tstart, tend;
-    uint64_t dur[ROUNDS];
+    /* Temporary holding the result */
+    mbedtls_mpi T;
 
-    #ifdef PWR
-        time(&traw);
-        timeinfo = localtime(&traw);
-        printf("\nStart time and date: %s\n", asctime(timeinfo));
-    #endif
+    /* Temporaries holding P-1, Q-1 and the
+     * exponent blinding factor, respectively. */
+    mbedtls_mpi P1, Q1, R;
 
-    #ifdef DBG
-        printf("Number of rounds: %d\n", ROUNDS);
-    #endif
-    for (int i = 0; i < ROUNDS; i++){
-        uint64_t dur_start = 0, dur_end = 0;
-        
-        if (gettimeofday(&tstart, NULL) == 0) {
-            dur_start = (unsigned long)(tstart.tv_sec) * Mi + (unsigned long)(tstart.tv_usec);
-        } else {
-            sprintf((char *)stderr,"gettimeofday start %d\n", i);
-        } // START PROFILE
+#if !defined(MBEDTLS_RSA_NO_CRT)
+    /* Temporaries holding the results mod p resp. mod q. */
+    mbedtls_mpi TP, TQ;
 
-        size_t olen;
+    /* Temporaries holding the blinded exponents for
+     * the mod p resp. mod q computation (if used). */
+    mbedtls_mpi DP_blind, DQ_blind;
+#else
+    /* Temporary holding the blinded exponent (if used). */
+    mbedtls_mpi D_blind;
+#endif /* MBEDTLS_RSA_NO_CRT */
 
-        /* Temporary holding the result */
-        mbedtls_mpi T;
+    /* Temporaries holding the initial input and the double
+     * checked result; should be the same in the end. */
+    mbedtls_mpi input_blinded, check_result_blinded;
 
-        /* Temporaries holding P-1, Q-1 and the
-        * exponent blinding factor, respectively. */
-        mbedtls_mpi P1, Q1, R;
-
-    #if !defined(MBEDTLS_RSA_NO_CRT)
-        /* Temporaries holding the results mod p resp. mod q. */
-        mbedtls_mpi TP, TQ;
-
-        /* Temporaries holding the blinded exponents for
-        * the mod p resp. mod q computation (if used). */
-        mbedtls_mpi DP_blind, DQ_blind;
-    #else
-        /* Temporary holding the blinded exponent (if used). */
-        mbedtls_mpi D_blind;
-    #endif /* MBEDTLS_RSA_NO_CRT */
-
-        /* Temporaries holding the initial input and the double
-        * checked result; should be the same in the end. */
-        mbedtls_mpi input_blinded, check_result_blinded;
-
-        if (f_rng == NULL) {
-            return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
-        }
-
-        if (rsa_check_context(ctx, 1 /* private key checks */,
-                            1 /* blinding on        */) != 0) {
-            return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
-        }
-
-    #if defined(MBEDTLS_THREADING_C)
-        if ((ret = mbedtls_mutex_lock(&ctx->mutex)) != 0) {
-            return ret;
-        }
-    #endif
-
-        /* MPI Initialization */
-        mbedtls_mpi_init(&T);
-
-        mbedtls_mpi_init(&P1);
-        mbedtls_mpi_init(&Q1);
-        mbedtls_mpi_init(&R);
-
-    #if defined(MBEDTLS_RSA_NO_CRT)
-        mbedtls_mpi_init(&D_blind);
-    #else
-        mbedtls_mpi_init(&DP_blind);
-        mbedtls_mpi_init(&DQ_blind);
-    #endif
-
-    #if !defined(MBEDTLS_RSA_NO_CRT)
-        mbedtls_mpi_init(&TP); mbedtls_mpi_init(&TQ);
-    #endif
-
-        mbedtls_mpi_init(&input_blinded);
-        mbedtls_mpi_init(&check_result_blinded);
-
-        /* End of MPI initialization */
-
-        MBEDTLS_MPI_CHK(mbedtls_mpi_read_binary(&T, input, ctx->len));
-        if (mbedtls_mpi_cmp_mpi(&T, &ctx->N) >= 0) {
-            ret = MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
-            goto cleanup;
-        }
-
-        /*
-        * Blinding
-        * T = T * Vi mod N
-        */
-        MBEDTLS_MPI_CHK(rsa_prepare_blinding(ctx, f_rng, p_rng));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&T, &T, &ctx->Vi));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mod_mpi(&T, &T, &ctx->N));
-
-        MBEDTLS_MPI_CHK(mbedtls_mpi_copy(&input_blinded, &T));
-
-        /*
-        * Exponent blinding
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_sub_int(&P1, &ctx->P, 1));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_sub_int(&Q1, &ctx->Q, 1));
-
-    #if defined(MBEDTLS_RSA_NO_CRT)
-        /*
-        * D_blind = ( P - 1 ) * ( Q - 1 ) * R + D
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
-                                                f_rng, p_rng));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&D_blind, &P1, &Q1));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&D_blind, &D_blind, &R));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&D_blind, &D_blind, &ctx->D));
-    #else
-        /*
-        * DP_blind = ( P - 1 ) * R + DP
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
-                                                f_rng, p_rng));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&DP_blind, &P1, &R));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&DP_blind, &DP_blind,
-                                            &ctx->DP));
-
-        /*
-        * DQ_blind = ( Q - 1 ) * R + DQ
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
-                                                f_rng, p_rng));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&DQ_blind, &Q1, &R));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&DQ_blind, &DQ_blind,
-                                            &ctx->DQ));
-    #endif /* MBEDTLS_RSA_NO_CRT */
-
-    #if defined(MBEDTLS_RSA_NO_CRT)
-        MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&T, &T, &D_blind, &ctx->N, &ctx->RN));
-    #else
-        /*
-        * Faster decryption using the CRT
-        *
-        * TP = input ^ dP mod P
-        * TQ = input ^ dQ mod Q
-        */
-
-        MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&TP, &T, &DP_blind, &ctx->P, &ctx->RP));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&TQ, &T, &DQ_blind, &ctx->Q, &ctx->RQ));
-
-        /*
-        * T = (TP - TQ) * (Q^-1 mod P) mod P
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_sub_mpi(&T, &TP, &TQ));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&TP, &T, &ctx->QP));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mod_mpi(&T, &TP, &ctx->P));
-
-        /*
-        * T = TQ + T * Q
-        */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&TP, &T, &ctx->Q));
-        MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&T, &TQ, &TP));
-    #endif /* MBEDTLS_RSA_NO_CRT */
-
-        /* Verify the result to prevent glitching attacks. */
-        MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&check_result_blinded, &T, &ctx->E,
-                                            &ctx->N, &ctx->RN));
-        if (mbedtls_mpi_cmp_mpi(&check_result_blinded, &input_blinded) != 0) {
-            ret = MBEDTLS_ERR_RSA_VERIFY_FAILED;
-            goto cleanup;
-        }
-
-        /*
-        * Unblind
-        * T = T * Vf mod N
-        */
-        MBEDTLS_MPI_CHK(rsa_unblind(&T, &ctx->Vf, &ctx->N));
-
-        olen = ctx->len;
-        MBEDTLS_MPI_CHK(mbedtls_mpi_write_binary(&T, output, olen));
-
-    cleanup:
-    #if defined(MBEDTLS_THREADING_C)
-        if (mbedtls_mutex_unlock(&ctx->mutex) != 0) {
-            return MBEDTLS_ERR_THREADING_MUTEX_ERROR;
-        }
-    #endif
-
-        mbedtls_mpi_free(&P1);
-        mbedtls_mpi_free(&Q1);
-        mbedtls_mpi_free(&R);
-
-    #if defined(MBEDTLS_RSA_NO_CRT)
-        mbedtls_mpi_free(&D_blind);
-    #else
-        mbedtls_mpi_free(&DP_blind);
-        mbedtls_mpi_free(&DQ_blind);
-    #endif
-
-        mbedtls_mpi_free(&T);
-
-    #if !defined(MBEDTLS_RSA_NO_CRT)
-        mbedtls_mpi_free(&TP); mbedtls_mpi_free(&TQ);
-    #endif
-
-        mbedtls_mpi_free(&check_result_blinded);
-        mbedtls_mpi_free(&input_blinded);
-
-        if (gettimeofday(&tend, NULL) == 0) {
-            dur_end = (unsigned long)(tend.tv_sec) * Mi + (unsigned long)(tend.tv_usec);
-        } else {
-            sprintf((char *)stderr,"gettimeofday end %d\n", i);
-        } // END PROFILE
-
-
-        dur[i] = dur_end - dur_start;   
-        #ifdef DBG
-            printf("Duration %d = %lu microseconds\n", i, dur[i]);   
-        #endif  
+    if (f_rng == NULL) {
+        return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
 
-    printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
+    if (rsa_check_context(ctx, 1 /* private key checks */,
+                          1 /* blinding on        */) != 0) {
+        return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
+    }
 
-    #ifdef PWR
-        time(&traw);
-        timeinfo = localtime(&traw);
-        printf("End time and date: %s\n", asctime(timeinfo));   
-    #endif
+#if defined(MBEDTLS_THREADING_C)
+    if ((ret = mbedtls_mutex_lock(&ctx->mutex)) != 0) {
+        return ret;
+    }
+#endif
+
+    /* MPI Initialization */
+    mbedtls_mpi_init(&T);
+
+    mbedtls_mpi_init(&P1);
+    mbedtls_mpi_init(&Q1);
+    mbedtls_mpi_init(&R);
+
+#if defined(MBEDTLS_RSA_NO_CRT)
+    mbedtls_mpi_init(&D_blind);
+#else
+    mbedtls_mpi_init(&DP_blind);
+    mbedtls_mpi_init(&DQ_blind);
+#endif
+
+#if !defined(MBEDTLS_RSA_NO_CRT)
+    mbedtls_mpi_init(&TP); mbedtls_mpi_init(&TQ);
+#endif
+
+    mbedtls_mpi_init(&input_blinded);
+    mbedtls_mpi_init(&check_result_blinded);
+
+    /* End of MPI initialization */
+
+    MBEDTLS_MPI_CHK(mbedtls_mpi_read_binary(&T, input, ctx->len));
+    if (mbedtls_mpi_cmp_mpi(&T, &ctx->N) >= 0) {
+        ret = MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
+        goto cleanup;
+    }
+
+    /*
+     * Blinding
+     * T = T * Vi mod N
+     */
+    MBEDTLS_MPI_CHK(rsa_prepare_blinding(ctx, f_rng, p_rng));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&T, &T, &ctx->Vi));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mod_mpi(&T, &T, &ctx->N));
+
+    MBEDTLS_MPI_CHK(mbedtls_mpi_copy(&input_blinded, &T));
+
+    /*
+     * Exponent blinding
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_sub_int(&P1, &ctx->P, 1));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_sub_int(&Q1, &ctx->Q, 1));
+
+#if defined(MBEDTLS_RSA_NO_CRT)
+    /*
+     * D_blind = ( P - 1 ) * ( Q - 1 ) * R + D
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
+                                            f_rng, p_rng));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&D_blind, &P1, &Q1));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&D_blind, &D_blind, &R));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&D_blind, &D_blind, &ctx->D));
+#else
+    /*
+     * DP_blind = ( P - 1 ) * R + DP
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
+                                            f_rng, p_rng));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&DP_blind, &P1, &R));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&DP_blind, &DP_blind,
+                                        &ctx->DP));
+
+    /*
+     * DQ_blind = ( Q - 1 ) * R + DQ
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_fill_random(&R, RSA_EXPONENT_BLINDING,
+                                            f_rng, p_rng));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&DQ_blind, &Q1, &R));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&DQ_blind, &DQ_blind,
+                                        &ctx->DQ));
+#endif /* MBEDTLS_RSA_NO_CRT */
+
+#if defined(MBEDTLS_RSA_NO_CRT)
+    MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&T, &T, &D_blind, &ctx->N, &ctx->RN));
+#else
+    /*
+     * Faster decryption using the CRT
+     *
+     * TP = input ^ dP mod P
+     * TQ = input ^ dQ mod Q
+     */
+
+    MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&TP, &T, &DP_blind, &ctx->P, &ctx->RP));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&TQ, &T, &DQ_blind, &ctx->Q, &ctx->RQ));
+
+    /*
+     * T = (TP - TQ) * (Q^-1 mod P) mod P
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_sub_mpi(&T, &TP, &TQ));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&TP, &T, &ctx->QP));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mod_mpi(&T, &TP, &ctx->P));
+
+    /*
+     * T = TQ + T * Q
+     */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_mpi(&TP, &T, &ctx->Q));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_add_mpi(&T, &TQ, &TP));
+#endif /* MBEDTLS_RSA_NO_CRT */
+
+    /* Verify the result to prevent glitching attacks. */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&check_result_blinded, &T, &ctx->E,
+                                        &ctx->N, &ctx->RN));
+    if (mbedtls_mpi_cmp_mpi(&check_result_blinded, &input_blinded) != 0) {
+        ret = MBEDTLS_ERR_RSA_VERIFY_FAILED;
+        goto cleanup;
+    }
+
+    /*
+     * Unblind
+     * T = T * Vf mod N
+     */
+    MBEDTLS_MPI_CHK(rsa_unblind(&T, &ctx->Vf, &ctx->N));
+
+    olen = ctx->len;
+    MBEDTLS_MPI_CHK(mbedtls_mpi_write_binary(&T, output, olen));
+
+cleanup:
+#if defined(MBEDTLS_THREADING_C)
+    if (mbedtls_mutex_unlock(&ctx->mutex) != 0) {
+        return MBEDTLS_ERR_THREADING_MUTEX_ERROR;
+    }
+#endif
+
+    mbedtls_mpi_free(&P1);
+    mbedtls_mpi_free(&Q1);
+    mbedtls_mpi_free(&R);
+
+#if defined(MBEDTLS_RSA_NO_CRT)
+    mbedtls_mpi_free(&D_blind);
+#else
+    mbedtls_mpi_free(&DP_blind);
+    mbedtls_mpi_free(&DQ_blind);
+#endif
+
+    mbedtls_mpi_free(&T);
+
+#if !defined(MBEDTLS_RSA_NO_CRT)
+    mbedtls_mpi_free(&TP); mbedtls_mpi_free(&TQ);
+#endif
+
+    mbedtls_mpi_free(&check_result_blinded);
+    mbedtls_mpi_free(&input_blinded);
 
     if (ret != 0 && ret >= -0x007f) {
         return MBEDTLS_ERROR_ADD(MBEDTLS_ERR_RSA_PRIVATE_FAILED, ret);
-    }        
+    }
 
     return ret;
 }
@@ -1894,7 +1823,7 @@ int mbedtls_rsa_rsaes_oaep_encrypt(mbedtls_rsa_context *ctx,
                         (mbedtls_md_type_t) ctx->hash_id)) != 0) {
         return ret;
     }
-
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     return mbedtls_rsa_public(ctx, output, output);
 }
 #endif /* MBEDTLS_PKCS1_V21 */
@@ -1949,7 +1878,7 @@ int mbedtls_rsa_rsaes_pkcs1_v15_encrypt(mbedtls_rsa_context *ctx,
     if (ilen != 0) {
         memcpy(p, input, ilen);
     }
-
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     return mbedtls_rsa_public(ctx, output, output);
 }
 #endif /* MBEDTLS_PKCS1_V15 */
@@ -2191,7 +2120,7 @@ static int rsa_rsassa_pss_sign_no_mode_check(mbedtls_rsa_context *ctx,
                                              int saltlen,
                                              unsigned char *sig)
 {
-    printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     size_t olen;
     unsigned char *p = sig;
     unsigned char *salt = NULL;
@@ -2544,6 +2473,7 @@ int mbedtls_rsa_rsassa_pkcs1_v15_sign(mbedtls_rsa_context *ctx,
     }
 
     MBEDTLS_MPI_CHK(mbedtls_rsa_private(ctx, f_rng, p_rng, sig, sig_try));
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     MBEDTLS_MPI_CHK(mbedtls_rsa_public(ctx, sig_try, verif));
 
     if (mbedtls_ct_memcmp(verif, sig, ctx->len) != 0) {
@@ -2627,7 +2557,7 @@ int mbedtls_rsa_rsassa_pss_verify_ext(mbedtls_rsa_context *ctx,
     if (siglen < 16 || siglen > sizeof(buf)) {
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
-
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     ret = mbedtls_rsa_public(ctx, sig, buf);
 
     if (ret != 0) {
@@ -2780,7 +2710,7 @@ int mbedtls_rsa_rsassa_pkcs1_v15_verify(mbedtls_rsa_context *ctx,
     /*
      * Apply RSA primitive to get what should be PKCS1 encoded hash.
      */
-
+    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     ret = mbedtls_rsa_public(ctx, sig, encoded);
     if (ret != 0) {
         goto cleanup;

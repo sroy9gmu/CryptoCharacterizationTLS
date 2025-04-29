@@ -1,0 +1,76 @@
+build version: Mbed TLS 3.6.2 (build 50725376)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the client cert. and key... ok (key type: RSA)
+  . Setting up the SSL/TLS structure... ok
+  . Connecting to tcp/localhost/4433... ok
+  . Performing the SSL/TLS handshake...
+Start time and date: Mon Apr  7 08:50:00 2025
+
+Number of rounds: 10
+Duration 0 = 6147 microseconds
+Duration 1 = 6022 microseconds
+Duration 2 = 6161 microseconds
+Duration 3 = 6060 microseconds
+Duration 4 = 6114 microseconds
+Duration 5 = 6103 microseconds
+Duration 6 = 6090 microseconds
+Duration 7 = 6153 microseconds
+Duration 8 = 4575 microseconds
+Duration 9 = 2452 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 5415.034618 microseconds.
+End time and date: Mon Apr  7 08:50:00 2025
+
+
+Start time and date: Mon Apr  7 08:50:00 2025
+
+Number of rounds: 10
+Duration 0 = 2389 microseconds
+Duration 1 = 2431 microseconds
+Duration 2 = 2419 microseconds
+Duration 3 = 2416 microseconds
+Duration 4 = 2406 microseconds
+Duration 5 = 2392 microseconds
+Duration 6 = 2416 microseconds
+Duration 7 = 2403 microseconds
+Duration 8 = 2378 microseconds
+Duration 9 = 2375 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 2402.435225 microseconds.
+End time and date: Mon Apr  7 08:50:00 2025
+
+
+Start time and date: Mon Apr  7 08:50:01 2025
+
+Number of rounds: 10
+Duration 0 = 2497 microseconds
+Duration 1 = 2555 microseconds
+Duration 2 = 2470 microseconds
+Duration 3 = 2498 microseconds
+Duration 4 = 2498 microseconds
+Duration 5 = 2514 microseconds
+Duration 6 = 2481 microseconds
+Duration 7 = 2515 microseconds
+Duration 8 = 2476 microseconds
+Duration 9 = 2547 microseconds
+get_GM: root= 0.100000
+Mean execution time of ecp_mul_mxz = 2504.955921 microseconds.
+End time and date: Mon Apr  7 08:50:01 2025
+
+
+Verify requested for (Depth 1):
+
+Verify requested for (Depth 0):
+ failed
+  ! mbedtls_ssl_handshake returned -0x2700
+    Unable to verify the server's certificate. Either it is invalid,
+    or you didn't set ca_file or ca_path to an appropriate value.
+    Alternatively, you may want to use auth_mode=optional for testing purposes if not using TLS 1.3.
+    For TLS 1.3 server, try `ca_path=/etc/ssl/certs/`or other folder that has root certificates
+  ! The certificate Common Name (CN) does not match with the expected CN
+
+
+Last error was: -0x2700 - X509 - Certificate verification failed, e.g. CRL, CA or signature check failed
+
