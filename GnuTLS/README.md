@@ -9,18 +9,12 @@ Links
 
     2. Wiki: https://gitlab.com/gnutls/gnutls
 
-    2. Code
-    
-        Server: https://gitlab.com/gnutls/gnutls/-/blob/5c1a38f7e6943cb21cbca4d220beb93cbf57397f/doc/examples/ex-serv-x509.c
-        Client: https://gitlab.com/gnutls/gnutls/-/blob/5c1a38f7e6943cb21cbca4d220beb93cbf57397f/doc/examples/ex-client-x509-3.1.c
-    
-    3. (OPTIONAL) Generating certificates: https://help.ubuntu.com/community/GnuTLS
+    3. gnutls-serv and gnutls-cli commands: https://gnutls.org/manual/html_node/Other-included-programs.html.
 
-    4. Tutorial: https://x509errors.org/guides/gnutls
-    
-    5. Manual: https://gnutls.org/manual/html_node/index.html
+    4. Priority strings: https://gnutls.org/manual/html_node/Priority-Strings.html#Priority-Strings
 
-    6. DH parameters: https://www.gnutls.org/manual/html_node/Parameter-generation.html
+    5. Stable release: https://www.gnutls.org/download.html
+
 
 Issues
 
@@ -29,13 +23,13 @@ Issues
         https://gitlab.com/gnutls/gnutls/-/issues/1681 
 
 
-Steps
+SInstallation
 
     1. (DEBUG/LOGGING purpose only) Compile Nettle library separately using below steps:
 
         git clone https://gitlab.com/gnutls/gnutls.git   
         cd gnutls
-        ./bootstrap     
+        ./bootstrap 
         cd devel/nettle
         ./.bootstrap
         ./configure LIBS=-lm
@@ -57,8 +51,6 @@ Steps
 
     4. Additional packages required: sudo apt-get install zlib1g-dev libzstd-dev libbrotli-dev make gnutls-bin
 
-    5. Refer certificate generation steps in OpenSSL -> TLS.
-
     <!-- 6. cd TLS
         NOTE: Comment out the server certificate verifcation in client code for test purpose.
 
@@ -70,17 +62,37 @@ Steps
         Start server process in one window:  ./server > server.txt
         Start client process in another window of same PC: ./client 127.0.0.1 > client.txt -->
 
-    6. cd src
-        Refer gnutls-serv and gnutls-cli commands in https://gnutls.org/manual/html_node/Other-included-programs.html.
+    5. Start SSL server and client in separate windows
+
+        FFDH, RSA-PSS:
+        ./gnutls-serv --dhparams=../../CryptoCharacterizationTLS/OpenSSL/dh_param.pem --x509cafile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem --x509keyfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_pvt.pem --x509certfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_cert.pem --priority="NORMAL:-SIGN-ALL:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048"
+
+
+        ECDH, ECDSA:
+
 
 Results
 
     1. Key Exchange: 
-        nettle_curve25519_mul, curve25519-mul.c, 59
-        _nettle_ecc_mul_m, ecc-mul-m.c, 52
 
-    2. Signing: rsa_compute_root_tr() from devel/nettle/rsa-sign-tr.c
+        FFDH
+
+
+        ECDH
+
+        <!-- nettle_curve25519_mul, curve25519-mul.c, 59
+        _nettle_ecc_mul_m, ecc-mul-m.c, 52 -->
+
+    2. Signing: 
+    
+        RSA-PSS
+        rsa_compute_root_tr() from devel/nettle/rsa-sign-tr.c
+
+        DSA
+
 
     3. Encryption: 
+
+
     
     4. Hashing: 
