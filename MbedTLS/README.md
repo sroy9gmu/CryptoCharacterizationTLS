@@ -83,8 +83,11 @@ Results
     1. Key Exchange: 
 
         FFDH
+        mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 276
+        peer_key_length=256, shared_secret_size=256
+        mbedtls_mpi_exp_mod, bignum.c, 1737
         mbedtls_mpi_exp_mod_optionally_safe, bignum.c, 1622
-        mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 300
+
 
         ECDH 
 
