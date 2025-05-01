@@ -90,8 +90,9 @@ Results
 
 
     3. Encryption: 
-
-
+    
+        _gnutls_encrypt, cipher.c, 101
+        nettle_gcm_encrypt, gcm.c, 210
     
     4. Hashing: 
 
