@@ -16,9 +16,11 @@ Links
     5. Stable release: 
         https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7    3.7.11
         https://ftp.gnu.org/gnu/nettle/                 3.9.1
+        https://ftp.gnu.org/gnu/gmp/                    6.2.1   
 
     6. Nettle manual: https://www.lysator.liu.se/~nisse/nettle/nettle.html
 
+    7. GMP: https://gmplib.org/
 
 Issues
 
@@ -30,39 +32,28 @@ Issues
 Installation
 
     1.  Nettle
-        git clone https://git.lysator.liu.se/nettle/nettle.git
         cd nettle
         ./.bootstrap
-        ./configure LIBS=-lm
+        ./configure LIBS="-lgmp -lm"
         make
         sudo make install
-        sudo cp /usr/local/lib64/libhogweed* /usr/local/lib64/libnettle* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
+        sudo cp lib* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
         sudo ldconfig
     
         GnuTLS
-        <!-- git clone https://gitlab.com/gnutls/gnutls.git    -->
-        Download latest stable release
         cd gnutls
-        <!-- ./bootstrap  -->
         ./configure
+        ./configure --with-included-libtasn1 --with-included-unistring --without-p11-kit    (for raspbian)
         make
         sudo make install
 
-    <!-- 3. If facing missing 'trousers' library error, specify location as /usr/local
-        ./configure --with-trousers-lib=/usr/local/
-
-    4. Additional packages required: sudo apt-get install zlib1g-dev libzstd-dev libbrotli-dev make gnutls-bin
-
-    6. cd TLS
-        NOTE: Comment out the server certificate verifcation in client code for test purpose.
-
-    7. Compile:
+    <!-- 7. Compile:
         gcc server-x509.c -o server -lgnutls
         gcc client-x509.c tcp.c -o client -lgnutls
 
     8. Execute:
         Start server process in one window:  ./server > server.txt
-        Start client process in another window of same PC: ./client 127.0.0.1 > client.txt -->
+        Start client process in another window of same PC: ./client 127.0.0.1 > client.txt  -->
 
 Steps
 
