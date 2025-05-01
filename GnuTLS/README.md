@@ -65,9 +65,9 @@ SInstallation
     5. Start SSL server and client in separate windows
 
         FFDH, RSA-PSS:
-        ./gnutls-serv --dhparams=../../CryptoCharacterizationTLS/OpenSSL/dh_param.pem --x509cafile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem --x509keyfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_pvt.pem --x509certfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_cert.pem --priority="NORMAL:-SIGN-ALL:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048"
+        ./gnutls-serv --dhparams=../../CryptoCharacterizationTLS/OpenSSL/dh_param.pem --x509cafile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem --x509keyfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_pvt.pem --x509certfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_srv_cert.pem --priority="NORMAL:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048"
 
-        ./gnutls-cli --x509cafile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem --x509keyfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cli_pvt.pem --x509certfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cli_cert.pem --priority="NORMAL:-SIGN-ALL:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" 127.0.0.1:5556
+        ./gnutls-cli --x509cafile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem --x509keyfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cli_pvt.pem --x509certfile=../../CryptoCharacterizationTLS/OpenSSL/rsa_cli_cert.pem --priority="NORMAL:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" 127.0.0.1:5556
 
         ECDH, ECDSA:
 
