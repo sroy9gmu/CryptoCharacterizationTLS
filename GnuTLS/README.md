@@ -42,7 +42,7 @@ Installation
     
         GnuTLS
         cd gnutls
-        ./configure
+        ./configure  --enable-dhe --disable-hardware-acceleration
         ./configure --with-included-libtasn1 --with-included-unistring --without-p11-kit    (for raspbian)
         make
         sudo make install
