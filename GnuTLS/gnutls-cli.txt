@@ -1,0 +1,103 @@
+gnutls-cli - GnuTLS client
+Usage:  gnutls-cli [ -<flag> [<val>] | --<name>[{=| }<val>] ]... [hostname]
+
+None:
+
+   -d, --debug=num            Enable debugging
+				- it must be in the range:
+				  0 to 9999
+   -V, --verbose              More verbose output
+       --tofu                 Enable trust on first use authentication
+       --strict-tofu          Fail to connect if a certificate is unknown or a known certificate has changed
+       --dane                 Enable DANE certificate verification (DNSSEC)
+       --local-dns            Use the local DNS server for DNSSEC resolving
+       --ca-verification      Enable CA certificate verification
+				- enabled by default
+				- disabled as '--no-ca-verification'
+       --ocsp                 Enable OCSP certificate verification
+   -r, --resume               Establish a session and resume
+       --earlydata=str        Send early data on resumption from the specified file
+   -e, --rehandshake          Establish a session and rehandshake
+       --sni-hostname=str     Server's hostname for server name indication extension
+       --verify-hostname=str  Server's hostname to use for validation
+   -s, --starttls             Connect, establish a plain session and start TLS
+       --app-proto            an alias for the 'starttls-proto' option
+       --starttls-proto=str   The application protocol to be used to obtain the server's certificate (https, ftp, smtp, imap, ldap, xmpp, lmtp, pop3, nntp, sieve, postgres)
+				- prohibits the option 'starttls'
+   -u, --udp                  Use DTLS (datagram TLS) over UDP
+       --mtu=num              Set MTU for datagram TLS
+				- it must be in the range:
+				  0 to 17000
+       --crlf                 Send CR LF instead of LF
+       --fastopen             Enable TCP Fast Open
+       --x509fmtder           Use DER format for certificates to read from
+       --print-cert           Print peer's certificate in PEM format
+       --save-cert=str        Save the peer's certificate chain in the specified file in PEM format
+       --save-ocsp=str        Save the peer's OCSP status response in the provided file
+				- prohibits the option 'save-ocsp-multi'
+       --save-ocsp-multi=str  Save all OCSP responses provided by the peer in this file
+				- prohibits the option 'save-ocsp'
+       --save-server-trace=str Save the server-side TLS message trace in the provided file
+       --save-client-trace=str Save the client-side TLS message trace in the provided file
+       --dh-bits=num          The minimum number of bits allowed for DH
+       --priority=str         Priorities string
+       --x509cafile=str       Certificate file or PKCS #11 URL to use
+       --x509crlfile=file     CRL file to use
+				- file must pre-exist
+       --x509keyfile=str      X.509 key file or PKCS #11 URL to use
+       --x509certfile=str     X.509 Certificate file or PKCS #11 URL to use
+				- requires the option 'x509keyfile'
+       --rawpkkeyfile=str     Private key file (PKCS #8 or PKCS #12) or PKCS #11 URL to use
+       --rawpkfile=str        Raw public-key file to use
+				- requires the option 'rawpkkeyfile'
+       --srpusername=str      SRP username to use
+       --srppasswd=str        SRP password to use
+       --pskusername=str      PSK username to use
+       --pskkey=str           PSK key (in hex) to use
+   -p, --port=str             The port or service to connect to
+       --insecure             Don't abort program if server certificate can't be validated
+       --verify-allow-broken  Allow broken algorithms, such as MD5 for certificate verification
+       --benchmark-ciphers    Benchmark individual ciphers
+       --benchmark-tls-kx     Benchmark TLS key exchange methods
+       --benchmark-tls-ciphers  Benchmark TLS ciphers
+   -l, --list                 Print a list of the supported algorithms and modes
+				- prohibits the option 'port'
+       --priority-list        Print a list of the supported priority strings
+       --noticket             Don't allow session tickets
+       --srtp-profiles=str    Offer SRTP profiles
+       --alpn=str             Application layer protocol
+       --compress-cert=str    Compress certificate
+   -b, --heartbeat            Activate heartbeat support
+       --recordsize=num       The maximum record size to advertise
+				- it must be in the range:
+				  0 to 4096
+       --disable-sni          Do not send a Server Name Indication (SNI)
+       --single-key-share     Send a single key share under TLS1.3
+       --post-handshake-auth  Enable post-handshake authentication under TLS1.3
+       --inline-commands      Inline commands of the form ^<cmd>^
+       --inline-commands-prefix=str Change the default delimiter for inline commands
+       --provider=file        Specify the PKCS #11 provider library
+				- file must pre-exist
+       --fips140-mode         Reports the status of the FIPS140-2 mode in gnutls library
+       --list-config          Reports the configuration of the library
+       --logfile=str          Redirect informational messages to a specific file
+       --keymatexport=str     Label used for exporting keying material
+       --keymatexportsize=num Size of the exported keying material
+       --waitresumption       Block waiting for the resumption data under TLS1.3
+       --ca-auto-retrieve     Enable automatic retrieval of missing CA certificates
+
+Version, usage and configuration options:
+
+   -v, --version[=arg]        output version information and exit
+   -h, --help                 display extended usage information and exit
+   -!, --more-help            extended usage information passed thru pager
+
+Options are specified by doubled hyphens and their name or by a single
+hyphen and the flag character.
+Operands and options may be intermixed.  They will be reordered.
+
+Simple client program to set up a TLS connection to some other computer. 
+It sets up a TLS connection and forwards data from the standard input to the secured socket and vice versa.
+
+Please send bug reports to:  <bugs@gnutls.org>
+
