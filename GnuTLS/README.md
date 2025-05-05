@@ -73,7 +73,7 @@ Results
     1. Key Exchange: 
 
         FFDH
-
+        __gmpz_powm, powm.c, 64 
 
         ECDH
 
