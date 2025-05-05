@@ -1,0 +1,127 @@
+
+ usage: ssl_client2 param=<>...
+
+ acceptable parameters:
+    server_name=%s      default: localhost
+    server_addr=%s      default: given by name
+    server_port=%d      default: 4433
+    request_page=%s     default: "."
+    request_size=%d     default: about 34 (basic request)
+                        (minimum: 0, max: 20000)
+                        If 0, in the first exchange only an empty
+                        application data message is sent followed by
+                        a second non-empty message before attempting
+                        to read a response from the server
+    debug_level=%d      default: 0 (disabled)
+    build_version=%d    default: none (disabled)
+                        option: 1 (print build version only and stop)
+    nbio=%d             default: 0 (blocking I/O)
+                        options: 1 (non-blocking), 2 (added delays)
+    event=%d            default: 0 (loop)
+                        options: 1 (level-triggered, implies nbio=1),
+    read_timeout=%d     default: 0 ms (no timeout)
+    max_resend=%d       default: 0 (no resend on timeout)
+    skip_close_notify=%d default: 0 (send close_notify)
+
+    dtls=%d             default: 0 (TLS)
+    hs_timeout=%d-%d    default: (library default: 1000-60000)
+                        range of DTLS handshake timeouts in millisecs
+    mtu=%d              default: (library default: unlimited)
+    dgram_packing=%d    default: 1 (allowed)
+                        allow or forbid packing of multiple
+                        records within a single datgram.
+    cid=%d             Disable (0) or enable (1) the use of the DTLS Connection ID extension.
+                       default: 0 (disabled)
+    cid_renego=%d      Disable (0) or enable (1) the use of the DTLS Connection ID extension during renegotiation.
+                       default: same as 'cid' parameter
+    cid_val=%s          The CID to use for incoming messages (in hex, without 0x).
+                        default: ""
+    cid_val_renego=%s   The CID to use for incoming messages (in hex, without 0x) after renegotiation.
+                        default: same as 'cid_val' parameter
+
+    auth_mode=%s        default: (library default: none)
+                        options: none, optional, required
+    set_hostname=%s     call mbedtls_ssl_set_hostname()?                        options: no, server_name, NULL
+                        default: server_name (but ignored if certs disabled)
+    ca_file=%s          The single file containing the top-level CA(s) you fully trust
+                        default: "" (pre-loaded)
+                        use "none" to skip loading any top-level CAs.
+    ca_path=%s          The path containing the top-level CA(s) you fully trust
+                        default: "" (pre-loaded) (overrides ca_file)
+                        use "none" to skip loading any top-level CAs.
+    crt_file=%s         Your own cert and chain (in bottom to top order, top may be omitted)
+                        default: "" (pre-loaded)
+    key_file=%s         default: "" (pre-loaded)
+    key_pwd=%s          Password for key specified by key_file argument
+                        default: none
+
+    psk=%s              default: "" (disabled)
+                          The PSK values are in hex, without 0x.
+    psk_identity=%s     default: "Client_identity"
+
+    allow_legacy=%d     default: (library default: no)
+    renegotiation=%d    default: 0 (disabled)
+    renegotiate=%d      default: 0 (disabled)
+    renego_delay=%d     default: -2 (library default)
+    exchanges=%d        default: 1
+    reconnect=%d        number of reconnections using session resumption
+                        default: 0 (disabled)
+    reco_server_name=%s  default: NULL
+    reco_delay=%d       default: 0 milliseconds
+    reco_mode=%d        0: copy session, 1: serialize session
+                        default: 1
+    reconnect_hard=%d   default: 0 (disabled)
+    tickets=%d              default: 1 (enabled)
+    new_session_tickets=%d  default: (library default: disabled)
+    eap_tls=%d          default: 0 (disabled)
+    max_frag_len=%d     default: 16384 (tls default)
+                        options: 512, 1024, 2048, 4096
+    context_crt_cb=%d   This determines whether the CRT verification callback is bound
+                        to the SSL configuration of the SSL context.
+                        Possible values:
+                        - 0 (default): Use CRT callback bound to configuration
+                        - 1: Use CRT callback bound to SSL context
+    alpn=%s             default: "" (disabled)
+                        example: spdy/1,http/1.1
+    extended_ms=0/1     default: (library default: on)
+    etm=0/1             default: (library default: on)
+    reproducible=0/1     default: 0 (disabled)
+    groups=a,b,c,d      default: "default" (library default)
+                        example: "secp521r1,brainpoolP512r1"
+                        - use "none" for empty list
+                        - see mbedtls_ecp_curve_list()
+                          for acceptable EC group names
+                        - the following ffdh groups are supported:
+                          ffdhe2048, ffdhe3072, ffdhe4096, ffdhe6144,
+                          ffdhe8192
+    sig_algs=a,b,c,d      default: "default" (library default)
+                          example: "ecdsa_secp256r1_sha256,ecdsa_secp384r1_sha384"
+    key_opaque_algs=%s  Allowed opaque key algorithms.
+                        comma-separated pair of values among the following:
+                        rsa-sign-pkcs1, rsa-sign-pss, rsa-sign-pss-sha256,
+                        rsa-sign-pss-sha384, rsa-sign-pss-sha512, rsa-decrypt,
+                        ecdsa-sign, ecdh, none (only acceptable for
+                        the second value).
+
+    allow_sha1=%d       default: 0
+    min_version=%s      default: (library default: tls12)
+    max_version=%s      default: (library default: tls12)
+    force_version=%s    default: "" (none)
+                         options: tls12, dtls12, tls13
+
+    force_ciphersuite=<name>    default: all enabled
+    tls13_kex_modes=%s   default: all
+                          options: psk, psk_ephemeral, psk_all, ephemeral,
+                                   ephemeral_all, all, psk_or_ephemeral
+    query_config=<name>         return 0 if the specified
+                                configuration macro is defined and 1
+                                otherwise. The expansion of the macro
+                                is printed if it is defined
+    serialize=%d        default: 0 (do not serialize/deserialize)
+                        options: 1 (serialize)
+                                 2 (serialize with re-initialization)
+    context_file=%s     The file path to write a serialized connection
+                        in the form of base64 code (serialize option
+                        must be set)
+                         default: "" (do nothing)
+                         option: a file path
