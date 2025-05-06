@@ -66,23 +66,27 @@
 #include <math.h>
 
 #define M 1000000
-#define ROUNDS 10
+// #define ROUNDS 1
 
-static double get_GM(uint64_t *arr){
-    double prod = 1;
-    double root;
-    
-    root = (double)1 / (double)ROUNDS;
-    #ifdef DBG  
-        printf("%s: root= %lf\n", __func__, root);
-    #endif
+static uint64_t sha_calls;
+static struct timeval tstart, tend;    
+static uint64_t dur_start, dur_end, diff;
 
-    for (int i = 0; i < ROUNDS; i++){
-        prod *= arr[i];        
-    }
+// static double get_GM(uint64_t *arr){
+//     double prod = 1;
+//     double root;
     
-    return pow(prod, root);
-}
+//     root = (double)1 / (double)ROUNDS;
+//     #ifdef DBG  
+//         printf("%s: root= %lf\n", __func__, root);
+//     #endif
+
+//     for (int i = 0; i < ROUNDS; i++){
+//         prod *= arr[i];        
+//     }
+    
+//     return pow(prod, root);
+// }
 
 #ifndef OSSL_CRYPTO_MD32_COMMON_H
 # define OSSL_CRYPTO_MD32_COMMON_H
@@ -175,28 +179,30 @@ static double get_GM(uint64_t *arr){
 int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
 {
     // printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
-    int prof_ret = 0;
-    time_t traw;
-    struct tm * timeinfo;    
-    struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end;
-    uint64_t dur[ROUNDS];
+    // int prof_ret = 0;
+    // time_t traw;
+    // struct tm * timeinfo;    
+    // struct timeval tstart, tend;    
+    // uint64_t dur_start, dur_end, diff;
+    // uint64_t dur[ROUNDS];
 
-    time(&traw);
-    timeinfo = localtime(&traw);
-    printf("\nProfile start time and date: %s, number of rounds: %u\n", asctime(timeinfo), ROUNDS);
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s, number of rounds: %u\n", asctime(timeinfo), ROUNDS);
 
-    for (int round = 0; round < ROUNDS; round++){
+    // for (int round = 0; round < ROUNDS; round++){
 
-        HASH_CTX c_org;
-        HASH_CTX *c_ptr = &c_org;
-        memcpy(&c_org, c, sizeof(HASH_CTX));
+    //     HASH_CTX c_org;
+    //     HASH_CTX *c_ptr = &c_org;
+    //     memcpy(&c_org, c, sizeof(HASH_CTX));
 
-        if (gettimeofday(&tstart, NULL) == 0) {
-            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
-        } else {
-            sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
-        }
+        if(!sha_calls){
+            if (gettimeofday(&tstart, NULL) == 0) {
+                dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+            } else {
+                sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
+            }
+        }        
 
         const unsigned char *data = data_;
         unsigned char *p;
@@ -206,24 +212,24 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
         if (len == 0)
             return 1;
 
-        l = (c_ptr->Nl + (((HASH_LONG) len) << 3)) & 0xffffffffUL;
-        if (l < c_ptr->Nl)              /* overflow */
-            c_ptr->Nh++;
-        c_ptr->Nh += (HASH_LONG) (len >> 29); /* might cause compiler warning on
+        l = (c->Nl + (((HASH_LONG) len) << 3)) & 0xffffffffUL;
+        if (l < c->Nl)              /* overflow */
+            c->Nh++;
+        c->Nh += (HASH_LONG) (len >> 29); /* might cause compiler warning on
                                         * 16-bit */
-        c_ptr->Nl = l;
+        c->Nl = l;
 
-        n = c_ptr->num;
+        n = c->num;
         if (n != 0) {
-            p = (unsigned char *)c_ptr->data;
+            p = (unsigned char *)c->data;
 
             if (len >= HASH_CBLOCK || len + n >= HASH_CBLOCK) {
                 memcpy(p + n, data, HASH_CBLOCK - n);
-                HASH_BLOCK_DATA_ORDER(c_ptr, p, 1);
+                HASH_BLOCK_DATA_ORDER(c, p, 1);
                 n = HASH_CBLOCK - n;
                 data += n;
                 len -= n;
-                c_ptr->num = 0;
+                c->num = 0;
                 /*
                 * We use memset rather than OPENSSL_cleanse() here deliberately.
                 * Using OPENSSL_cleanse() here could be a performance issue. It
@@ -233,18 +239,24 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
                 memset(p, 0, HASH_CBLOCK); /* keep it zeroed */
             } else {
                 memcpy(p + n, data, len);
-                c_ptr->num += (unsigned int)len;
+                c->num += (unsigned int)len;
 
                 if (gettimeofday(&tend, NULL) == 0) {
                     dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
                 } else {
                     sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
                 } 
-                // return 1;
-                prof_ret = 1;
-                dur[round] = dur_end - dur_start;   
-                printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
-                continue;
+                diff = dur_end - dur_start;
+                printf("Duration for %u calls of %s = %u microseconds\n", sha_calls, __func__, diff);
+                sha_calls = 0;
+                return 1;
+                // prof_ret = 1;
+                // dur[round] = dur_end - dur_start;   
+                
+                // if (round == (ROUNDS - 1)){
+                //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
+                // }
+                // continue;
             }
         }
 
@@ -262,24 +274,28 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
             memcpy(p, data, len);
         }
 
-        if (gettimeofday(&tend, NULL) == 0) {
-            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
-        } else {
-            sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
-        }
-        // return 1;
-        prof_ret = 1;
-        dur[round] = dur_end - dur_start;   
-        printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
-        continue;
-    }
+        // if (gettimeofday(&tend, NULL) == 0) {
+        //     dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        // } else {
+        //     sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
+        // }
+        sha_calls++;
+        return 1;
+        // prof_ret = 1;
+        // dur[round] = dur_end - dur_start;   
+        // printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
+        // if (round == (ROUNDS - 1)){
+        //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
+        // }
+        // continue;
+    // }
 
-    printf("Mean execution time of function %s = %lf microseconds.\n", __func__, get_GM(dur));
-    time(&traw);
-    timeinfo = localtime(&traw);
-    printf("Profile start end time and date: %s\n", asctime(timeinfo));   
+    // printf("Mean execution time of function %s = %lf microseconds.\n", __func__, get_GM(dur));
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("Profile start end time and date: %s\n", asctime(timeinfo));   
 
-    return prof_ret;
+    // return prof_ret;
 }
 
 void HASH_TRANSFORM(HASH_CTX *c, const unsigned char *data)
