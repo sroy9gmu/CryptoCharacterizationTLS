@@ -13,6 +13,26 @@
 #include "internal/endian.h"
 #include "crypto/modes.h"
 
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+#define ROUNDS 1
+
+static double get_GM(uint64_t *arr){
+   double prod = 1;
+   double root;
+   
+   root = (double)1 / (double)ROUNDS;
+
+   for (int i = 0; i < ROUNDS; i++){
+       prod *= arr[i];        
+   }
+   
+   return pow(prod, root);
+}
+
 #if defined(__GNUC__) && !defined(STRICT_ALIGNMENT)
 typedef size_t size_t_aX __attribute((__aligned__(1)));
 #else
@@ -774,65 +794,84 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                           size_t len)
 {
     printf("START %s, %s, %d\n", __func__, __FILE__, __LINE__);
+    time_t traw;
+    struct tm * timeinfo;    
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, diff;
+    uint64_t dur[ROUNDS];
+
+    size_t i;
     DECLARE_IS_ENDIAN;
     unsigned int n, ctr, mres;
-    size_t i;
     u64 mlen = ctx->len.u[1];
     block128_f block = ctx->block;
     void *key = ctx->key;
+
+    for (int round = 0; round < ROUNDS; round++){
+        if (gettimeofday(&tstart, NULL) == 0) {
+            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
+        }
+        
+        GCM128_CONTEXT ctx_org;
+        GCM128_CONTEXT *ctxp = NULL;
+        memcpy(&ctx_org, ctx, sizeof(GCM128_CONTEXT));
+        ctxp = &ctx_org;
 
     mlen += len;
     if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len)){
         printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
         return -1;}
-    ctx->len.u[1] = mlen;
+    ctxp->len.u[1] = mlen;
 
-    mres = ctx->mres;
+    mres = ctxp->mres;
 
-    if (ctx->ares) {
+    if (ctxp->ares) {
         /* First call to encrypt finalizes GHASH(AAD) */
 #if defined(GHASH) && !defined(OPENSSL_SMALL_FOOTPRINT)
         if (len == 0) {
-            GCM_MUL(ctx);
-            ctx->ares = 0;
+            GCM_MUL(ctxp);
+            ctxp->ares = 0;
             printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
             return 0;
         }
-        memcpy(ctx->Xn, ctx->Xi.c, sizeof(ctx->Xi));
-        ctx->Xi.u[0] = 0;
-        ctx->Xi.u[1] = 0;
-        mres = sizeof(ctx->Xi);
+        memcpy(ctxp->Xn, ctxp->Xi.c, sizeof(ctxp->Xi));
+        ctxp->Xi.u[0] = 0;
+        ctxp->Xi.u[1] = 0;
+        mres = sizeof(ctxp->Xi);
 #else
         GCM_MUL(ctx);
 #endif
-        ctx->ares = 0;
+        ctxp->ares = 0;
     }
 
     if (IS_LITTLE_ENDIAN)
 #ifdef BSWAP4
-        ctr = BSWAP4(ctx->Yi.d[3]);
+        ctr = BSWAP4(ctxp->Yi.d[3]);
 #else
-        ctr = GETU32(ctx->Yi.c + 12);
+        ctr = GETU32(ctxp->Yi.c + 12);
 #endif
     else
-        ctr = ctx->Yi.d[3];
+        ctr = ctxp->Yi.d[3];
 
     n = mres % 16;
 #if !defined(OPENSSL_SMALL_FOOTPRINT)
     if (16 % sizeof(size_t) == 0) { /* always true actually */
-        do {
+
+        // do {
             if (n) {
 # if defined(GHASH)
                 while (n && len) {
-                    ctx->Xn[mres++] = *(out++) = *(in++) ^ ctx->EKi.c[n];
+                    ctxp->Xn[mres++] = *(out++) = *(in++) ^ ctxp->EKi.c[n];
                     --len;
                     n = (n + 1) % 16;
                 }
                 if (n == 0) {
-                    GHASH(ctx, ctx->Xn, mres);
+                    GHASH(ctxp, ctxp->Xn, mres);
                     mres = 0;
                 } else {
-                    ctx->mres = mres;
+                    ctxp->mres = mres;
                     printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
                     return 0;
                 }
@@ -858,7 +897,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 # endif
 # if defined(GHASH)
             if (len >= 16 && mres) {
-                GHASH(ctx, ctx->Xn, mres);
+                GHASH(ctxp, ctxp->Xn, mres);
                 mres = 0;
             }
 #  if defined(GHASH_CHUNK)
@@ -869,23 +908,23 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                     size_t_aX *out_t = (size_t_aX *)out;
                     const size_t_aX *in_t = (const size_t_aX *)in;
 
-                    (*block) (ctx->Yi.c, ctx->EKi.c, key);
+                    (*block) (ctxp->Yi.c, ctxp->EKi.c, key);
                     ++ctr;
                     if (IS_LITTLE_ENDIAN)
 #   ifdef BSWAP4
-                        ctx->Yi.d[3] = BSWAP4(ctr);
+                        ctxp->Yi.d[3] = BSWAP4(ctr);
 #   else
-                        PUTU32(ctx->Yi.c + 12, ctr);
+                        PUTU32(ctxp->Yi.c + 12, ctr);
 #   endif
                     else
-                        ctx->Yi.d[3] = ctr;
+                        ctxp->Yi.d[3] = ctr;
                     for (i = 0; i < 16 / sizeof(size_t); ++i)
-                        out_t[i] = in_t[i] ^ ctx->EKi.t[i];
+                        out_t[i] = in_t[i] ^ ctxp->EKi.t[i];
                     out += 16;
                     in += 16;
                     j -= 16;
                 }
-                GHASH(ctx, out - GHASH_CHUNK, GHASH_CHUNK);
+                GHASH(ctxp, out - GHASH_CHUNK, GHASH_CHUNK);
                 len -= GHASH_CHUNK;
             }
 #  endif
@@ -896,61 +935,61 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                     size_t_aX *out_t = (size_t_aX *)out;
                     const size_t_aX *in_t = (const size_t_aX *)in;
 
-                    (*block) (ctx->Yi.c, ctx->EKi.c, key);
+                    (*block) (ctxp->Yi.c, ctxp->EKi.c, key);
                     ++ctr;
                     if (IS_LITTLE_ENDIAN)
 #  ifdef BSWAP4
-                        ctx->Yi.d[3] = BSWAP4(ctr);
+                        ctxp->Yi.d[3] = BSWAP4(ctr);
 #  else
-                        PUTU32(ctx->Yi.c + 12, ctr);
+                        PUTU32(ctxp->Yi.c + 12, ctr);
 #  endif
                     else
-                        ctx->Yi.d[3] = ctr;
+                        ctxp->Yi.d[3] = ctr;
                     for (i = 0; i < 16 / sizeof(size_t); ++i)
-                        out_t[i] = in_t[i] ^ ctx->EKi.t[i];
+                        out_t[i] = in_t[i] ^ ctxp->EKi.t[i];
                     out += 16;
                     in += 16;
                     len -= 16;
                 }
-                GHASH(ctx, out - j, j);
+                GHASH(ctxp, out - j, j);
             }
 # else
             while (len >= 16) {
                 size_t *out_t = (size_t *)out;
                 const size_t *in_t = (const size_t *)in;
 
-                (*block) (ctx->Yi.c, ctx->EKi.c, key);
+                (*block) (ctxp->Yi.c, ctxp->EKi.c, key);
                 ++ctr;
                 if (IS_LITTLE_ENDIAN)
 #  ifdef BSWAP4
-                    ctx->Yi.d[3] = BSWAP4(ctr);
+                    ctxp->Yi.d[3] = BSWAP4(ctr);
 #  else
-                    PUTU32(ctx->Yi.c + 12, ctr);
+                    PUTU32(ctxp->Yi.c + 12, ctr);
 #  endif
                 else
-                    ctx->Yi.d[3] = ctr;
+                    ctxp->Yi.d[3] = ctr;
                 for (i = 0; i < 16 / sizeof(size_t); ++i)
-                    ctx->Xi.t[i] ^= out_t[i] = in_t[i] ^ ctx->EKi.t[i];
-                GCM_MUL(ctx);
+                    ctxp->Xi.t[i] ^= out_t[i] = in_t[i] ^ ctxp->EKi.t[i];
+                GCM_MUL(ctxp);
                 out += 16;
                 in += 16;
                 len -= 16;
             }
 # endif
             if (len) {
-                (*block) (ctx->Yi.c, ctx->EKi.c, key);
+                (*block) (ctxp->Yi.c, ctxp->EKi.c, key);
                 ++ctr;
                 if (IS_LITTLE_ENDIAN)
 # ifdef BSWAP4
                     ctx->Yi.d[3] = BSWAP4(ctr);
 # else
-                    PUTU32(ctx->Yi.c + 12, ctr);
+                    PUTU32(ctxp->Yi.c + 12, ctr);
 # endif
                 else
-                    ctx->Yi.d[3] = ctr;
+                    ctxp->Yi.d[3] = ctr;
 # if defined(GHASH)
                 while (len--) {
-                    ctx->Xn[mres++] = out[n] = in[n] ^ ctx->EKi.c[n];
+                    ctxp->Xn[mres++] = out[n] = in[n] ^ ctxp->EKi.c[n];
                     ++n;
                 }
 # else
@@ -962,12 +1001,25 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 # endif
             }
 
-            ctx->mres = mres;
-            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
-            return 0;
-        } while (0);
+            ctxp->mres = mres;
+            // printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+            // return 0;
+        // } while (0);
     }
+        if (gettimeofday(&tend, NULL) == 0) {
+            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
+        }
+
+        dur[round] = dur_end - dur_start;
+        if(round == ROUNDS - 1)
+            memcpy(ctx, &ctx_org, sizeof(GCM128_CONTEXT));
+    }
+    printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, ROUNDS, get_GM(dur));
+    return 0;
 #endif
+    
     for (i = 0; i < len; ++i) {
         if (n == 0) {
             (*block) (ctx->Yi.c, ctx->EKi.c, key);
