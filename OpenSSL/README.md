@@ -55,8 +55,8 @@ Installation
 
     2. cd openssl
 
-    3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-ec no-ecdh no-ecdsa --libdir=lib
-       ECDH, DSA:   ./Configure LDLIBS=-lm no-tls-deprecated-ec --libdir=lib
+    3. FFDH, RSA-PSS:   ./Configure LDLIBS=-lm no-asm no-ec no-ecdh no-ecdsa --libdir=lib
+       ECDH, DSA:   ./Configure LDLIBS=-lm no-asm no-tls-deprecated-ec --libdir=lib
 
     4. make [build_sw]  []: Optional
 
