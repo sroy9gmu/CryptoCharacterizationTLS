@@ -13,30 +13,6 @@
 #include "internal/endian.h"
 #include "crypto/modes.h"
 
-#include <sys/time.h>
-#include <math.h>
-
-#define M 1000000
-#define ROUNDS 10
-#define DBG
-#define PWR
-
-static double get_GM(uint64_t *arr){
-    double prod = 1;
-    double root;
-    
-    root = (double)1 / (double)ROUNDS;
-    #ifdef DBG  
-        printf("%s: root= %lf\n", __func__, root);
-    #endif
-
-    for (int i = 0; i < ROUNDS; i++){
-        prod *= arr[i];        
-    }
-    
-    return pow(prod, root);
-}
-
 #if defined(__GNUC__) && !defined(STRICT_ALIGNMENT)
 typedef size_t size_t_aX __attribute((__aligned__(1)));
 #else
@@ -797,27 +773,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                           const unsigned char *in, unsigned char *out,
                           size_t len)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
-    #ifdef PWR
-        time_t traw;
-        struct tm * timeinfo;
-    #endif
-    struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end;
-    uint64_t dur[ROUNDS];
- 
-    #ifdef PWR
-        time(&traw);
-        timeinfo = localtime(&traw);
-        printf("\nStart time and date: %s\n", asctime(timeinfo));
-    #endif
-
-    #ifdef DBG
-        printf("Number of rounds: %d\n", ROUNDS);
-    #endif
-    for(int RND=0;RND<10;RND++){
-    unsigned char out_loc[len];
-    memcpy(&out_loc, out, len);
+    printf("START %s, %s, %d\n", __func__, __FILE__, __LINE__);
     DECLARE_IS_ENDIAN;
     unsigned int n, ctr, mres;
     size_t i;
@@ -827,21 +783,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 
     mlen += len;
     if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len)){
-        if(RND == 9){
-            memcpy(out, &out_loc, len);
-            printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-
-            #ifdef PWR
-                time(&traw);
-                timeinfo = localtime(&traw);
-                printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
-            #endif
-            return -1;
-        }                
-        else
-            continue;
-    }
-        // return -1;
+        printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+        return -1;}
     ctx->len.u[1] = mlen;
 
     mres = ctx->mres;
@@ -852,19 +795,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
         if (len == 0) {
             GCM_MUL(ctx);
             ctx->ares = 0;
-            if(RND == 9){
-                memcpy(out, &out_loc, len);
-                printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-
-                #ifdef PWR
-                    time(&traw);
-                    timeinfo = localtime(&traw);
-                    printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
-                #endif
-                return 0;
-            }                
-            else
-                continue;
+            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+            return 0;
         }
         memcpy(ctx->Xn, ctx->Xi.c, sizeof(ctx->Xi));
         ctx->Xi.u[0] = 0;
@@ -875,7 +807,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
 #endif
         ctx->ares = 0;
     }
-    
+
     if (IS_LITTLE_ENDIAN)
 #ifdef BSWAP4
         ctr = BSWAP4(ctx->Yi.d[3]);
@@ -901,6 +833,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                     mres = 0;
                 } else {
                     ctx->mres = mres;
+                    printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
                     return 0;
                 }
 # else
@@ -914,6 +847,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
                     mres = 0;
                 } else {
                     ctx->mres = n;
+                    printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
                     return 0;
                 }
 # endif
@@ -1029,19 +963,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
             }
 
             ctx->mres = mres;
-            if(RND == 9){
-                memcpy(out, &out_loc, len);
-                printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-
-                #ifdef PWR
-                    time(&traw);
-                    timeinfo = localtime(&traw);
-                    printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
-                #endif
-                return 0;
-            }                
-            else
-                continue;
+            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+            return 0;
         } while (0);
     }
 #endif
@@ -1074,21 +997,8 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
     }
 
     ctx->mres = mres;
-    if(RND == 9){
-        memcpy(out, &out_loc, len);
-        printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-
-        #ifdef PWR
-            time(&traw);
-            timeinfo = localtime(&traw);
-            printf("\nEnd time and date: %s, %s\n", asctime(timeinfo), __LINE__);   
-        #endif
-        return 0;
-    }                
-    else
-        continue;
-    }
-    // return 0;
+    printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+    return 0;
 }
 
 int CRYPTO_gcm128_decrypt(GCM128_CONTEXT *ctx,
@@ -1328,7 +1238,9 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
                                 const unsigned char *in, unsigned char *out,
                                 size_t len, ctr128_f stream)
 {
+    printf("START %s, %s, %d\n", __func__, __FILE__, __LINE__);
 #if defined(OPENSSL_SMALL_FOOTPRINT)
+    printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
     return CRYPTO_gcm128_encrypt(ctx, in, out, len);
 #else
     DECLARE_IS_ENDIAN;
@@ -1338,8 +1250,9 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
     void *key = ctx->key;
 
     mlen += len;
-    if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len))
-        return -1;
+    if (mlen > ((U64(1) << 36) - 32) || (sizeof(len) == 8 && mlen < len)){
+        printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
+        return -1;}
     ctx->len.u[1] = mlen;
 
     mres = ctx->mres;
@@ -1350,6 +1263,7 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
         if (len == 0) {
             GCM_MUL(ctx);
             ctx->ares = 0;
+            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
             return 0;
         }
         memcpy(ctx->Xn, ctx->Xi.c, sizeof(ctx->Xi));
@@ -1384,6 +1298,7 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
             mres = 0;
         } else {
             ctx->mres = mres;
+            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
             return 0;
         }
 # else
@@ -1397,6 +1312,7 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
             mres = 0;
         } else {
             ctx->mres = n;
+            printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
             return 0;
         }
 # endif
@@ -1474,6 +1390,7 @@ int CRYPTO_gcm128_encrypt_ctr32(GCM128_CONTEXT *ctx,
     }
 
     ctx->mres = mres;
+    printf("END %s, %s, %d\n", __func__, __FILE__, __LINE__);
     return 0;
 #endif
 }

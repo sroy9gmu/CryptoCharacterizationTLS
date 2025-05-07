@@ -12,19 +12,16 @@
  #include <stdint.h>
  
  #define M 1000000
- #define ROUNDS 100 
  
-//  static uint64_t bn_calls;
-//  static struct timeval tstart, tend;    
-//  static uint64_t dur_start, dur_end, diff;
+ static uint64_t bn_calls;
 
- static double get_GM(uint64_t *arr){
+ static double get_GM(uint64_t *arr, uint64_t rounds){
     double prod = 1;
     double root;
     
-    root = (double)1 / (double)ROUNDS;
+    root = (double)1 / (double)rounds;
 
-    for (int i = 0; i < ROUNDS; i++){
+    for (int i = 0; i < rounds; i++){
         prod *= arr[i];        
     }
     
@@ -637,15 +634,21 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
     time_t traw;
     struct tm * timeinfo;    
     struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end, diff;
-    uint64_t dur[ROUNDS];
+    uint64_t dur_start, dur_end, diff, rounds;
+    if (!bn_calls){
+        rounds = 100;
+        bn_calls++;
+    } else {
+        rounds = 1;
+    }
+    uint64_t dur[rounds];
     int ret;
 
     // time(&traw);
     // timeinfo = localtime(&traw);
     // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
 
-    for (int round = 0; round < ROUNDS; round++){
+    for (int round = 0; round < rounds; round++){
 
         // BN_CTX c_org;
         // BN_CTX *c_ptr = &c_org;
@@ -698,7 +701,6 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
         } else {
             ret = BN_one(rr);
         }
-        printf("END 1 %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 
@@ -1217,7 +1219,7 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
         //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
         // }
     }
-    printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, ROUNDS, get_GM(dur));
+    printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
     // time(&traw);
     // timeinfo = localtime(&traw);
     // printf("Profile start end time and date: %s\n", asctime(timeinfo));  

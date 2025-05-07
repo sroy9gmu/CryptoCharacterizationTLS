@@ -21,6 +21,30 @@
 #include <openssl/sha.h>
 #include <openssl/hmac.h>
 
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+#define ROUNDS 90
+
+//  static uint64_t bn_calls;
+//  static struct timeval tstart, tend;    
+//  static uint64_t dur_start, dur_end, diff;
+
+static double get_GM(uint64_t *arr){
+   double prod = 1;
+   double root;
+   
+   root = (double)1 / (double)ROUNDS;
+
+   for (int i = 0; i < ROUNDS; i++){
+       prod *= arr[i];        
+   }
+   
+   return pow(prod, root);
+}
+
 static int rsa_ossl_public_encrypt(int flen, const unsigned char *from,
                                   unsigned char *to, RSA *rsa, int padding);
 static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
@@ -304,14 +328,34 @@ static int rsa_blinding_invert(BN_BLINDING *b, BIGNUM *f, BIGNUM *unblind,
 static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
                                    unsigned char *to, RSA *rsa, int padding)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
-    int r = -1;
-    for(int RND=0;RND<10;RND++){    
+    time_t traw;
+    struct tm * timeinfo;    
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, diff;
+    uint64_t dur[ROUNDS];
+    int r;
+
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (int round = 0; round < ROUNDS; round++){
+
+        // BN_CTX c_org;
+        // BN_CTX *c_ptr = &c_org;
+        // memcpy(&c_org, ctx, sizeof(BN_CTX));
+
+        // if(!bn_calls){
+        if (gettimeofday(&tstart, NULL) == 0) {
+            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
+        }
+        // }
+
     BIGNUM *f, *ret, *res;
-    // int i, num = 0, r = -1;
-    int i, num = BN_num_bytes(rsa->n);
-    unsigned char to_loc[num];
-    memcpy(&to_loc, to, num);
+    int i, num = 0;
+    r = -1;
     unsigned char *buf = NULL;
     BN_CTX *ctx = NULL;
     int local_blinding = 0;
@@ -328,7 +372,7 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
     BN_CTX_start(ctx);
     f = BN_CTX_get(ctx);
     ret = BN_CTX_get(ctx);
-    // num = BN_num_bytes(rsa->n);
+    num = BN_num_bytes(rsa->n);
     buf = OPENSSL_malloc(num);
     if (ret == NULL || buf == NULL)
         goto err;
@@ -434,9 +478,24 @@ static int rsa_ossl_private_encrypt(int flen, const unsigned char *from,
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     OPENSSL_clear_free(buf, num);
-    if(RND == 9)
-        memcpy(to, &to_loc, num);
+    
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+        sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
     }
+
+    dur[round] = dur_end - dur_start;   
+    // printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
+    // if (round == (ROUNDS - 1)){
+    //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
+    // }
+}
+printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, ROUNDS, get_GM(dur));
+// time(&traw);
+// timeinfo = localtime(&traw);
+// printf("Profile start end time and date: %s\n", asctime(timeinfo));
+
     return r;
 }
 
