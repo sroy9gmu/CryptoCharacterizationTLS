@@ -7,6 +7,30 @@
  * https://www.openssl.org/source/license.html
  */
 
+ #include <sys/time.h>
+ #include <math.h>
+ #include <stdint.h>
+ 
+ #define M 1000000
+ #define ROUNDS 100 
+ 
+//  static uint64_t bn_calls;
+//  static struct timeval tstart, tend;    
+//  static uint64_t dur_start, dur_end, diff;
+
+ static double get_GM(uint64_t *arr){
+    double prod = 1;
+    double root;
+    
+    root = (double)1 / (double)ROUNDS;
+
+    for (int i = 0; i < ROUNDS; i++){
+        prod *= arr[i];        
+    }
+    
+    return pow(prod, root);
+}
+
 #include "internal/cryptlib.h"
 #include "internal/constant_time.h"
 #include "bn_local.h"
@@ -312,7 +336,6 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
                     const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     int i, j, bits, ret = 0, wstart, wend, window;
     int start = 1;
     BIGNUM *d, *r;
@@ -333,7 +356,7 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
     if (m->top <= BN_CONSTTIME_SIZE_LIMIT
         && (BN_get_flags(p, BN_FLG_CONSTTIME) != 0
             || BN_get_flags(a, BN_FLG_CONSTTIME) != 0
-            || BN_get_flags(m, BN_FLG_CONSTTIME) != 0)) {       
+            || BN_get_flags(m, BN_FLG_CONSTTIME) != 0)) {
         return BN_mod_exp_mont_consttime(rr, a, p, m, ctx, in_mont);
     }
 
@@ -483,8 +506,7 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
     if (in_mont == NULL)
         BN_MONT_CTX_free(mont);
     BN_CTX_end(ctx);
-    bn_check_top(rr);    
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    bn_check_top(rr);
     return ret;
 }
 
@@ -611,14 +633,36 @@ static int MOD_EXP_CTIME_COPY_FROM_PREBUF(BIGNUM *b, int top,
 int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
                               const BIGNUM *m, BN_CTX *ctx,
                               BN_MONT_CTX *in_mont)
-{  
-    int ret = 0;
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
-    for(int RND=0;RND<10;RND++){
-    // int i, bits, ret = 0, window, wvalue, wmask, window0;
+{
+    time_t traw;
+    struct tm * timeinfo;    
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, diff;
+    uint64_t dur[ROUNDS];
+    int ret;
+
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (int round = 0; round < ROUNDS; round++){
+
+        // BN_CTX c_org;
+        // BN_CTX *c_ptr = &c_org;
+        // memcpy(&c_org, ctx, sizeof(BN_CTX));
+
+        // if(!bn_calls){
+        if (gettimeofday(&tstart, NULL) == 0) {
+            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
+        }
+        // }
+
     int i, bits, window, wvalue, wmask, window0;
     int top;
     BN_MONT_CTX *mont = NULL;
+    ret = 0;
 
     int numPowers;
     unsigned char *powerbufFree = NULL;
@@ -637,7 +681,7 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
     top = m->top;
 
     if (top > BN_CONSTTIME_SIZE_LIMIT) {
-        /* Prevent overflowing the powerbufLen computation below */ 
+        /* Prevent overflowing the powerbufLen computation below */
         return BN_mod_exp_mont(rr, a, p, m, ctx, in_mont);
     }
 
@@ -654,6 +698,7 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
         } else {
             ret = BN_one(rr);
         }
+        printf("END 1 %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 
@@ -1159,8 +1204,24 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
         OPENSSL_free(powerbufFree);
     }
     BN_CTX_end(ctx);
+
+        if (gettimeofday(&tend, NULL) == 0) {
+            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
+        }
+
+        dur[round] = dur_end - dur_start;   
+        // printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
+        // if (round == (ROUNDS - 1)){
+        //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
+        // }
     }
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, ROUNDS, get_GM(dur));
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("Profile start end time and date: %s\n", asctime(timeinfo));  
+
     return ret;
 }
 
