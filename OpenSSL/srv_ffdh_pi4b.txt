@@ -1,5 +1,4 @@
-etting temp DH parameters
-156, SHA1_Update, include/crypto/md32_common.h
+Setting temp DH parameters
 ACCEPT
 SSL_accept:before SSL initialization
 Received TLS Record
@@ -11,9 +10,9 @@ SSL_accept:before SSL initialization
     ClientHello, Length=406
       client_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0xB0B957DE
-        random_bytes (len=28): 09E54FBCDAC63AA33ADA36B5B66440D8B683C74DB787F0F2807C4D49
-      session_id (len=32): E39EA9DD8115EED6C0D0FB6001384CB97A037F240E9468D14B458FC8B32B0A74
+        gmt_unix_time=0xACA4C7AC
+        random_bytes (len=28): 9E728A0A7097C74335F09B213FEB350DCD41E0F5E4FFFCBEE0881411
+      session_id (len=32): 01562CD5FDEFA8DA7D31FA6C2757003AE967F84647FDB8C2BFCF916382E9814C
       cipher_suites (len=2)
         {0x13, 0x01} TLS_AES_128_GCM_SHA256
       compression_methods (len=1)
@@ -44,37 +43,23 @@ SSL_accept:before SSL initialization
           psk_dhe_ke (1)
         extension_type=key_share(51), length=262
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): 8775DD64D4096523C14D92488ED3E589ACC8353150C6A527B9A9C7CD1046A936E020C30E87A77A1AC931863E36D4A0D9C84EC302EC4E2B45260A7CD79B543A4EB4D987592AA6DE4B87169A9E1EEBAA4CCF23C7AEC77355C2B97CB79E86EF6283DFD057BED31B9506F2614F9C4D13DF42C1A1FCB4A389B088B11CFDDA7C78E387AC5B283FD4B926DB65E34517F5DFFCB23713961CAD1E165A8FB3658C3815A9A5BD2FE0D0A04A3E62472E3FEECFF571356820235B78B62CBF6C37D6BB64FC4198B257B3389EE72122752E28C5D9890CC194F698523D3EDB8F2FC1EFE0BE9BCA36E2A3187D93754A0DC5EDACF433EC362C9408F1A76FB91B87A311981BE69B2EDD
+            key_exchange:  (len=256): 356B90A533BA98759D89B504B6320BEF2C9387A7E0AF771CE381A36FC00BFFB7CB96D376D12329541B618B0656AE04D49B1FACF86FE6CDA4035076C47D571CBE55E0C32E8E476CFC453E8D28AB84EFCE980CE6C238515A8C40A63BD6E3B966C37123D90E0AD274FD12EE8F98F4B372B3A48993E2FBE923B248CCF4A43CAEDD3AF3A1EF44EA257F60125F5329227FB4028F620E46E45E2CDCE57BCB07ECB31C14476B5089507A124057C5BE64E38FD97C341236B59826F771C2C8BAC208FB8742830D2E800056188E00CDEDC9FAD03A7D8CD76131290CF6F1156791DE782A6B5E57260F77F8DAD002ADBE5A7A7DE39E73E4AA57CD2BB598029CF890B68CDE6909
 
 SSL_accept:SSLv3/TLS read client hello
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 100 = inf microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4720.000000 microseconds.
+Duration for 7 calls of SHA256_Update = 33 microseconds
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = Handshake (22)
   Length = 346
-156, SHA256_Update, include/crypto/md32_common.h
     ServerHello, Length=342
       server_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0xB141FBB1
-        random_bytes (len=28): 1F0DA3D1563B3A1F89D0AEAE8712EC5B91C814FE305E70F7588DB2C0
-      session_id (len=32): E39EA9DD8115EED6C0D0FB6001384CB97A037F240E9468D14B458FC8B32B0A74
+        gmt_unix_time=0x7809292B
+        random_bytes (len=28): 5C00A41F3A27C550CFF50D38B1EFDD82F8B32F2EF7E1E60951093611
+      session_id (len=32): 01562CD5FDEFA8DA7D31FA6C2757003AE967F84647FDB8C2BFCF916382E9814C
       cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
       compression_method: No Compression (0x00)
       extensions, length = 270
@@ -82,7 +67,7 @@ Header:
             TLS 1.3 (772)
         extension_type=key_share(51), length=260
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): 78ADDEB5B52FAA7FC5FE505458F4D8F638F07EDA38C8C39D163FEE8F968A2AC3494361BE94BBD5C61636DA2FED3D4A0C4616201EBB133186324ECA67AD5ED7361E7BD96833E8E7F074655CA945075FBF5C9A5DCB8737DAE963184D23AF943EACEE5633608BCCF85D6478D6BBCAB78DB4B5E13AF5E34B9DFF23783B3C1235F1047E866B057B71335261639E94746A6FD54B0CB4496E91B175B48C086656855600E6BB890E82D9D767D57F21B455B452143978618ECBC8B0D0609F3FCABBA475962EDD2BC5EC350F0103A6275167B581AE0FD3B1BD759953C2DDD96BB991416ED27DC8B316F43CDA59F743DD9DA3B019F2111230F6480F20F186284F63F42A11B9
+            key_exchange:  (len=256): 489456B11BBE7BB4D5FD7A31A4E82C57FF3896710D7172B72E1836A4D21F2A5A053510515F748E93818733D2522BE9FD4041BB3E8DC8AA3DBCD45275D876167F9A1FE3D3ED17C5018F3177794868C58479B8A4F261BE87713EDE7C4B3D19741875A2E3B5CFE8B950A545AA6BB397D70CFABE21C582E06A7F36F4C6C8449506D5C64A83B1D9BD18DA8EAC1860BB84CC6835B98563C93458A0353388A771B993BE72F9435047C7FBFFDAB0D0EB1C08DB24BD21A9C688368197319A77F541F701D3ED562B87B42C60AB7612CB29D2283FE4EFC1DFC843464F3EE93B89BF32E6FE229DC008DF73651ADADD29E9E449E6DA7ABEED6CD665398B31C7163A1307AACCC7
 
 SSL_accept:SSLv3/TLS write server hello
 Sent TLS Record
@@ -92,66 +77,40 @@ Header:
   Length = 1
     change_cipher_spec (1)
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 10 calls of SHA256_Update = 767 microseconds
+Duration for 4 calls of SHA256_Update = 20 microseconds
+Duration for 4 calls of SHA256_Update = 12 microseconds
+Duration for 4 calls of SHA256_Update = 13 microseconds
+Duration for 4 calls of SHA256_Update = 55 microseconds
+Duration for 4 calls of SHA256_Update = 13 microseconds
+Duration for 4 calls of SHA256_Update = 12 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
 SSL_accept:SSLv3/TLS write change cipher spec
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 1.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 23
   Inner Content Type = Handshake (22)
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 1 calls of SHA256_Update = 276 microseconds
     EncryptedExtensions, Length=2
       No extensions
 
 SSL_accept:TLSv1.3 write encrypted extensions
-156, SHA1_Update, include/crypto/md32_common.h
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 30.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 1369
   Inner Content Type = Handshake (22)
-156, SHA256_Update, include/crypto/md32_common.h
     Certificate, Length=1348
       context (len=0): 
       certificate_list, length=1344
@@ -272,91 +231,155 @@ zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
         No extensions
 
 SSL_accept:SSLv3/TLS write certificate
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-307, rsa_ossl_private_encrypt, crypto/rsa/rsa_ossl.c
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+Duration for 3 calls of SHA256_Update = 4570 microseconds
+Duration for 2 calls of SHA256_Update = 4 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3031.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16769.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16753.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16740.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16778.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16762.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16773.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16760.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16740.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16762.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16757.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16765.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16769.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16979.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16777.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16742.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16760.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16746.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16762.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16758.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16735.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16737.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16764.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16743.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16768.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16738.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16759.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16789.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16771.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16765.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16761.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16769.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16758.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16742.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16759.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16735.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16767.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16763.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16759.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16761.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16758.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16772.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3012.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16894.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16883.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16731.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16741.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16733.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16738.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16737.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16740.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16736.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16735.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16762.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16732.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16734.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16731.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16753.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16778.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16739.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16737.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16735.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16784.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16731.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16744.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16741.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16733.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16735.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16733.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16733.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 16742.000000 microseconds.
+Mean execution time of function rsa_ossl_private_encrypt, rounds 50 = 34618.239482 microseconds.
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 11.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 409
   Inner Content Type = Handshake (22)
-156, SHA256_Update, include/crypto/md32_common.h
     CertificateVerify, Length=388
       Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
-      Signature (len=384): 72D8C00DAB037D5BC5AAAC214F08981E15F2BEBA25C3B025C9CB54DEC6C38D7885856F3F0BE8A7013DCF16B2E812F910056346B1D632CB0A9B56BCC6C2CDF8A4B18F9C0CD7ECBEB997C0035528F723C52486D705CDEF3B58F750D0D141875C00074745D150918D1B7686F4E9A045186CEF95C1516300E0CB6C90E07263F2DB395B029E3C88F2B857C7F2CE327DB0713C3E00E2F54DD6822805EC6773672C427AA5C1C227B440C7BC258809BC51F6B370D0CC93A0E63E78DE50954506E5772E0410C69946E2952EC7E6A63EA015D5BD9813BB82E6D3DA22D417944F5432E7B8AFCDFBB027DD9CE6D10FA1D1DE95A33017AEE2D8A4C1428FA6C2D2FB1F0EFCA93F91AE209AB3EA8350F42AC61BA5441AB76B0F3FF2C9B74A1EA7C668D1C624E86E03179D43ACB6717F8172070F7A25EBB4AFBD198793C468DE0AE5DB8C5609E35657C2E109A066E593C312A204A7182A8FB5C853D6B248FB716B6195465DF6567E5A96C67F5FAE4009B8982BF9EC22EB3D2AD9B5656C3DA0F99855E25B8733D88F
+      Signature (len=384): 37CB7F24110A1BD1C166B8B9B3AD0761C6825D9F8DB51457A71BD7550CC4E4E90A805B24BF59D3284B0D3521DC0A4FB69AF4C34B01C8385BA8EC51FEC72E0B4100FD7358A53E8C89E520526226FCB92BD5C27467BAE5D2C9385BEE3CF3D28858BFB905A970E06846C92C100128BB3338D906901569980EBB61285665FD652468348D2650356C3FE96ED1B0E19285D912798DF311BEC4D9E0E6FEB660CBF0337F9C0F183FD51DE450BC570C1C191014FE146911A50018FCF041566A5829195BE14FB324041F047DAD968F1CF8BACFDDB7FA937C02DE631F4341809EE5A964293CB98F937A057D2F9D6CD8ED59A8B12552D61C8553DB04C26CA2EC2720B7B3867938A4B8544779840186D0145B986358ABEA7638544DCD955EF785A0098FFAB9259D251369ADDD4497D8CE6A67A6C1770EE3C06A200667B21FFAA6F49499DD3ED8945CF20DF2A77953BED164FF55189BA08A47414E639BE3F478C19C1D9E6F624EA5858E8CEF04FE84B19A6A778B8A4A05D07DC2D3ABFF3C0018E57A6D375A04C4
 
 SSL_accept:TLSv1.3 write server certificate verify
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 2.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 53
   Inner Content Type = Handshake (22)
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 5 calls of SHA256_Update = 498 microseconds
     Finished, Length=32
-      verify_data (len=32): 3D8834B30ED069C984DB93C15E015A9790DED8F2F797A5C7911A6854EA339552
+      verify_data (len=32): 96E6DC4CA7144E75D30EB170A4F3C2D4CB7D80C7985B0354712C02A4A326F3FE
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 3 calls of SHA256_Update = 2 microseconds
+Duration for 8 calls of SHA256_Update = 29 microseconds
+Duration for 4 calls of SHA256_Update = 14 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
 SSL_accept:SSLv3/TLS write finished
 SSL_accept:TLSv1.3 early data
 Received TLS Record
@@ -371,46 +394,23 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 53
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_accept:TLSv1.3 early data
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
     Finished, Length=32
-      verify_data (len=32): D4A5E38E8A34FB72A027BE4FB6A23BA54B15617FEEE043D01B3EBAE065E979FF
+      verify_data (len=32): 304DCFF3C56D65DBF8982AC57EC1ACC40621A9557E170A235457F1D2E91B5F98
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 9 calls of SHA256_Update = 13557 microseconds
+Duration for 4 calls of SHA256_Update = 14 microseconds
+Duration for 4 calls of SHA256_Update = 14 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
 SSL_accept:SSLv3/TLS read finished
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 4 calls of SHA256_Update = 101 microseconds
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 7.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
@@ -419,21 +419,17 @@ Header:
   Inner Content Type = Handshake (22)
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=1553448807
+        ticket_age_add=1865632372
         ticket_nonce (len=8): 0000000000000000
-        ticket (len=192): FF61C263BBAB4BFD8DC3094BB33C58FB6A972156C22BBE8ACF252056A70A3F54DC7CCA23B6540BBAB4DFDEEAA8A99962B3E137CCB13F96064C3F378F2BC74A58F4AB2FF98E36D6B00AF1CB95CE949A28C8BEC2BA39B524495B8FBD2A25EF8BC75A1965A1F63A7F979D252B9137C98100B0A8B13DED8D47EC9FB42517EE42005A0B04F157EE5DC0BD258B687D8210652FAA5C4F96F0E1CB491D82B86F4FBCE3C0BD8D4E75147F777C51A354113BFB9EFC2478529538B83D59A5F3A4C18DD36470
+        ticket (len=192): 54F5B5B5471B61FB1E43D9C2A25FD1C60313D18A9EBD45EFE6EDD39D20B15D8C5B5218AC81AEA73F69900756CFAAFEB0F85748153DC168F7BCF22D8A862D8D8A524ECA0285B94FF1BA9E1B7AFB5BD9D0E6A6947A02FF27F417DF3EE31BD107EBE13651C52360FC28863F64B57564B812EDC8E0D4D78BAB877A5AC42844C37BF404CA72A1D27B417D0A5E679F07B44ED6EEA25E425FDF8E98B31AC28BAA1814CC43B4B4DBE1968939B1A31A87AB199882A7843F1906D0D1A4F0BD8A5DC96E1B4C
         No extensions
 
 SSL_accept:SSLv3/TLS write session ticket
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 8 calls of SHA256_Update = 688 microseconds
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 6.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
@@ -442,16 +438,16 @@ Header:
   Inner Content Type = Handshake (22)
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=2352591092
+        ticket_age_add=3106124808
         ticket_nonce (len=8): 0000000000000001
-        ticket (len=192): FF61C263BBAB4BFD8DC3094BB33C58FB5813C305E150A2133575E8AE0D8CF5A5E3BC6E62AAB16E2E7B4CC0DF8119A061BA2816340A568BC6D8179BB8B0A679D1CA476B87CEC948697D3DB71051BDE306586A0008BA127A15C4E7B1BED32430AA9CA2FC5C702435C0F3C32A6B04B7090E6BDE72F6F3468269CDA95E59C9FCAB6FF9270E6CD0CAFFEABA626DFE10B20BA19482333DCEE751AD925A1FED04EE7A66DB913DF238E2AB0B23CABB7E14DA35066D6C6168BDAFA8FFB6615D01A5E78849
+        ticket (len=192): 54F5B5B5471B61FB1E43D9C2A25FD1C6DE651A4F74FF97C38BE240D4D9E7120F1A2D834CABC6731971154A75F9B812FF1C278464190B8BCFBF4AA4F5386F6343F46FDEEF47BF8B5F152D21C8A4ACE221A159FCB68E2A1490E10E73DEC5354D1F17B0BE21A1E8D2468E24A5C8B12A7383822475135636E38EE7330FC09475F2CFE9090F964AB5969A1D2518F03E1F2762D7BB53400D677C8A010874DD7BEB0A3BBEA17C22CFDE13E636E8675CAB518A13ED8C3D9D56915FE0EBCE6FEDB6E602E2
         No extensions
 
 SSL_accept:SSLv3/TLS write session ticket
 -----BEGIN SSL SESSION PARAMETERS-----
-MHQCAQECAgMEBAITAQQg7ynvk+csfFCBcEB13mz2KbYKSm5H6bPrNRQc1jUp2SgE
-IGpx1c9T3pf5So9LIs6K6Yt7nNMXG/5F50LDBwITi51xoQYCBGgKVBCiBAICHCCk
-BgQEAQAAAK4HAgUAjDmw9LMEAgIBAA==
+MHQCAQECAgMEBAITAQQgNkGnOs1eDXxsVrrj/zQvsB8RA7qgHrBlTliV9YSiudIE
+IIpMZUi6Nd+K6kuihRijpWyvG6H2XcNOpQqpSvzSoqENoQYCBGgc2nuiBAICHCCk
+BgQEAQAAAK4HAgUAuSO0CLMEAgIBAA==
 -----END SSL SESSION PARAMETERS-----
 Shared ciphers:TLS_AES_128_GCM_SHA256
 Signature Algorithms: id-ml-dsa-65:id-ml-dsa-87:id-ml-dsa-44:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA256:RSA+SHA384:RSA+SHA512

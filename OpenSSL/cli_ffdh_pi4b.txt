@@ -1,8 +1,7 @@
-156, SHA1_Update, include/crypto/md32_common.h
 Connecting to ::1
 CONNECTED(00000003)
 SSL_connect:before SSL initialization
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 100 = inf microseconds.
 Sent TLS Record
 Header:
   Version = TLS 1.0 (0x301)
@@ -11,9 +10,9 @@ Header:
     ClientHello, Length=406
       client_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0x35331102
-        random_bytes (len=28): F6C8B39865AE8D830F83AA4BED37E4BF24AF712777CCB72773E957CF
-      session_id (len=32): 589B65C707C1366402197FEB331F2184967C553B142F9430BD9C5D01C36C648B
+        gmt_unix_time=0xACA4C7AC
+        random_bytes (len=28): 9E728A0A7097C74335F09B213FEB350DCD41E0F5E4FFFCBEE0881411
+      session_id (len=32): 01562CD5FDEFA8DA7D31FA6C2757003AE967F84647FDB8C2BFCF916382E9814C
       cipher_suites (len=2)
         {0x13, 0x01} TLS_AES_128_GCM_SHA256
       compression_methods (len=1)
@@ -44,7 +43,7 @@ Header:
           psk_dhe_ke (1)
         extension_type=key_share(51), length=262
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): 18C4C912AF19DCA21356E3C80794A2966FBB23910F44C01E848A033A00F0326565565F3DEC7C43C6F3FBCD67E8AAD01553DE2E1AB9D1BDC86A40AE07CE8F751D935641D81C25CA2F0580FC1B7AA5290886AD6B802D87D19F1929F6376016F3E7B8CBDCDBA6F6633BB2F2DC7A1651F0284667D4F37B62B3B2B5F6C1A730B7CD4D87EF9BD366DC7428711C77798A851CE375177849BE89EBE252B5AB50F364FFDDA8BD56000779A136007629B4922AC4F221FD51BE65DDE59C59346186EC6CF056534299DB6C0E6598304926AA8ECB32568EA5B9066DC28B2459E6D933041AD67E89FCCB5EC2E92FD9AE0FB6299752980188FAB83E5B59348F7A668F05581C6F80
+            key_exchange:  (len=256): 356B90A533BA98759D89B504B6320BEF2C9387A7E0AF771CE381A36FC00BFFB7CB96D376D12329541B618B0656AE04D49B1FACF86FE6CDA4035076C47D571CBE55E0C32E8E476CFC453E8D28AB84EFCE980CE6C238515A8C40A63BD6E3B966C37123D90E0AD274FD12EE8F98F4B372B3A48993E2FBE923B248CCF4A43CAEDD3AF3A1EF44EA257F60125F5329227FB4028F620E46E45E2CDCE57BCB07ECB31C14476B5089507A124057C5BE64E38FD97C341236B59826F771C2C8BAC208FB8742830D2E800056188E00CDEDC9FAD03A7D8CD76131290CF6F1156791DE782A6B5E57260F77F8DAD002ADBE5A7A7DE39E73E4AA57CD2BB598029CF890B68CDE6909
 
 SSL_connect:SSLv3/TLS write client hello
 Received TLS Record
@@ -56,9 +55,9 @@ SSL_connect:SSLv3/TLS write client hello
     ServerHello, Length=342
       server_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0xDD6F672B
-        random_bytes (len=28): E7D59BCB31F267A63A095BFD497FBCE6F7770F7DB52CDC3510FF3C49
-      session_id (len=32): 589B65C707C1366402197FEB331F2184967C553B142F9430BD9C5D01C36C648B
+        gmt_unix_time=0x7809292B
+        random_bytes (len=28): 5C00A41F3A27C550CFF50D38B1EFDD82F8B32F2EF7E1E60951093611
+      session_id (len=32): 01562CD5FDEFA8DA7D31FA6C2757003AE967F84647FDB8C2BFCF916382E9814C
       cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
       compression_method: No Compression (0x00)
       extensions, length = 270
@@ -66,43 +65,14 @@ SSL_connect:SSLv3/TLS write client hello
             TLS 1.3 (772)
         extension_type=key_share(51), length=260
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): D3F37976A2C56B9BC0D65BB02E3710AC0B84C2874593B7ABC900A33F5D32CB32030DC7D3017CE2AA059D4A3AAF5197B109FE83991B1E2FA2F1D8980D4B20069482B9A25F504350112A993DB5C3CE4F22EB56223B711DE543E572EFD0730A607FA6BF96F4EBBF8DF2640BA4F8E08EFE71E35F5F0EC2807566EAC413A3E6CC57689DB6B8C920380A437A35C2413B4C753B8F044EDB12F309E73083100E6497CB47EE84FC4FB9EAB52AE3D9CC7531F74AB7B1EF0820BCF089C6A43C2DA59E2CF8B45EE48513B6CBDFF620A927F2B0F95623717422904D5714471474920AE0318345A23E96088EE2A309B927D20CB3ACC8612F4976D5DB2E30F8E3ACB138C6D30657
+            key_exchange:  (len=256): 489456B11BBE7BB4D5FD7A31A4E82C57FF3896710D7172B72E1836A4D21F2A5A053510515F748E93818733D2522BE9FD4041BB3E8DC8AA3DBCD45275D876167F9A1FE3D3ED17C5018F3177794868C58479B8A4F261BE87713EDE7C4B3D19741875A2E3B5CFE8B950A545AA6BB397D70CFABE21C582E06A7F36F4C6C8449506D5C64A83B1D9BD18DA8EAC1860BB84CC6835B98563C93458A0353388A771B993BE72F9435047C7FBFFDAB0D0EB1C08DB24BD21A9C688368197319A77F541F701D3ED562B87B42C60AB7612CB29D2283FE4EFC1DFC843464F3EE93B89BF32E6FE229DC008DF73651ADADD29E9E449E6DA7ABEED6CD665398B31C7163A1307AACCC7
 
-613, bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4727.000000 microseconds.
+Duration for 7 calls of SHA256_Update = 37 microseconds
+Duration for 9 calls of SHA256_Update = 66 microseconds
+Duration for 4 calls of SHA256_Update = 19 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
 Received TLS Record
 Header:
   Version = TLS 1.2 (0x303)
@@ -115,9 +85,11 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 23
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:SSLv3/TLS read server hello
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 1 calls of SHA256_Update = 186 microseconds
     EncryptedExtensions, Length=2
       No extensions
 
@@ -127,9 +99,10 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 1369
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:TLSv1.3 read encrypted extensions
-156, SHA256_Update, include/crypto/md32_common.h
     Certificate, Length=1348
       context (len=0): 
       certificate_list, length=1344
@@ -249,36 +222,20 @@ zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
 ------------------
         No extensions
 
-156, SHA1_Update, include/crypto/md32_common.h
-156, SHA1_Update, include/crypto/md32_common.h
 depth=1 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
 verify return:1
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 3 calls of SHA256_Update = 4878 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
 depth=0 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
 verify return:1
 Received TLS Record
@@ -286,83 +243,44 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 409
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:SSLv3/TLS read server certificate
-156, SHA256_Update, include/crypto/md32_common.h
     CertificateVerify, Length=388
       Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
-      Signature (len=384): 67A3C4701503738E8A29185613D1245B0CA560FCC412798D79A2E8E22779682E51EB1A488237799E5D62D286CF0DEF4F6AB9C23A70B647D658771FB37EE941E50B488E41F349C85DEF177EC21FEE36E40705262CD48E717D25096672EA4E481C8D68CD45703494F52B8F3AD31694F05C831ACEB7D43EFF167903D65DA6B14274C652CE0D4A3826CAF4B00B588E8879A237A5195C494D2E466A024872F2E4584EE25CE651E72711586A70E9808B2F4025A7D13073EEF0B9DEFEA41CA7F9076C5D7DC0FF046C7B012708155207E5BCB6816BC56B4890AF048E96B3BD04F870844CD3648C2DCE78D777A28AEB58779C752553CB7952877F22DA0C084B9F60E30B08D858F0FD7E441CF3CA089FE1BBB62827F1D2A7C7D63EE6FCD0E2D7CBA8DC0573483E182CAD2B2F2079762BB8EA0BC79BA2108815ADDB406770DD3E8906D8D27671B502588AEF6FE7DCEBEDBE5478C7788C3B2CA4F1DFCB3E4B5D5367A51B5998FDB406FB284F39189C626746AA2C9C26E183809E1639A8F8AFD8DF0E296F3826
+      Signature (len=384): 37CB7F24110A1BD1C166B8B9B3AD0761C6825D9F8DB51457A71BD7550CC4E4E90A805B24BF59D3284B0D3521DC0A4FB69AF4C34B01C8385BA8EC51FEC72E0B4100FD7358A53E8C89E520526226FCB92BD5C27467BAE5D2C9385BEE3CF3D28858BFB905A970E06846C92C100128BB3338D906901569980EBB61285665FD652468348D2650356C3FE96ED1B0E19285D912798DF311BEC4D9E0E6FEB660CBF0337F9C0F183FD51DE450BC570C1C191014FE146911A50018FCF041566A5829195BE14FB324041F047DAD968F1CF8BACFDDB7FA937C02DE631F4341809EE5A964293CB98F937A057D2F9D6CD8ED59A8B12552D61C8553DB04C26CA2EC2720B7B3867938A4B8544779840186D0145B986358ABEA7638544DCD955EF785A0098FFAB9259D251369ADDD4497D8CE6A67A6C1770EE3C06A200667B21FFAA6F49499DD3ED8945CF20DF2A77953BED164FF55189BA08A47414E639BE3F478C19C1D9E6F624EA5858E8CEF04FE84B19A6A778B8A4A05D07DC2D3ABFF3C0018E57A6D375A04C4
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 4 calls of SHA256_Update = 1384 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
+Duration for 1 calls of SHA256_Update = 0 microseconds
 Received TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 53
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:TLSv1.3 read server certificate verify
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 5 calls of SHA256_Update = 158 microseconds
     Finished, Length=32
-      verify_data (len=32): 7B571A9F7ACAC090BDFC3E0192E1ABF5AD5AE58EC7EAA3B34EA7BE058F3FE9D4
+      verify_data (len=32): 96E6DC4CA7144E75D30EB170A4F3C2D4CB7D80C7985B0354712C02A4A326F3FE
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 3 calls of SHA256_Update = 2 microseconds
+Duration for 8 calls of SHA256_Update = 27 microseconds
+Duration for 4 calls of SHA256_Update = 14 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
 SSL_connect:SSLv3/TLS read finished
 Sent TLS Record
 Header:
@@ -372,60 +290,27 @@ Header:
     change_cipher_spec (1)
 
 SSL_connect:SSLv3/TLS write change cipher spec
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 4 calls of SHA256_Update = 129 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Mean execution time of function CRYPTO_gcm128_encrypt, rounds 1 = 3.000000 microseconds.
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 53
   Inner Content Type = Handshake (22)
-156, SHA256_Update, include/crypto/md32_common.h
     Finished, Length=32
-      verify_data (len=32): B172E80E7790A4A6E07D169DD1A9E476F08FD0AC16DB16BCCC49285551048541
+      verify_data (len=32): 304DCFF3C56D65DBF8982AC57EC1ACC40621A9557E170A235457F1D2E91B5F98
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 9 calls of SHA256_Update = 311 microseconds
+Duration for 4 calls of SHA256_Update = 11 microseconds
+Duration for 4 calls of SHA256_Update = 12 microseconds
+Duration for 4 calls of SHA256_Update = 10 microseconds
 SSL_connect:SSLv3/TLS write finished
 ---
 Certificate chain
@@ -491,49 +376,46 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 234
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:SSL negotiation finished successfully
 SSL_connect:SSL negotiation finished successfully
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=4058572063
+        ticket_age_add=1865632372
         ticket_nonce (len=8): 0000000000000000
-        ticket (len=192): 4785A479C9F4422D1255CFBF465BF8C0C99BEF44097B66BDEBF0CB3E3F9C00F56A45F85BE5576787113D5FD70264FE5682F7B5CB2D2CC8370346DF63E2E1A6EA9330B48113095433CBE73D51246DA6CE65A3FE39834F254DA7F8FFD8640CCE17EE71BB9143BC6146659E6EB71AECEF64D41AC10282240E4C6EB8DBDA03C2ABAB587A342284915E57C015B826A8020692AC4F4B496559BE390A6B84096161BB63CCD19DABBC7E1E1B83E643ADB5ADEFB2BEE09701B173067168E257D865896708
+        ticket (len=192): 54F5B5B5471B61FB1E43D9C2A25FD1C60313D18A9EBD45EFE6EDD39D20B15D8C5B5218AC81AEA73F69900756CFAAFEB0F85748153DC168F7BCF22D8A862D8D8A524ECA0285B94FF1BA9E1B7AFB5BD9D0E6A6947A02FF27F417DF3EE31BD107EBE13651C52360FC28863F64B57564B812EDC8E0D4D78BAB877A5AC42844C37BF404CA72A1D27B417D0A5E679F07B44ED6EEA25E425FDF8E98B31AC28BAA1814CC43B4B4DBE1968939B1A31A87AB199882A7843F1906D0D1A4F0BD8A5DC96E1B4C
         No extensions
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 5 calls of SHA256_Update = 1864 microseconds
 ---
 Post-Handshake New Session Ticket arrived:
 SSL-Session:
     Protocol  : TLSv1.3
     Cipher    : TLS_AES_128_GCM_SHA256
-    Session-ID: 4B8EBD46916A042237DCBF33ABB6735B82E2790BD9933CEF804A9B9ABEDC351D
+    Session-ID: 14E85357780A98F2770EAAB6753DA4DB4DBA7D26B33BA5A48AB83CA1B8846F43
     Session-ID-ctx: 
-    Resumption PSK: D69554025752CB8261BB34333107441486E29393EDE9E31747B5D83A01A735D4
+    Resumption PSK: 23A395164FB4E09EA7C88C92BFA4A9468D02FEFE9B5863545F609DF0A9514C77
     PSK identity: None
     PSK identity hint: None
     SRP username: None
     TLS session ticket lifetime hint: 7200 (seconds)
     TLS session ticket:
-    0000 - 47 85 a4 79 c9 f4 42 2d-12 55 cf bf 46 5b f8 c0   G..y..B-.U..F[..
-    0010 - c9 9b ef 44 09 7b 66 bd-eb f0 cb 3e 3f 9c 00 f5   ...D.{f....>?...
-    0020 - 6a 45 f8 5b e5 57 67 87-11 3d 5f d7 02 64 fe 56   jE.[.Wg..=_..d.V
-    0030 - 82 f7 b5 cb 2d 2c c8 37-03 46 df 63 e2 e1 a6 ea   ....-,.7.F.c....
-    0040 - 93 30 b4 81 13 09 54 33-cb e7 3d 51 24 6d a6 ce   .0....T3..=Q$m..
-    0050 - 65 a3 fe 39 83 4f 25 4d-a7 f8 ff d8 64 0c ce 17   e..9.O%M....d...
-    0060 - ee 71 bb 91 43 bc 61 46-65 9e 6e b7 1a ec ef 64   .q..C.aFe.n....d
-    0070 - d4 1a c1 02 82 24 0e 4c-6e b8 db da 03 c2 ab ab   .....$.Ln.......
-    0080 - 58 7a 34 22 84 91 5e 57-c0 15 b8 26 a8 02 06 92   Xz4"..^W...&....
-    0090 - ac 4f 4b 49 65 59 be 39-0a 6b 84 09 61 61 bb 63   .OKIeY.9.k..aa.c
-    00a0 - cc d1 9d ab bc 7e 1e 1b-83 e6 43 ad b5 ad ef b2   .....~....C.....
-    00b0 - be e0 97 01 b1 73 06 71-68 e2 57 d8 65 89 67 08   .....s.qh.W.e.g.
+    0000 - 54 f5 b5 b5 47 1b 61 fb-1e 43 d9 c2 a2 5f d1 c6   T...G.a..C..._..
+    0010 - 03 13 d1 8a 9e bd 45 ef-e6 ed d3 9d 20 b1 5d 8c   ......E..... .].
+    0020 - 5b 52 18 ac 81 ae a7 3f-69 90 07 56 cf aa fe b0   [R.....?i..V....
+    0030 - f8 57 48 15 3d c1 68 f7-bc f2 2d 8a 86 2d 8d 8a   .WH.=.h...-..-..
+    0040 - 52 4e ca 02 85 b9 4f f1-ba 9e 1b 7a fb 5b d9 d0   RN....O....z.[..
+    0050 - e6 a6 94 7a 02 ff 27 f4-17 df 3e e3 1b d1 07 eb   ...z..'...>.....
+    0060 - e1 36 51 c5 23 60 fc 28-86 3f 64 b5 75 64 b8 12   .6Q.#`.(.?d.ud..
+    0070 - ed c8 e0 d4 d7 8b ab 87-7a 5a c4 28 44 c3 7b f4   ........zZ.(D.{.
+    0080 - 04 ca 72 a1 d2 7b 41 7d-0a 5e 67 9f 07 b4 4e d6   ..r..{A}.^g...N.
+    0090 - ee a2 5e 42 5f df 8e 98-b3 1a c2 8b aa 18 14 cc   ..^B_...........
+    00a0 - 43 b4 b4 db e1 96 89 39-b1 a3 1a 87 ab 19 98 82   C......9........
+    00b0 - a7 84 3f 19 06 d0 d1 a4-f0 bd 8a 5d c9 6e 1b 4c   ..?........].n.L
 
-    Start Time: 1745507081
+    Start Time: 1746721403
     Timeout   : 7200 (sec)
     Verify return code: 0 (ok)
     Extended master secret: no
@@ -546,49 +428,46 @@ Header:
   Version = TLS 1.2 (0x303)
   Content Type = ApplicationData (23)
   Length = 234
+START generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 64
+END generic_aes_gcm_cipher_update, providers/implementations/ciphers/cipher_aes_gcm_hw.c, 134
   Inner Content Type = Handshake (22)
 SSL_connect:SSL negotiation finished successfully
 SSL_connect:SSL negotiation finished successfully
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=1402591351
+        ticket_age_add=3106124808
         ticket_nonce (len=8): 0000000000000001
-        ticket (len=192): 4785A479C9F4422D1255CFBF465BF8C05746D1B7BB8B88C8B5220ED88C6AB52FBEED21EBAE826704714452D5014206ADED4D4975C0E7691E80876BB72EA66A2B4FE5DB2B5B3B6AE256D46CCCE8AAE38B50FD0B9112E903A358303297D2F3E539860D5D014B96AF20743CA9E48DA2234120B0FF0922880BF7A27799FB48CA02F39E098711974E14DFEEEBFD2E3E5CB571BAC26FDDEE1FD623AABD33CAFDF6160DC058F3A305BA76EC9B1B226EC109439B0ED1DFAAE2254478E208DB8175FCC2AB
+        ticket (len=192): 54F5B5B5471B61FB1E43D9C2A25FD1C6DE651A4F74FF97C38BE240D4D9E7120F1A2D834CABC6731971154A75F9B812FF1C278464190B8BCFBF4AA4F5386F6343F46FDEEF47BF8B5F152D21C8A4ACE221A159FCB68E2A1490E10E73DEC5354D1F17B0BE21A1E8D2468E24A5C8B12A7383822475135636E38EE7330FC09475F2CFE9090F964AB5969A1D2518F03E1F2762D7BB53400D677C8A010874DD7BEB0A3BBEA17C22CFDE13E636E8675CAB518A13ED8C3D9D56915FE0EBCE6FEDB6E602E2
         No extensions
 
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
-156, SHA256_Update, include/crypto/md32_common.h
+Duration for 5 calls of SHA256_Update = 1302 microseconds
 ---
 Post-Handshake New Session Ticket arrived:
 SSL-Session:
     Protocol  : TLSv1.3
     Cipher    : TLS_AES_128_GCM_SHA256
-    Session-ID: 772F19C6A947570D8C5C3E7028E2941C8B0C566139F04D2F54D4A88C1F8CC999
+    Session-ID: AD826181197C00CCD5DAE6EDAC4F11B2BE9507C100FDBDB3EB00A2E4136BD465
     Session-ID-ctx: 
-    Resumption PSK: 07ACAFE453C588A7322ADADA64BB7549BB05953F451E091EA0FA735791163E1D
+    Resumption PSK: 8A4C6548BA35DF8AEA4BA28518A3A56CAF1BA1F65DC34EA50AA94AFCD2A2A10D
     PSK identity: None
     PSK identity hint: None
     SRP username: None
     TLS session ticket lifetime hint: 7200 (seconds)
     TLS session ticket:
-    0000 - 47 85 a4 79 c9 f4 42 2d-12 55 cf bf 46 5b f8 c0   G..y..B-.U..F[..
-    0010 - 57 46 d1 b7 bb 8b 88 c8-b5 22 0e d8 8c 6a b5 2f   WF......."...j./
-    0020 - be ed 21 eb ae 82 67 04-71 44 52 d5 01 42 06 ad   ..!...g.qDR..B..
-    0030 - ed 4d 49 75 c0 e7 69 1e-80 87 6b b7 2e a6 6a 2b   .MIu..i...k...j+
-    0040 - 4f e5 db 2b 5b 3b 6a e2-56 d4 6c cc e8 aa e3 8b   O..+[;j.V.l.....
-    0050 - 50 fd 0b 91 12 e9 03 a3-58 30 32 97 d2 f3 e5 39   P.......X02....9
-    0060 - 86 0d 5d 01 4b 96 af 20-74 3c a9 e4 8d a2 23 41   ..].K.. t<....#A
-    0070 - 20 b0 ff 09 22 88 0b f7-a2 77 99 fb 48 ca 02 f3    ..."....w..H...
-    0080 - 9e 09 87 11 97 4e 14 df-ee eb fd 2e 3e 5c b5 71   .....N......>\.q
-    0090 - ba c2 6f dd ee 1f d6 23-aa bd 33 ca fd f6 16 0d   ..o....#..3.....
-    00a0 - c0 58 f3 a3 05 ba 76 ec-9b 1b 22 6e c1 09 43 9b   .X....v..."n..C.
-    00b0 - 0e d1 df aa e2 25 44 78-e2 08 db 81 75 fc c2 ab   .....%Dx....u...
+    0000 - 54 f5 b5 b5 47 1b 61 fb-1e 43 d9 c2 a2 5f d1 c6   T...G.a..C..._..
+    0010 - de 65 1a 4f 74 ff 97 c3-8b e2 40 d4 d9 e7 12 0f   .e.Ot.....@.....
+    0020 - 1a 2d 83 4c ab c6 73 19-71 15 4a 75 f9 b8 12 ff   .-.L..s.q.Ju....
+    0030 - 1c 27 84 64 19 0b 8b cf-bf 4a a4 f5 38 6f 63 43   .'.d.....J..8ocC
+    0040 - f4 6f de ef 47 bf 8b 5f-15 2d 21 c8 a4 ac e2 21   .o..G.._.-!....!
+    0050 - a1 59 fc b6 8e 2a 14 90-e1 0e 73 de c5 35 4d 1f   .Y...*....s..5M.
+    0060 - 17 b0 be 21 a1 e8 d2 46-8e 24 a5 c8 b1 2a 73 83   ...!...F.$...*s.
+    0070 - 82 24 75 13 56 36 e3 8e-e7 33 0f c0 94 75 f2 cf   .$u.V6...3...u..
+    0080 - e9 09 0f 96 4a b5 96 9a-1d 25 18 f0 3e 1f 27 62   ....J....%..>.'b
+    0090 - d7 bb 53 40 0d 67 7c 8a-01 08 74 dd 7b eb 0a 3b   ..S@.g|...t.{..;
+    00a0 - be a1 7c 22 cf de 13 e6-36 e8 67 5c ab 51 8a 13   ..|"....6.g\.Q..
+    00b0 - ed 8c 3d 9d 56 91 5f e0-eb ce 6f ed b6 e6 02 e2   ..=.V._...o.....
 
-    Start Time: 1745507081
+    Start Time: 1746721403
     Timeout   : 7200 (sec)
     Verify return code: 0 (ok)
     Extended master secret: no
