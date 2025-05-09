@@ -4,7 +4,6 @@ Signature: rsassaPss
 Encryption and Hashing: AES_128_GCM_SHA256
 
 Mean execution time of crypto algorithms (direct invocation).
-Key Exchange:
-Signature:
-Encryption:
-Hashing:
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 3786.582488920268
+Function name: SHA256_Update, time (microseconds): 13.904677211514448
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 2.449489742783178

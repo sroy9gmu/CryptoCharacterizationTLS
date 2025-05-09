@@ -25,6 +25,7 @@ def geometric_mean(data):
       ValueError: If the list is empty or contains non-positive numbers.
     """
     if not data:
+        print(data)
         raise ValueError("Cannot calculate geometric mean of an empty list.")
     
     for d in data:
@@ -137,10 +138,9 @@ def main(infile, outfile):
                     if wd != 'inf' and wd != '0':
                         times[name].append(int(wd))
 
-    for index, (key, value) in enumerate(times.items()):
-        times_mean[key] = geometric_mean(value)
-
-    print(times_mean)
+    for index, (key, value) in enumerate(times.items()):  
+        if value != []:      
+            times_mean[key] = geometric_mean(value)
 
     with open(outfile, "w") as f:
         f.write("List of crypto algorithms (direct invocation).\n")
@@ -148,10 +148,8 @@ def main(infile, outfile):
         f.write(f"Signature: {sg_algo_g}\n")
         f.write(f"Encryption and Hashing: {en_dg_algo_g}\n\n")
         f.write("Mean execution time of crypto algorithms (direct invocation).\n")
-        f.write("Key Exchange:\n")
-        f.write("Signature:\n")
-        f.write("Encryption:\n")
-        f.write("Hashing:\n")
+        for index, (key, value) in enumerate(times_mean.items()):
+            f.write(f"Function name: {key}, time (microseconds): {value}\n")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
