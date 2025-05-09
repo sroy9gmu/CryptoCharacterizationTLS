@@ -5,6 +5,7 @@ kwds_algo = ['NamedGroup', 'Signature Algorithm', 'CIPHER is'] # Key exchange, s
 kx_algo_g = ''
 sg_algo_g = ''
 en_dg_algo_g = ''
+times = {}
 
 def get_kx_algo(l):
     r = None
@@ -42,7 +43,8 @@ def main(infile, outfile):
     print(f"Input log file: {infile}")
     print(f"Output result file: {outfile}")
 
-    global kx_algo_g, sg_algo_g, en_dg_algo_g
+    global kx_algo_g, sg_algo_g, en_dg_algo_g, times
+    time_str = 'Mean execution time of function'
 
     with open(infile, "r") as f:
         in_str = f.read()
@@ -62,6 +64,15 @@ def main(infile, outfile):
             if kx_algo_g != '' and sg_algo_g != '' and en_dg_algo_g != '':
                 break
 
+        if time_str in line:
+            line_wds = line.split()
+            name = line_wds[5].rstrip(",")
+            # if times[name] is None:
+            #     times[name] = []
+            # else:
+            times[name] = line_wds[9]
+            
+    print(times)
     with open(outfile, "w") as f:
         f.write("List of crypto algorithms (direct invocation).\n")
         f.write(f"Key Exchange: {kx_algo_g}\n")
