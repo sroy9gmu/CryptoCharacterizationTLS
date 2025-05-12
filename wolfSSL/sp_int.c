@@ -26,6 +26,27 @@ DESCRIPTION
 This library provides single precision (SP) integer math functions.
 
 */
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t sp_calls;
+
+static double get_GM(uint64_t *arr, uint64_t rounds){
+    double prod = 1;
+    double root;
+
+    root = (double)1 / (double)rounds;
+
+    for (size_t i = 0; i < rounds; i++){
+        prod *= arr[i];        
+    }
+
+    return pow(prod, root);
+}
 
 #include <wolfssl/wolfcrypt/libwolfssl_sources.h>
 
@@ -13235,7 +13256,40 @@ static int _sp_exptmod_mont_ex(const sp_int* b, const sp_int* e, int bits,
     const sp_int* m, sp_int* r)
 {
     printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+        
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, rounds;
+    
+    if (!sp_calls){
+        rounds = 50;
+        sp_calls++;
+    } else {
+        rounds = 1;
+    }
+    uint64_t dur[rounds];
     int err = MP_OKAY;
+
+    // time_t traw; 
+    // struct tm * timeinfo;   
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (size_t round = 0; round < rounds; round++){
+
+        // BN_CTX c_org;
+        // BN_CTX *c_ptr = &c_org;
+        // memcpy(&c_org, ctx, sizeof(BN_CTX));
+
+        dur_start = 0;
+        dur_end = 0;
+
+        if (gettimeofday(&tstart, NULL) == 0) {
+            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+        } else {
+            printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+        }
+    
     int done = 0;
     DECL_SP_INT_ARRAY(t, m->used * 2 + 1, 4);
 
@@ -13338,6 +13392,24 @@ static int _sp_exptmod_mont_ex(const sp_int* b, const sp_int* e, int bits,
     }
 
     FREE_SP_INT_ARRAY(t, NULL);
+
+        if (gettimeofday(&tend, NULL) == 0) {
+            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        } else {
+            printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+        }
+
+        dur[round] = dur_end - dur_start;   
+        // printf("Duration for round #%d = %u microseconds\n", round, dur[round]); // DBG only
+        // if (round == (ROUNDS - 1)){
+        //     memcpy(c, c_ptr, sizeof(HASH_CTX));   // WRITE FINAL VALUE
+        // }
+    }
+    printf("Mean execution time of function %s, rounds %lu = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("Profile start end time and date: %s\n", asctime(timeinfo)); 
+
     return err;
 }
 

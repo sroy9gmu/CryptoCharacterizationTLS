@@ -1,8 +1,14 @@
+2706, ProcessFile, ./src/ssl_load.c
+2706, ProcessFile, ./src/ssl_load.c
+1422, ProcessBufferPrivateKey, ./src/ssl_load.c
+0, 645
+2677, ProcessFile, ./src/ssl_load.c
 1302, GeneratePublicDh, wolfcrypt/src/dh.c
-sp_exptmod, wolfcrypt/src/sp_int.c, 14139
-_sp_exptmod_base_2, wolfcrypt/src/sp_int.c, 13752
-sp_exptmod, wolfcrypt/src/sp_int.c, 14139
-_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13237
+sp_exptmod, wolfcrypt/src/sp_int.c, 14211
+_sp_exptmod_base_2, wolfcrypt/src/sp_int.c, 13824
+sp_exptmod, wolfcrypt/src/sp_int.c, 14211
+_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
+Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1662.167572 microseconds.
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
@@ -11,18 +17,20 @@ _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13237
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
 wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4316
 RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2527
-_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14196
-sp_exptmod, wolfcrypt/src/sp_int.c, 14139
-_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13237
-sp_exptmod, wolfcrypt/src/sp_int.c, 14139
-_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13237
-_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14196
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
+sp_exptmod, wolfcrypt/src/sp_int.c, 14211
+_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3531.000000 microseconds.
+sp_exptmod, wolfcrypt/src/sp_int.c, 14211
+_sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3405.000000 microseconds.
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
-_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14196
-_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14196
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 SSL version is TLSv1.3
 SSL cipher suite is TLS_AES_128_GCM_SHA256
 SSL curve name is FFDHE_2048

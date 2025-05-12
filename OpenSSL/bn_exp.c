@@ -654,13 +654,11 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
         // BN_CTX *c_ptr = &c_org;
         // memcpy(&c_org, ctx, sizeof(BN_CTX));
 
-        // if(!bn_calls){
         if (gettimeofday(&tstart, NULL) == 0) {
             dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
         } else {
             sprintf(stderr,"Error getting start time of function %s, round #%d\n", __func__, round);
         }
-        // }
 
     int i, bits, window, wvalue, wmask, window0;
     int top;
