@@ -8,20 +8,21 @@ sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_base_2, wolfcrypt/src/sp_int.c, 13824
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1668.052182 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1363.381070 microseconds.
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
-wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4316
-RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2527
+wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4391
+RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2549
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3101.000000 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3091.000000 microseconds.
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3217.000000 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3371.000000 microseconds.
+Duration for round 1 of function RsaFunctionPrivate = 7136 microseconds
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
 8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c

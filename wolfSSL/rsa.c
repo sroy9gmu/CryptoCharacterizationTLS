@@ -29,6 +29,28 @@ RSA keys can be used to encrypt, decrypt, sign and verify data.
 
 #include <wolfssl/wolfcrypt/libwolfssl_sources.h>
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+// static uint64_t rsa_calls;
+
+// static double get_GM(uint64_t *arr, uint64_t rounds){
+//     double prod = 1;
+//     double root;
+
+//     root = (double)1 / (double)rounds;
+
+//     for (size_t i = 0; i < rounds; i++){
+//         prod *= arr[i];        
+//     }
+
+//     return pow(prod, root);
+// }
+
 #ifndef NO_RSA
 
 #if FIPS_VERSION3_GE(2,0,0)
@@ -2526,6 +2548,38 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
 {
     printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int    ret = 0;
+
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end;//, rounds;
+
+    // if (!rsa_calls){
+    //     rounds = 1;
+    //     rsa_calls++;
+    // } else {
+    //     rounds = 50;
+    // }
+    // uint64_t dur[rounds];
+
+    // time_t traw; 
+    // struct tm * timeinfo;   
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (size_t round = 0; round < 1; round++){
+
+    mp_int* t_tmp = (mp_int*)XMALLOC(sizeof(mp_int), NULL, DYNAMIC_TYPE_RSA);
+    XMEMCPY(t_tmp, tmp, sizeof(mp_int));
+
+    dur_start = 0;
+    dur_end = 0;
+
+    if (gettimeofday(&tstart, NULL) == 0) {
+        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+    } else {
+        // printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+    }
+
 #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
     mp_digit mp = 0;
     DECL_MP_INT_SIZE_DYN(rnd, mp_bitsused(&key->n), RSA_MAX_SIZE);
@@ -2663,12 +2717,31 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     #endif
 #endif
     }
-#endif   /* RSA_LOW_MEM */
 
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+        // printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+    }
+
+    // dur[round] = dur_end - dur_start;   
+    printf("Duration for round 1 of function %s = %lu microseconds\n", __func__, dur_end - dur_start); // DBG only
+    //     // if (round == (rounds - 1)){
+    XMEMCPY(t_tmp, tmp, sizeof(mp_int));;   // WRITE FINAL VALUE
+    //     // }
+    XFREE(t_tmp, NULL, DYNAMIC_TYPE_RSA);
+    
+    // printf("Mean execution time of function %s, rounds %lu = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
+    // // time(&traw);
+    // // timeinfo = localtime(&traw);
+    // // printf("Profile start end time and date: %s\n", asctime(timeinfo)); 
+#endif   /* RSA_LOW_MEM */
+    
 #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
     /* Multiply result (tmp) by blinding invertor (rndi).
      * Use Montgomery form to make operation more constant time.
      */
+
     if ((ret == 0) && (mp_montgomery_setup(&key->n, &mp) != MP_OKAY)) {
         ret = MP_MULMOD_E;
     }
@@ -2696,11 +2769,13 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     mp_forcezero(rnd);
     FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
     FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
+
 #if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
     mp_memzero_check(rnd);
     mp_memzero_check(rndi);
 #endif
 #endif /* WC_RSA_BLINDING && !WC_NO_RNG */
+    }
     return ret;
 }
 #endif
