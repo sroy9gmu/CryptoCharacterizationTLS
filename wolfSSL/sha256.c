@@ -40,6 +40,17 @@ on the specific device platform.
 
 #include <wolfssl/wolfcrypt/libwolfssl_sources.h>
 
+#include <wolfssl/wolfcrypt/libwolfssl_sources.h>
+
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t sha_calls;
+
 /*
  * SHA256 Build Options:
  * USE_SLOW_SHA256:            Reduces code size by not partially unrolling
@@ -1322,13 +1333,28 @@ static int InitSha256(wc_Sha256* sha256)
     static WC_INLINE int Sha256Update(wc_Sha256* sha256, const byte* data,
         word32 len)
     {
-        // printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+        // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
+        struct timeval tstart, tend;    
+        uint64_t dur_start, dur_end, diff;
+
+        dur_start = 0;
+        dur_end = 0;
+
+        if (gettimeofday(&tstart, NULL) == 0) {
+            dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+        } else {
+            printf("Error getting start time of function %s\n", __func__);
+        }
+        
+
         int ret = 0;
         word32 blocksLen;
         byte* local;
 
         /* check that internal buffLen is valid */
         if (sha256->buffLen >= WC_SHA256_BLOCK_SIZE) {
+            printf("END1 calls = %lu, %d, %s, %s\n", sha_calls, __LINE__, __func__, __FILE__);
+            sha_calls++;
             return BUFFER_E;
         }
 
@@ -1489,6 +1515,16 @@ static int InitSha256(wc_Sha256* sha256)
             sha256->buffLen = len;
         }
 
+        if (gettimeofday(&tend, NULL) == 0) {
+            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        } else {
+           printf("Error getting end time of function %s\n", __func__);
+        } 
+
+        diff = dur_end - dur_start;
+        if (diff != 0)
+            printf("Duration of call #%lu of %s = %lu microseconds\n", sha_calls, __func__, diff);
+        sha_calls++;
         return ret;
     }
 

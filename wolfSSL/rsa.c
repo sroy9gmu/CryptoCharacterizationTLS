@@ -36,7 +36,7 @@ RSA keys can be used to encrypt, decrypt, sign and verify data.
 
 #define M 1000000
 
-// static uint64_t rsa_calls;
+static uint64_t rsa_calls;
 
 // static double get_GM(uint64_t *arr, uint64_t rounds){
 //     double prod = 1;
@@ -2546,11 +2546,10 @@ static int RsaFunction_SP(const byte* in, word32 inLen, byte* out,
 #if !defined(WOLFSSL_RSA_PUBLIC_ONLY) && !defined(WOLFSSL_RSA_VERIFY_ONLY)
 static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
 {
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int    ret = 0;
 
     struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end;//, rounds;
+    uint64_t dur_start, dur_end, rounds;
 
     // if (!rsa_calls){
     //     rounds = 1;
@@ -2558,7 +2557,8 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     // } else {
     //     rounds = 50;
     // }
-    // uint64_t dur[rounds];
+    rounds = 1;
+    uint64_t dur[rounds];
 
     // time_t traw; 
     // struct tm * timeinfo;   
@@ -2724,8 +2724,10 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
         // printf("Error getting end time of function %s, round #%lu\n", __func__, round);
     }
 
-    // dur[round] = dur_end - dur_start;   
-    printf("Duration for round 1 of function %s = %lu microseconds\n", __func__, dur_end - dur_start); // DBG only
+    dur[round] = dur_end - dur_start;
+    if (dur[round] != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", rsa_calls, __func__, dur[round]);
+    rsa_calls++;
     //     // if (round == (rounds - 1)){
     XMEMCPY(t_tmp, tmp, sizeof(mp_int));;   // WRITE FINAL VALUE
     //     // }

@@ -13254,9 +13254,7 @@ static int _sp_exptmod_ex(const sp_int* b, const sp_int* e, int bits,
  */
 static int _sp_exptmod_mont_ex(const sp_int* b, const sp_int* e, int bits,
     const sp_int* m, sp_int* r)
-{
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
-        
+{       
     struct timeval tstart, tend;    
     uint64_t dur_start, dur_end, rounds;
     

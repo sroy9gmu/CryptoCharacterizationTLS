@@ -38,7 +38,7 @@ block cipher mechanism that uses n-bit binary string parameter key with 128-bits
 
 #define M 1000000
 
-// static uint64_t rsa_calls;
+static uint64_t gcm_calls;
 
 // static double get_GM(uint64_t *arr, uint64_t rounds){
 //     double prod = 1;
@@ -8582,19 +8582,20 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
                       byte* authTag, word32 authTagSz,
                       const byte* authIn, word32 authInSz)
 {
-    printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
+    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = 0;
 
     struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end;//, rounds;
+    uint64_t dur_start, dur_end, rounds;
 
-    // if (!rsa_calls){
+    // if (!gcm_calls){
     //     rounds = 1;
     //     rsa_calls++;
     // } else {
     //     rounds = 50;
     // }
-    // uint64_t dur[rounds];
+    rounds = 1;
+    uint64_t dur[rounds];
 
     // time_t traw; 
     // struct tm * timeinfo;   
@@ -8721,14 +8722,17 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
         printf("Error getting end time of function %s, round #%lu\n", __func__, round);
     }
 
-    // dur[round] = dur_end - dur_start;   
-    printf("Duration for round 1 of function %s = %lu microseconds\n", __func__, dur_end - dur_start); // DBG only
+    dur[round] = dur_end - dur_start;   
+    if (dur[round] != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", gcm_calls, __func__, dur[round]);
+    
     // if (round < 1){
     //     XMEMCPY(out, t_out, sizeof(byte));;   // WRITE FINAL VALUE
     // }
     // XFREE(t_out, NULL, DYNAMIC_TYPE_AES);
     // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
     }
+    gcm_calls++;
     return ret;
 }
 
