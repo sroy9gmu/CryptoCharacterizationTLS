@@ -31,6 +31,28 @@ block cipher mechanism that uses n-bit binary string parameter key with 128-bits
 
 #include <wolfssl/wolfcrypt/libwolfssl_sources.h>
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+// static uint64_t rsa_calls;
+
+// static double get_GM(uint64_t *arr, uint64_t rounds){
+//     double prod = 1;
+//     double root;
+
+//     root = (double)1 / (double)rounds;
+
+//     for (size_t i = 0; i < rounds; i++){
+//         prod *= arr[i];        
+//     }
+
+//     return pow(prod, root);
+// }
+
 #if !defined(NO_AES)
 
 /* Tip: Locate the software cipher modes by searching for "Software AES" */
@@ -8560,8 +8582,40 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
                       byte* authTag, word32 authTagSz,
                       const byte* authIn, word32 authInSz)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = 0;
+
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end;//, rounds;
+
+    // if (!rsa_calls){
+    //     rounds = 1;
+    //     rsa_calls++;
+    // } else {
+    //     rounds = 50;
+    // }
+    // uint64_t dur[rounds];
+
+    // time_t traw; 
+    // struct tm * timeinfo;   
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (size_t round = 0; round < 1; round++){
+
+    // byte* t_out = (byte*)XMALLOC(sizeof(byte), NULL, DYNAMIC_TYPE_AES);
+    // XMEMCPY(t_out, out, sizeof(byte));
+
+    dur_start = 0;
+    dur_end = 0;
+
+    if (gettimeofday(&tstart, NULL) == 0) {
+        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+    } else {
+        printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+    }
+
     word32 blocks = sz / WC_AES_BLOCK_SIZE;
     word32 partial = sz % WC_AES_BLOCK_SIZE;
     const byte* p = in;
@@ -8599,8 +8653,9 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
             aes->key, aes->keylen, aes->reg, WC_AES_BLOCK_SIZE,
             out, in, (blocks * WC_AES_BLOCK_SIZE),
             PIC32_ENCRYPTION, PIC32_ALGO_AES, PIC32_CRYPTOALGO_AES_GCM);
-        if (ret != 0)
-            return ret;
+        if (ret != 0){
+            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+            return ret;}
     }
     /* process remainder using partial handling */
 #endif
@@ -8628,8 +8683,9 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
             IncrementGcmCounter(counter);
         #if !defined(WOLFSSL_PIC32MZ_CRYPT)
             ret = wc_AesEncrypt(aes, counter, scratch);
-            if (ret != 0)
-                return ret;
+            if (ret != 0){
+                printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+                return ret;}
             xorbufout(c, scratch, p, WC_AES_BLOCK_SIZE);
         #endif
             p += WC_AES_BLOCK_SIZE;
@@ -8640,15 +8696,17 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
     if (partial != 0) {
         IncrementGcmCounter(counter);
         ret = wc_AesEncrypt(aes, counter, scratch);
-        if (ret != 0)
-            return ret;
+        if (ret != 0){
+            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+            return ret;}
         xorbufout(c, scratch, p, partial);
     }
     if (authTag) {
         GHASH(&aes->gcm, authIn, authInSz, out, sz, authTag, authTagSz);
         ret = wc_AesEncrypt(aes, initialCounter, scratch);
-        if (ret != 0)
-            return ret;
+        if (ret != 0){
+            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+            return ret;}
         xorbuf(authTag, scratch, authTagSz);
 #ifdef OPENSSL_EXTRA
         if (!in && !sz)
@@ -8657,6 +8715,20 @@ WARN_UNUSED_RESULT int AES_GCM_encrypt_C(
 #endif
     }
 
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+        printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+    }
+
+    // dur[round] = dur_end - dur_start;   
+    printf("Duration for round 1 of function %s = %lu microseconds\n", __func__, dur_end - dur_start); // DBG only
+    // if (round < 1){
+    //     XMEMCPY(out, t_out, sizeof(byte));;   // WRITE FINAL VALUE
+    // }
+    // XFREE(t_out, NULL, DYNAMIC_TYPE_AES);
+    // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+    }
     return ret;
 }
 

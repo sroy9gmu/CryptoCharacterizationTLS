@@ -8,31 +8,36 @@ sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_base_2, wolfcrypt/src/sp_int.c, 13824
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1363.381070 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1200.155232 microseconds.
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
-8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
-8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+8741, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+START 8585, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+Duration for round 1 of function AES_GCM_encrypt_C = 10 microseconds
 wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4391
 RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2549
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3091.000000 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 4855.000000 microseconds.
 sp_exptmod, wolfcrypt/src/sp_int.c, 14211
 _sp_exptmod_mont_ex, wolfcrypt/src/sp_int.c, 13258
-Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3371.000000 microseconds.
-Duration for round 1 of function RsaFunctionPrivate = 7136 microseconds
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 5469.000000 microseconds.
+Duration for round 1 of function RsaFunctionPrivate = 11096 microseconds
 _sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14268
-8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
-8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
-8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
-8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+8741, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+START 8585, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+Duration for round 1 of function AES_GCM_encrypt_C = 7 microseconds
+8741, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+START 8585, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+Duration for round 1 of function AES_GCM_encrypt_C = 1 microseconds
 SSL version is TLSv1.3
 SSL cipher suite is TLS_AES_128_GCM_SHA256
 SSL curve name is FFDHE_2048
-8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
-8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+8741, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+START 8585, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+Duration for round 1 of function AES_GCM_encrypt_C = 1 microseconds
 I hear you fa shizzle!
-8669, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
-8563, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+8741, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+START 8585, AES_GCM_encrypt_C, wolfcrypt/src/aes.c
+Duration for round 1 of function AES_GCM_encrypt_C = 1 microseconds
