@@ -25,6 +25,28 @@
 
 #include "common.h"
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t rsa_calls;
+
+// static double get_GM(uint64_t *arr, uint64_t rounds){
+//     double prod = 1;
+//     double root;
+
+//     root = (double)1 / (double)rounds;
+
+//     for (size_t i = 0; i < rounds; i++){
+//         prod *= arr[i];        
+//     }
+
+//     return pow(prod, root);
+// }
+
 #if defined(MBEDTLS_RSA_C)
 
 #include "mbedtls/rsa.h"
@@ -1413,8 +1435,41 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
                         const unsigned char *input,
                         unsigned char *output)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
+
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, rounds;
+
+    // if (!rsa_calls){
+    //     rounds = 1;
+    //     rsa_calls++;
+    // } else {
+    //     rounds = 50;
+    // }
+    rounds = 1;
+    uint64_t dur[rounds];
+
+    // time_t traw; 
+    // struct tm * timeinfo;   
+    // time(&traw);
+    // timeinfo = localtime(&traw);
+    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+    for (size_t round = 0; round < 1; round++){
+
+    // mp_int* t_tmp = (mp_int*)XMALLOC(sizeof(mp_int), NULL, DYNAMIC_TYPE_RSA);
+    // XMEMCPY(t_tmp, tmp, sizeof(mp_int));
+
+    dur_start = 0;
+    dur_end = 0;
+
+    if (gettimeofday(&tstart, NULL) == 0) {
+        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+    } else {
+        // printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+    }
+
     size_t olen;
 
     /* Temporary holding the result */
@@ -1441,16 +1496,19 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
     mbedtls_mpi input_blinded, check_result_blinded;
 
     if (f_rng == NULL) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
 
     if (rsa_check_context(ctx, 1 /* private key checks */,
                           1 /* blinding on        */) != 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
 
 #if defined(MBEDTLS_THREADING_C)
     if ((ret = mbedtls_mutex_lock(&ctx->mutex)) != 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 #endif
@@ -1576,6 +1634,7 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
 cleanup:
 #if defined(MBEDTLS_THREADING_C)
     if (mbedtls_mutex_unlock(&ctx->mutex) != 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_THREADING_MUTEX_ERROR;
     }
 #endif
@@ -1601,9 +1660,30 @@ cleanup:
     mbedtls_mpi_free(&input_blinded);
 
     if (ret != 0 && ret >= -0x007f) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERROR_ADD(MBEDTLS_ERR_RSA_PRIVATE_FAILED, ret);
     }
 
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+        // printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+    }
+
+    dur[round] = dur_end - dur_start;
+    if (dur[round] != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", rsa_calls, __func__, dur[round]);
+    rsa_calls++;
+    // if (round == (rounds - 1)){
+    //     XMEMCPY(t_tmp, tmp, sizeof(mp_int));;   // WRITE FINAL VALUE
+    // }
+    // XFREE(t_tmp, NULL, DYNAMIC_TYPE_RSA);
+    }
+    // printf("Mean execution time of function %s, rounds %lu = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
+    // // time(&traw);
+    // // timeinfo = localtime(&traw);
+    // // printf("Profile start end time and date: %s\n", asctime(timeinfo)); 
+    // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
     return ret;
 }
 

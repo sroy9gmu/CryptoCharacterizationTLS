@@ -23,6 +23,28 @@
 
 #include "common.h"
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t bn_calls;
+
+// static double get_GM(uint64_t *arr, uint64_t rounds){
+//     double prod = 1;
+//     double root;
+
+//     root = (double)1 / (double)rounds;
+
+//     for (size_t i = 0; i < rounds; i++){
+//         prod *= arr[i];        
+//     }
+
+//     return pow(prod, root);
+// }
+
 #if defined(MBEDTLS_BIGNUM_C)
 
 #include "mbedtls/bignum.h"
@@ -1619,19 +1641,34 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
                                                const mbedtls_mpi *E, int E_public,
                                                const mbedtls_mpi *N, mbedtls_mpi *prec_RR)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
 
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, diff;
+
+    dur_start = 0;
+    dur_end = 0;
+
+    if (gettimeofday(&tstart, NULL) == 0) {
+        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+    } else {
+        printf("Error getting start time of function %s\n", __func__);
+    }
+
     if (mbedtls_mpi_cmp_int(N, 0) <= 0 || (N->p[0] & 1) == 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
     if (mbedtls_mpi_cmp_int(E, 0) < 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
     if (mbedtls_mpi_bitlen(E) > MBEDTLS_MPI_MAX_BITS ||
         mbedtls_mpi_bitlen(N) > MBEDTLS_MPI_MAX_BITS) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);    
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
@@ -1640,6 +1677,7 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
      */
     if (E->n == 0) {
         ret = mbedtls_mpi_lset(X, 1);
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 
@@ -1649,6 +1687,7 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
     size_t T_limbs = mbedtls_mpi_core_exp_mod_working_limbs(N->n, E->n);
     mbedtls_mpi_uint *T = (mbedtls_mpi_uint *) mbedtls_calloc(T_limbs, sizeof(mbedtls_mpi_uint));
     if (T == NULL) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_ALLOC_FAILED;
     }
 
@@ -1727,6 +1766,17 @@ cleanup:
         mbedtls_mpi_free(&RR);
     }
 
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+       printf("Error getting end time of function %s\n", __func__);
+    } 
+
+    diff = dur_end - dur_start;
+    if (diff != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", bn_calls, __func__, diff);
+    bn_calls++;
+    // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
     return ret;
 }
 
@@ -1734,7 +1784,6 @@ int mbedtls_mpi_exp_mod(mbedtls_mpi *X, const mbedtls_mpi *A,
                         const mbedtls_mpi *E, const mbedtls_mpi *N,
                         mbedtls_mpi *prec_RR)
 {
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     return mbedtls_mpi_exp_mod_optionally_safe(X, A, E, MBEDTLS_MPI_IS_SECRET, N, prec_RR);
 }
 
@@ -1742,7 +1791,6 @@ int mbedtls_mpi_exp_mod_unsafe(mbedtls_mpi *X, const mbedtls_mpi *A,
                                const mbedtls_mpi *E, const mbedtls_mpi *N,
                                mbedtls_mpi *prec_RR)
 {
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     return mbedtls_mpi_exp_mod_optionally_safe(X, A, E, MBEDTLS_MPI_IS_PUBLIC, N, prec_RR);
 }
 

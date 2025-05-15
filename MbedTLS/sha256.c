@@ -10,6 +10,15 @@
  *  http://csrc.nist.gov/publications/fips/fips180-2/fips180-2.pdf
  */
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t sha_calls;
+
 #if defined(__clang__) &&  (__clang_major__ >= 4)
 
 /* Ideally, we would simply use MBEDTLS_ARCH_IS_ARMV8_A in the following #if,
@@ -646,12 +655,25 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
                           const unsigned char *input,
                           size_t ilen)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
+    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
+    struct timeval tstart, tend;    
+    uint64_t dur_start, dur_end, diff;
+
+    dur_start = 0;
+    dur_end = 0;
+
+    if (gettimeofday(&tstart, NULL) == 0) {
+        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+    } else {
+        printf("Error getting start time of function %s\n", __func__);
+    }
+
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     size_t fill;
     uint32_t left;
 
     if (ilen == 0) {
+        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return 0;
     }
 
@@ -669,6 +691,7 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         memcpy((void *) (ctx->buffer + left), input, fill);
 
         if ((ret = mbedtls_internal_sha256_process(ctx, ctx->buffer)) != 0) {
+            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return ret;
         }
 
@@ -681,6 +704,7 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         size_t processed =
             mbedtls_internal_sha256_process_many(ctx, input, ilen);
         if (processed < SHA256_BLOCK_SIZE) {
+            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return MBEDTLS_ERR_ERROR_GENERIC_ERROR;
         }
 
@@ -692,6 +716,17 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         memcpy((void *) (ctx->buffer + left), input, ilen);
     }
 
+    if (gettimeofday(&tend, NULL) == 0) {
+        dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+    } else {
+       printf("Error getting end time of function %s\n", __func__);
+    } 
+
+    diff = dur_end - dur_start;
+    if (diff != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", sha_calls, __func__, diff);
+    sha_calls++;
+    // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
     return 0;
 }
 

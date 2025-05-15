@@ -6,126 +6,35 @@ build version: Mbed TLS 3.6.3 (build 50725632)
   . Loading the client cert. and key... ok (key type: RSA)
   . Setting up the SSL/TLS structure... ok
   . Connecting to tcp/localhost/4433... ok
-  . Performing the SSL/TLS handshake...START 1644, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
-END 1756, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
+  . Performing the SSL/TLS handshake...Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 12691 microseconds
+Duration of call #1 of mbedtls_sha256_update = 5 microseconds
+Duration of call #3 of mbedtls_sha256_update = 4 microseconds
 START mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 267
-START 1644, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
-END 1756, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 9174 microseconds
 END mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 319
-START 671, mbedtls_sha256_update, sha256.c
-END 677, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 405, mbedtls_gcm_starts, gcm.c
-END 473, mbedtls_gcm_starts, gcm.c
-START 597, mbedtls_gcm_update, gcm.c
-END 683, mbedtls_gcm_update, gcm.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-START 405, mbedtls_gcm_starts, gcm.c
-END 473, mbedtls_gcm_starts, gcm.c
-START 597, mbedtls_gcm_update, gcm.c
-END 683, mbedtls_gcm_update, gcm.c
-START 671, mbedtls_sha256_update, sha256.c
-END 719, mbedtls_sha256_update, sha256.c
-mbedtls_rsa_rsassa_pkcs1_v15_verify, rsa.c, 2740
+END 676, mbedtls_sha256_update, sha256.c
+Duration of call #11 of mbedtls_sha256_update = 1 microseconds
+Duration of call #13 of mbedtls_sha256_update = 1 microseconds
+Duration of call #14 of mbedtls_sha256_update = 2 microseconds
+Duration of call #15 of mbedtls_sha256_update = 1 microseconds
+Duration of call #22 of mbedtls_sha256_update = 1 microseconds
+Duration of call #27 of mbedtls_sha256_update = 1 microseconds
+Duration of call #28 of mbedtls_sha256_update = 1 microseconds
+Duration of call #30 of mbedtls_sha256_update = 1 microseconds
+Duration of call #32 of mbedtls_sha256_update = 1 microseconds
+Duration of call #40 of mbedtls_sha256_update = 1 microseconds
+Duration of call #42 of mbedtls_sha256_update = 1 microseconds
+Duration of call #45 of mbedtls_sha256_update = 1 microseconds
+START 392, mbedtls_gcm_starts, gcm.c
+END 460, mbedtls_gcm_starts, gcm.c
+Duration of call #0 of mbedtls_gcm_update = 1 microseconds
+START 392, mbedtls_gcm_starts, gcm.c
+END 460, mbedtls_gcm_starts, gcm.c
+Duration of call #1 of mbedtls_gcm_update = 14 microseconds
+Duration of call #49 of mbedtls_sha256_update = 5 microseconds
+mbedtls_rsa_rsassa_pkcs1_v15_verify, rsa.c, 2793
 mbedtls_rsa_public, rsa.c, 1261
-START 1644, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
-END 1756, mbedtls_mpi_exp_mod_optionally_safe, bignum.c
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 400 microseconds
 
 Verify requested for (Depth 1):
 
