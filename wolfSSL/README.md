@@ -73,10 +73,14 @@ Results
         wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4316
         RsaFunctionPrivate, wolfcrypt/src/rsa.c, 2527
 
+        ToDo: implement rounds > 1.
+
         DSA        
 
     3. Encryption: 
         AES_GCM_encrypt_C, wolfcrypt/src/aes.c, 8563
+
+        ToDo: implement rounds > 1.
     
     4. Hashing: 
         Sha256Update, wolfcrypt/src/sha256.c, 1325

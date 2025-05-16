@@ -170,6 +170,8 @@ Results
         x86_64: CRYPTO_gcm128_encrypt() from crypto/modes/gcm128.c lines 801-824
         Pi 4B: CRYPTO_gcm128_encrypt_ctr32, crypto/modes/gcm128.c
             Refer https://github.com/openssl/openssl/blob/8d2e4d6d8c927f05948e048fcbf62982feaf11b4/crypto/aes/aes_cbc.c#L26
+
+        ToDo: implement rounds > 1.
     
     4. Hashing: 
     

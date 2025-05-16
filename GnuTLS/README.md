@@ -81,6 +81,8 @@ Results
         FFDH
         __gmpz_powm, powm.c, 64 
 
+        ToDo: implement rounds > 1.
+
         ECDH
 
         <!-- nettle_curve25519_mul, curve25519-mul.c, 59
@@ -92,6 +94,8 @@ Results
         nettle_rsa_pss_sha256_sign_digest_tr, rsa-pss-sha256-sign-tr.c, 52
         _nettle_rsa_sec_compute_root_tr, rsa-sign-tr.c, 301
 
+        ToDo: implement rounds > 1.
+
         DSA
 
 
@@ -99,6 +103,8 @@ Results
     
         _gnutls_encrypt, cipher.c, 101
         nettle_gcm_encrypt, gcm.c, 210
+
+        ToDo: implement rounds > 1.
     
     4. Hashing: 
 

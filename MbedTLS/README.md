@@ -110,6 +110,7 @@ Results
         mbedtls_mpi_exp_mod, bignum.c, 1737
         mbedtls_mpi_exp_mod_optionally_safe, bignum.c, 1622
 
+        ToDo: implement rounds > 1.
 
         ECDH 
 
@@ -122,11 +123,15 @@ Results
         rsa_rsassa_pss_sign_no_mode_check, rsa.c, 2122
         mbedtls_rsa_private, rsa.c, 1415
 
+        ToDo: implement rounds > 1.
+
         DSA
 
     3. Encryption:     
 
         mbedtls_gcm_update, gcm.c, 569
+
+        ToDo: implement rounds > 1.
     
     4. Hashing: 
     
