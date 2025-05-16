@@ -33,43 +33,39 @@
    not, see http://www.gnu.org/licenses/.
 */
 
+#include <stdio.h>
+#include <sys/time.h>
+#include <math.h>
+#include <stdint.h>
+
+#define M 1000000
+
+static uint64_t rsa_calls;
+
+// static double get_GM(uint64_t *arr, uint64_t rounds){
+//     double prod = 1;
+//     double root;
+
+//     root = (double)1 / (double)rounds;
+
+//     for (size_t i = 0; i < rounds; i++){
+//         prod *= arr[i];        
+//     }
+
+//     return pow(prod, root);
+// }
+
 #if HAVE_CONFIG_H
 # include "config.h"
 #endif
 
 #include <assert.h>
 
-#include <stdio.h>
-#include <time.h>
-#include <sys/time.h>
-#include <math.h>
-
 #include "gmp-glue.h"
 #include "rsa.h"
 #include "rsa-internal.h"
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
-
-#define M 1000000
-#define ROUNDS 10
-#define DBG
-#define PWR
-
-static double get_GM(uint64_t *arr){
-  double prod = 1;
-  double root;
-  
-  root = (double)1 / (double)ROUNDS;
-  #ifdef DBG  
-      printf("%s: root= %lf\n", __func__, root);
-  #endif
-
-  for (int i = 0; i < ROUNDS; i++){
-      prod *= arr[i];        
-  }
-  
-  return pow(prod, root);
-}
 
 #if NETTLE_USE_MINI_GMP
 /* Blinds m, by computing c = m r^e (mod n), for a random r. Also
@@ -324,11 +320,45 @@ _rsa_sec_compute_root_tr(const struct rsa_public_key *pub,
 			 void *random_ctx, nettle_random_func *random,
 			 mp_limb_t *x, const mp_limb_t *m)
 {
+  // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
+  struct timeval tstart, tend;    
+  uint64_t dur_start, dur_end, rounds;
+  int ret;
+
+  // if (!rsa_calls){
+  //     rounds = 1;
+  //     rsa_calls++;
+  // } else {
+  //     rounds = 50;
+  // }
+  rounds = 1;
+  uint64_t dur[rounds];
+
+  // time_t traw; 
+  // struct tm * timeinfo;   
+  // time(&traw);
+  // timeinfo = localtime(&traw);
+  // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
+
+  for (size_t round = 0; round < 1; round++){
+
+  // mp_int* t_tmp = (mp_int*)XMALLOC(sizeof(mp_int), NULL, DYNAMIC_TYPE_RSA);
+  // XMEMCPY(t_tmp, tmp, sizeof(mp_int));
+
+  dur_start = 0;
+  dur_end = 0;
+
+  if (gettimeofday(&tstart, NULL) == 0) {
+      dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
+  } else {
+      // printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+  }
+
   TMP_GMP_DECL (c, mp_limb_t);
   TMP_GMP_DECL (ri, mp_limb_t);
   TMP_GMP_DECL (scratch, mp_limb_t);
   size_t key_limb_size;
-  int ret;
+  // int ret;
 
   key_limb_size = mpz_size(pub->n);
 
@@ -340,6 +370,7 @@ _rsa_sec_compute_root_tr(const struct rsa_public_key *pub,
   if (mpz_even_p (pub->n) || mpz_even_p (key->p) || mpz_even_p (key->q))
     {
       mpn_zero(x, key_limb_size);
+      printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
       return 0;
     }
 
@@ -362,6 +393,27 @@ _rsa_sec_compute_root_tr(const struct rsa_public_key *pub,
   TMP_GMP_FREE (scratch);
   TMP_GMP_FREE (ri);
   TMP_GMP_FREE (c);
+
+    if (gettimeofday(&tend, NULL) == 0) {
+      dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+  } else {
+      // printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+  }
+
+  dur[round] = dur_end - dur_start;
+  if (dur[round] != 0)
+      printf("Duration of call #%lu of %s = %lu microseconds\n", rsa_calls, __func__, dur[round]);
+  rsa_calls++;
+  // if (round == (rounds - 1)){
+  //     XMEMCPY(t_tmp, tmp, sizeof(mp_int));;   // WRITE FINAL VALUE
+  // }
+  // XFREE(t_tmp, NULL, DYNAMIC_TYPE_RSA);
+  }
+  // printf("Mean execution time of function %s, rounds %lu = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
+  // // time(&traw);
+  // // timeinfo = localtime(&traw);
+  // // printf("Profile end time and date: %s\n", asctime(timeinfo)); 
+    // printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
   return ret;
 }
 
@@ -378,68 +430,22 @@ rsa_compute_root_tr(const struct rsa_public_key *pub,
 		    void *random_ctx, nettle_random_func *random,
 		    mpz_t x, const mpz_t m)
 {
-  printf("This is %s() from %s, line %d\n", __func__, __FILE__, __LINE__);
+  printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+  TMP_GMP_DECL (l, mp_limb_t);
+  mp_size_t nn = mpz_size(pub->n);
   int res;
-  #ifdef PWR
-      time_t traw;
-      struct tm * timeinfo;
-  #endif
-  struct timeval tstart, tend;
-  uint64_t dur[ROUNDS];
 
-  #ifdef PWR
-      time(&traw);
-      timeinfo = localtime(&traw);
-      printf("\nStart time and date: %s\n", asctime(timeinfo));
-  #endif
+  TMP_GMP_ALLOC (l, nn);
+  mpz_limbs_copy(l, m, nn);
 
-  #ifdef DBG
-      printf("Number of rounds: %d\n", ROUNDS);
-  #endif
-  for (int i = 0; i < ROUNDS; i++){
-    uint64_t dur_start, dur_end;
-    
-    if (gettimeofday(&tstart, NULL) == 0) {
-        dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
-    } else {
-        sprintf(stderr,"gettimeofday start %d\n", i);
-    } // START PROFILE
-
-    TMP_GMP_DECL (l, mp_limb_t);
-    mp_size_t nn = mpz_size(pub->n);    
-
-    TMP_GMP_ALLOC (l, nn);
-    mpz_limbs_copy(l, m, nn);
-
-    res = _rsa_sec_compute_root_tr (pub, key, random_ctx, random, l, l);
-    if (res) {
-      mp_limb_t *xp = mpz_limbs_write (x, nn);
-      mpn_copyi (xp, l, nn);
-      mpz_limbs_finish (x, nn);
-    }
-
-    TMP_GMP_FREE (l);
-
-    if (gettimeofday(&tend, NULL) == 0) {
-      dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
-    } else {
-        sprintf(stderr,"gettimeofday end %d\n", i);
-    } // END PROFILE
-
-    dur[i] = dur_end - dur_start;   
-    #ifdef DBG
-        printf("Duration %u = %u microseconds\n", i, dur[i]);   
-    #endif  
+  res = _rsa_sec_compute_root_tr (pub, key, random_ctx, random, l, l);
+  if (res) {
+    mp_limb_t *xp = mpz_limbs_write (x, nn);
+    mpn_copyi (xp, l, nn);
+    mpz_limbs_finish (x, nn);
   }
 
-  printf("Mean execution time of %s = %lf microseconds.\n", __func__, get_GM(dur));
-
-  #ifdef PWR
-    time(&traw);
-    timeinfo = localtime(&traw);
-    printf("End time and date: %s\n", asctime(timeinfo));   
-  #endif
-
+  TMP_GMP_FREE (l);
   return res;
 }
 #endif
