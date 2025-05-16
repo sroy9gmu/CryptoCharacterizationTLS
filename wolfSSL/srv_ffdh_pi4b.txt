@@ -1,0 +1,111 @@
+Duration of call #0 of Sha256Update = 1 microseconds
+Duration of call #8 of Sha256Update = 1 microseconds
+Duration of call #18 of Sha256Update = 1 microseconds
+Duration of call #23 of Sha256Update = 1 microseconds
+Duration of call #24 of Sha256Update = 1 microseconds
+Duration of call #25 of Sha256Update = 1 microseconds
+Duration of call #28 of Sha256Update = 1 microseconds
+Duration of call #29 of Sha256Update = 1 microseconds
+Duration of call #36 of Sha256Update = 1 microseconds
+Duration of call #45 of Sha256Update = 1 microseconds
+Duration of call #46 of Sha256Update = 1 microseconds
+Duration of call #48 of Sha256Update = 1 microseconds
+Duration of call #52 of Sha256Update = 1 microseconds
+Duration of call #55 of Sha256Update = 1 microseconds
+Duration of call #58 of Sha256Update = 1 microseconds
+Duration of call #64 of Sha256Update = 1 microseconds
+Duration of call #66 of Sha256Update = 1 microseconds
+Duration of call #68 of Sha256Update = 14 microseconds
+1302, GeneratePublicDh, wolfcrypt/src/dh.c
+sp_exptmod, wolfcrypt/src/sp_int.c, 14209
+_sp_exptmod_base_2, wolfcrypt/src/sp_int.c, 13822
+Duration of call #72 of Sha256Update = 4 microseconds
+Duration of call #74 of Sha256Update = 3 microseconds
+Duration of call #76 of Sha256Update = 1 microseconds
+Duration of call #78 of Sha256Update = 1 microseconds
+Duration of call #79 of Sha256Update = 10 microseconds
+sp_exptmod, wolfcrypt/src/sp_int.c, 14209
+Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 4993.548417 microseconds.
+Duration of call #80 of Sha256Update = 1 microseconds
+Duration of call #84 of Sha256Update = 1 microseconds
+Duration of call #86 of Sha256Update = 1 microseconds
+Duration of call #87 of Sha256Update = 3 microseconds
+Duration of call #88 of Sha256Update = 1 microseconds
+Duration of call #90 of Sha256Update = 1 microseconds
+Duration of call #94 of Sha256Update = 1 microseconds
+Duration of call #96 of Sha256Update = 1 microseconds
+Duration of call #100 of Sha256Update = 1 microseconds
+Duration of call #102 of Sha256Update = 1 microseconds
+Duration of call #106 of Sha256Update = 1 microseconds
+Duration of call #108 of Sha256Update = 1 microseconds
+Duration of call #114 of Sha256Update = 1 microseconds
+Duration of call #116 of Sha256Update = 1 microseconds
+Duration of call #118 of Sha256Update = 1 microseconds
+Duration of call #121 of Sha256Update = 1 microseconds
+Duration of call #124 of Sha256Update = 1 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #0 of AES_GCM_encrypt_C = 4 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #1 of AES_GCM_encrypt_C = 4 microseconds
+Duration of call #128 of Sha256Update = 17 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #2 of AES_GCM_encrypt_C = 34 microseconds
+Duration of call #129 of Sha256Update = 2 microseconds
+wc_RsaPSS_Sign_ex, wolfcrypt/src/rsa.c, 4393
+Duration of call #133 of Sha256Update = 1 microseconds
+Duration of call #147 of Sha256Update = 1 microseconds
+Duration of call #148 of Sha256Update = 1 microseconds
+Duration of call #156 of Sha256Update = 1 microseconds
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14266
+sp_exptmod, wolfcrypt/src/sp_int.c, 14209
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 16586.000000 microseconds.
+sp_exptmod, wolfcrypt/src/sp_int.c, 14209
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 16612.000000 microseconds.
+Duration of call #0 of RsaFunctionPrivate = 35588 microseconds
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14266
+Duration of call #170 of Sha256Update = 1 microseconds
+Duration of call #171 of Sha256Update = 5 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #3 of AES_GCM_encrypt_C = 18 microseconds
+Duration of call #172 of Sha256Update = 1 microseconds
+Duration of call #178 of Sha256Update = 1 microseconds
+Duration of call #182 of Sha256Update = 1 microseconds
+Duration of call #186 of Sha256Update = 1 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #4 of AES_GCM_encrypt_C = 3 microseconds
+Duration of call #189 of Sha256Update = 1 microseconds
+Duration of call #191 of Sha256Update = 1 microseconds
+Duration of call #193 of Sha256Update = 1 microseconds
+Duration of call #195 of Sha256Update = 1 microseconds
+Duration of call #197 of Sha256Update = 1 microseconds
+Duration of call #200 of Sha256Update = 1 microseconds
+Duration of call #205 of Sha256Update = 1 microseconds
+Duration of call #209 of Sha256Update = 1 microseconds
+Duration of call #211 of Sha256Update = 1 microseconds
+Duration of call #215 of Sha256Update = 1 microseconds
+Duration of call #217 of Sha256Update = 1 microseconds
+Duration of call #221 of Sha256Update = 1 microseconds
+Duration of call #222 of Sha256Update = 1 microseconds
+Duration of call #223 of Sha256Update = 1 microseconds
+Duration of call #227 of Sha256Update = 1 microseconds
+Duration of call #229 of Sha256Update = 1 microseconds
+Duration of call #235 of Sha256Update = 10 microseconds
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14266
+Duration of call #239 of Sha256Update = 1 microseconds
+Duration of call #241 of Sha256Update = 1 microseconds
+Duration of call #247 of Sha256Update = 5 microseconds
+Duration of call #248 of Sha256Update = 16 microseconds
+_sp_exptmod_nct, wolfcrypt/src/sp_int.c, 14266
+Duration of call #251 of Sha256Update = 1 microseconds
+Duration of call #260 of Sha256Update = 1 microseconds
+Duration of call #261 of Sha256Update = 1 microseconds
+Duration of call #262 of Sha256Update = 5 microseconds
+Duration of call #266 of Sha256Update = 1 microseconds
+Duration of call #267 of Sha256Update = 1 microseconds
+SSL version is TLSv1.3
+SSL cipher suite is TLS_AES_128_GCM_SHA256
+SSL curve name is FFDHE_2048
+Client message: hello wolfssl!
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
+Duration of call #5 of AES_GCM_encrypt_C = 3 microseconds
+8745, wc_AesGcmEncrypt, wolfcrypt/src/aes.c
