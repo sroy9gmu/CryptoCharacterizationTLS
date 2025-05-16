@@ -1,0 +1,79 @@
+
+Number of groups: 1
+build version: Mbed TLS 3.6.3 (build 50725632)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the client cert. and key... ok (key type: RSA)
+  . Setting up the SSL/TLS structure... ok
+  . Connecting to tcp/localhost/4433... ok
+  . Performing the SSL/TLS handshake...
+Verify requested for (Depth 1):
+
+Verify requested for (Depth 0):
+ failed
+  ! mbedtls_ssl_handshake returned -0x2700
+    Unable to verify the server's certificate. Either it is invalid,
+    or you didn't set ca_file or ca_path to an appropriate value.
+    Alternatively, you may want to use auth_mode=optional for testing purposes if not using TLS 1.3.
+    For TLS 1.3 server, try `ca_path=/etc/ssl/certs/`or other folder that has root certificates
+  ! The certificate Common Name (CN) does not match with the expected CN
+
+
+Last error was: -0x2700 - X509 - Certificate verification failed, e.g. CRL, CA or signature check failed
+
+sunandaroy@raspberrypi:~/Downloads/CryptoCharacterizationTLS/OpenSSL $ ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+Number of groups: 1
+build version: Mbed TLS 3.6.3 (build 50725632)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the client cert. and key... ok (key type: RSA)
+  . Setting up the SSL/TLS structure... ok
+  . Connecting to tcp/localhost/4433... ok
+  . Performing the SSL/TLS handshake...Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 29060 microseconds
+Duration of call #1 of mbedtls_sha256_update = 8 microseconds
+Duration of call #2 of mbedtls_sha256_update = 1 microseconds
+Duration of call #3 of mbedtls_sha256_update = 6 microseconds
+Duration of call #4 of mbedtls_sha256_update = 1 microseconds
+Duration of call #6 of mbedtls_sha256_update = 1 microseconds
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 29051 microseconds
+mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 300
+END 676, mbedtls_sha256_update, sha256.c
+Duration of call #8 of mbedtls_sha256_update = 1 microseconds
+Duration of call #11 of mbedtls_sha256_update = 1 microseconds
+Duration of call #14 of mbedtls_sha256_update = 2 microseconds
+Duration of call #20 of mbedtls_sha256_update = 1 microseconds
+Duration of call #22 of mbedtls_sha256_update = 1 microseconds
+Duration of call #25 of mbedtls_sha256_update = 1 microseconds
+Duration of call #27 of mbedtls_sha256_update = 1 microseconds
+Duration of call #31 of mbedtls_sha256_update = 1 microseconds
+Duration of call #32 of mbedtls_sha256_update = 1 microseconds
+Duration of call #35 of mbedtls_sha256_update = 1 microseconds
+Duration of call #41 of mbedtls_sha256_update = 1 microseconds
+Duration of call #45 of mbedtls_sha256_update = 1 microseconds
+START 392, mbedtls_gcm_starts, gcm.c
+END 460, mbedtls_gcm_starts, gcm.c
+Duration of call #0 of mbedtls_gcm_update = 2 microseconds
+START 392, mbedtls_gcm_starts, gcm.c
+END 460, mbedtls_gcm_starts, gcm.c
+Duration of call #1 of mbedtls_gcm_update = 29 microseconds
+Duration of call #49 of mbedtls_sha256_update = 8 microseconds
+mbedtls_rsa_rsassa_pkcs1_v15_verify, rsa.c, 2793
+mbedtls_rsa_public, rsa.c, 1261
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 1028 microseconds
+
+Verify requested for (Depth 1):
+
+Verify requested for (Depth 0):
+ failed
+  ! mbedtls_ssl_handshake returned -0x2700
+    Unable to verify the server's certificate. Either it is invalid,
+    or you didn't set ca_file or ca_path to an appropriate value.
+    Alternatively, you may want to use auth_mode=optional for testing purposes if not using TLS 1.3.
+    For TLS 1.3 server, try `ca_path=/etc/ssl/certs/`or other folder that has root certificates
+  ! The certificate Common Name (CN) does not match with the expected CN
+
+
+Last error was: -0x2700 - X509 - Certificate verification failed, e.g. CRL, CA or signature check failed
+

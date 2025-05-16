@@ -178,3 +178,5 @@ Results
         Hash Algorithm: sha256
         crypto/sha/sha256.c:#define HASH_UPDATE             SHA256_Update        
         HASH_UPDATE() from include/crypto/md32_common.h lines 156-214
+        
+        ToDo: divide duration of n rounds by n to get a single round's mean value, and parse all such values.
