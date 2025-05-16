@@ -31,7 +31,13 @@ Issues
 
 Installation
 
-    1.  Nettle
+    1.  GMP
+        cd gmp
+        make
+        sudo make install
+        sudo cp .libs/libgmp* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu/
+    
+        Nettle
         cd nettle
         ./.bootstrap
         ./configure LIBS="-lgmp -lm"
@@ -42,8 +48,8 @@ Installation
     
         GnuTLS
         cd gnutls
-        ./configure  --enable-dhe --disable-hardware-acceleration --enable-fips140-mode
-        ./configure --with-included-libtasn1 --with-included-unistring --without-p11-kit    (for raspbian)
+        ./configure  --enable-dhe --disable-hardware-acceleration --enable-fips140-mode\
+         --with-included-libtasn1 --with-included-unistring --without-p11-kit    (for raspbian)
         make
         sudo make install
 
