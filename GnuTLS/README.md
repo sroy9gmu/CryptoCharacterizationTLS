@@ -33,6 +33,7 @@ Installation
 
     1.  GMP
         cd gmp
+        ./configure
         make
         sudo make install
         sudo cp .libs/libgmp* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu/
