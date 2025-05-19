@@ -26,7 +26,7 @@
 #include <stdint.h>
 
 #define M 1000000
-#define ROUNDS 90
+#define ROUNDS 50
 
 //  static uint64_t bn_calls;
 //  static struct timeval tstart, tend;    
