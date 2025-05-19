@@ -66,27 +66,28 @@
 #include <math.h>
 
 #define M 1000000
-// #define ROUNDS 1
+#define ROUNDS 50
 
 static uint64_t sha_calls;
 static struct timeval tstart, tend;    
 static uint64_t dur_start, dur_end, diff;
+static uint64_t dur[ROUNDS];
 
-// static double get_GM(uint64_t *arr){
-//     double prod = 1;
-//     double root;
+static double get_GM(uint64_t *arr){
+    double prod = 1;
+    double root;
     
-//     root = (double)1 / (double)ROUNDS;
-//     #ifdef DBG  
-//         printf("%s: root= %lf\n", __func__, root);
-//     #endif
+    root = (double)1 / (double)ROUNDS;
+    #ifdef DBG  
+        printf("%s: root= %lf\n", __func__, root);
+    #endif
 
-//     for (int i = 0; i < ROUNDS; i++){
-//         prod *= arr[i];        
-//     }
+    for (int i = 0; i < sha_calls; i++){
+        prod *= arr[i];        
+    }
     
-//     return pow(prod, root);
-// }
+    return pow(prod, root);
+}
 
 #ifndef OSSL_CRYPTO_MD32_COMMON_H
 # define OSSL_CRYPTO_MD32_COMMON_H
@@ -197,6 +198,8 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
     //     memcpy(&c_org, c, sizeof(HASH_CTX));
 
         if(!sha_calls){
+            memset(dur, 0, ROUNDS);
+
             if (gettimeofday(&tstart, NULL) == 0) {
                 dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
             } else {
@@ -246,8 +249,8 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
                 } else {
                     sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
                 } 
-                diff = dur_end - dur_start;
-                printf("Duration for %u calls of %s = %u microseconds\n", sha_calls, __func__, diff);
+                dur[sha_calls] = dur_end - dur_start;
+                printf("Mean execution time of function %s, rounds %u = %lf microseconds.\n", __func__, sha_calls, get_GM(dur));
                 sha_calls = 0;
                 return 1;
                 // prof_ret = 1;
@@ -274,11 +277,12 @@ int HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
             memcpy(p, data, len);
         }
 
-        // if (gettimeofday(&tend, NULL) == 0) {
-        //     dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
-        // } else {
-        //     sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
-        // }
+        if (gettimeofday(&tend, NULL) == 0) {
+            dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
+        } else {
+            sprintf(stderr,"Error getting end time of function %s, round #%d\n", __func__, round);
+        }
+        dur[sha_calls] = dur_end - dur_start;
         sha_calls++;
         return 1;
         // prof_ret = 1;

@@ -28,10 +28,6 @@ def geometric_mean(data):
         print(data)
         raise ValueError("Cannot calculate geometric mean of an empty list.")
     
-    for d in data:
-        if not isinstance(d, int):
-            d = int(float(d))
-
     product = 1
     i_max = 1
     if len(data) > max_cnt:
@@ -128,8 +124,8 @@ def main(infile, outfile):
                 if name in line:
                     line_wds = line.split()
                     wd = line_wds[9]
-                    if wd != 'inf' and wd != '0':
-                        times[name].append(int(float(wd)))
+                    if wd != 'inf' and wd != '0' and wd != '0.000000':
+                        times[name].append(float(wd))
         elif time_str2 in line:
             for name in names:
                 if name in line:
@@ -137,7 +133,7 @@ def main(infile, outfile):
                     wd = line_wds[7]
                     if wd != 'inf' and wd != '0':
                         times[name].append(int(wd))
-
+    print(times)
     for index, (key, value) in enumerate(times.items()):  
         if value != []:      
             times_mean[key] = geometric_mean(value)
