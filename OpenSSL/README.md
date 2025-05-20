@@ -27,6 +27,9 @@ Links
     6. Enable/disable build options:
         https://github.com/openssl/openssl/blob/master/INSTALL.md#enable-and-disable-features
 
+    7. GCM vs CCM:
+        https://crypto.stackexchange.com/questions/6842/how-to-choose-between-aes-ccm-and-aes-gcm-for-storage-volume-encryption
+
 
 Description
 
