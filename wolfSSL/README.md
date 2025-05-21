@@ -13,6 +13,10 @@ Links
     
     3. Example: https://github.com/wolfSSL/wolfssl-examples/tree/master/tls
 
+Issues
+
+    1. https://github.com/wolfSSL/wolfssl/issues/8793
+
 Installation
 
     1. git clone https://github.com/wolfSSL/wolfssl.git
@@ -20,7 +24,9 @@ Installation
     2. ./autogen.sh (for raspbian, sudo apt-get install autoconf libtool)
 
     3. FFDH, RSA-PSS:   
-        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --enable-tls13 --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --disable-aesgcm --disable-aescbc --enable-aesccm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
+
        ECDH, DSA:   
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm
 
