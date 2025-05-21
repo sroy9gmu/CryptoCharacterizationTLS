@@ -65,7 +65,7 @@ Installation
 
     5. sudo make install[_sw]
 
-    6. sudo cp libssl* libcrypto* /lib/<ARCH>-linux-gnu/
+    6. sudo cp lib*so* /lib/<ARCH>-linux-gnu/
 
     7. sudo ldconfig
 
@@ -135,7 +135,7 @@ Steps
 
         FFDH, RSA-PSS:
         /usr/local/bin/openssl s_server -dhparam dh_param.pem -cert rsa_srv_cert.pem -key rsa_srv_pvt.pem\
-         -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256
+         -verifyCAfile rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_CCM_SHA256
         /usr/local/bin/openssl s_client -cert rsa_cli_cert.pem -key rsa_cli_pvt.pem -verifyCAfile\
          rsa_cert.pem -state -trace -tls1_3 -ciphersuites TLS_AES_128_GCM_SHA256 localhost
 
@@ -143,7 +143,7 @@ Steps
         /usr/local/bin/openssl s_server -cert dsa_srv_cert.pem -key dsa_srv_pvt.pem -verifyCAfile\
          dsa_cert.pem -state -trace -no_dhe -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
         /usr/local/bin/openssl s_client -cert dsa_cli_cert.pem -key dsa_cli_pvt.pem -verifyCAfile\
-         dsa_cert.pem -state -trace -no_ssl3 -no_tls1 -no_tls1_1 -no_tls1_2 -ciphersuites TLS_AES_128_GCM_SHA256 -curves "P-256"
+         dsa_cert.pem -state -trace -no_ssl3 -no_tls1 -no_tls1_1 -no_tls1_2 -ciphersuites TLS_AES_128_CCM_SHA256 -curves "P-256"
          
 Results
 

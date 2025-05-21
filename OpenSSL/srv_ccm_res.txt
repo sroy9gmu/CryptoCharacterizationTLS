@@ -1,6 +1,8 @@
 List of crypto algorithms (direct invocation).
-Key Exchange: ecdh_x25519
+Key Exchange: ffdhe2048
 Signature: rsassaPss
 Encryption and Hashing: AES_128_CCM_SHA256
 
 Mean execution time of crypto algorithms (direct invocation).
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 3983.286229517614
+Function name: SHA256_Update, time (microseconds): 1.2539596874350847
