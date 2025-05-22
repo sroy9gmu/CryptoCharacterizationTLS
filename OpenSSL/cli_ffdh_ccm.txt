@@ -1,7 +1,7 @@
 Connecting to 127.0.0.1
 CONNECTED(00000003)
 SSL_connect:before SSL initialization
-Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 100 = inf microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 100 = 1141.956678 microseconds.
 Sent TLS Record
 Header:
   Version = TLS 1.0 (0x301)
@@ -10,9 +10,9 @@ Header:
     ClientHello, Length=406
       client_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0x1E514E0A
-        random_bytes (len=28): 9C6A55B6398E7892A89F784B7F85D1D54B6C9DC8C64D4DAF06A2E8C6
-      session_id (len=32): A962E72D7C7A1821211F1054A44EC5A6B87DA0694920C147178C0883D45B1194
+        gmt_unix_time=0x748BDAC7
+        random_bytes (len=28): 7773C894F631F643CBF9FAA8DC9D6775F19853AD0E426B199EDF5381
+      session_id (len=32): 9630F15CB5BE881663CF86637B833B0636063246A8C0264DB4566B2E16862B45
       cipher_suites (len=2)
         {0x13, 0x04} TLS_AES_128_CCM_SHA256
       compression_methods (len=1)
@@ -43,7 +43,7 @@ Header:
           psk_dhe_ke (1)
         extension_type=key_share(51), length=262
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): 517CE06C004E322A0267C35EA64EBABEE5C27A086EAEAFFE49435033C975A701F3EC776E209264B622781B4B7F27678F704AD31FDA98462F5FD1207359E987AA44D6D16A856B576EAF395DF1DD8F02983D662A62BA8FA79500A794841E70C276D15CA9AFAB70A5BF5B955A7CD1A6B9D23E5CC236F48164433DA167F2D04F358BD58553CD9B075E720C2ED1355203428EED15C3764A4988109B3A6AC5FA66991AFA6D6053D6B88B8C60CA2C3DAE4B6DA5FB52043393748E860387220D846E36333717D531E5DA74F1E66FC19272F7A261161C28BFA095C2479DE162563E3541104BF74DB644A92AE5D2D3EDF35024694197242C3A81B2B24D30DB6CA388D6B5D2
+            key_exchange:  (len=256): 60D3983AE0A35EA2A87795412D4C109A7156C6A39EB2A21322BC09BCECBCC14A99462B3CF5602E66073003320443952A55F05C901CEC7DDFC0C6290141B4C8B41BDEB5ACFA05D66ACEE0EA00683C4EB961AC44A2007084EDA4F9BAAAD2218542640FD44F57364F553D062AEA82F1428520A43BFDD92E70C897D1B1E1553AADC94FAF4D08B12C206E838929F8FF419574F30961A60F95FF8C97A031D6F16B63A88A28644F943BBEA3F3979962091FB9CC332788A4094F6EB71D6EFE8B63DF2D47E623F3DA49F7955848CDE540155A13716FF2FFBD3AF1E4D190B95FABEB934CECA9B42F053EB9D81E9F4538D9E3D8962CFF9C628C307E9782FA9BEDA6F6BF6A42
 
 SSL_connect:SSLv3/TLS write client hello
 Received TLS Record
@@ -55,9 +55,9 @@ SSL_connect:SSLv3/TLS write client hello
     ServerHello, Length=342
       server_version=0x303 (TLS 1.2)
       Random:
-        gmt_unix_time=0xE4964142
-        random_bytes (len=28): F21F04C23134B09ED7583D35136F0DC606DBC068975C4965C70E17CA
-      session_id (len=32): A962E72D7C7A1821211F1054A44EC5A6B87DA0694920C147178C0883D45B1194
+        gmt_unix_time=0x1F912028
+        random_bytes (len=28): 1CB63BDEEEEF5EDE2F69137ACF3C477AD3BF929B549046575098738E
+      session_id (len=32): 9630F15CB5BE881663CF86637B833B0636063246A8C0264DB4566B2E16862B45
       cipher_suite {0x13, 0x04} TLS_AES_128_CCM_SHA256
       compression_method: No Compression (0x00)
       extensions, length = 270
@@ -65,10 +65,10 @@ SSL_connect:SSLv3/TLS write client hello
             TLS 1.3 (772)
         extension_type=key_share(51), length=260
             NamedGroup: ffdhe2048 (256)
-            key_exchange:  (len=256): 79B006B81AF30679F60F38EAC978645B615BFDC1681CD9EA121FF3F3EA51BE6599E45E8C2FF7598AEAFC03C906B363A33F570886243CCE2A033EB2C65B1154489687E3BB7E3EAACD73A1E4C4CF4248EC413C1EB9FACFE4F16A8DAE9F007C6B06EA2EDBC30E870561176B9B3BB8807D47B2DCD035BE88338F3171EA121141F71A29963B7DBB585B47A1F7E0FAAB920561EC428ABA3E69663C02508A9ADFF126CFE411762A3938B0EB0A147146000CA07E07C06556842BEC80B4FD4868CDCA314F2A29C4CAC1F6D1CCB332E29121399858218C648D8D023318F5F27C20F2D688D9B3BFECE512AF1F26A13BD45A6CC84BF210D4B719474C5F51D1DD6F68F6AFEC75
+            key_exchange:  (len=256): D1E4D7571D5313F58D1AE0A48F44788C9F859CC3AD8F3129CFDFCCEDC1B6FC2E7BA930EC171CC7076A08E92BD26D181EF3814E3425A9048950AD71257B0BD623CD6DF92AE44505105541B2AD2827BDFA57F35A64A4B7266A87D7592B7A0383A1AAD459E04C26ACB24A835AD87CBD5019C8E37F5B8963E1841547A74B944FE38BAA6FFE756B2DA1837AA0C18D90373CB2F341CCD9CD60195FDE4738884FED9539BD2E90D1C1A5F0F5D7F5766D1D39DCA8BCFC36A0B993292E6A0516DBDC469A2943C6C923E5E0C54E0D6756070C84D576F1576801DB9B545864C28BBF239A2182CEC9944587E20511DD2688C2C0D92F871C06CDEF81657D40EAA27C40EC109139
 
-Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 1188.000000 microseconds.
-Mean execution time of function SHA256_Update, rounds 7 = 1.211265 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 1326.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 7 = 1.190044 microseconds.
 Mean execution time of function SHA256_Update, rounds 9 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
@@ -220,7 +220,7 @@ zkGY5angVX1YdQa9m5MPnQhBfOgMlZvRl/G4q61Qq74veWsQDCs/fVJ1XQ==
 
 depth=1 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
 verify return:1
-Mean execution time of function SHA256_Update, rounds 3 = 1.399420 microseconds.
+Mean execution time of function SHA256_Update, rounds 3 = 1.410542 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
@@ -233,6 +233,11 @@ Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 depth=0 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+verify error:num=10:certificate has expired
+notAfter=May 21 16:29:27 2025 GMT
+verify return:1
+depth=0 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=sroy9, emailAddress=sroy9@gmu.edu
+notAfter=May 21 16:29:27 2025 GMT
 verify return:1
 Received TLS Record
 Header:
@@ -243,10 +248,10 @@ Header:
 SSL_connect:SSLv3/TLS read server certificate
     CertificateVerify, Length=388
       Signature Algorithm: rsa_pss_rsae_sha256 (0x0804)
-      Signature (len=384): 0457FCA7434A3221617F605826B7774676A776A7AEEA375FAA8BA69B92CF7F83639D6516FAF090DF6ED5454B5368EB5A8E5AB325EB3FFDD955C7CB46C7018D97D6FEEDA8C1C79DB35A2F58AAEE0A2B592F9FB108B05CD490D42D10AA0D609CF5ED3831E9CC5DCBE195F195CC4E92F60DD5A8E12B96BDB3DBBC95435AF9833738C52BFE0AFBD5396F9928CA8680EB620A1B1514898F573688A3314C6B9F2C80B0BB06C4F4DBA7D74610629F4A97DB7F9351ACF1A7028FABA80D553C1067EB235B622A91E37CA8AD558047F9EAD93C08937E19FE9582E83CBB74FD1992269CD5BE1C8BBA4D53FE5A6C29713171042FC727102421F1875395072F5EFD6F288E641C38DA06EF3B2618979DC7506335AE09AE086DFEEAB87CD2AB5E29E942AEFFAAD837C9C876B8D1BD6B0FB5C6BB12D760684E645AB18EED977B07E9BDE89FC9DAA29D021B8A4CEDC658C8A5CECCADEA5A515F60B20188DC8EC23CE7982455F582C8871758B50EAACC157591EA9B5A108A2DA43232B6FBE129D921F3644AA724396A
+      Signature (len=384): 5886650936069D10BCC6D27392CEF9714FADDC3664630229431E93141AA02AA69F151D8D966DA9455B7C4C5FBFFED1FE86FE9EE82F00331B9AE8A95DDCC49CBD263E82DF72268C07E79A2536C82EE6BBAC3169ECE8F22FC98C168B65297690213445B94A9909DC73422B5A9AE631F280BD0F2F44A6AA0A82BF130EC473CE26E0CD2651AA5AAE5146EF890A945C9D9F52527C1BEBA5D6191F878269B5B9222943D6DA643E0F69C4B7851A9FAB14F3EFDA9C78861151C9FF7B16E202145DC65D2AD5FBC1DCB84B19C50688E378AF63F4C771294683BC09373B4A216DED60490D00B02B9E2F8E74923A70BA696CCD49430512B3013E37668E7D975F4131354950B00D6E6821BBC4AE44EDCFF74DF0186433BD63AF47C98C490ECF31982F5595EBF7FABAEC037C575D75D81C909A8FF6956B9F613702CA42802991DB3DE7ACF92038CA5CCFF9A961938FC65A15DFC83AAC221A3A2383B9046E4B6FD4510E7F17A84BEE8E7D7FBA583E2DAB6B87B72163C153720197872161E76C38083B273C638F47
 
-Mean execution time of function SHA256_Update, rounds 4 = 1.411789 microseconds.
-Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 1.452655 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 1.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
@@ -264,9 +269,9 @@ Header:
   Length = 53
   Inner Content Type = Handshake (22)
 SSL_connect:TLSv1.3 read server certificate verify
-Mean execution time of function SHA256_Update, rounds 5 = 1.306404 microseconds.
+Mean execution time of function SHA256_Update, rounds 5 = 0.000000 microseconds.
     Finished, Length=32
-      verify_data (len=32): 3A68A4F7EB01724222AD0A83A38296D170B43E91D8CFEC1E5775BFEED5810862
+      verify_data (len=32): F80BF082BC6B0D20E2523E0F295B343294C54D1061C9C00E4826A5D0CD8629C1
 
 Mean execution time of function SHA256_Update, rounds 3 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 8 = 0.000000 microseconds.
@@ -286,6 +291,8 @@ Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+START CRYPTO_ccm128_encrypt, crypto/modes/ccm128.c, 161
+Mean execution time of function CRYPTO_ccm128_encrypt, rounds 1 = 1.000000 microseconds.
 Sent TLS Record
 Header:
   Version = TLS 1.2 (0x303)
@@ -293,9 +300,9 @@ Header:
   Length = 53
   Inner Content Type = Handshake (22)
     Finished, Length=32
-      verify_data (len=32): 7F26ED527486E6D6B4FB19567A4ADAA7E8F9FDB432B12433958899EF56C0D64E
+      verify_data (len=32): A3A85D5323E5E61F87EA3187122922A4170A3FA067FFAFF5D02BE9A01D3F0BD5
 
-Mean execution time of function SHA256_Update, rounds 9 = 1.572862 microseconds.
+Mean execution time of function SHA256_Update, rounds 9 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
 Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
@@ -347,7 +354,7 @@ Peer signature type: rsa_pss_rsae_sha256
 Peer Temp Key: DH, 2048 bits
 ---
 SSL handshake has read 2231 bytes and written 479 bytes
-Verification: OK
+Verification error: certificate has expired
 ---
 New, TLSv1.3, Cipher is TLS_AES_128_CCM_SHA256
 Protocol: TLSv1.3
@@ -357,7 +364,7 @@ Compression: NONE
 Expansion: NONE
 No ALPN negotiated
 Early data was not sent
-Verify return code: 0 (ok)
+Verify return code: 10 (certificate has expired)
 ---
 Received TLS Record
 Header:
@@ -369,9 +376,9 @@ SSL_connect:SSL negotiation finished successfully
 SSL_connect:SSL negotiation finished successfully
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=1520223488
+        ticket_age_add=2508820261
         ticket_nonce (len=8): 0000000000000000
-        ticket (len=192): 62E871600EF1173F7FC2A0B37C74196C35304650938E682EE23A06D0E28D394F34D846580D769DD44134E816E84B67703484F674AA2B72D216586076528DCBF0DCA00949CB9554B7C90506F1E19DE54085EDBDD75575D510F55BC7CE2EBFE8BE13343D6B7D8C040781FDB02786DA6879B2B30B270B72FD84503FEC182A167A2C885C427FEDB42D954033A15449B606F3C9B2A54873BA814CE012BDE4A05B8F4FA6989B7ED3AD663EC712A1987F00F116427909A905398E567E259D52D6B51C3E
+        ticket (len=192): F3CC101806E7EB29DF960C8D3C2DD5EFFBCE3686D4D6932BE24ECFAA2D5F838321CB362EDF5374A3433AF11045F069E4CD1467505BB6B9A1975274911AD932B5E88DFBCB78472336D15A1BF73328891B73DACA49BF4E8EF6965F28D8E6B39B510E504311EF37B2FA2CA1B070EC786EE6F16E63BEF1FE876A0FA07D6557CE75A86FE7DAE6DA458FA355EB910897CF846466C76695B9A1C40332866DF383E2F170ED81A453D12B858D622A7D2EF2D19F661276DB6975B5D908FEEB7A19D978F0DB
         No extensions
 
 Mean execution time of function SHA256_Update, rounds 5 = 0.000000 microseconds.
@@ -380,30 +387,30 @@ Post-Handshake New Session Ticket arrived:
 SSL-Session:
     Protocol  : TLSv1.3
     Cipher    : TLS_AES_128_CCM_SHA256
-    Session-ID: EA66B4A8A7FB22CD1E5C53D387AC21655D9EE8E2C037BFD5D41B7341AE16FDBC
+    Session-ID: 8221BFC4DA7D37D535A9C4B1638F4DCBB6FC6CCC1B4FDE9B67DC264380C57EED
     Session-ID-ctx: 
-    Resumption PSK: 0AE6E09F49B6FC473FE858AF05E3387CF82706BAB73A93AC22458CA30E68A85B
+    Resumption PSK: C30B5CEB7C825FD09AE703B935B512823A4C107A367E1922314770373DD028A9
     PSK identity: None
     PSK identity hint: None
     SRP username: None
     TLS session ticket lifetime hint: 7200 (seconds)
     TLS session ticket:
-    0000 - 62 e8 71 60 0e f1 17 3f-7f c2 a0 b3 7c 74 19 6c   b.q`...?....|t.l
-    0010 - 35 30 46 50 93 8e 68 2e-e2 3a 06 d0 e2 8d 39 4f   50FP..h..:....9O
-    0020 - 34 d8 46 58 0d 76 9d d4-41 34 e8 16 e8 4b 67 70   4.FX.v..A4...Kgp
-    0030 - 34 84 f6 74 aa 2b 72 d2-16 58 60 76 52 8d cb f0   4..t.+r..X`vR...
-    0040 - dc a0 09 49 cb 95 54 b7-c9 05 06 f1 e1 9d e5 40   ...I..T........@
-    0050 - 85 ed bd d7 55 75 d5 10-f5 5b c7 ce 2e bf e8 be   ....Uu...[......
-    0060 - 13 34 3d 6b 7d 8c 04 07-81 fd b0 27 86 da 68 79   .4=k}......'..hy
-    0070 - b2 b3 0b 27 0b 72 fd 84-50 3f ec 18 2a 16 7a 2c   ...'.r..P?..*.z,
-    0080 - 88 5c 42 7f ed b4 2d 95-40 33 a1 54 49 b6 06 f3   .\B...-.@3.TI...
-    0090 - c9 b2 a5 48 73 ba 81 4c-e0 12 bd e4 a0 5b 8f 4f   ...Hs..L.....[.O
-    00a0 - a6 98 9b 7e d3 ad 66 3e-c7 12 a1 98 7f 00 f1 16   ...~..f>........
-    00b0 - 42 79 09 a9 05 39 8e 56-7e 25 9d 52 d6 b5 1c 3e   By...9.V~%.R...>
+    0000 - f3 cc 10 18 06 e7 eb 29-df 96 0c 8d 3c 2d d5 ef   .......)....<-..
+    0010 - fb ce 36 86 d4 d6 93 2b-e2 4e cf aa 2d 5f 83 83   ..6....+.N..-_..
+    0020 - 21 cb 36 2e df 53 74 a3-43 3a f1 10 45 f0 69 e4   !.6..St.C:..E.i.
+    0030 - cd 14 67 50 5b b6 b9 a1-97 52 74 91 1a d9 32 b5   ..gP[....Rt...2.
+    0040 - e8 8d fb cb 78 47 23 36-d1 5a 1b f7 33 28 89 1b   ....xG#6.Z..3(..
+    0050 - 73 da ca 49 bf 4e 8e f6-96 5f 28 d8 e6 b3 9b 51   s..I.N..._(....Q
+    0060 - 0e 50 43 11 ef 37 b2 fa-2c a1 b0 70 ec 78 6e e6   .PC..7..,..p.xn.
+    0070 - f1 6e 63 be f1 fe 87 6a-0f a0 7d 65 57 ce 75 a8   .nc....j..}eW.u.
+    0080 - 6f e7 da e6 da 45 8f a3-55 eb 91 08 97 cf 84 64   o....E..U......d
+    0090 - 66 c7 66 95 b9 a1 c4 03-32 86 6d f3 83 e2 f1 70   f.f.....2.m....p
+    00a0 - ed 81 a4 53 d1 2b 85 8d-62 2a 7d 2e f2 d1 9f 66   ...S.+..b*}....f
+    00b0 - 12 76 db 69 75 b5 d9 08-fe eb 7a 19 d9 78 f0 db   .v.iu.....z..x..
 
-    Start Time: 1747842729
+    Start Time: 1747924238
     Timeout   : 7200 (sec)
-    Verify return code: 0 (ok)
+    Verify return code: 10 (certificate has expired)
     Extended master secret: no
     Max Early Data: 0
 ---
@@ -419,9 +426,9 @@ SSL_connect:SSL negotiation finished successfully
 SSL_connect:SSL negotiation finished successfully
     NewSessionTicket, Length=213
         ticket_lifetime_hint=7200
-        ticket_age_add=1403455403
+        ticket_age_add=2459835004
         ticket_nonce (len=8): 0000000000000001
-        ticket (len=192): 62E871600EF1173F7FC2A0B37C74196CABA20E141F625A7F586786C8864ED43082380FAD169C813C33EB497D5D9A1869838E71BE800D8BC9EF8BCA64D24F84927CCCB5B92F0FB509BFC1D2C6121032FDC3EFA5067376F282B6B144AA1F0336C8019E508F1B9562F96B6F27C21FE106309CD456FC7273CCCFA7F967299B2F133249F43E2DEAA1CAC4144E56A510DD13B3B7E5181CF722EC1FA89DDCABDE24B2278A1BB6ABEF9914F1B3914FEB8E0E881E7E44401039FC37E20203C792BE0ABCAC
+        ticket (len=192): F3CC101806E7EB29DF960C8D3C2DD5EF1295CFCB163B2CED8128F89AE953606576D4180F56F7510C32DCE8DA906715F8A4B86CBBD1AD6C4DB08CDD7A86B65078E320A3494C764DA01BCC4AECF01882B797B00B7C9681FE41FA3F41A9302B592614B6195B1DC27CDD5E58D18C828FF237053F2DD084495615EB4C2D24FC6E28172967F18A8B1546238DF747B172EEDAB0190DBDA21FCA1A55BCC0372448F773663FC4C6164AFEBA61DC78FBF5AE86E7D62124DE28D03935FB991A8CEDE70DFB31
         No extensions
 
 Mean execution time of function SHA256_Update, rounds 5 = 0.000000 microseconds.
@@ -430,32 +437,34 @@ Post-Handshake New Session Ticket arrived:
 SSL-Session:
     Protocol  : TLSv1.3
     Cipher    : TLS_AES_128_CCM_SHA256
-    Session-ID: 2F06037BAA4A6343A9349B8997B1419FE1F344A08C62A1B25F3A73F6FBAF4A3F
+    Session-ID: 83EA60F2E8C462567F1481FF852C05F9ED436698E17485467233C1FF2FAA216C
     Session-ID-ctx: 
-    Resumption PSK: F86756DA5CE109A31CDD1CF429A321F046AB73BCE3B362D6DD104BE952E5CBE2
+    Resumption PSK: 40118BBEDAFC3899E6961DC552AF9D8AA25C47BC5C0354F10DCA96DF52804557
     PSK identity: None
     PSK identity hint: None
     SRP username: None
     TLS session ticket lifetime hint: 7200 (seconds)
     TLS session ticket:
-    0000 - 62 e8 71 60 0e f1 17 3f-7f c2 a0 b3 7c 74 19 6c   b.q`...?....|t.l
-    0010 - ab a2 0e 14 1f 62 5a 7f-58 67 86 c8 86 4e d4 30   .....bZ.Xg...N.0
-    0020 - 82 38 0f ad 16 9c 81 3c-33 eb 49 7d 5d 9a 18 69   .8.....<3.I}]..i
-    0030 - 83 8e 71 be 80 0d 8b c9-ef 8b ca 64 d2 4f 84 92   ..q........d.O..
-    0040 - 7c cc b5 b9 2f 0f b5 09-bf c1 d2 c6 12 10 32 fd   |.../.........2.
-    0050 - c3 ef a5 06 73 76 f2 82-b6 b1 44 aa 1f 03 36 c8   ....sv....D...6.
-    0060 - 01 9e 50 8f 1b 95 62 f9-6b 6f 27 c2 1f e1 06 30   ..P...b.ko'....0
-    0070 - 9c d4 56 fc 72 73 cc cf-a7 f9 67 29 9b 2f 13 32   ..V.rs....g)./.2
-    0080 - 49 f4 3e 2d ea a1 ca c4-14 4e 56 a5 10 dd 13 b3   I.>-.....NV.....
-    0090 - b7 e5 18 1c f7 22 ec 1f-a8 9d dc ab de 24 b2 27   .....".......$.'
-    00a0 - 8a 1b b6 ab ef 99 14 f1-b3 91 4f eb 8e 0e 88 1e   ..........O.....
-    00b0 - 7e 44 40 10 39 fc 37 e2-02 03 c7 92 be 0a bc ac   ~D@.9.7.........
+    0000 - f3 cc 10 18 06 e7 eb 29-df 96 0c 8d 3c 2d d5 ef   .......)....<-..
+    0010 - 12 95 cf cb 16 3b 2c ed-81 28 f8 9a e9 53 60 65   .....;,..(...S`e
+    0020 - 76 d4 18 0f 56 f7 51 0c-32 dc e8 da 90 67 15 f8   v...V.Q.2....g..
+    0030 - a4 b8 6c bb d1 ad 6c 4d-b0 8c dd 7a 86 b6 50 78   ..l...lM...z..Px
+    0040 - e3 20 a3 49 4c 76 4d a0-1b cc 4a ec f0 18 82 b7   . .ILvM...J.....
+    0050 - 97 b0 0b 7c 96 81 fe 41-fa 3f 41 a9 30 2b 59 26   ...|...A.?A.0+Y&
+    0060 - 14 b6 19 5b 1d c2 7c dd-5e 58 d1 8c 82 8f f2 37   ...[..|.^X.....7
+    0070 - 05 3f 2d d0 84 49 56 15-eb 4c 2d 24 fc 6e 28 17   .?-..IV..L-$.n(.
+    0080 - 29 67 f1 8a 8b 15 46 23-8d f7 47 b1 72 ee da b0   )g....F#..G.r...
+    0090 - 19 0d bd a2 1f ca 1a 55-bc c0 37 24 48 f7 73 66   .......U..7$H.sf
+    00a0 - 3f c4 c6 16 4a fe ba 61-dc 78 fb f5 ae 86 e7 d6   ?...J..a.x......
+    00b0 - 21 24 de 28 d0 39 35 fb-99 1a 8c ed e7 0d fb 31   !$.(.95........1
 
-    Start Time: 1747842729
+    Start Time: 1747924238
     Timeout   : 7200 (sec)
-    Verify return code: 0 (ok)
+    Verify return code: 10 (certificate has expired)
     Extended master secret: no
     Max Early Data: 0
 ---
 SSL_connect:SSLv3/TLS read server session ticket
 read R BLOCK
+
+
