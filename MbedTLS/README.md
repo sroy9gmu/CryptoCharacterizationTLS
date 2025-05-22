@@ -33,7 +33,7 @@ Installation
         Disable below features 
             MBEDTLS_HAVE_ASM 
             MBEDTLS_AESNI_C (on intel platforms)
-            MBEDTLS_CCM_C
+            MBEDTLS_CCM_C / GCM_C
             MBEDTLS_CHACHAPOLY_C
             MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED
             MBEDTLS_KEY_EXCHANGE_RSA_PSK_ENABLED
@@ -66,7 +66,7 @@ Installation
         Set to 0 below macros
             #define PSA_WANT_ALG_CBC_NO_PADDING             0
             #define PSA_WANT_ALG_CBC_PKCS7                  0
-            #define PSA_WANT_ALG_CCM                        0
+            #define PSA_WANT_ALG_CCM / GCM                  0
             #define PSA_WANT_ALG_CCM_STAR_NO_TAG            0
             #define PSA_WANT_ALG_CFB                        0
             #define PSA_WANT_ALG_CHACHA20_POLY1305          0
@@ -93,8 +93,8 @@ Steps
         cd CryptoCharacterizationTLS/OpenSSL
 
         FFDH, RSA-PSS:  
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM/CCM-SHA256
+        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM/CCM-SHA256
 
         ECDH, ECDSA:
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=dsa_cert.pem crt_file=dsa_srv_cert.pem key_file=dsa_srv_pvt.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
@@ -129,7 +129,8 @@ Results
 
     3. Encryption:     
 
-        mbedtls_gcm_update, gcm.c, 569
+        mbedtls_gcm_update, gcm.c
+        mbedtls_ccm_update, ccm.c
 
         ToDo: implement rounds > 1.
     

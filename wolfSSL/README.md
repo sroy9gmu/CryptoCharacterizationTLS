@@ -25,7 +25,7 @@ Installation
 
     3. FFDH, RSA-PSS:   
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
-        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --disable-aesgcm --disable-aescbc --enable-aesccm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_ECC256" --disable-aesgcm --disable-aescbc --enable-aesccm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
 
        ECDH, DSA:   
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm
