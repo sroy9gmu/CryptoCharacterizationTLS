@@ -94,10 +94,12 @@ Steps
 
         FFDH, RSA-PSS:  
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=rsa_cert_mbd.pem crt_file=rsa_srv_cert_mbd.pem key_file=rsa_srv_pvt_mbd.pem dhm_file=dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM/CCM-SHA256
+
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM/CCM-SHA256
 
         ECDH, ECDSA:
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=dsa_cert.pem crt_file=dsa_srv_cert.pem key_file=dsa_srv_pvt.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
+        
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
 
 Results

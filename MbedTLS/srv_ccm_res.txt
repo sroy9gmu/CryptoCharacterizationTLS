@@ -1,0 +1,5 @@
+Mean execution time of crypto algorithms (direct invocation).
+Function name: mbedtls_sha256_update, time (microseconds): 1.2167744544672612
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 3328.724224562878
+Function name: mbedtls_ccm_update, time (microseconds): 2.7355647997347607
+Function name: mbedtls_rsa_private, time (microseconds): 13924.0
