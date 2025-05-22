@@ -44,7 +44,7 @@ Installation
         ./configure LIBS="-lgmp -lm"
         make
         sudo make install
-        sudo cp lib* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
+        sudo cp lib*so* /usr/lib/<TARGET ARCHITECTURE>-linux-gnu
         sudo ldconfig
     
         GnuTLS
@@ -53,14 +53,6 @@ Installation
          --with-included-libtasn1 --with-included-unistring --without-p11-kit    (for raspbian)
         make
         sudo make install
-
-    <!-- 7. Compile:
-        gcc server-x509.c -o server -lgnutls
-        gcc client-x509.c tcp.c -o client -lgnutls
-
-    8. Execute:
-        Start server process in one window:  ./server > server.txt
-        Start client process in another window of same PC: ./client 127.0.0.1 > client.txt  -->
 
 Steps
 
