@@ -8,48 +8,7 @@ sg_algo_g = ''
 en_dg_algo_g = ''
 names = []
 times = {}
-times_mean = {}
-max_cnt = 50
-
-def geometric_mean(data):
-    """
-    Calculate the geometric mean of a list of numbers.
-
-    Args:
-      data: A list of numbers.
-
-    Returns:
-      The geometric mean of the numbers in the list.
-    
-    Raises:
-      ValueError: If the list is empty or contains non-positive numbers.
-    """
-    if not data:
-        print(data)
-        raise ValueError("Cannot calculate geometric mean of an empty list.")
-    
-    product = 1
-    i_max = 1
-    if len(data) > max_cnt:
-        i_max = max_cnt
-    else:
-        i_max = len(data)
-
-    for i in range(i_max):
-        d = data[i]
-        if data[i] <= 0:
-            raise ValueError("All numbers must be positive to calculate geometric mean.")
-        product *= data[i]
-
-    return math.pow(product, 1/i_max)
-
-    # Example usage
-    """ data = [2, 8, 32]
-    try:
-    geo_mean = geometric_mean(data)
-    print(f"The geometric mean is: {geo_mean}")  # Output: 8.0
-    except ValueError as e:
-    print(f"Error: {e}") """
+times_sum = {}
 
 def get_kx_algo(l):
     r = None
@@ -88,8 +47,7 @@ def main(infile, outfile):
     print(f"Output result file: {outfile}")
 
     global kx_algo_g, sg_algo_g, en_dg_algo_g, names, times
-    time_str1 = 'Mean execution time of function'
-    time_str2 = 'Duration for'
+    time_str = 'Mean execution time of function'
 
     with open(infile, "r") as f:
         in_str = f.read()
@@ -109,7 +67,7 @@ def main(infile, outfile):
             if kx_algo_g != '' and sg_algo_g != '' and en_dg_algo_g != '':
                 break
 
-        if time_str1 in line or time_str2 in line:
+        if time_str in line:
             line_wds = line.split()
             name = line_wds[5].rstrip(",")
             if name not in names:
@@ -119,32 +77,30 @@ def main(infile, outfile):
         times[name] = []
 
     for line in in_lines:
-        if time_str1 in line:
+        if time_str in line:
             for name in names:
                 if name in line:
                     line_wds = line.split()
                     wd = line_wds[9]
                     if wd != 'inf' and wd != '0' and wd != '0.000000':
                         times[name].append(float(wd))
-        elif time_str2 in line:
-            for name in names:
-                if name in line:
-                    line_wds = line.split()
-                    wd = line_wds[7]
-                    if wd != 'inf' and wd != '0':
-                        times[name].append(int(wd))
-    print(times)
+
+    total_dur = 0
     for index, (key, value) in enumerate(times.items()):  
-        if value != []:      
-            times_mean[key] = geometric_mean(value)
+        if value != []:  
+            sum_dur = sum(value)    
+            if sum_dur != 0:
+                times_sum[key] = sum_dur
+                total_dur += times_sum[key]
 
     with open(outfile, "w") as f:
         f.write("List of crypto algorithms (direct invocation).\n")
         f.write(f"Key Exchange: {kx_algo_g}\n")
         f.write(f"Signature: {sg_algo_g}\n")
         f.write(f"Encryption and Hashing: {en_dg_algo_g}\n\n")
-        f.write("Mean execution time of crypto algorithms (direct invocation).\n")
-        for index, (key, value) in enumerate(times_mean.items()):
+        f.write(f"Total execution time of all direct invocations: {total_dur}\n")
+        f.write("Breakdown of total execution time (direct invocation).\n")
+        for index, (key, value) in enumerate(times_sum.items()):
             f.write(f"Function name: {key}, time (microseconds): {value}\n")
 
 if __name__ == "__main__":

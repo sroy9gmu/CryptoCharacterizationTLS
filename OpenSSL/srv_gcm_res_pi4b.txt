@@ -3,8 +3,9 @@ Key Exchange: ffdhe2048
 Signature: rsassaPss
 Encryption and Hashing: AES_128_GCM_SHA256
 
-Mean execution time of crypto algorithms (direct invocation).
-Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 15796.404738606723
-Function name: SHA256_Update, time (microseconds): 1.5818459937199916
-Function name: CRYPTO_gcm128_encrypt, time (microseconds): 5.419749242188225
+Total execution time of all direct invocations: 1723045.422554
+Breakdown of total execution time (direct invocation).
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 1688307.0
+Function name: SHA256_Update, time (microseconds): 16.156222
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 58.0
 Function name: rsa_ossl_private_encrypt, time (microseconds): 34664.266332
