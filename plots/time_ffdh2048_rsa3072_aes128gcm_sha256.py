@@ -44,7 +44,10 @@ ax.grid(axis='y', linestyle='--') # Add horizontal grid lines
 data = []
 row_labels = []
 for index, (key, value) in enumerate(times.items()):
-    data.append(list(value))
+    tmp = list(value)
+    for i in range(len(tmp)):
+        tmp[i] = "{:,.2f}".format(tmp[i])
+    data.append(tmp)
     row_labels.append(key)
 col_labels = algos
 
