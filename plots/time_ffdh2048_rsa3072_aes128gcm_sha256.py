@@ -62,7 +62,7 @@ col_labels = algos
 fig, ax = plt.subplots()
 ax.axis('off')  # Hide the axes
 table = plt.table(cellText=data, colLabels=col_labels, rowLabels=row_labels, loc='center')
-table.scale(1, 2) # Adjust table size
+table.scale(1, 1.5) # Adjust table size
 
 table.auto_set_font_size(False) # Disable autosizing
 # table.set_fontsize(12) # Set font size
