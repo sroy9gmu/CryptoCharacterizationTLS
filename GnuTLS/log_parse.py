@@ -50,10 +50,10 @@ def main(infile, outfile):
                 total_dur += dur_sum
 
     with open(outfile, "w") as f:
-        f.write(f"Total execution time of all direct invocations: {total_dur}\n")
+        f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
-            f.write(f"Function name: {key}, time (microseconds): {value}\n")
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")
         f.write(f"Key Exchange: \n")
