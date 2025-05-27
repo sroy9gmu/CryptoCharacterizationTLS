@@ -10,6 +10,13 @@ names = []
 times = {}
 times_sum = {}
 
+ssl_kwds = ['before SSL initialization', 'read client hello', 'write server hello', 'write change cipher spec',\
+             'write encrypted extensions', 'write certificate', 'write server certificate verify', 'write finished',\
+                 'early data', 'read finished', 'write session ticket']
+times_ssl = {}
+times_sum_ssl = {}
+kwd_dbg = 'bn_mod_exp_mont_fixed_top'
+
 def get_kx_algo(l):
     r = None
     w_l = l.split(' ')
@@ -93,21 +100,46 @@ def main(infile, outfile):
                 times_sum[key] = sum_dur
                 total_dur += times_sum[key]    
 
+    for wd in ssl_kwds:
+        times_ssl[wd] = []
+
+    cnt = 0
+    cnt_max = len(ssl_kwds) - 1
+    for line in in_lines:
+        kwd = ssl_kwds[cnt]
+        if kwd in line and cnt < cnt_max:
+            cnt += 1
+        elif time_str in line and kwd_dbg in line:
+            line_wds = line.split()
+            wd = line_wds[9]
+            if wd != 'inf' and wd != '0' and wd != '0.000000':
+                times_ssl[kwd].append(float(wd))
+
+    for index, (key, value) in enumerate(times_ssl.items()):  
+        if value != []:  
+            sum_dur = sum(value)    
+            if sum_dur != 0:
+                times_sum_ssl[key] = sum_dur
+
     with open(outfile, "w") as f:
         f.write("List of crypto algorithms (direct invocation).\n")
         f.write(f"Key Exchange: {kx_algo_g}\n")
         f.write(f"Signature: {sg_algo_g}\n")
         f.write(f"Encryption and Hashing: {en_dg_algo_g}\n\n")
-        f.write(f"Total execution time of all direct invocations: {total_dur}\n")
+        f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
-            f.write(f"Function name: {key}, time (microseconds): {value}\n")
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")
-        f.write(f"Key Exchange: \n")
-        f.write(str(times['bn_mod_exp_mont_fixed_top']))
-        s = "{:,.2f}".format(times_sum['bn_mod_exp_mont_fixed_top'])
-        f.write(f"\ntotal duration = {s} microseconds\n")
+        
+        f.write(f"Breakdown of total execution time of {kwd_dbg}.\n")
+        for index, (key, value) in enumerate(times_sum_ssl.items()):
+            v = "{:,.2f}".format(value)
+            f.write(f"SSL state: {key}, time (microseconds): {v}\n")
+        f.write(f"\nList of execution times of {kwd_dbg}\n")
+        for index, (key, value) in enumerate(times_ssl.items()):
+            f.write(f"SSL state: {key}, time (microseconds): {value}\n")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
