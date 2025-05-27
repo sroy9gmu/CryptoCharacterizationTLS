@@ -91,7 +91,7 @@ def main(infile, outfile):
             sum_dur = sum(value)    
             if sum_dur != 0:
                 times_sum[key] = sum_dur
-                total_dur += times_sum[key]
+                total_dur += times_sum[key]    
 
     with open(outfile, "w") as f:
         f.write("List of crypto algorithms (direct invocation).\n")
@@ -102,6 +102,12 @@ def main(infile, outfile):
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
             f.write(f"Function name: {key}, time (microseconds): {value}\n")
+
+        f.write("\n**************Debug**************\n")
+        f.write(f"Key Exchange: \n")
+        f.write(str(times['bn_mod_exp_mont_fixed_top']))
+        s = "{:,.2f}".format(times_sum['bn_mod_exp_mont_fixed_top'])
+        f.write(f"\ntotal duration = {s} microseconds\n")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

@@ -4,3 +4,8 @@ Function name: mbedtls_sha256_update, time (microseconds): 76.0
 Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 94037.0
 Function name: mbedtls_gcm_update, time (microseconds): 45.0
 Function name: mbedtls_rsa_private, time (microseconds): 42559.0
+
+**************Debug**************
+Key Exchange: 
+[29079.0, 29078.0, 3205.0, 14789.0, 14834.0, 3052.0]
+total duration = 94,037.00 microseconds

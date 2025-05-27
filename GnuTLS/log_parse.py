@@ -55,6 +55,12 @@ def main(infile, outfile):
         for index, (key, value) in enumerate(times_sum.items()):
             f.write(f"Function name: {key}, time (microseconds): {value}\n")
 
+        f.write("\n**************Debug**************\n")
+        f.write(f"Key Exchange: \n")
+        f.write(str(times['_nettle_rsa_sec_compute_root_tr']))
+        s = "{:,.2f}".format(times_sum['_nettle_rsa_sec_compute_root_tr'])
+        f.write(f"\ntotal duration = {s} microseconds\n")            
+
             
 if __name__ == "__main__":
     if len(sys.argv) != 3:
