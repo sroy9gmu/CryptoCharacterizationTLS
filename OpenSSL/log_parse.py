@@ -104,16 +104,17 @@ def main(infile, outfile):
         times_ssl[wd] = []
 
     cnt = 0
-    cnt_max = len(ssl_kwds) - 1
-    for line in in_lines:
-        kwd = ssl_kwds[cnt]
-        if kwd in line and cnt < cnt_max:
-            cnt += 1
-        elif time_str in line and kwd_dbg in line:
+    cnt_max = len(ssl_kwds) - 2
+    kwd = ssl_kwds[cnt]
+    for line in in_lines:        
+        if time_str in line and kwd_dbg in line:
             line_wds = line.split()
             wd = line_wds[9]
             if wd != 'inf' and wd != '0' and wd != '0.000000':
-                times_ssl[kwd].append(float(wd))
+                times_ssl[kwd].append(float(wd))                
+        elif ssl_kwds[cnt + 1] in line and cnt < cnt_max:
+            cnt += 1
+            kwd = ssl_kwds[cnt]
 
     for index, (key, value) in enumerate(times_ssl.items()):  
         if value != []:  

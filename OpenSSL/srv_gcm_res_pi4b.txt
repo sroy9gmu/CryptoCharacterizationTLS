@@ -12,17 +12,17 @@ Function name: rsa_ossl_private_encrypt, time (microseconds): 34,664.27
 
 **************Debug**************
 Breakdown of total execution time of bn_mod_exp_mont_fixed_top.
-SSL state: write server hello, time (microseconds): 4,704.00
-SSL state: write server certificate verify, time (microseconds): 1,683,603.00
+SSL state: read client hello, time (microseconds): 4,704.00
+SSL state: write certificate, time (microseconds): 1,683,603.00
 
 List of execution times of bn_mod_exp_mont_fixed_top
 SSL state: before SSL initialization, time (microseconds): []
-SSL state: read client hello, time (microseconds): []
-SSL state: write server hello, time (microseconds): [4704.0]
+SSL state: read client hello, time (microseconds): [4704.0]
+SSL state: write server hello, time (microseconds): []
 SSL state: write change cipher spec, time (microseconds): []
 SSL state: write encrypted extensions, time (microseconds): []
-SSL state: write certificate, time (microseconds): []
-SSL state: write server certificate verify, time (microseconds): [3043.0, 16774.0, 16758.0, 16807.0, 16774.0, 16779.0, 16782.0, 16810.0, 16775.0, 16761.0, 16762.0, 16760.0, 16758.0, 16765.0, 16763.0, 16756.0, 16760.0, 16753.0, 16765.0, 16757.0, 16758.0, 16768.0, 16757.0, 16759.0, 16762.0, 16757.0, 16763.0, 16764.0, 16776.0, 16758.0, 16759.0, 16766.0, 16764.0, 16765.0, 16765.0, 16774.0, 16760.0, 16758.0, 16764.0, 16759.0, 16767.0, 16764.0, 16766.0, 16759.0, 16760.0, 16758.0, 16776.0, 16763.0, 16762.0, 16763.0, 16760.0, 16757.0, 16758.0, 16756.0, 16769.0, 16757.0, 16766.0, 16982.0, 16797.0, 16755.0, 16770.0, 16759.0, 16763.0, 16766.0, 16766.0, 3010.0, 16808.0, 16799.0, 16782.0, 16790.0, 16781.0, 16787.0, 16788.0, 16793.0, 16778.0, 16787.0, 16785.0, 16785.0, 16779.0, 16792.0, 16776.0, 16785.0, 16781.0, 16791.0, 16776.0, 16785.0, 16787.0, 16786.0, 16779.0, 16789.0, 16777.0, 16786.0, 16782.0, 16790.0, 16779.0, 16788.0, 16775.0, 16802.0, 16777.0, 16793.0, 16844.0, 16794.0]
+SSL state: write certificate, time (microseconds): [3043.0, 16774.0, 16758.0, 16807.0, 16774.0, 16779.0, 16782.0, 16810.0, 16775.0, 16761.0, 16762.0, 16760.0, 16758.0, 16765.0, 16763.0, 16756.0, 16760.0, 16753.0, 16765.0, 16757.0, 16758.0, 16768.0, 16757.0, 16759.0, 16762.0, 16757.0, 16763.0, 16764.0, 16776.0, 16758.0, 16759.0, 16766.0, 16764.0, 16765.0, 16765.0, 16774.0, 16760.0, 16758.0, 16764.0, 16759.0, 16767.0, 16764.0, 16766.0, 16759.0, 16760.0, 16758.0, 16776.0, 16763.0, 16762.0, 16763.0, 16760.0, 16757.0, 16758.0, 16756.0, 16769.0, 16757.0, 16766.0, 16982.0, 16797.0, 16755.0, 16770.0, 16759.0, 16763.0, 16766.0, 16766.0, 3010.0, 16808.0, 16799.0, 16782.0, 16790.0, 16781.0, 16787.0, 16788.0, 16793.0, 16778.0, 16787.0, 16785.0, 16785.0, 16779.0, 16792.0, 16776.0, 16785.0, 16781.0, 16791.0, 16776.0, 16785.0, 16787.0, 16786.0, 16779.0, 16789.0, 16777.0, 16786.0, 16782.0, 16790.0, 16779.0, 16788.0, 16775.0, 16802.0, 16777.0, 16793.0, 16844.0, 16794.0]
+SSL state: write server certificate verify, time (microseconds): []
 SSL state: write finished, time (microseconds): []
 SSL state: early data, time (microseconds): []
 SSL state: read finished, time (microseconds): []

@@ -636,7 +636,7 @@ int bn_mod_exp_mont_fixed_top(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
     struct timeval tstart, tend;    
     uint64_t dur_start, dur_end, diff, rounds;
     if (!bn_calls){
-        rounds = 100;
+        rounds = 50;
         bn_calls++;
     } else {
         rounds = 1;
