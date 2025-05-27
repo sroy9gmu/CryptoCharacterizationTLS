@@ -1,0 +1,16 @@
+List of crypto algorithms (direct invocation).
+Key Exchange: FFDHE_2048
+Signature: RsaPSS
+Encryption and Hashing: AES_128_GCM_SHA256
+
+Total execution time of all direct invocations: 74,006.55
+Breakdown of total execution time (direct invocation).
+Function name: Sha256Update, time (microseconds): 161.00
+Function name: _sp_exptmod_mont_ex, time (microseconds): 38,191.55
+Function name: AES_GCM_encrypt_C, time (microseconds): 66.00
+Function name: RsaFunctionPrivate, time (microseconds): 35,588.00
+
+**************Debug**************
+Key Exchange: 
+[4993.548417, 16586.0, 16612.0]
+total duration = 38,191.55 microseconds
