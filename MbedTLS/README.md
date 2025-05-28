@@ -112,7 +112,9 @@ Results
         mbedtls_mpi_exp_mod, bignum.c, 1737
         mbedtls_mpi_exp_mod_optionally_safe, bignum.c, 1622
 
-        ToDo: implement rounds > 1.
+        ToDo: 
+        1. implement rounds > 1
+        2. show ssl state breakdown
 
         ECDH 
 

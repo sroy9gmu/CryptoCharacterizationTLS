@@ -155,6 +155,8 @@ Results
         NamedGroup: ffdhe2048 (256)
         bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c lines 615-1161
 
+        ToDo: why so many mod-exps happening for signing?
+
         ECDH
         NamedGroup: secp256r1 (P-256) (23)
         key_exchange:  (len=65)

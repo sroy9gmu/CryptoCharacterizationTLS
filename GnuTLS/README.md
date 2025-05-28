@@ -74,7 +74,9 @@ Results
         FFDH
         __gmpz_powm, powm.c, 64 
 
-        ToDo: implement rounds > 1.
+        ToDo: 
+        1. implement rounds > 1
+        2. show ssl state breakdown
 
         ECDH
 
