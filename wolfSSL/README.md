@@ -24,15 +24,26 @@ Installation
     2. ./autogen.sh (for raspbian, sudo apt-get install autoconf libtool)
 
     3. FFDH, RSA-PSS:   
-        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DWOLFSSL_SP_NO_256" --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_ECC256" --enable-aesgcm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_ECC256" --disable-aesgcm --disable-aescbc --enable-aesccm --enable-aesctr --enable-tls13 --enable-rsapss LIBS=-lm
 
        ECDH, DSA:   
-        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm
+        ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm      
 
-    4. make
+    4. In Makefile, remove '-Wunused-variable' from CFLAGS
 
-    5. sudo make install
+        In wolfssl/wolfcrypt/test/test.c, undefine HAVE_ECC where it checks for it
+            #undef HAVE_ECC
+            #if defined(HAVE_ECC)
+
+            #undef HAVE_ECC
+            #ifdef HAVE_ECC
+
+            #undef HAVE_ECC
+            #ifdef HAVE_ECC          
+ 
+    5. make
+        sudo make install
 
 Security Parameters
 
@@ -94,3 +105,4 @@ Results
         Sha256Update, wolfcrypt/src/sha256.c, 1325
 
 
+wolfssl/src/tls13.c
