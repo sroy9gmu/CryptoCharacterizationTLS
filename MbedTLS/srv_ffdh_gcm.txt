@@ -9,59 +9,79 @@ build version: Mbed TLS 3.6.3 (build 50725632)
   . Bind on tcp://*:4433/ ... ok
   . Waiting for a remote connection ... ok
   . Performing the SSL/TLS handshake...
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_process_client_hello, ssl_tls13_server.c, 1951
 Duration of call #1 of mbedtls_sha256_update = 5 microseconds
-Duration of call #2 of mbedtls_sha256_update = 1 microseconds
-Duration of call #4 of mbedtls_sha256_update = 1 microseconds
-Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 12209 microseconds
-Duration of call #7 of mbedtls_sha256_update = 3 microseconds
+Duration of call #5 of mbedtls_sha256_update = 1 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_server_hello, ssl_tls13_server.c, 2420
+Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 11083 microseconds
+Duration of call #7 of mbedtls_sha256_update = 2 microseconds
 START mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 267
-Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 9694 microseconds
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 11585 microseconds
 END mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 319
 END 676, mbedtls_sha256_update, sha256.c
 Duration of call #8 of mbedtls_sha256_update = 1 microseconds
 Duration of call #14 of mbedtls_sha256_update = 2 microseconds
+Duration of call #15 of mbedtls_sha256_update = 1 microseconds
+Duration of call #17 of mbedtls_sha256_update = 1 microseconds
 Duration of call #20 of mbedtls_sha256_update = 1 microseconds
-Duration of call #25 of mbedtls_sha256_update = 1 microseconds
-Duration of call #30 of mbedtls_sha256_update = 1 microseconds
-Duration of call #32 of mbedtls_sha256_update = 1 microseconds
+Duration of call #27 of mbedtls_sha256_update = 1 microseconds
 Duration of call #35 of mbedtls_sha256_update = 1 microseconds
 Duration of call #37 of mbedtls_sha256_update = 1 microseconds
 Duration of call #40 of mbedtls_sha256_update = 1 microseconds
-Duration of call #41 of mbedtls_sha256_update = 1 microseconds
-Duration of call #45 of mbedtls_sha256_update = 1 microseconds
+Duration of call #42 of mbedtls_sha256_update = 1 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+mbedtls_ssl_tls13_write_change_cipher_spec, ssl_tls13_generic.c, 1277
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_encrypted_extensions, ssl_tls13_server.c, 2614
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
 Duration of call #0 of mbedtls_gcm_update = 1 microseconds
-Duration of call #50 of mbedtls_sha256_update = 8 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_certificate_request, ssl_tls13_server.c, 2750
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_server_certificate, ssl_tls13_server.c, 2796
+Duration of call #50 of mbedtls_sha256_update = 11 microseconds
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
-Duration of call #1 of mbedtls_gcm_update = 13 microseconds
+Duration of call #1 of mbedtls_gcm_update = 15 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_certificate_verify, ssl_tls13_server.c, 2823
 2203, rsa_rsassa_pss_sign_no_mode_check, rsa.c
-Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 901 microseconds
-Duration of call #3 of mbedtls_mpi_exp_mod_optionally_safe = 4717 microseconds
-Duration of call #4 of mbedtls_mpi_exp_mod_optionally_safe = 5186 microseconds
-Duration of call #5 of mbedtls_mpi_exp_mod_optionally_safe = 982 microseconds
-Duration of call #0 of mbedtls_rsa_private = 14454 microseconds
-Duration of call #51 of mbedtls_sha256_update = 1 microseconds
-Duration of call #52 of mbedtls_sha256_update = 3 microseconds
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 2885 microseconds
+Duration of call #3 of mbedtls_mpi_exp_mod_optionally_safe = 7343 microseconds
+Duration of call #4 of mbedtls_mpi_exp_mod_optionally_safe = 5537 microseconds
+Duration of call #5 of mbedtls_mpi_exp_mod_optionally_safe = 1049 microseconds
+Duration of call #0 of mbedtls_rsa_private = 21265 microseconds
+Duration of call #52 of mbedtls_sha256_update = 4 microseconds
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
 Duration of call #2 of mbedtls_gcm_update = 5 microseconds
-Duration of call #53 of mbedtls_sha256_update = 1 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
+ssl_tls13_write_server_finished, ssl_tls13_server.c, 2892
 Duration of call #56 of mbedtls_sha256_update = 1 microseconds
+Duration of call #57 of mbedtls_sha256_update = 1 microseconds
 Duration of call #58 of mbedtls_sha256_update = 1 microseconds
-Duration of call #60 of mbedtls_sha256_update = 1 microseconds
+Duration of call #63 of mbedtls_sha256_update = 1 microseconds
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
-Duration of call #3 of mbedtls_gcm_update = 6 microseconds
+Duration of call #3 of mbedtls_gcm_update = 1 microseconds
 END 676, mbedtls_sha256_update, sha256.c
-Duration of call #64 of mbedtls_sha256_update = 1 microseconds
+Duration of call #67 of mbedtls_sha256_update = 1 microseconds
 Duration of call #69 of mbedtls_sha256_update = 1 microseconds
 Duration of call #71 of mbedtls_sha256_update = 1 microseconds
 Duration of call #73 of mbedtls_sha256_update = 1 microseconds
+Duration of call #76 of mbedtls_sha256_update = 1 microseconds
+Duration of call #78 of mbedtls_sha256_update = 1 microseconds
+Duration of call #81 of mbedtls_sha256_update = 1 microseconds
+Duration of call #83 of mbedtls_sha256_update = 1 microseconds
+Duration of call #86 of mbedtls_sha256_update = 1 microseconds
 Duration of call #88 of mbedtls_sha256_update = 1 microseconds
 Duration of call #92 of mbedtls_sha256_update = 1 microseconds
-Duration of call #106 of mbedtls_sha256_update = 1 microseconds
+Duration of call #98 of mbedtls_sha256_update = 1 microseconds
+Duration of call #101 of mbedtls_sha256_update = 1 microseconds
+mbedtls_ssl_handshake_set_state, ssl_misc.h, 1339
  failed
   ! mbedtls_ssl_handshake returned -0x50
 

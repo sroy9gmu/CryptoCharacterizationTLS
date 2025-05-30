@@ -1,6 +1,20 @@
-Total execution time of all direct invocations: 48213.0
+Total execution time of all direct invocations: 60,820.00
 Breakdown of total execution time (direct invocation).
-Function name: mbedtls_sha256_update, time (microseconds): 45.0
-Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 33689.0
-Function name: mbedtls_gcm_update, time (microseconds): 25.0
-Function name: mbedtls_rsa_private, time (microseconds): 14454.0
+Function name: mbedtls_sha256_update, time (microseconds): 51.00
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 39,482.00
+Function name: mbedtls_gcm_update, time (microseconds): 22.00
+Function name: mbedtls_rsa_private, time (microseconds): 21,265.00
+
+**************Debug**************
+Breakdown of total execution time of mbedtls_mpi_exp_mod_optionally_safe.
+SSL state: write server hello, time (microseconds): 22,668.00
+SSL state: write certificate verify, time (microseconds): 16,814.00
+
+List of execution times of mbedtls_mpi_exp_mod_optionally_safe
+SSL state: process client hello, time (microseconds): []
+SSL state: write server hello, time (microseconds): [11083.0, 11585.0]
+SSL state: write encrypted extensions, time (microseconds): []
+SSL state: write certificate request, time (microseconds): []
+SSL state: write server certificate, time (microseconds): []
+SSL state: write certificate verify, time (microseconds): [2885.0, 7343.0, 5537.0, 1049.0]
+SSL state: write server finished, time (microseconds): []

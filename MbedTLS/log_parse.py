@@ -6,6 +6,14 @@ names = []
 times = {}
 times_sum = {}
 
+pat = r'ssl_tls13'
+ssl_kwds = ['process client hello', 'write server hello',\
+             'write encrypted extensions', 'write certificate request', 'write server certificate',\
+                  'write certificate verify', 'write server finished']
+times_ssl = {}
+times_sum_ssl = {}
+kwd_dbg = 'mbedtls_mpi_exp_mod_optionally_safe'
+
 def main(infile, outfile):
     """
     This is the main function.
@@ -49,6 +57,33 @@ def main(infile, outfile):
                 times_sum[key] = dur_sum
                 total_dur += dur_sum
 
+    for wd in ssl_kwds:
+        times_ssl[wd] = []
+
+    cnt = 0
+    cnt_max = len(ssl_kwds) - 2
+    kwd = ssl_kwds[cnt]
+    for line in in_lines: 
+        line_wds = line.split()
+        if len(line_wds) > 0:            
+            if time_str in line and kwd_dbg in line:            
+                wd = line_wds[7]
+                if wd != 'inf' and wd != '0' and wd != '0.000000':
+                    print(kwd)
+                    times_ssl[kwd].append(float(wd))                
+            elif re.match(pat, line_wds[0]) != None:
+                tmp = line_wds[0].split('_',2)[2].replace('_', ' ').rstrip(',')  
+                print(tmp, ssl_kwds[cnt + 1], cnt)              
+                if re.match(tmp, ssl_kwds[cnt + 1]) != None and cnt < cnt_max:
+                    cnt += 1
+                    kwd = ssl_kwds[cnt]
+
+    for index, (key, value) in enumerate(times_ssl.items()):  
+        if value != []:  
+            sum_dur = sum(value)    
+            if sum_dur != 0:
+                times_sum_ssl[key] = sum_dur
+
     with open(outfile, "w") as f:
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
@@ -56,11 +91,14 @@ def main(infile, outfile):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")
-        f.write(f"Key Exchange: \n")
-        f.write(str(times['mbedtls_mpi_exp_mod_optionally_safe']))
-        s = "{:,.2f}".format(times_sum['mbedtls_mpi_exp_mod_optionally_safe'])
-        f.write(f"\ntotal duration = {s} microseconds\n")            
-
+        
+        f.write(f"Breakdown of total execution time of {kwd_dbg}.\n")
+        for index, (key, value) in enumerate(times_sum_ssl.items()):
+            v = "{:,.2f}".format(value)
+            f.write(f"SSL state: {key}, time (microseconds): {v}\n")
+        f.write(f"\nList of execution times of {kwd_dbg}\n")
+        for index, (key, value) in enumerate(times_ssl.items()):
+            f.write(f"SSL state: {key}, time (microseconds): {value}\n")          
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

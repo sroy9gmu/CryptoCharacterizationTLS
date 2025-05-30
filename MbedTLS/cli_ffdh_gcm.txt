@@ -6,35 +6,31 @@ build version: Mbed TLS 3.6.3 (build 50725632)
   . Loading the client cert. and key... ok (key type: RSA)
   . Setting up the SSL/TLS structure... ok
   . Connecting to tcp/localhost/4433... ok
-  . Performing the SSL/TLS handshake...Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 12691 microseconds
+  . Performing the SSL/TLS handshake...Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 14502 microseconds
 Duration of call #1 of mbedtls_sha256_update = 5 microseconds
-Duration of call #3 of mbedtls_sha256_update = 4 microseconds
+Duration of call #3 of mbedtls_sha256_update = 3 microseconds
+Duration of call #4 of mbedtls_sha256_update = 1 microseconds
+Duration of call #6 of mbedtls_sha256_update = 1 microseconds
 START mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 267
-Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 9174 microseconds
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 15747 microseconds
 END mbedtls_psa_ffdh_key_agreement, psa_crypto_ffdh.c, 319
 END 676, mbedtls_sha256_update, sha256.c
 Duration of call #11 of mbedtls_sha256_update = 1 microseconds
-Duration of call #13 of mbedtls_sha256_update = 1 microseconds
-Duration of call #14 of mbedtls_sha256_update = 2 microseconds
-Duration of call #15 of mbedtls_sha256_update = 1 microseconds
+Duration of call #14 of mbedtls_sha256_update = 1 microseconds
 Duration of call #22 of mbedtls_sha256_update = 1 microseconds
-Duration of call #27 of mbedtls_sha256_update = 1 microseconds
-Duration of call #28 of mbedtls_sha256_update = 1 microseconds
-Duration of call #30 of mbedtls_sha256_update = 1 microseconds
 Duration of call #32 of mbedtls_sha256_update = 1 microseconds
 Duration of call #40 of mbedtls_sha256_update = 1 microseconds
 Duration of call #42 of mbedtls_sha256_update = 1 microseconds
-Duration of call #45 of mbedtls_sha256_update = 1 microseconds
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
 Duration of call #0 of mbedtls_gcm_update = 1 microseconds
 START 392, mbedtls_gcm_starts, gcm.c
 END 460, mbedtls_gcm_starts, gcm.c
-Duration of call #1 of mbedtls_gcm_update = 14 microseconds
-Duration of call #49 of mbedtls_sha256_update = 5 microseconds
+Duration of call #1 of mbedtls_gcm_update = 13 microseconds
+Duration of call #49 of mbedtls_sha256_update = 4 microseconds
 mbedtls_rsa_rsassa_pkcs1_v15_verify, rsa.c, 2793
 mbedtls_rsa_public, rsa.c, 1261
-Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 400 microseconds
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 356 microseconds
 
 Verify requested for (Depth 1):
 
@@ -45,6 +41,7 @@ Verify requested for (Depth 0):
     or you didn't set ca_file or ca_path to an appropriate value.
     Alternatively, you may want to use auth_mode=optional for testing purposes if not using TLS 1.3.
     For TLS 1.3 server, try `ca_path=/etc/ssl/certs/`or other folder that has root certificates
+  ! The certificate validity has expired
   ! The certificate Common Name (CN) does not match with the expected CN
 
 
