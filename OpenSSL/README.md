@@ -10,7 +10,10 @@ Links
         1.1 Specification: https://datatracker.ietf.org/doc/html/rfc8446 
         1.2 Usage: https://wiki.openssl.org/index.php/TLS1.3
 
-    2. Key Exchange: https://wiki.openssl.org/index.php/EVP_Key_Agreement
+    2. Key Exchange: 
+    
+        2.1 Direct invocation: https://wiki.openssl.org/index.php/EVP_Key_Agreement
+        2.2 Description: https://wiki.openssl.org/index.php/Diffie_Hellman
 
     3. Signing: 
     
@@ -109,14 +112,11 @@ Steps
         openssl req -newkey dsa:dsa_param.pem -nodes -days 365000 -keyout dsa_srv_pvt.pem -out dsa_srv_req.pem
         openssl req -newkey dsa:dsa_param.pem -nodes -days 365000 -keyout dsa_cli_pvt.pem -out dsa_cli_req.pem
 
-    4. Generate the X509 certificate for the server:
+    4. Generate the X509 certificate for the server (may need regeneration):
 
         RSA-PSS: 
         openssl req -in rsa_srv_req.pem -out rsa_srv_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
         openssl req -in rsa_cli_req.pem -out rsa_cli_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
-        MbedTLS only:
-        openssl req -in rsa_srv_req_mbd.pem -out rsa_srv_cert_mbd.pem -verify -x509 -CA rsa_cert_mbd.pem -CAkey rsa_pvt_mbd.pem
-        openssl req -in rsa_cli_req_mbd.pem -out rsa_cli_cert_mbd.pem -verify -x509 -CA rsa_cert_mbd.pem -CAkey rsa_pvt_mbd.pem
 
         DSA: 
         openssl req -in dsa_srv_req.pem -out dsa_srv_cert.pem -verify -x509 -CA dsa_cert.pem -CAkey dsa_pvt.pem
