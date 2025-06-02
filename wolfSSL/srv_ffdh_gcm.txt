@@ -1,3 +1,8 @@
+server_test, examples/server/server.c, 1555
+GeneratePublicDh, wolfcrypt/src/dh.c, 1302, 2048
+wolfSSL_accept_TLSv13, src/tls13.c, 14205
+
+**************************************************************
 2706, ProcessFile, ./src/ssl_load.c
 2706, ProcessFile, ./src/ssl_load.c
 1422, ProcessBufferPrivateKey, ./src/ssl_load.c
