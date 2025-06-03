@@ -14,6 +14,7 @@ Links
     
         2.1 Direct invocation: https://wiki.openssl.org/index.php/EVP_Key_Agreement
         2.2 Description: https://wiki.openssl.org/index.php/Diffie_Hellman
+        2.3 https://stackoverflow.com/questions/58220445/how-to-generate-a-certificate-with-dh-parameters
 
     3. Signing: 
     
