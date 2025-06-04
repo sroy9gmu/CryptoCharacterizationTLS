@@ -156,7 +156,8 @@ Results
         NamedGroup: ffdhe2048 (256)
         bn_mod_exp_mont_fixed_top, crypto/bn/bn_exp.c lines 615-1161
 
-        ToDo: why so many mod-exps happening for signing?
+        ToDo: why so many mod-exps happening for signing? 
+                check for primality test/ generating key each session/ other crypto libraries' implementation differences
 
         ECDH
         NamedGroup: secp256r1 (P-256) (23)
