@@ -2,23 +2,24 @@ Read Diffie-Hellman parameters.
 Processed 1 CA certificate(s).
 Duration of call #0 of nettle_sha256_update = 1 microseconds
 nettle_rsa_compute_root_tr, rsa-sign-tr.c, 433
-Duration of call #0 of _nettle_rsa_sec_compute_root_tr = 5607 microseconds
+Duration of call #0 of _nettle_rsa_sec_compute_root_tr = 5682 microseconds
 Duration of call #1 of nettle_sha256_update = 1 microseconds
-Duration of call #0 of __gmpz_powm = 71 microseconds
+Duration of call #0 of __gmpz_powm = 81 microseconds
 gnutls_session_ticket_key_generate, session_ticket.c, 540
 HTTP Server listening on IPv4 0.0.0.0 port 5556...done
 HTTP Server listening on IPv6 :: port 5556...done
 
-* Accepted connection from IPv4 127.0.0.1 port 37432 on Thu May 15 22:04:59 202
+* Accepted connection from IPv4 127.0.0.1 port 56758 on Wed Jun  4 11:30:14 202
 gnutls_handshake, handshake.c, 2892
 read_client_hello, handshake.c, 661, 0
-Duration of call #1 of __gmpz_powm = 2322 microseconds
+Duration of call #1 of __gmpz_powm = 3101 microseconds
 _wrap_nettle_pk_derive, pk.c, 301, 3
-Duration of call #2 of __gmpz_powm = 2174 microseconds
+Duration of call #2 of __gmpz_powm = 2309 microseconds
 _wrap_nettle_pk_derive, pk.c, 345, 0
 _wrap_nettle_pk_derive, pk.c, 366, 2048
-Duration of call #3 of __gmpz_powm = 2188 microseconds
+Duration of call #3 of __gmpz_powm = 2227 microseconds
 Duration of call #2 of nettle_sha256_update = 1 microseconds
+Duration of call #3 of nettle_sha256_update = 1 microseconds
 read_client_hello, handshake.c, 903, 0
 handshake_server, handshake.c, 3516, 0
 handshake_server, handshake.c, 3531, 0
@@ -26,59 +27,63 @@ handshake_server, handshake.c, 3537, 0
 handshake_server, handshake.c, 3544, 0
 _gnutls_encrypt, cipher.c, 101
 _gnutls_encrypt, cipher.c, 101
-Duration of call #6 of nettle_sha256_update = 1 microseconds
+Duration of call #7 of nettle_sha256_update = 1 microseconds
 generate_hs_traffic_keys, handshake-tls13.c, 305, 0
+Duration of call #10 of nettle_sha256_update = 1 microseconds
 Duration of call #11 of nettle_sha256_update = 1 microseconds
-Duration of call #12 of nettle_sha256_update = 1 microseconds
+Duration of call #12 of nettle_sha256_update = 2 microseconds
 _gnutls13_handshake_server, handshake-tls13.c, 419, 0
 _tls13_connection_state_init, constate.c, 1216
 _tls13_set_keys, constate.c, 408, 0
-Duration of call #14 of nettle_sha256_update = 2 microseconds
+Duration of call #14 of nettle_sha256_update = 4 microseconds
 Duration of call #15 of nettle_sha256_update = 1 microseconds
 Duration of call #16 of nettle_sha256_update = 1 microseconds
 _tls13_set_keys, constate.c, 436, 0
 Duration of call #19 of nettle_sha256_update = 1 microseconds
-Duration of call #27 of nettle_sha256_update = 3 microseconds
+Duration of call #23 of nettle_sha256_update = 1 microseconds
+Duration of call #27 of nettle_sha256_update = 5 microseconds
+Duration of call #29 of nettle_sha256_update = 1 microseconds
 Duration of call #33 of nettle_sha256_update = 1 microseconds
 Duration of call #37 of nettle_sha256_update = 1 microseconds
 _tls13_init_record_state, constate.c, 1299
 _tls13_init_record_state, constate.c, 1299
-Duration of call #40 of nettle_sha256_update = 8 microseconds
+_gnutls13_send_certificate, tls13/certificate.c, 221
+_gnutls13_send_certificate_verify, tls13/certificate_verify.c, 152
+Duration of call #40 of nettle_sha256_update = 13 microseconds
 Duration of call #41 of nettle_sha256_update = 1 microseconds
 START nettle_rsa_pss_sha256_sign_digest_tr, rsa-pss-sha256-sign-tr.c, 52
-Duration of call #43 of nettle_sha256_update = 1 microseconds
 nettle_rsa_compute_root_tr, rsa-sign-tr.c, 433
-Duration of call #1 of _nettle_rsa_sec_compute_root_tr = 5296 microseconds
+Duration of call #1 of _nettle_rsa_sec_compute_root_tr = 6756 microseconds
 END nettle_rsa_pss_sha256_sign_digest_tr, rsa-pss-sha256-sign-tr.c, 65
 _gnutls13_handshake_server, handshake-tls13.c, 446, 0
 Duration of call #45 of nettle_sha256_update = 1 microseconds
-Duration of call #49 of nettle_sha256_update = 10 microseconds
-Duration of call #50 of nettle_sha256_update = 1 microseconds
+Duration of call #49 of nettle_sha256_update = 18 microseconds
 Duration of call #51 of nettle_sha256_update = 1 microseconds
 _gnutls_encrypt, cipher.c, 101
 Duration of call #0 of nettle_gcm_encrypt = 2 microseconds
 _gnutls_encrypt, cipher.c, 101
 _gnutls_encrypt, cipher.c, 101
-Duration of call #3 of nettle_gcm_encrypt = 4 microseconds
+Duration of call #3 of nettle_gcm_encrypt = 3 microseconds
 _gnutls_encrypt, cipher.c, 101
-Duration of call #5 of nettle_gcm_encrypt = 2 microseconds
 _gnutls_encrypt, cipher.c, 101
-Duration of call #55 of nettle_sha256_update = 1 microseconds
-Duration of call #58 of nettle_sha256_update = 1 microseconds
-Duration of call #62 of nettle_sha256_update = 13 microseconds
+Duration of call #54 of nettle_sha256_update = 1 microseconds
+Duration of call #62 of nettle_sha256_update = 17 microseconds
 Duration of call #64 of nettle_sha256_update = 1 microseconds
 _tls13_write_connection_state_init, constate.c, 1270
 _tls13_set_keys, constate.c, 408, 1
-Duration of call #67 of nettle_sha256_update = 16 microseconds
-Duration of call #68 of nettle_sha256_update = 1 microseconds
+Duration of call #67 of nettle_sha256_update = 18 microseconds
+Duration of call #69 of nettle_sha256_update = 1 microseconds
 _tls13_set_keys, constate.c, 436, 0
-Duration of call #72 of nettle_sha256_update = 1 microseconds
 Duration of call #73 of nettle_sha256_update = 1 microseconds
+Duration of call #76 of nettle_sha256_update = 1 microseconds
 Duration of call #80 of nettle_sha256_update = 17 microseconds
+Duration of call #81 of nettle_sha256_update = 1 microseconds
 Duration of call #86 of nettle_sha256_update = 1 microseconds
+Duration of call #89 of nettle_sha256_update = 1 microseconds
 Duration of call #90 of nettle_sha256_update = 1 microseconds
 _tls13_init_record_state, constate.c, 1299
 _tls13_init_record_state, constate.c, 1299
+_gnutls13_recv_certificate, tls13/certificate.c, 42
 gnutls_handshake, handshake.c, 2897
 * Received alert '42': Certificate is bad.
 Error in handshake: A TLS fatal alert has been received.

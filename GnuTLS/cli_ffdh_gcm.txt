@@ -2,13 +2,13 @@ Processed 1 CA certificate(s).
 Processed 1 client X.509 certificates...
 Resolving '127.0.0.1:5556'...
 Connecting to '127.0.0.1:5556'...
-Duration of call #0 of __gmpz_powm = 3450 microseconds
+Duration of call #0 of __gmpz_powm = 2227 microseconds
 _gnutls_encrypt, cipher.c, 111
 _wrap_nettle_pk_derive, pk.c, 301, 3
-Duration of call #1 of __gmpz_powm = 3047 microseconds
+Duration of call #1 of __gmpz_powm = 4015 microseconds
 _wrap_nettle_pk_derive, pk.c, 345, 0
 _wrap_nettle_pk_derive, pk.c, 366, 2048
-Duration of call #2 of __gmpz_powm = 3056 microseconds
+Duration of call #2 of __gmpz_powm = 3260 microseconds
 Duration of call #0 of nettle_sha256_update = 1 microseconds
 _gnutls_encrypt, cipher.c, 101
 generate_hs_traffic_keys, handshake-tls13.c, 305, 0
@@ -16,32 +16,26 @@ Duration of call #9 of nettle_sha256_update = 1 microseconds
 Duration of call #10 of nettle_sha256_update = 2 microseconds
 _tls13_connection_state_init, constate.c, 1216
 _tls13_set_keys, constate.c, 408, 0
-Duration of call #12 of nettle_sha256_update = 5 microseconds
-Duration of call #13 of nettle_sha256_update = 1 microseconds
+Duration of call #12 of nettle_sha256_update = 4 microseconds
 _tls13_set_keys, constate.c, 436, 0
-Duration of call #23 of nettle_sha256_update = 1 microseconds
-Duration of call #25 of nettle_sha256_update = 3 microseconds
-Duration of call #26 of nettle_sha256_update = 1 microseconds
-Duration of call #27 of nettle_sha256_update = 1 microseconds
-Duration of call #29 of nettle_sha256_update = 1 microseconds
-Duration of call #31 of nettle_sha256_update = 1 microseconds
-Duration of call #33 of nettle_sha256_update = 1 microseconds
-Duration of call #34 of nettle_sha256_update = 1 microseconds
-Duration of call #35 of nettle_sha256_update = 1 microseconds
-Duration of call #36 of nettle_sha256_update = 1 microseconds
+Duration of call #22 of nettle_sha256_update = 1 microseconds
+Duration of call #25 of nettle_sha256_update = 2 microseconds
+Duration of call #30 of nettle_sha256_update = 1 microseconds
 _tls13_init_record_state, constate.c, 1299
 _tls13_init_record_state, constate.c, 1299
 - Successfully sent 1 certificate(s) to server.
-Duration of call #38 of nettle_sha256_update = 12 microseconds
+_gnutls13_recv_certificate, tls13/certificate.c, 42
+_gnutls13_recv_certificate_verify, tls13/certificate_verify.c, 45
+Duration of call #38 of nettle_sha256_update = 8 microseconds
 Duration of call #39 of nettle_sha256_update = 1 microseconds
-Duration of call #3 of __gmpz_powm = 65 microseconds
-Duration of call #43 of nettle_sha256_update = 5 microseconds
+Duration of call #3 of __gmpz_powm = 43 microseconds
+Duration of call #43 of nettle_sha256_update = 4 microseconds
 - Server has requested a certificate.
 - Certificate type: X.509
 - Got a certificate list of 1 certificates.
 - Certificate[0] info:
  - Duration of call #44 of nettle_sha256_update = 1 microseconds
-Duration of call #45 of nettle_sha256_update = 3 microseconds
+Duration of call #45 of nettle_sha256_update = 2 microseconds
 subject `EMAIL=sroy9@gmu.edu,CN=sroy9,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', issuer `EMAIL=sroy9@gmu.edu,CN=sroy9,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', serial 0x0f8e6143a95aeb157844f482c408975d28bfa4da, RSA key 3072 bits, signed using RSA-PSS-SHA256, activated `2025-04-21 16:29:27 UTC', expires `2025-05-21 16:29:27 UTC', pin-sha256="WllURgnneYsE3WUT/BV1VyTqY9zHySN7vp9SnC0zA34="
         Public Key ID:
                 sha1:ee574beb7c94cd75c42bc1e196510a28cadef42c
@@ -50,11 +44,10 @@ subject `EMAIL=sroy9@gmu.edu,CN=sroy9,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', issuer
                 pin-sha256:WllURgnneYsE3WUT/BV1VyTqY9zHySN7vp9SnC0zA34=
 
 Duration of call #46 of nettle_sha256_update = 3 microseconds
-Duration of call #4 of __gmpz_powm = 60 microseconds
+Duration of call #4 of __gmpz_powm = 42 microseconds
 Duration of call #49 of nettle_sha256_update = 2 microseconds
-- Status: The certificate is NOT trusted. The name in the certificate does not match the expected. 
+- Status: The certificate is NOT trusted. The certificate chain uses expired certificate. The name in the certificate does not match the expected. 
 *** PKI verification of server certificate failed...
 gnutls_handshake, handshake.c, 2897
 *** Fatal error: Error in the certificate.
 _gnutls_encrypt, cipher.c, 101
-Duration of call #0 of nettle_gcm_encrypt = 1 microseconds
