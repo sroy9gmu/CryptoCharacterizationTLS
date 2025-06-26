@@ -10,6 +10,12 @@ Function name: SHA256_Update, time (microseconds): 11.24
 Function name: CRYPTO_gcm128_encrypt, time (microseconds): 60.00
 Function name: rsa_ossl_private_encrypt, time (microseconds): 34,626.81
 
+Execution time of each direct invocation.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 15,821.53
+Function name: SHA256_Update, time (microseconds): 1.23
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 5.09
+Function name: rsa_ossl_private_encrypt, time (microseconds): 34,626.81
+
 **************Debug**************
 Breakdown of total execution time of bn_mod_exp_mont_fixed_top.
 SSL state: read client hello, time (microseconds): 9,355.60

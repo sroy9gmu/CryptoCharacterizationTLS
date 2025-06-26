@@ -1,6 +1,7 @@
 import sys
 import re
 import math
+from statistics import geometric_mean
 
 kwds_algo = ['NamedGroup', 'Signature Algorithm', 'CIPHER is'] # Key exchange, signature, encryption and hashing
 kx_algo_g = ''
@@ -9,6 +10,7 @@ en_dg_algo_g = ''
 names = []
 times = {}
 times_sum = {}
+times_mean = {}
 
 ssl_kwds = ['before SSL initialization', 'read client hello', 'write server hello', 'write change cipher spec',\
              'write encrypted extensions', 'write certificate', 'write server certificate verify', 'write finished',\
@@ -95,9 +97,10 @@ def main(infile, outfile):
     total_dur = 0
     for index, (key, value) in enumerate(times.items()):  
         if value != []:  
-            sum_dur = sum(value)    
+            sum_dur = sum(value)
             if sum_dur != 0:
                 times_sum[key] = sum_dur
+                times_mean[key] = geometric_mean(value)
                 total_dur += times_sum[key]    
 
     for wd in ssl_kwds:
@@ -130,6 +133,9 @@ def main(infile, outfile):
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
+        f.write("\nExecution time of each direct invocation.\n")
+        for index, (key, value) in enumerate(times_mean.items()):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")

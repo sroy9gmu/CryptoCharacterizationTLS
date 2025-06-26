@@ -5,6 +5,12 @@ Function name: _nettle_rsa_sec_compute_root_tr, time (microseconds): 54,453.00
 Function name: __gmpz_powm, time (microseconds): 52,094.00
 Function name: nettle_gcm_encrypt, time (microseconds): 86.00
 
+Execution time of each direct invocation.
+Function name: nettle_sha256_update, time (microseconds): 1.90
+Function name: _nettle_rsa_sec_compute_root_tr, time (microseconds): 27,226.12
+Function name: __gmpz_powm, time (microseconds): 6,616.34
+Function name: nettle_gcm_encrypt, time (microseconds): 3.41
+
 **************Debug**************
 Key Exchange: 
 [27371.0, 27082.0]

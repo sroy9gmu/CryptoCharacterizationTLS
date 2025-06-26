@@ -5,7 +5,21 @@ Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 94,037.
 Function name: mbedtls_gcm_update, time (microseconds): 45.00
 Function name: mbedtls_rsa_private, time (microseconds): 42,559.00
 
+Execution time of each direct invocation.
+Function name: mbedtls_sha256_update, time (microseconds): 1.25
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 11,043.98
+Function name: mbedtls_gcm_update, time (microseconds): 6.11
+Function name: mbedtls_rsa_private, time (microseconds): 42,559.00
+
 **************Debug**************
-Key Exchange: 
-[29079.0, 29078.0, 3205.0, 14789.0, 14834.0, 3052.0]
-total duration = 94,037.00 microseconds
+Breakdown of total execution time of mbedtls_mpi_exp_mod_optionally_safe.
+SSL state: process client hello, time (microseconds): 94,037.00
+
+List of execution times of mbedtls_mpi_exp_mod_optionally_safe
+SSL state: process client hello, time (microseconds): [29079.0, 29078.0, 3205.0, 14789.0, 14834.0, 3052.0]
+SSL state: write server hello, time (microseconds): []
+SSL state: write encrypted extensions, time (microseconds): []
+SSL state: write certificate request, time (microseconds): []
+SSL state: write server certificate, time (microseconds): []
+SSL state: write certificate verify, time (microseconds): []
+SSL state: write server finished, time (microseconds): []

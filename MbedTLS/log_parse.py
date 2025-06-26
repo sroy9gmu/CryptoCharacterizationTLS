@@ -1,10 +1,12 @@
 import sys
 import re
 import math
+from statistics import geometric_mean
 
 names = []
 times = {}
 times_sum = {}
+times_mean = {}
 
 pat = r'ssl_tls13'
 ssl_kwds = ['process client hello', 'write server hello',\
@@ -55,6 +57,7 @@ def main(infile, outfile):
             dur_sum = sum(value)  
             if dur_sum != 0:   
                 times_sum[key] = dur_sum
+                times_mean[key] = geometric_mean(value)
                 total_dur += dur_sum
 
     for wd in ssl_kwds:
@@ -69,11 +72,9 @@ def main(infile, outfile):
             if time_str in line and kwd_dbg in line:            
                 wd = line_wds[7]
                 if wd != 'inf' and wd != '0' and wd != '0.000000':
-                    print(kwd)
                     times_ssl[kwd].append(float(wd))                
             elif re.match(pat, line_wds[0]) != None:
-                tmp = line_wds[0].split('_',2)[2].replace('_', ' ').rstrip(',')  
-                print(tmp, ssl_kwds[cnt + 1], cnt)              
+                tmp = line_wds[0].split('_',2)[2].replace('_', ' ').rstrip(',')         
                 if re.match(tmp, ssl_kwds[cnt + 1]) != None and cnt < cnt_max:
                     cnt += 1
                     kwd = ssl_kwds[cnt]
@@ -88,6 +89,9 @@ def main(infile, outfile):
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
+        f.write("\nExecution time of each direct invocation.\n")
+        for index, (key, value) in enumerate(times_mean.items()):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")

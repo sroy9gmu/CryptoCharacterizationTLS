@@ -10,6 +10,12 @@ Function name: _sp_exptmod_mont_ex, time (microseconds): 38,191.55
 Function name: AES_GCM_encrypt_C, time (microseconds): 66.00
 Function name: RsaFunctionPrivate, time (microseconds): 35,588.00
 
+Execution time of each direct invocation.
+Function name: Sha256Update, time (microseconds): 1.32
+Function name: _sp_exptmod_mont_ex, time (microseconds): 11,122.21
+Function name: AES_GCM_encrypt_C, time (microseconds): 6.67
+Function name: RsaFunctionPrivate, time (microseconds): 35,588.00
+
 **************Debug**************
 Key Exchange: 
 [4993.548417, 16586.0, 16612.0]

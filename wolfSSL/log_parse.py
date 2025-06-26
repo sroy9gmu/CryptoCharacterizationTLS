@@ -1,6 +1,7 @@
 import sys
 import re
 import math
+from statistics import geometric_mean
 
 kwds_algo = ['curve name', 'Sign_ex', 'cipher suite'] # Key exchange, signature, encryption and hashing
 kx_algo_g = ''
@@ -9,6 +10,7 @@ en_dg_algo_g = ''
 names = []
 times = {}
 times_sum = {}
+times_mean = {}
 
 def get_kx_algo(l):
     r = None
@@ -100,6 +102,7 @@ def main(infile, outfile):
             dur_sum = sum(value)  
             if dur_sum != 0:   
                 times_sum[key] = dur_sum
+                times_mean[key] = geometric_mean(value)
                 total_dur += dur_sum
 
     with open(outfile, "w") as f:
@@ -110,6 +113,9 @@ def main(infile, outfile):
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
         f.write("Breakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
+        f.write("\nExecution time of each direct invocation.\n")
+        for index, (key, value) in enumerate(times_mean.items()):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")
