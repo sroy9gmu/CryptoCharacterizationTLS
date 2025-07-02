@@ -6,6 +6,7 @@ from statistics import geometric_mean
 names = []
 times = {}
 times_sum = {}
+times_cnt = {}
 times_mean = {}
 
 pat = r'ssl_tls13'
@@ -57,6 +58,7 @@ def main(infile, outfile):
             dur_sum = sum(value)  
             if dur_sum != 0:   
                 times_sum[key] = dur_sum
+                times_cnt[key] = len(value)
                 times_mean[key] = geometric_mean(value)
                 total_dur += dur_sum
 
@@ -87,8 +89,11 @@ def main(infile, outfile):
 
     with open(outfile, "w") as f:
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
-        f.write("Breakdown of total execution time (direct invocation).\n")
+        f.write("\nBreakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
+        f.write("\nNumber of direct invocations.\n")
+        for index, (key, value) in enumerate(times_cnt.items()):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
         f.write("\nExecution time of each direct invocation.\n")
         for index, (key, value) in enumerate(times_mean.items()):

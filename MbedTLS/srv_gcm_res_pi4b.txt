@@ -1,9 +1,16 @@
 Total execution time of all direct invocations: 136,717.00
+
 Breakdown of total execution time (direct invocation).
 Function name: mbedtls_sha256_update, time (microseconds): 76.00
 Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 94,037.00
 Function name: mbedtls_gcm_update, time (microseconds): 45.00
 Function name: mbedtls_rsa_private, time (microseconds): 42,559.00
+
+Number of direct invocations.
+Function name: mbedtls_sha256_update, time (microseconds): 42.00
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 6.00
+Function name: mbedtls_gcm_update, time (microseconds): 4.00
+Function name: mbedtls_rsa_private, time (microseconds): 1.00
 
 Execution time of each direct invocation.
 Function name: mbedtls_sha256_update, time (microseconds): 1.25

@@ -4,11 +4,18 @@ Signature: rsassaPss
 Encryption and Hashing: AES_128_GCM_SHA256
 
 Total execution time of all direct invocations: 1,725,770.64
+
 Breakdown of total execution time (direct invocation).
 Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 1,691,072.60
 Function name: SHA256_Update, time (microseconds): 11.24
 Function name: CRYPTO_gcm128_encrypt, time (microseconds): 60.00
 Function name: rsa_ossl_private_encrypt, time (microseconds): 34,626.81
+
+Number of direct invocations.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 104.00
+Function name: SHA256_Update, time (microseconds): 9.00
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 6.00
+Function name: rsa_ossl_private_encrypt, time (microseconds): 1.00
 
 Execution time of each direct invocation.
 Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 15,821.53

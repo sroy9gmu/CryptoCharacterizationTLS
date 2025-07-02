@@ -10,6 +10,7 @@ en_dg_algo_g = ''
 names = []
 times = {}
 times_sum = {}
+times_cnt = {}
 times_mean = {}
 
 ssl_kwds = ['before SSL initialization', 'read client hello', 'write server hello', 'write change cipher spec',\
@@ -100,6 +101,7 @@ def main(infile, outfile):
             sum_dur = sum(value)
             if sum_dur != 0:
                 times_sum[key] = sum_dur
+                times_cnt[key] = len(value)
                 times_mean[key] = geometric_mean(value)
                 total_dur += times_sum[key]    
 
@@ -131,8 +133,11 @@ def main(infile, outfile):
         f.write(f"Signature: {sg_algo_g}\n")
         f.write(f"Encryption and Hashing: {en_dg_algo_g}\n\n")
         f.write(f"Total execution time of all direct invocations: {"{:,.2f}".format(total_dur)}\n")
-        f.write("Breakdown of total execution time (direct invocation).\n")
+        f.write("\nBreakdown of total execution time (direct invocation).\n")
         for index, (key, value) in enumerate(times_sum.items()):
+            f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
+        f.write("\nNumber of direct invocations.\n")
+        for index, (key, value) in enumerate(times_cnt.items()):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
         f.write("\nExecution time of each direct invocation.\n")
         for index, (key, value) in enumerate(times_mean.items()):

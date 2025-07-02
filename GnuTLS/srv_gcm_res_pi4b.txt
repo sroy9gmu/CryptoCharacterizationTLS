@@ -1,9 +1,16 @@
 Total execution time of all direct invocations: 106,800.00
+
 Breakdown of total execution time (direct invocation).
 Function name: nettle_sha256_update, time (microseconds): 167.00
 Function name: _nettle_rsa_sec_compute_root_tr, time (microseconds): 54,453.00
 Function name: __gmpz_powm, time (microseconds): 52,094.00
 Function name: nettle_gcm_encrypt, time (microseconds): 86.00
+
+Number of direct invocations.
+Function name: nettle_sha256_update, time (microseconds): 40.00
+Function name: _nettle_rsa_sec_compute_root_tr, time (microseconds): 2.00
+Function name: __gmpz_powm, time (microseconds): 4.00
+Function name: nettle_gcm_encrypt, time (microseconds): 9.00
 
 Execution time of each direct invocation.
 Function name: nettle_sha256_update, time (microseconds): 1.90
