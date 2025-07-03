@@ -20,5 +20,5 @@ Function name: nettle_gcm_encrypt, time (microseconds): 3.41
 
 **************Debug**************
 Key Exchange: 
-[27371.0, 27082.0]
-total duration = 54,453.00 microseconds
+[374.0, 17152.0, 17325.0, 17243.0]
+total duration = 52,094.00 microseconds

@@ -68,8 +68,8 @@ def main(infile, outfile):
 
         f.write("\n**************Debug**************\n")
         f.write(f"Key Exchange: \n")
-        f.write(str(times['_nettle_rsa_sec_compute_root_tr']))
-        s = "{:,.2f}".format(times_sum['_nettle_rsa_sec_compute_root_tr'])
+        f.write(str(times['__gmpz_powm']))
+        s = "{:,.2f}".format(times_sum['__gmpz_powm'])
         f.write(f"\ntotal duration = {s} microseconds\n")            
 
             
