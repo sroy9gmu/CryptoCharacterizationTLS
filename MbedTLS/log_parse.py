@@ -15,7 +15,7 @@ ssl_kwds = ['process client hello', 'write server hello',\
                   'write certificate verify', 'write server finished']
 times_ssl = {}
 times_sum_ssl = {}
-kwd_dbg = 'mbedtls_mpi_exp_mod_optionally_safe'
+kwd_dbg = ['mbedtls_mpi_exp_mod_optionally_safe','mbedtls_gcm_update','mbedtls_sha256_update']
 
 def main(infile, outfile):
     """
@@ -71,7 +71,7 @@ def main(infile, outfile):
     for line in in_lines: 
         line_wds = line.split()
         if len(line_wds) > 0:            
-            if time_str in line and kwd_dbg in line:            
+            if time_str in line and kwd_dbg[0] in line:            
                 wd = line_wds[7]
                 if wd != 'inf' and wd != '0' and wd != '0.000000':
                     times_ssl[kwd].append(float(wd))                
@@ -101,13 +101,22 @@ def main(infile, outfile):
 
         f.write("\n**************Debug**************\n")
         
-        f.write(f"Breakdown of total execution time of {kwd_dbg}.\n")
+        f.write(f"Breakdown of total execution time of {kwd_dbg[0]}.\n")
         for index, (key, value) in enumerate(times_sum_ssl.items()):
             v = "{:,.2f}".format(value)
             f.write(f"SSL state: {key}, time (microseconds): {v}\n")
-        f.write(f"\nList of execution times of {kwd_dbg}\n")
+        f.write(f"\nList of execution times of {kwd_dbg[0]}\n")
         for index, (key, value) in enumerate(times_ssl.items()):
-            f.write(f"SSL state: {key}, time (microseconds): {value}\n")          
+            f.write(f"SSL state: {key}, time (microseconds): {value}\n")  
+
+        f.write(f"\nList of execution times of {kwd_dbg}\n")
+        for index, (key, value) in enumerate(times.items()):  
+            for kwd in kwd_dbg:
+                if key == kwd:
+                    value.sort(reverse=True)
+                    for i in range(len(value)):
+                        value[i] = "%.2f"%value[i]
+                    f.write(f"\nFunction name: {key}, time (microseconds): {value[:5]}\n")             
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

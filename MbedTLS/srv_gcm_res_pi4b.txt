@@ -30,3 +30,11 @@ SSL state: write certificate request, time (microseconds): []
 SSL state: write server certificate, time (microseconds): []
 SSL state: write certificate verify, time (microseconds): []
 SSL state: write server finished, time (microseconds): []
+
+List of execution times of ['mbedtls_mpi_exp_mod_optionally_safe', 'mbedtls_gcm_update', 'mbedtls_sha256_update']
+
+Function name: mbedtls_sha256_update, time (microseconds): ['12.00', '11.00', '7.00', '7.00', '2.00']
+
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): ['29079.00', '29078.00', '14834.00', '14789.00', '3205.00']
+
+Function name: mbedtls_gcm_update, time (microseconds): ['29.00', '12.00', '2.00', '2.00']

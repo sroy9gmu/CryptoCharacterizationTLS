@@ -29,14 +29,11 @@ SSL state: read client hello, time (microseconds): 9,355.60
 SSL state: write certificate, time (microseconds): 1,681,717.00
 
 List of execution times of bn_mod_exp_mont_fixed_top
-SSL state: before SSL initialization, time (microseconds): []
 SSL state: read client hello, time (microseconds): [4667.595002, 4688.0]
-SSL state: write server hello, time (microseconds): []
-SSL state: write change cipher spec, time (microseconds): []
-SSL state: write encrypted extensions, time (microseconds): []
 SSL state: write certificate, time (microseconds): [3062.0, 16767.0, 16755.0, 16752.0, 16740.0, 16748.0, 16742.0, 16753.0, 16740.0, 16784.0, 16743.0, 16823.0, 16750.0, 16747.0, 16738.0, 16757.0, 16744.0, 16771.0, 16739.0, 16753.0, 16742.0, 16753.0, 16742.0, 16744.0, 16738.0, 16751.0, 16735.0, 16749.0, 16741.0, 16739.0, 16801.0, 16745.0, 16751.0, 16742.0, 16739.0, 16756.0, 16739.0, 16742.0, 16739.0, 16742.0, 16737.0, 16745.0, 16748.0, 16745.0, 16740.0, 16752.0, 16734.0, 16741.0, 16737.0, 16748.0, 16739.0, 16746.0, 16745.0, 16744.0, 16736.0, 16749.0, 16740.0, 16750.0, 16736.0, 16740.0, 16737.0, 16742.0, 16753.0, 16745.0, 16742.0, 3005.0, 16805.0, 16760.0, 16781.0, 16735.0, 16765.0, 16727.0, 16832.0, 16731.0, 16748.0, 16728.0, 16742.0, 16761.0, 17469.0, 16776.0, 16778.0, 16791.0, 16744.0, 16730.0, 16757.0, 16740.0, 16751.0, 16728.0, 16744.0, 16728.0, 16797.0, 16738.0, 16755.0, 16746.0, 16752.0, 16732.0, 16742.0, 16736.0, 16738.0, 16730.0, 16743.0, 16743.0]
-SSL state: write server certificate verify, time (microseconds): []
-SSL state: write finished, time (microseconds): []
-SSL state: early data, time (microseconds): []
-SSL state: read finished, time (microseconds): []
-SSL state: write session ticket, time (microseconds): []
+
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): ['17469.00', '16832.00', '16823.00', '16805.00', '16801.00']
+
+Function name: SHA256_Update, time (microseconds): ['1.65', '1.48', '1.45', '1.27', '1.17']
+
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): ['32.00', '13.00', '7.00', '6.00', '1.00']

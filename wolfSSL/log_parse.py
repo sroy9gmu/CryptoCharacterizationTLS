@@ -12,6 +12,7 @@ times = {}
 times_sum = {}
 times_cnt = {}
 times_mean = {}
+kwd_dbg = ['_sp_exptmod_mont_ex', 'AES_GCM_encrypt_C', 'Sha256Update']
 
 def get_kx_algo(l):
     r = None
@@ -124,10 +125,15 @@ def main(infile, outfile):
             f.write(f"Function name: {key}, time (microseconds): {"{:,.2f}".format(value)}\n")
 
         f.write("\n**************Debug**************\n")
-        f.write(f"Key Exchange: \n")
-        f.write(str(times['_sp_exptmod_mont_ex']))
-        s = "{:,.2f}".format(times_sum['_sp_exptmod_mont_ex'])
-        f.write(f"\ntotal duration = {s} microseconds\n")            
+        f.write(f"\nList of execution times of {kwd_dbg}\n")
+        for index, (key, value) in enumerate(times.items()):  
+            for kwd in kwd_dbg:
+                if key == kwd:
+                    value.sort(reverse=True)
+                    for i in range(len(value)):
+                        value[i] = "%.2f"%value[i]
+                    f.write(f"\nFunction name: {key}, time (microseconds): {value[:5]}\n")       
+        
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

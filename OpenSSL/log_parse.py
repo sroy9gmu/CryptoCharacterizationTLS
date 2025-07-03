@@ -18,7 +18,7 @@ ssl_kwds = ['before SSL initialization', 'read client hello', 'write server hell
                  'early data', 'read finished', 'write session ticket']
 times_ssl = {}
 times_sum_ssl = {}
-kwd_dbg = 'bn_mod_exp_mont_fixed_top'
+kwd_dbg = ['bn_mod_exp_mont_fixed_top', 'CRYPTO_gcm128_encrypt', 'SHA256_Update']
 
 def get_kx_algo(l):
     r = None
@@ -112,7 +112,7 @@ def main(infile, outfile):
     cnt_max = len(ssl_kwds) - 2
     kwd = ssl_kwds[cnt]
     for line in in_lines:        
-        if time_str in line and kwd_dbg in line:
+        if time_str in line and kwd_dbg[0] in line:
             line_wds = line.split()
             wd = line_wds[9]
             if wd != 'inf' and wd != '0' and wd != '0.000000':
@@ -145,13 +145,23 @@ def main(infile, outfile):
 
         f.write("\n**************Debug**************\n")
         
-        f.write(f"Breakdown of total execution time of {kwd_dbg}.\n")
+        f.write(f"Breakdown of total execution time of {kwd_dbg[0]}.\n")
         for index, (key, value) in enumerate(times_sum_ssl.items()):
             v = "{:,.2f}".format(value)
             f.write(f"SSL state: {key}, time (microseconds): {v}\n")
-        f.write(f"\nList of execution times of {kwd_dbg}\n")
+
+        f.write(f"\nList of execution times of {kwd_dbg[0]}\n")
         for index, (key, value) in enumerate(times_ssl.items()):
-            f.write(f"SSL state: {key}, time (microseconds): {value}\n")
+            if sum(value) > 0:
+                f.write(f"SSL state: {key}, time (microseconds): {value}\n")
+
+        for index, (key, value) in enumerate(times.items()):  
+            for kwd in kwd_dbg:
+                if key == kwd:
+                    value.sort(reverse=True)
+                    for i in range(len(value)):
+                        value[i] = "%.2f"%value[i]
+                    f.write(f"\nFunction name: {key}, time (microseconds): {value[:5]}\n")       
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
