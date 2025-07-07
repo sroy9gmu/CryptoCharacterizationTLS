@@ -11,7 +11,9 @@ Links
 
     3. Handshake overview: https://www.wolfssl.com/documentation/manuals/wolfssl/appendix04.html
     
-    3. Example: https://github.com/wolfSSL/wolfssl-examples/tree/master/tls
+    4. TLS session: https://github.com/wolfSSL/wolfssl-examples/tree/master/tls
+
+    5. Modular arithmetic: https://cacr.uwaterloo.ca/hac/about/chap14.pdf
 
 Issues
 

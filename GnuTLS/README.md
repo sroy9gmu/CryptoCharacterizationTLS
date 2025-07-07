@@ -22,6 +22,8 @@ Links
 
     7. GMP: https://gmplib.org/
 
+    8. Modular exponentiation: https://gmplib.org/manual/Modular-Powering-Algorithm
+
 Issues
 
     1. gnutls with allowlisting doesn't allow enabling sigalgs with priority strings (OPEN)
