@@ -15,6 +15,8 @@ Links
 
     5. Modular arithmetic: https://cacr.uwaterloo.ca/hac/about/chap14.pdf
 
+    6. Montgomery: https://jeffhurchalla.com/2022/04/28/montgomery-redc-using-the-positive-inverse-mod-r/
+
 Issues
 
     1. https://github.com/wolfSSL/wolfssl/issues/8793
