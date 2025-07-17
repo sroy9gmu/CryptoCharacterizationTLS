@@ -49,10 +49,21 @@ for boolean, dur in durs.items():
 ax.set_ylabel('Duration (microseconds)')
 # ax.set_title('Execution time breadown')
 # ax.set_xticks(x + width, libs)
-ax.legend(loc=(1, 0.8))
-ylim = 0
-for index, (key, value) in enumerate(durs.items()):
-    ylim += max(durs[key])
+# ax.legend(loc=(1, 0.8))
+
+# https://stackoverflow.com/questions/4700614/how-to-put-the-legend-outside-the-plot
+box = ax.get_position()
+ax.set_position([box.x0+ box.width * 0.1, box.y0 + box.height * 0.1,
+                 box.width, box.height * 0.9])
+
+# Put a legend below current axis
+ax.legend(loc='upper center', bbox_to_anchor=(0.4, -0.07), ncol=5)
+
+dur_osl = durs['Hashing'][0] + durs['Key Exchange'][0] + durs['Signing'][0] + durs['Hashing'][0]
+dur_wsl = durs['Hashing'][1] + durs['Key Exchange'][1] + durs['Signing'][1] + durs['Hashing'][1]
+dur_mbd = durs['Hashing'][2] + durs['Key Exchange'][2] + durs['Signing'][2] + durs['Hashing'][2]
+dur_gtl = durs['Hashing'][3] + durs['Key Exchange'][3] + durs['Signing'][3] + durs['Hashing'][3]
+ylim = max(dur_osl,dur_wsl,dur_mbd,dur_gtl)
 ax.set_ylim(0, ylim)
 # ax.set_yscale('log')
 ax.minorticks_off()

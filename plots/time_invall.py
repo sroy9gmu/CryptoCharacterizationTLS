@@ -21,10 +21,10 @@ import numpy as np
 
 libs = ('OpenSSL', 'wolfSSL', 'MbedTLS', 'GnuTLS')
 durs = {
-    'Hashing': (1.2, 1.3, 1.2, 1.9),
-    'Symmetric Encryption': (5.1, 6.7, 6.1, 3.4),
-    'Key Exchange': (15821.5, 11122.2, 11044, 6616.3),
-    'Signing': (34626.8, 35588, 42559, 27226.1),      
+    'Signing': (34626.8, 35588, 42559, 27226.1), 
+    'Key Exchange': (15821.5, 11122.2, 11044, 6616.3),   
+    'Symmetric Encryption': (5.1, 6.7, 6.1, 3.4), 
+    'Hashing': (1.2, 1.3, 1.2, 1.9), 
 }
 
 x = np.arange(len(libs))  # the label locations
@@ -42,7 +42,15 @@ for lib, dur in durs.items():
 ax.set_ylabel('Duration (microseconds)')
 # ax.set_title('Execution time of single direct invocation')
 ax.set_xticks(x + width, libs)
-ax.legend(loc=(1, 0.8))
+# ax.legend(loc=(0, 0.8))
+
+box = ax.get_position()
+ax.set_position([box.x0, box.y0 + box.height * 0.1,
+                 box.width, box.height * 0.9])
+
+# Put a legend below current axis
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.07), ncol=5)
+
 # ax.set_ylim(0, 100000)
 ax.set_yscale('log')
 ax.minorticks_off()
