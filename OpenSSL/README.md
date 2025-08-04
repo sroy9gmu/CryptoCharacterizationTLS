@@ -83,8 +83,6 @@ Steps
 
         RSA-PSS: 
         openssl genpkey -algorithm RSA-PSS -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 
-        MbedTLS only:
-        openssl genrsa -out rsa_pvt_mbd.pem 3072
 
         DSA: 
         openssl dsaparam -out dsa_param.pem 3072 256
@@ -94,8 +92,6 @@ Steps
 
         RSA-PSS: 
         openssl req -new -x509 -nodes -days 365000 -key rsa_pvt.pem -out rsa_cert.pem
-        MbedTLS only:
-        openssl req -new -x509 -nodes -days 365000 -key rsa_pvt_mbd.pem -out rsa_cert_mbd.pem
 
         DSA:
         openssl req -new -x509 -nodes -days 365000 -key dsa_pvt.pem -out dsa_cert.pem
@@ -105,9 +101,6 @@ Steps
         RSA-PSS: 
         openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_srv_pvt.pem -out rsa_srv_req.pem
         openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_cli_pvt.pem -out rsa_cli_req.pem
-        MbedTLS only:
-        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_srv_pvt_mbd.pem -out rsa_srv_req_mbd.pem
-        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_cli_pvt_mbd.pem -out rsa_cli_req_mbd.pem
 
         DSA:
         openssl req -newkey dsa:dsa_param.pem -nodes -days 365000 -keyout dsa_srv_pvt.pem -out dsa_srv_req.pem
