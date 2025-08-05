@@ -34,7 +34,7 @@ Installation
        ECDH, DSA:   
         ./configure CFLAGS="-DNO_AES_192 -DNO_AES_256 -DNO_RSA" --enable-tls13 --disable-dh --enable-supportedcurves --enable-aesgcm --enable-aesctr --enable-dsa LIBS=-lm      
 
-    4. In Makefile, remove '-Wunused-variable' from CFLAGS
+    4. (OLD)In Makefile, remove '-Wunused-variable' from CFLAGS
 
         In wolfssl/wolfcrypt/test/test.c, undefine HAVE_ECC where it checks for it
             #undef HAVE_ECC

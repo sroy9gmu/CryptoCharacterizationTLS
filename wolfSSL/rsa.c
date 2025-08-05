@@ -6,7 +6,7 @@
  *
  * wolfSSL is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * wolfSSL is distributed in the hope that it will be useful,
@@ -38,19 +38,6 @@ RSA keys can be used to encrypt, decrypt, sign and verify data.
 
 static uint64_t rsa_calls;
 
-// static double get_GM(uint64_t *arr, uint64_t rounds){
-//     double prod = 1;
-//     double root;
-
-//     root = (double)1 / (double)rounds;
-
-//     for (size_t i = 0; i < rounds; i++){
-//         prod *= arr[i];        
-//     }
-
-//     return pow(prod, root);
-// }
-
 #ifndef NO_RSA
 
 #if FIPS_VERSION3_GE(2,0,0)
@@ -81,9 +68,9 @@ static uint64_t rsa_calls;
 #if defined(WOLFSSL_LINUXKM) && !defined(WOLFSSL_SP_ASM)
     /* force off unneeded vector register save/restore. */
     #undef SAVE_VECTOR_REGISTERS
-    #define SAVE_VECTOR_REGISTERS(fail_clause) WC_DO_NOTHING
+    #define SAVE_VECTOR_REGISTERS(fail_clause) SAVE_NO_VECTOR_REGISTERS(fail_clause)
     #undef RESTORE_VECTOR_REGISTERS
-    #define RESTORE_VECTOR_REGISTERS() WC_DO_NOTHING
+    #define RESTORE_VECTOR_REGISTERS() RESTORE_NO_VECTOR_REGISTERS()
 #endif
 
 /*
@@ -2547,29 +2534,8 @@ static int RsaFunction_SP(const byte* in, word32 inLen, byte* out,
 static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
 {
     int    ret = 0;
-
     struct timeval tstart, tend;    
-    uint64_t dur_start, dur_end, rounds;
-
-    // if (!rsa_calls){
-    //     rounds = 1;
-    //     rsa_calls++;
-    // } else {
-    //     rounds = 50;
-    // }
-    rounds = 1;
-    uint64_t dur[rounds];
-
-    // time_t traw; 
-    // struct tm * timeinfo;   
-    // time(&traw);
-    // timeinfo = localtime(&traw);
-    // printf("\nProfile start time and date: %s\n", asctime(timeinfo));
-
-    for (size_t round = 0; round < 1; round++){
-
-    mp_int* t_tmp = (mp_int*)XMALLOC(sizeof(mp_int), NULL, DYNAMIC_TYPE_RSA);
-    XMEMCPY(t_tmp, tmp, sizeof(mp_int));
+    uint64_t dur_start, dur_end;
 
     dur_start = 0;
     dur_end = 0;
@@ -2577,7 +2543,7 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     if (gettimeofday(&tstart, NULL) == 0) {
         dur_start = (unsigned long)(tstart.tv_sec) * M + (unsigned long)(tstart.tv_usec);
     } else {
-        // printf("Error getting start time of function %s, round #%lu\n", __func__, round);
+        printf("Error getting start time of function %s\n", __func__);
     }
 
 #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
@@ -2606,7 +2572,7 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
 
     if (ret == 0) {
         /* blind */
-        ret = mp_rand(rnd, get_digit_count(&key->n), rng);
+        ret = mp_rand(rnd, mp_get_digit_count(&key->n), rng);
     }
     if (ret == 0) {
         /* rndi = 1/rnd mod n */
@@ -2648,7 +2614,7 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     }
 #else
     if (ret == 0 && (mp_iszero(&key->p) || mp_iszero(&key->q) ||
-            mp_iszero(&key->dP) || mp_iszero(&key->dQ))) {
+            mp_iszero(&key->dP) || mp_iszero(&key->dQ) || mp_iszero(&key->u))) {
         if (mp_exptmod(tmp, &key->d, &key->n, tmp) != MP_OKAY) {
             ret = MP_EXPTMOD_E;
         }
@@ -2717,33 +2683,22 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     #endif
 #endif
     }
-
     if (gettimeofday(&tend, NULL) == 0) {
         dur_end = (unsigned long)(tend.tv_sec) * M + (unsigned long)(tend.tv_usec);
     } else {
-        // printf("Error getting end time of function %s, round #%lu\n", __func__, round);
+        printf("Error getting end time of function %s\n", __func__);
     }
 
-    dur[round] = dur_end - dur_start;
-    if (dur[round] != 0)
-        printf("Duration of call #%lu of %s = %lu microseconds\n", rsa_calls, __func__, dur[round]);
+    uint64_t dur = dur_end - dur_start;
+    if (dur != 0)
+        printf("Duration of call #%lu of %s = %lu microseconds\n", rsa_calls, __func__, dur);
     rsa_calls++;
-    //     // if (round == (rounds - 1)){
-    XMEMCPY(t_tmp, tmp, sizeof(mp_int));;   // WRITE FINAL VALUE
-    //     // }
-    XFREE(t_tmp, NULL, DYNAMIC_TYPE_RSA);
-    
-    // printf("Mean execution time of function %s, rounds %lu = %lf microseconds.\n", __func__, rounds, get_GM(dur, rounds));
-    // // time(&traw);
-    // // timeinfo = localtime(&traw);
-    // // printf("Profile start end time and date: %s\n", asctime(timeinfo)); 
 #endif   /* RSA_LOW_MEM */
-    
+
 #if defined(WC_RSA_BLINDING) && !defined(WC_NO_RNG)
     /* Multiply result (tmp) by blinding invertor (rndi).
      * Use Montgomery form to make operation more constant time.
      */
-
     if ((ret == 0) && (mp_montgomery_setup(&key->n, &mp) != MP_OKAY)) {
         ret = MP_MULMOD_E;
     }
@@ -2771,13 +2726,11 @@ static int RsaFunctionPrivate(mp_int* tmp, RsaKey* key, WC_RNG* rng)
     mp_forcezero(rnd);
     FREE_MP_INT_SIZE(rndi, key->heap, DYNAMIC_TYPE_RSA);
     FREE_MP_INT_SIZE(rnd, key->heap, DYNAMIC_TYPE_RSA);
-
 #if !defined(MP_INT_SIZE_CHECK_NULL) && defined(WOLFSSL_CHECK_MEM_ZERO)
     mp_memzero_check(rnd);
     mp_memzero_check(rndi);
 #endif
 #endif /* WC_RSA_BLINDING && !WC_NO_RNG */
-    }
     return ret;
 }
 #endif
@@ -3002,7 +2955,8 @@ static int wc_RsaFunctionAsync(const byte* in, word32 inLen, byte* out,
 }
 #endif /* WOLFSSL_ASYNC_CRYPT && WC_ASYNC_ENABLE_RSA */
 
-#if defined(WC_RSA_DIRECT) || defined(WC_RSA_NO_PADDING) || defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)
+#if defined(WC_RSA_DIRECT) || defined(WC_RSA_NO_PADDING) || \
+    defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)
 /* Performs direct RSA computation without padding. The input and output must
  * match the key size (ex: 2048-bits = 256 bytes). Returns the size of the
  * output on success or negative value on failure. */
@@ -3088,7 +3042,8 @@ int wc_RsaDirect(byte* in, word32 inLen, byte* out, word32* outSz,
 
     return ret;
 }
-#endif /* WC_RSA_DIRECT || WC_RSA_NO_PADDING || OPENSSL_EXTRA || OPENSSL_EXTRA_X509_SMALL */
+#endif /* WC_RSA_DIRECT || WC_RSA_NO_PADDING || OPENSSL_EXTRA || \
+        * OPENSSL_EXTRA_X509_SMALL */
 
 #if defined(WOLFSSL_CRYPTOCELL)
 static int cc310_RsaPublicEncrypt(const byte* in, word32 inLen, byte* out,
@@ -3677,6 +3632,9 @@ static int RsaPrivateDecryptEx(const byte* in, word32 inLen, byte* out,
         ret = wc_CryptoCb_RsaPad(in, inLen, out,
                             &outLen, rsa_type, key, rng, &padding);
         if (ret != WC_NO_ERR_TRACE(CRYPTOCB_UNAVAILABLE)) {
+            if (outPtr != NULL) {
+                *outPtr = out;
+            }
             if (ret == 0) {
                 ret = (int)outLen;
             }
@@ -3839,6 +3797,9 @@ int wc_RsaPrivateDecryptInline(byte* in, word32 inLen, byte** out, RsaKey* key)
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -3860,6 +3821,9 @@ int wc_RsaPrivateDecryptInline_ex(byte* in, word32 inLen, byte** out,
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -3880,6 +3844,9 @@ int wc_RsaPrivateDecrypt(const byte* in, word32 inLen, byte* out,
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -3901,6 +3868,9 @@ int wc_RsaPrivateDecrypt_ex(const byte* in, word32 inLen, byte* out,
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -3921,6 +3891,9 @@ int wc_RsaSSL_VerifyInline(byte* in, word32 inLen, byte** out, RsaKey* key)
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -3934,7 +3907,7 @@ int wc_RsaSSL_VerifyInline(byte* in, word32 inLen, byte** out, RsaKey* key)
 }
 #endif
 
-#ifndef WOLFSSL_RSA_VERIFY_ONLY
+#ifndef WOLFSSL_RSA_VERIFY_INLINE
 int wc_RsaSSL_Verify(const byte* in, word32 inLen, byte* out, word32 outLen,
                                                                  RsaKey* key)
 {
@@ -4029,6 +4002,9 @@ int wc_RsaPSS_VerifyInline_ex(byte* in, word32 inLen, byte** out,
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -4084,6 +4060,9 @@ int wc_RsaPSS_Verify_ex(byte* in, word32 inLen, byte* out, word32 outLen,
     WC_RNG* rng;
     int ret;
 #ifdef WC_RSA_BLINDING
+    if (key == NULL) {
+        return BAD_FUNC_ARG;
+    }
     rng = key->rng;
 #else
     rng = NULL;
@@ -4270,6 +4249,9 @@ int wc_RsaPSS_VerifyCheckInline(byte* in, word32 inLen, byte** out,
 
     saltLen = hLen;
     #ifdef WOLFSSL_SHA512
+        if (key == NULL) {
+            return BAD_FUNC_ARG;
+        }
         /* See FIPS 186-4 section 5.5 item (e). */
         bits = mp_count_bits(&key->n);
         if (bits == 1024 && hLen == WC_SHA512_DIGEST_SIZE)
@@ -4316,6 +4298,9 @@ int wc_RsaPSS_VerifyCheck(byte* in, word32 inLen, byte* out, word32 outLen,
 
     saltLen = hLen;
     #ifdef WOLFSSL_SHA512
+        if (key == NULL) {
+            return BAD_FUNC_ARG;
+        }
         /* See FIPS 186-4 section 5.5 item (e). */
         bits = mp_count_bits(&key->n);
         if (bits == 1024 && hLen == WC_SHA512_DIGEST_SIZE)
@@ -4390,7 +4375,6 @@ int wc_RsaPSS_Sign_ex(const byte* in, word32 inLen, byte* out, word32 outLen,
                       enum wc_HashType hash, int mgf, int saltLen, RsaKey* key,
                       WC_RNG* rng)
 {
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int ret;
     SAVE_VECTOR_REGISTERS(return _svr_ret;);
     ret = RsaPublicEncryptEx(in, inLen, out, outLen, key,
@@ -5142,7 +5126,7 @@ int wc_MakeRsaKey(RsaKey* key, int size, long e, WC_RNG* rng)
     /* Blind the inverse operation with a value that is invertable */
     if (err == MP_OKAY) {
         do {
-            err = mp_rand(&key->p, get_digit_count(tmp3), rng);
+            err = mp_rand(&key->p, mp_get_digit_count(tmp3), rng);
             if (err == MP_OKAY)
                 err = mp_set_bit(&key->p, 0);
             if (err == MP_OKAY)
