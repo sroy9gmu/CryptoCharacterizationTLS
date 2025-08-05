@@ -1641,7 +1641,6 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
                                                const mbedtls_mpi *E, int E_public,
                                                const mbedtls_mpi *N, mbedtls_mpi *prec_RR)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
 
     struct timeval tstart, tend;    
@@ -1657,18 +1656,15 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
     }
 
     if (mbedtls_mpi_cmp_int(N, 0) <= 0 || (N->p[0] & 1) == 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
     if (mbedtls_mpi_cmp_int(E, 0) < 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
     if (mbedtls_mpi_bitlen(E) > MBEDTLS_MPI_MAX_BITS ||
         mbedtls_mpi_bitlen(N) > MBEDTLS_MPI_MAX_BITS) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);    
         return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
     }
 
@@ -1677,7 +1673,6 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
      */
     if (E->n == 0) {
         ret = mbedtls_mpi_lset(X, 1);
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 
@@ -1687,7 +1682,6 @@ static int mbedtls_mpi_exp_mod_optionally_safe(mbedtls_mpi *X, const mbedtls_mpi
     size_t T_limbs = mbedtls_mpi_core_exp_mod_working_limbs(N->n, E->n);
     mbedtls_mpi_uint *T = (mbedtls_mpi_uint *) mbedtls_calloc(T_limbs, sizeof(mbedtls_mpi_uint));
     if (T == NULL) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_MPI_ALLOC_FAILED;
     }
 
@@ -2149,7 +2143,6 @@ static int mpi_miller_rabin(const mbedtls_mpi *X, size_t rounds,
         /*
          * A = A^R mod |X|
          */
-        printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
         MBEDTLS_MPI_CHK(mbedtls_mpi_exp_mod(&A, &A, &R, X, &RR));
 
         if (mbedtls_mpi_cmp_mpi(&A, &W) == 0 ||

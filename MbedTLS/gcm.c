@@ -61,7 +61,6 @@ static uint64_t gcm_calls;
  */
 void mbedtls_gcm_init(mbedtls_gcm_context *ctx)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     memset(ctx, 0, sizeof(mbedtls_gcm_context));
 }
 
@@ -174,7 +173,6 @@ int mbedtls_gcm_setkey(mbedtls_gcm_context *ctx,
                        const unsigned char *key,
                        unsigned int keybits)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
 
     if (keybits != 128 && keybits != 192 && keybits != 256) {
@@ -389,7 +387,6 @@ int mbedtls_gcm_starts(mbedtls_gcm_context *ctx,
                        int mode,
                        const unsigned char *iv, size_t iv_len)
 {
-    printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     unsigned char work_buf[16];
     const unsigned char *p;
@@ -402,7 +399,6 @@ int mbedtls_gcm_starts(mbedtls_gcm_context *ctx,
     /* IV is limited to 2^64 bits, so 2^61 bytes */
     /* IV is not allowed to be zero length */
     if (iv_len == 0 || (uint64_t) iv_len >> 61 != 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_GCM_BAD_INPUT;
     }
 
@@ -454,10 +450,9 @@ int mbedtls_gcm_starts(mbedtls_gcm_context *ctx,
     ret = mbedtls_cipher_update(&ctx->cipher_ctx, ctx->y, 16, ctx->base_ectr, &olen);
 #endif
     if (ret != 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
-    printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
+
     return 0;
 }
 
@@ -481,7 +476,6 @@ int mbedtls_gcm_starts(mbedtls_gcm_context *ctx,
 int mbedtls_gcm_update_ad(mbedtls_gcm_context *ctx,
                           const unsigned char *add, size_t add_len)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     const unsigned char *p;
     size_t use_len, offset;
     uint64_t new_add_len;
@@ -581,7 +575,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
                        unsigned char *output, size_t output_size,
                        size_t *output_length)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     struct timeval tstart, tend;    
     uint64_t dur_start, dur_end, rounds;
@@ -621,7 +614,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
     unsigned char ectr[16] = { 0 };
 
     if (output_size < input_length) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_GCM_BUFFER_TOO_SMALL;
     }
     *output_length = input_length;
@@ -631,12 +623,10 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
      * Returning early also means that the last partial block of AD remains
      * untouched for mbedtls_gcm_finish */
     if (input_length == 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return 0;
     }
 
     if (output > input && (size_t) (output - input) < input_length) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_GCM_BAD_INPUT;
     }
 
@@ -644,7 +634,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
      * Also check for possible overflow */
     if (ctx->len + input_length < ctx->len ||
         (uint64_t) ctx->len + input_length > 0xFFFFFFFE0ull) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_GCM_BAD_INPUT;
     }
 
@@ -660,7 +649,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
         }
 
         if ((ret = gcm_mask(ctx, ectr, offset, use_len, p, out_p)) != 0) {
-            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return ret;
         }
 
@@ -679,7 +667,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
     while (input_length >= 16) {
         gcm_incr(ctx->y);
         if ((ret = gcm_mask(ctx, ectr, 0, 16, p, out_p)) != 0) {
-            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return ret;
         }
 
@@ -693,7 +680,6 @@ int mbedtls_gcm_update(mbedtls_gcm_context *ctx,
     if (input_length > 0) {
         gcm_incr(ctx->y);
         if ((ret = gcm_mask(ctx, ectr, 0, input_length, p, out_p)) != 0) {
-            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return ret;
         }
     }
@@ -726,7 +712,6 @@ int mbedtls_gcm_finish(mbedtls_gcm_context *ctx,
                        size_t *output_length,
                        unsigned char *tag, size_t tag_len)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     unsigned char work_buf[16];
     uint64_t orig_len;
     uint64_t orig_add_len;
@@ -787,7 +772,6 @@ int mbedtls_gcm_crypt_and_tag(mbedtls_gcm_context *ctx,
                               size_t tag_len,
                               unsigned char *tag)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     size_t olen;
 
@@ -822,7 +806,6 @@ int mbedtls_gcm_auth_decrypt(mbedtls_gcm_context *ctx,
                              const unsigned char *input,
                              unsigned char *output)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     unsigned char check_tag[16];
     int diff;
@@ -846,7 +829,6 @@ int mbedtls_gcm_auth_decrypt(mbedtls_gcm_context *ctx,
 
 void mbedtls_gcm_free(mbedtls_gcm_context *ctx)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     if (ctx == NULL) {
         return;
     }

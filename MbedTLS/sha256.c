@@ -673,7 +673,6 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
     uint32_t left;
 
     if (ilen == 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return 0;
     }
 
@@ -691,7 +690,6 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         memcpy((void *) (ctx->buffer + left), input, fill);
 
         if ((ret = mbedtls_internal_sha256_process(ctx, ctx->buffer)) != 0) {
-            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return ret;
         }
 
@@ -704,7 +702,6 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         size_t processed =
             mbedtls_internal_sha256_process_many(ctx, input, ilen);
         if (processed < SHA256_BLOCK_SIZE) {
-            printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
             return MBEDTLS_ERR_ERROR_GENERIC_ERROR;
         }
 

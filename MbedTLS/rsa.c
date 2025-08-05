@@ -1258,7 +1258,6 @@ int mbedtls_rsa_public(mbedtls_rsa_context *ctx,
                        const unsigned char *input,
                        unsigned char *output)
 {
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     size_t olen;
     mbedtls_mpi T;
@@ -1435,7 +1434,6 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
                         const unsigned char *input,
                         unsigned char *output)
 {
-    // printf("START %d, %s, %s\n", __LINE__, __func__, __FILE__);
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
 
     struct timeval tstart, tend;    
@@ -1496,19 +1494,16 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
     mbedtls_mpi input_blinded, check_result_blinded;
 
     if (f_rng == NULL) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
 
     if (rsa_check_context(ctx, 1 /* private key checks */,
                           1 /* blinding on        */) != 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
 
 #if defined(MBEDTLS_THREADING_C)
     if ((ret = mbedtls_mutex_lock(&ctx->mutex)) != 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return ret;
     }
 #endif
@@ -1634,7 +1629,6 @@ int mbedtls_rsa_private(mbedtls_rsa_context *ctx,
 cleanup:
 #if defined(MBEDTLS_THREADING_C)
     if (mbedtls_mutex_unlock(&ctx->mutex) != 0) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERR_THREADING_MUTEX_ERROR;
     }
 #endif
@@ -1660,7 +1654,6 @@ cleanup:
     mbedtls_mpi_free(&input_blinded);
 
     if (ret != 0 && ret >= -0x007f) {
-        printf("END %d, %s, %s\n", __LINE__, __func__, __FILE__);
         return MBEDTLS_ERROR_ADD(MBEDTLS_ERR_RSA_PRIVATE_FAILED, ret);
     }
 
@@ -1903,7 +1896,7 @@ int mbedtls_rsa_rsaes_oaep_encrypt(mbedtls_rsa_context *ctx,
                         (mbedtls_md_type_t) ctx->hash_id)) != 0) {
         return ret;
     }
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+
     return mbedtls_rsa_public(ctx, output, output);
 }
 #endif /* MBEDTLS_PKCS1_V21 */
@@ -1958,7 +1951,7 @@ int mbedtls_rsa_rsaes_pkcs1_v15_encrypt(mbedtls_rsa_context *ctx,
     if (ilen != 0) {
         memcpy(p, input, ilen);
     }
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+
     return mbedtls_rsa_public(ctx, output, output);
 }
 #endif /* MBEDTLS_PKCS1_V15 */
@@ -2200,7 +2193,6 @@ static int rsa_rsassa_pss_sign_no_mode_check(mbedtls_rsa_context *ctx,
                                              int saltlen,
                                              unsigned char *sig)
 {
-    printf("%d, %s, %s\n", __LINE__, __func__, __FILE__);
     size_t olen;
     unsigned char *p = sig;
     unsigned char *salt = NULL;
@@ -2553,7 +2545,6 @@ int mbedtls_rsa_rsassa_pkcs1_v15_sign(mbedtls_rsa_context *ctx,
     }
 
     MBEDTLS_MPI_CHK(mbedtls_rsa_private(ctx, f_rng, p_rng, sig, sig_try));
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
     MBEDTLS_MPI_CHK(mbedtls_rsa_public(ctx, sig_try, verif));
 
     if (mbedtls_ct_memcmp(verif, sig, ctx->len) != 0) {
@@ -2637,7 +2628,7 @@ int mbedtls_rsa_rsassa_pss_verify_ext(mbedtls_rsa_context *ctx,
     if (siglen < 16 || siglen > sizeof(buf)) {
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
     }
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+
     ret = mbedtls_rsa_public(ctx, sig, buf);
 
     if (ret != 0) {
@@ -2790,7 +2781,7 @@ int mbedtls_rsa_rsassa_pkcs1_v15_verify(mbedtls_rsa_context *ctx,
     /*
      * Apply RSA primitive to get what should be PKCS1 encoded hash.
      */
-    printf("%s, %s, %d\n", __func__, __FILE__, __LINE__);
+
     ret = mbedtls_rsa_public(ctx, sig, encoded);
     if (ret != 0) {
         goto cleanup;

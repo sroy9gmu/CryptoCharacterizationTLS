@@ -18,14 +18,11 @@ Installation
     1. Download latest release.
 
         wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/mbedtls-3.6.3.tar.gz --no-check-certificate
-
-    2. Install libraries:
-
         tar xvf mbedtls-3.6.3.tar.gz
-        cd mbedtls-3.6.3
 
     3. Add math library to LDFLAGS in scripts/common.make
 
+        cd <mbedtls>
         LDFLAGS ?= -lm
 
     4. In file include/mbedtls/mbedtls_config.h, 
@@ -50,7 +47,7 @@ Installation
             MBEDTLS_RSA_C
             MBEDTLS_X509_RSASSA_PSS_SUPPORT            
         
-        Enable below features 
+        (OLD)Enable below features 
             MBEDTLS_PSA_CRYPTO_CONFIG
 
             FFDH, RSA-PSS:   
