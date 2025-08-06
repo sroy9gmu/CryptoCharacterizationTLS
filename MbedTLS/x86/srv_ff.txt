@@ -1,0 +1,10 @@
+Number of groups: 1
+build version: Mbed TLS 3.6.3 (build 50725632)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... failed
+  !  mbedtls_x509_crt_parse returned -0x3c80
+
+Last error was: -0x3C80 - PK - Key algorithm is unsupported (only RSA and EC are supported)
+
+  . Cleaning up... done.
