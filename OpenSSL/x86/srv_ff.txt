@@ -1,0 +1,359 @@
+Setting temp DH parameters
+ACCEPT
+SSL_accept:before SSL initialization
+Received TLS Record
+Header:
+  Version = TLS 1.0 (0x301)
+  Content Type = Handshake (22)
+  Length = 410
+SSL_accept:before SSL initialization
+    ClientHello, Length=406
+      client_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x938EA168
+        random_bytes (len=28): 4A34AC3643F3A8564F2E047730F52350BB93FB1F723E6599C8228BB8
+      session_id (len=32): A565D0037205798E429E1188CBCCB16BF2835E06099FF303770B677681221076
+      cipher_suites (len=2)
+        {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_methods (len=1)
+        No Compression (0x00)
+      extensions, length = 331
+        extension_type=supported_groups(10), length=6
+          ffdhe2048 (256)
+          ffdhe3072 (257)
+        extension_type=session_ticket(35), length=0
+        extension_type=encrypt_then_mac(22), length=0
+        extension_type=extended_master_secret(23), length=0
+        extension_type=signature_algorithms(13), length=26
+          mldsa65 (0x0905)
+          mldsa87 (0x0906)
+          mldsa44 (0x0904)
+          rsa_pss_pss_sha256 (0x0809)
+          rsa_pss_pss_sha384 (0x080a)
+          rsa_pss_pss_sha512 (0x080b)
+          rsa_pss_rsae_sha256 (0x0804)
+          rsa_pss_rsae_sha384 (0x0805)
+          rsa_pss_rsae_sha512 (0x0806)
+          rsa_pkcs1_sha256 (0x0401)
+          rsa_pkcs1_sha384 (0x0501)
+          rsa_pkcs1_sha512 (0x0601)
+        extension_type=supported_versions(43), length=3
+          TLS 1.3 (772)
+        extension_type=psk_key_exchange_modes(45), length=2
+          psk_dhe_ke (1)
+        extension_type=key_share(51), length=262
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): D6FD20D4ABF23B517E4D33FBB6C72FAF8257A2BC8FCC970BE4AF222D99438101BB6EB4C1FDDE8F44E7B7FC8C3848823857AFBC221BF150228DDAD9A0E5CF67DEB9899519AC0CF83EB115BCBE12BC978C0EF9EFB571B2C9FE5BEEA0437AF681FB064CEB18506A70B3974F84743D1275DFCEC398F1A51B0330B8B249410FA4F12692B72AAAA0D8CF57917EE984D1C1D0ABD18CE625D0A009D2C52FEA449E9D97F5342C4CF771AC2DCA27F86312C4B46E49C4D6B38BA2B7BC922A486981F7EFBC12C5EF24CD5F3E5082A5E2EFD0B42544170CFAEAC691374E6A8DAEDB21D866F8CC3D6803AF711DFDC927338897D2D1320B533404C918D1AEE86BE9A0954FBFFDB8
+
+SSL_accept:SSLv3/TLS read client hello
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 50 = 1351.294400 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 1152.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 7 = 1.174217 microseconds.
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Handshake (22)
+  Length = 346
+    ServerHello, Length=342
+      server_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0xC476AD9C
+        random_bytes (len=28): 236CE58C958ECFE4A9C9E62417890DD79BA8BABF29BA08AA6AC264BB
+      session_id (len=32): A565D0037205798E429E1188CBCCB16BF2835E06099FF303770B677681221076
+      cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_method: No Compression (0x00)
+      extensions, length = 270
+        extension_type=supported_versions(43), length=2
+            TLS 1.3 (772)
+        extension_type=key_share(51), length=260
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 9746E0E17D9B9B97A81C104ABFAF4A0C9DD36EE2E4039ED35DF44F37E34D08344B0AF7890FEC5D3BB0538D808DC340440E45A71D6134D288C60EF35FBE5A9D54157D2523FCEC61908B7765691D943D36856D73B509B3C7EC7725EF64567B9277CEB5B9068813497B91F96198F685B03C939B73C1DA3C5E4938873ABC9D4349D873A6EC9F0B245AB1FF0060CE8BBF76406F73D53F553F7BF0372EAE699CB3C948B22F376EB63A1D25BEC8609DBB4B5518D16A84A776D25F05EB238A417512C6E6795C4869C44F0FFB7EC3A3E2ED1D653AC105A0C09FE7E2DCDDC3D28E74BABCC71613A11FBCB12B7B49AEA956EE92F90D9FC84E7BFD85448EAEF16D7F42CA7435
+
+SSL_accept:SSLv3/TLS write server hello
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+Mean execution time of function SHA256_Update, rounds 10 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+SSL_accept:SSLv3/TLS write change cipher spec
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 23
+  Inner Content Type = Handshake (22)
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+    EncryptedExtensions, Length=2
+      No extensions
+
+SSL_accept:TLSv1.3 write encrypted extensions
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 1379
+  Inner Content Type = Handshake (22)
+    Certificate, Length=1358
+      context (len=0): 
+      certificate_list, length=1354
+        ASN.1Cert, length=1349
+------details-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            3a:94:cc:08:28:0f:8d:aa:29:c0:df:27:56:f4:7a:17:95:67:63:bb
+        Signature Algorithm: rsassaPss        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x20
+        Trailer Field: 0x01 (default)
+        Issuer: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = Sunanda Roy, emailAddress = sroy9@gmu.edu
+        Validity
+            Not Before: Aug  6 15:12:16 2025 GMT
+            Not After : Sep  5 15:12:16 2025 GMT
+        Subject: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = Sunanda Roy, emailAddress = sroy9@gmu.edu
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (3072 bit)
+                Modulus:
+                    00:b4:3b:03:15:af:68:ee:d2:8e:08:4d:67:85:d1:
+                    ff:b2:72:4b:cd:aa:03:36:3a:01:78:4b:ef:1f:69:
+                    d7:84:5b:ab:9d:64:dd:32:cb:95:40:5c:ca:22:45:
+                    80:23:76:f1:3e:ba:57:c2:a0:f8:31:c9:b1:63:98:
+                    11:47:16:5b:2f:63:45:cb:1a:bd:15:d1:48:15:c4:
+                    be:10:a7:bc:9d:8f:a6:ad:4e:93:e9:8d:ad:2b:d2:
+                    3a:74:89:75:61:6f:61:19:52:7f:e4:24:79:1e:e7:
+                    d3:56:b0:9c:77:9e:4e:4d:ff:84:e9:8c:92:72:39:
+                    ef:53:fa:11:5e:a5:1e:5c:c5:18:64:c6:75:6a:99:
+                    ca:88:c5:11:90:21:ee:0c:39:75:0f:5a:45:6f:89:
+                    25:bc:47:dc:3d:fa:84:4b:7d:45:1b:eb:13:03:38:
+                    88:74:31:60:e7:60:1d:66:d6:5c:d5:06:43:56:29:
+                    7f:49:91:f0:09:3d:ec:a7:d2:9c:4b:7b:33:cf:08:
+                    0e:ef:0b:b9:0f:d4:45:e9:fb:c8:a5:08:72:82:69:
+                    eb:e8:38:91:bc:0d:cf:eb:89:aa:d2:37:ab:78:5b:
+                    9e:b4:6b:27:18:23:4c:95:25:87:9c:a8:9c:99:5d:
+                    e0:ed:02:5c:bb:f9:07:7e:ef:2e:4b:a0:8f:34:10:
+                    84:84:f5:0e:33:de:03:77:c5:65:18:27:43:97:78:
+                    fd:75:ee:0a:af:a6:8f:1b:a0:ab:47:9f:ff:0b:90:
+                    38:31:0d:cf:50:0a:b6:c7:d5:26:64:ae:8d:ee:d4:
+                    e3:8e:20:5d:47:02:8e:2a:77:c1:ba:e3:24:13:02:
+                    01:d4:dc:08:cc:b2:51:7d:07:fa:be:22:eb:9c:ca:
+                    68:d2:bc:4f:d7:32:d6:b5:25:15:e0:18:95:ab:ca:
+                    ce:af:91:d6:fa:94:10:b0:4e:e3:22:c0:eb:77:72:
+                    3f:31:1a:ef:87:b9:3a:2a:e2:79:01:f0:e5:13:b6:
+                    b0:3a:d5:cf:5e:a0:f6:17:9c:91
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                7A:FD:E5:DD:C2:8A:DA:C5:F5:7D:07:3F:85:E6:9A:6C:EA:22:85:90
+            X509v3 Authority Key Identifier: 
+                FC:FA:80:9F:31:83:AB:11:C0:01:A2:27:85:A4:8D:86:C8:D5:3A:C0
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: rsassaPss
+    Signature Value:        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x20
+        Trailer Field: 0x01 (default)
+        4b:54:54:23:fc:f3:da:bb:d5:68:fd:b9:a6:f3:27:8f:a5:4d:
+        b6:07:ba:5f:f9:4a:ad:c5:f5:94:8d:aa:53:de:70:5a:bd:e9:
+        51:d9:cc:2e:e3:c2:a1:46:f6:7c:62:fe:c6:dd:15:ac:e3:8a:
+        88:61:8b:48:0e:8f:ce:61:fa:6e:aa:6d:86:db:52:15:ce:f0:
+        3c:8e:77:bf:19:6d:65:bb:e2:1a:66:24:12:9f:ac:58:ba:e3:
+        29:87:49:e7:db:7f:d3:e7:e3:e1:42:35:ba:4b:f0:9a:7c:45:
+        d4:a9:00:de:d0:cb:92:2d:88:03:fc:19:5c:0f:f4:03:2d:d8:
+        8e:70:ef:92:f4:09:6e:29:17:62:1d:df:1a:18:07:b6:6f:36:
+        d4:08:23:51:ed:80:a5:63:f0:11:cf:4a:ac:30:b4:f2:63:16:
+        38:27:1d:71:82:75:ef:17:f4:86:08:2a:04:e4:9c:30:b4:82:
+        47:9c:8b:5a:00:af:25:b3:f4:78:67:41:d7:ad:df:40:ec:16:
+        40:b9:dd:a6:97:7a:08:8b:ec:0a:83:f0:c5:0a:33:b7:70:be:
+        b6:44:d2:9f:7e:9c:1f:6f:b5:30:ff:3f:d4:82:4c:82:73:7d:
+        b1:9f:21:e5:67:0a:d5:8a:f4:71:41:9a:fd:6e:2c:97:74:db:
+        42:3b:6d:04:5e:7d:64:84:d4:3b:10:ae:3c:74:68:3c:1d:78:
+        7a:8f:03:4d:d2:e2:47:5d:da:31:c4:6b:f6:70:cd:b5:14:02:
+        39:70:29:60:6c:8a:d7:a6:29:9a:80:14:96:69:db:13:38:87:
+        db:bf:90:cf:b2:35:9d:b7:fd:90:04:71:e4:77:55:6a:f2:ec:
+        e2:fe:17:aa:2a:c9:cb:32:ce:b2:41:4b:46:36:c3:8d:7f:88:
+        7d:df:5f:5f:51:f2:73:29:32:24:86:c5:1c:6e:cc:f9:d6:5e:
+        c2:5a:1a:30:bd:4d:a8:40:4a:0b:2a:bd:bb:3f:5a:c6:69:e9:
+        9b:ce:0f:76:4c:e2
+-----BEGIN CERTIFICATE-----
+MIIFQTCCA3WgAwIBAgIUOpTMCCgPjaopwN8nVvR6F5VnY7swQQYJKoZIhvcNAQEK
+MDSgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIDAgEgMHwxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4GA1UEBwwHRmFp
+cmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxFDASBgNVBAMMC1N1bmFu
+ZGEgUm95MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MB4XDTI1MDgwNjE1
+MTIxNloXDTI1MDkwNTE1MTIxNlowfDELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZB
+MRAwDgYDVQQHDAdGYWlyZmF4MQwwCgYDVQQKDANHTVUxDDAKBgNVBAsMA0VDRTEU
+MBIGA1UEAwwLU3VuYW5kYSBSb3kxHDAaBgkqhkiG9w0BCQEWDXNyb3k5QGdtdS5l
+ZHUwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQC0OwMVr2ju0o4ITWeF
+0f+yckvNqgM2OgF4S+8fadeEW6udZN0yy5VAXMoiRYAjdvE+ulfCoPgxybFjmBFH
+FlsvY0XLGr0V0UgVxL4Qp7ydj6atTpPpja0r0jp0iXVhb2EZUn/kJHke59NWsJx3
+nk5N/4TpjJJyOe9T+hFepR5cxRhkxnVqmcqIxRGQIe4MOXUPWkVviSW8R9w9+oRL
+fUUb6xMDOIh0MWDnYB1m1lzVBkNWKX9JkfAJPeyn0pxLezPPCA7vC7kP1EXp+8il
+CHKCaevoOJG8Dc/riarSN6t4W560aycYI0yVJYecqJyZXeDtAly7+Qd+7y5LoI80
+EISE9Q4z3gN3xWUYJ0OXeP117gqvpo8boKtHn/8LkDgxDc9QCrbH1SZkro3u1OOO
+IF1HAo4qd8G64yQTAgHU3AjMslF9B/q+IuucymjSvE/XMta1JRXgGJWrys6vkdb6
+lBCwTuMiwOt3cj8xGu+HuToq4nkB8OUTtrA61c9eoPYXnJECAwEAAaNTMFEwHQYD
+VR0OBBYEFHr95d3CitrF9X0HP4XmmmzqIoWQMB8GA1UdIwQYMBaAFPz6gJ8xg6sR
+wAGiJ4WkjYbI1TrAMA8GA1UdEwEB/wQFMAMBAf8wQQYJKoZIhvcNAQEKMDSgDzAN
+BglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEFAKIDAgEg
+A4IBgQBLVFQj/PPau9Vo/bmm8yePpU22B7pf+UqtxfWUjapT3nBavelR2cwu48Kh
+RvZ8Yv7G3RWs44qIYYtIDo/OYfpuqm2G21IVzvA8jne/GW1lu+IaZiQSn6xYuuMp
+h0nn23/T5+PhQjW6S/CafEXUqQDe0MuSLYgD/BlcD/QDLdiOcO+S9AluKRdiHd8a
+GAe2bzbUCCNR7YClY/ARz0qsMLTyYxY4Jx1xgnXvF/SGCCoE5JwwtIJHnItaAK8l
+s/R4Z0HXrd9A7BZAud2ml3oIi+wKg/DFCjO3cL62RNKffpwfb7Uw/z/UgkyCc32x
+nyHlZwrVivRxQZr9biyXdNtCO20EXn1khNQ7EK48dGg8HXh6jwNN0uJHXdoxxGv2
+cM21FAI5cClgbIrXpimagBSWadsTOIfbv5DPsjWdt/2QBHHkd1Vq8uzi/heqKsnL
+Ms6yQUtGNsONf4h9319fUfJzKTIkhsUcbsz51l7CWhowvU2oQEoLKr27P1rGaemb
+zg92TOI=
+-----END CERTIFICATE-----
+------------------
+        No extensions
+
+SSL_accept:SSLv3/TLS write certificate
+Mean execution time of function SHA256_Update, rounds 3 = 1.394637 microseconds.
+Mean execution time of function SHA256_Update, rounds 2 = 1.013959 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 703.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4390.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4960.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4381.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4083.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 5022.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4261.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4139.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4073.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4405.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4020.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4084.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4395.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4810.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4276.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4339.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4201.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4159.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3982.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4064.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4059.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4184.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3984.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4073.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4055.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4086.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4082.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4126.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4218.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4061.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4007.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3999.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4270.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4090.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4038.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4057.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4498.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3969.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4246.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4305.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4357.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4343.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4051.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4350.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4023.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4216.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4069.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4462.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4079.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4087.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4036.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 5458.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4196.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4220.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4250.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4137.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4173.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4237.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4354.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4229.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4122.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4364.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4278.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4197.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4106.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 819.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4048.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4303.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3951.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4215.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4168.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4298.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4029.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4328.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4234.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4333.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 3984.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4203.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4335.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4185.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4009.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4167.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4134.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4448.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4012.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4172.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4665.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4212.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4192.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4080.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4138.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4037.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4001.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4009.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4247.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4047.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4213.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4447.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4081.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4156.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4116.000000 microseconds.
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4207.000000 microseconds.
+Mean execution time of function rsa_ossl_private_encrypt, rounds 50 = 8778.423241 microseconds.
+START CRYPTO_gcm128_encrypt, crypto/modes/gcm128.c, 796
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 19
+  Inner Content Type = Alert (21)
+    Level=fatal(2), description=internal error(80)
+
+SSL3 alert write:fatal:internal error
+SSL_accept:error in error
+ERROR
+C072F15C4D790000:error:1C880004:Provider routines:rsa_sign_directly:RSA lib:providers/implementations/signature/rsa_sig.c:822:
+C072F15C4D790000:error:0A080006:SSL routines:tls_construct_cert_verify:EVP lib:ssl/statem/statem_lib.c:400:
+shutting down SSL
+CONNECTION CLOSED

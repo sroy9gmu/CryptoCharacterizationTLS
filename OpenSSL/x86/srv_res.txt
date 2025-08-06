@@ -1,0 +1,34 @@
+List of crypto algorithms (direct invocation).
+Key Exchange: ffdhe2048
+Signature: rsassaPss
+Encryption and Hashing: 
+
+Total execution time of all direct invocations: 434,056.30
+
+Breakdown of total execution time (direct invocation).
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 425,274.29
+Function name: SHA256_Update, time (microseconds): 3.58
+Function name: rsa_ossl_private_encrypt, time (microseconds): 8,778.42
+
+Number of direct invocations.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 104.00
+Function name: SHA256_Update, time (microseconds): 3.00
+Function name: rsa_ossl_private_encrypt, time (microseconds): 1.00
+
+Execution time of each direct invocation.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 3,976.53
+Function name: SHA256_Update, time (microseconds): 1.18
+Function name: rsa_ossl_private_encrypt, time (microseconds): 8,778.42
+
+**************Debug**************
+Breakdown of total execution time of bn_mod_exp_mont_fixed_top.
+SSL state: read client hello, time (microseconds): 2,503.29
+SSL state: write certificate, time (microseconds): 422,771.00
+
+List of execution times of bn_mod_exp_mont_fixed_top
+SSL state: read client hello, time (microseconds): [1351.2944, 1152.0]
+SSL state: write certificate, time (microseconds): [703.0, 4390.0, 4960.0, 4381.0, 4083.0, 5022.0, 4261.0, 4139.0, 4073.0, 4405.0, 4020.0, 4084.0, 4395.0, 4810.0, 4276.0, 4339.0, 4201.0, 4159.0, 3982.0, 4064.0, 4059.0, 4184.0, 3984.0, 4073.0, 4055.0, 4086.0, 4082.0, 4126.0, 4218.0, 4061.0, 4007.0, 3999.0, 4270.0, 4090.0, 4038.0, 4057.0, 4498.0, 3969.0, 4246.0, 4305.0, 4357.0, 4343.0, 4051.0, 4350.0, 4023.0, 4216.0, 4069.0, 4462.0, 4079.0, 4087.0, 4036.0, 5458.0, 4196.0, 4220.0, 4250.0, 4137.0, 4173.0, 4237.0, 4354.0, 4229.0, 4122.0, 4364.0, 4278.0, 4197.0, 4106.0, 819.0, 4048.0, 4303.0, 3951.0, 4215.0, 4168.0, 4298.0, 4029.0, 4328.0, 4234.0, 4333.0, 3984.0, 4203.0, 4335.0, 4185.0, 4009.0, 4167.0, 4134.0, 4448.0, 4012.0, 4172.0, 4665.0, 4212.0, 4192.0, 4080.0, 4138.0, 4037.0, 4001.0, 4009.0, 4247.0, 4047.0, 4213.0, 4447.0, 4081.0, 4156.0, 4116.0, 4207.0]
+
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): ['5458.00', '5022.00', '4960.00', '4810.00', '4665.00']
+
+Function name: SHA256_Update, time (microseconds): ['1.39', '1.17', '1.01']

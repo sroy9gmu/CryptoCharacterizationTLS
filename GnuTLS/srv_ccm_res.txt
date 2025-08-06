@@ -1,5 +1,0 @@
-Mean execution time of crypto algorithms (direct invocation).
-Function name: nettle_sha256_update, time (microseconds): 1.6444175345642378
-Function name: _nettle_rsa_sec_compute_root_tr, time (microseconds): 4519.297733055436
-Function name: __gmpz_powm, time (microseconds): 1543.4118716754097
-Function name: nettle_ccm_encrypt, time (microseconds): 1.5874010519681994
