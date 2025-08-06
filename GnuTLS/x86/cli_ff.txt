@@ -1,0 +1,47 @@
+Processed 1 CA certificate(s).
+Processed 1 client X.509 certificates...
+Resolving '127.0.0.1:5556'...
+Connecting to '127.0.0.1:5556'...
+Duration of call #0 of __gmpz_powm = 3479 microseconds
+Duration of call #1 of __gmpz_powm = 4049 microseconds
+Duration of call #2 of __gmpz_powm = 3970 microseconds
+Duration of call #0 of nettle_sha256_update = 3 microseconds
+Duration of call #1 of nettle_sha256_update = 1 microseconds
+Duration of call #7 of nettle_sha256_update = 1 microseconds
+Duration of call #9 of nettle_sha256_update = 1 microseconds
+Duration of call #10 of nettle_sha256_update = 1 microseconds
+Duration of call #12 of nettle_sha256_update = 5 microseconds
+Duration of call #13 of nettle_sha256_update = 1 microseconds
+Duration of call #14 of nettle_sha256_update = 1 microseconds
+Duration of call #16 of nettle_sha256_update = 1 microseconds
+Duration of call #18 of nettle_sha256_update = 1 microseconds
+Duration of call #21 of nettle_sha256_update = 1 microseconds
+Duration of call #22 of nettle_sha256_update = 1 microseconds
+Duration of call #25 of nettle_sha256_update = 6 microseconds
+Duration of call #26 of nettle_sha256_update = 1 microseconds
+Duration of call #31 of nettle_sha256_update = 1 microseconds
+Duration of call #34 of nettle_sha256_update = 1 microseconds
+- Successfully sent 1 certificate(s) to server.
+Duration of call #38 of nettle_sha256_update = 18 microseconds
+Duration of call #39 of nettle_sha256_update = 1 microseconds
+Duration of call #3 of __gmpz_powm = 81 microseconds
+Duration of call #43 of nettle_sha256_update = 8 microseconds
+- Server has requested a certificate.
+- Certificate type: X.509
+- Got a certificate list of 1 certificates.
+- Certificate[0] info:
+ - Duration of call #44 of nettle_sha256_update = 3 microseconds
+Duration of call #45 of nettle_sha256_update = 3 microseconds
+subject `EMAIL=sroy9@gmu.edu,CN=Sunanda Roy,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', issuer `EMAIL=sroy9@gmu.edu,CN=Sunanda Roy,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', serial 0x3a94cc08280f8daa29c0df2756f47a17956763bb, RSA key 3072 bits, signed using RSA-PSS-SHA256, activated `2025-08-06 15:12:16 UTC', expires `2025-09-05 15:12:16 UTC', pin-sha256="B9UjfmsPE803A0qpDIrwmYo9XsRzMbUnfqwtYqWCHrc="
+        Public Key ID:
+                sha1:d703e9f1c002874a68caa5bff36c477fcd32d896
+                sha256:07d5237e6b0f13cd37034aa90c8af0998a3d5ec47331b5277eac2d62a5821eb7
+        Public Key PIN:
+                pin-sha256:B9UjfmsPE803A0qpDIrwmYo9XsRzMbUnfqwtYqWCHrc=
+
+Duration of call #46 of nettle_sha256_update = 5 microseconds
+Duration of call #4 of __gmpz_powm = 71 microseconds
+Duration of call #49 of nettle_sha256_update = 1 microseconds
+- Status: The certificate is NOT trusted. The name in the certificate does not match the expected. 
+*** PKI verification of server certificate failed...
+*** Fatal error: Error in the certificate.
