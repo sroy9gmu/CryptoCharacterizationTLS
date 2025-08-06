@@ -62,12 +62,12 @@ Steps
         cd wolfssl
 
         FFDH, RSA-PSS:        
-        ./examples/server/server -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/rsa_srv_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/rsa_srv_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem -D ../CryptoCharacterizationTLS/OpenSSL/dh_param.pem
-        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/rsa_cli_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/rsa_cli_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/rsa_cert.pem -y
+        ./examples/server/server -v 4 -c x86/rsa_srv_cert.pem -k x86/rsa_srv_pvt.pem -A x86/rsa_cert.pem -D x86/dh_param.pem
+        ./examples/client/client -h 127.0.0.1 -v 4 -c x86/rsa_cli_cert.pem -k x86/rsa_cli_pvt.pem -A x86/rsa_cert.pem -y
 
         ECDH, ECDSA:
-        ./examples/server/server -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/dsa_srv_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/dsa_srv_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/dsa_cert.pem
-        ./examples/client/client -h 127.0.0.1 -v 4 -c ../CryptoCharacterizationTLS/OpenSSL/dsa_cli_cert.pem -k ../CryptoCharacterizationTLS/OpenSSL/dsa_cli_pvt.pem -A ../CryptoCharacterizationTLS/OpenSSL/dsa_cert.pem -y
+        ./examples/server/server -v 4 -c x86/dsa_srv_cert.pem -k x86/dsa_srv_pvt.pem -A x86/dsa_cert.pem
+        ./examples/client/client -h 127.0.0.1 -v 4 -c x86/dsa_cli_cert.pem -k x86/dsa_cli_pvt.pem -A x86/dsa_cert.pem -y
 
 Issues
 

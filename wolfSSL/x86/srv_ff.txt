@@ -1,0 +1,51 @@
+Duration of call #68 of Sha256Update = 7 microseconds
+Duration of call #71 of Sha256Update = 1 microseconds
+Duration of call #72 of Sha256Update = 1 microseconds
+Duration of call #74 of Sha256Update = 1 microseconds
+Duration of call #79 of Sha256Update = 4 microseconds
+Mean execution time of function _sp_exptmod_mont_ex, rounds 50 = 1513.372801 microseconds.
+Duration of call #80 of Sha256Update = 1 microseconds
+Duration of call #84 of Sha256Update = 1 microseconds
+Duration of call #87 of Sha256Update = 1 microseconds
+Duration of call #94 of Sha256Update = 1 microseconds
+Duration of call #100 of Sha256Update = 1 microseconds
+Duration of call #108 of Sha256Update = 1 microseconds
+Duration of call #112 of Sha256Update = 1 microseconds
+Duration of call #118 of Sha256Update = 1 microseconds
+Duration of call #120 of Sha256Update = 1 microseconds
+Duration of call #125 of Sha256Update = 1 microseconds
+Duration of call #0 of AES_GCM_encrypt_C = 1 microseconds
+Duration of call #1 of AES_GCM_encrypt_C = 2 microseconds
+Duration of call #128 of Sha256Update = 5 microseconds
+Duration of call #2 of AES_GCM_encrypt_C = 14 microseconds
+Duration of call #158 of Sha256Update = 1 microseconds
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3559.000000 microseconds.
+Mean execution time of function _sp_exptmod_mont_ex, rounds 1 = 3644.000000 microseconds.
+Duration of call #0 of RsaFunctionPrivate = 7991 microseconds
+Duration of call #171 of Sha256Update = 1 microseconds
+Duration of call #3 of AES_GCM_encrypt_C = 4 microseconds
+Duration of call #175 of Sha256Update = 1 microseconds
+Duration of call #178 of Sha256Update = 1 microseconds
+Duration of call #4 of AES_GCM_encrypt_C = 1 microseconds
+Duration of call #189 of Sha256Update = 1 microseconds
+Duration of call #195 of Sha256Update = 1 microseconds
+Duration of call #199 of Sha256Update = 18 microseconds
+Duration of call #203 of Sha256Update = 1 microseconds
+Duration of call #215 of Sha256Update = 1 microseconds
+Duration of call #217 of Sha256Update = 1 microseconds
+Duration of call #221 of Sha256Update = 1 microseconds
+Duration of call #229 of Sha256Update = 1 microseconds
+Duration of call #235 of Sha256Update = 28 microseconds
+Duration of call #236 of Sha256Update = 1 microseconds
+Duration of call #248 of Sha256Update = 24 microseconds
+Duration of call #249 of Sha256Update = 1 microseconds
+Duration of call #260 of Sha256Update = 1 microseconds
+Duration of call #262 of Sha256Update = 2 microseconds
+Duration of call #263 of Sha256Update = 1 microseconds
+Duration of call #265 of Sha256Update = 1 microseconds
+SSL version is TLSv1.3
+SSL cipher suite is TLS_AES_128_GCM_SHA256
+SSL curve name is FFDHE_2048
+Client message: hello wolfssl!
+Duration of call #5 of AES_GCM_encrypt_C = 1 microseconds
+Duration of call #6 of AES_GCM_encrypt_C = 1 microseconds
