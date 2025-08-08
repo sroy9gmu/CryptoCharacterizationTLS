@@ -1,0 +1,307 @@
+Connecting to ::1
+CONNECTED(00000003)
+SSL_connect:before SSL initialization
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 50 = 5271.694020 microseconds.
+Sent TLS Record
+Header:
+  Version = TLS 1.0 (0x301)
+  Content Type = Handshake (22)
+  Length = 410
+    ClientHello, Length=406
+      client_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x1E6E0576
+        random_bytes (len=28): 418A662E286C3E69E24501CB7F9BE1EAF0136E0965B865838BA51629
+      session_id (len=32): B8D166DBFB2C69A5CEF0DEC9B2678C15E4EF166413AE0D5ED56CBFA7C959DC22
+      cipher_suites (len=2)
+        {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_methods (len=1)
+        No Compression (0x00)
+      extensions, length = 331
+        extension_type=supported_groups(10), length=6
+          ffdhe2048 (256)
+          ffdhe3072 (257)
+        extension_type=session_ticket(35), length=0
+        extension_type=encrypt_then_mac(22), length=0
+        extension_type=extended_master_secret(23), length=0
+        extension_type=signature_algorithms(13), length=26
+          mldsa65 (0x0905)
+          mldsa87 (0x0906)
+          mldsa44 (0x0904)
+          rsa_pss_pss_sha256 (0x0809)
+          rsa_pss_pss_sha384 (0x080a)
+          rsa_pss_pss_sha512 (0x080b)
+          rsa_pss_rsae_sha256 (0x0804)
+          rsa_pss_rsae_sha384 (0x0805)
+          rsa_pss_rsae_sha512 (0x0806)
+          rsa_pkcs1_sha256 (0x0401)
+          rsa_pkcs1_sha384 (0x0501)
+          rsa_pkcs1_sha512 (0x0601)
+        extension_type=supported_versions(43), length=3
+          TLS 1.3 (772)
+        extension_type=psk_key_exchange_modes(45), length=2
+          psk_dhe_ke (1)
+        extension_type=key_share(51), length=262
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 84DA801BC7D592441732CB7FCD7FB1AE8F70722986F99163626E21D3D7300E490196A1AD2BAA02D13FAC3C8ED9875585986A21875EAF8E1E30782A50CB8C93EF74807087E6B377B684A99AB2084795C4A93D71578221B73AAEB3A6786D7CA89ACBA761D7DED4816CED2E4BE65CA1DACAEE097DBB10F977ADCC64079EE9119F3F3A1AE65B8D9A329B2DBD9467085728E0959F18442451488B07A5FE097AF89FDFBFE61E51561876C53D236A28FAD0256E327F7FE456BFA652B949E0DB3233279C368E3CE0424226900F8CC1AA35210AF9A90605FBC902A870250A427639B9B62B2D4FC5E906B502BEB59BA0869FFE38D2C5571FC11A514B7DB40F2315626CB8DF
+
+SSL_connect:SSLv3/TLS write client hello
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Handshake (22)
+  Length = 346
+SSL_connect:SSLv3/TLS write client hello
+    ServerHello, Length=342
+      server_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x3E9AF23D
+        random_bytes (len=28): 932E29845E0485D8D9B9911A5EB1B92FF333702C1DF7E26E502B14EF
+      session_id (len=32): B8D166DBFB2C69A5CEF0DEC9B2678C15E4EF166413AE0D5ED56CBFA7C959DC22
+      cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_method: No Compression (0x00)
+      extensions, length = 270
+        extension_type=supported_versions(43), length=2
+            TLS 1.3 (772)
+        extension_type=key_share(51), length=260
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): B1CA6B6F95F8B68A2CAEB4BD77592CC932C7FE4B3B6A4DED2EA91A53471675E1B7482E372BDA2FCB928565EF99D845CF244A02B14231E378A8AD910B2AB92CA01B927E1FB1BC4923A767D9B2050C14830D72A3D704B8155796A06480CBF591274CED62A3BAFD53220A9D6B4CCA9DF3CE534E0D76C6349EA26F07B92A324AF6A0828A2F85DC2EF1DF996217E326D44849DBEC8DA5BDA1E6179BE0D40F65CDC531AFBC2A19F96E49C2F4BC9F62D27F6A2697DD0E6CC1BE10D575EC977A5EE7389B96055B6B8BE537C18D77B2BE53E66C644AC31151057C4E6E221A0F6C9E4C8450270A02174D11AAC30B1D7D96E1F95882C09CA03DE658B6C76096C52D37A792EF
+
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 4892.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 7 = 1.521077 microseconds.
+Mean execution time of function SHA256_Update, rounds 9 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 1.145737 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 23
+  Inner Content Type = Handshake (22)
+SSL_connect:SSLv3/TLS read server hello
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+    EncryptedExtensions, Length=2
+      No extensions
+
+Can't use SSL_get_servername
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 1379
+  Inner Content Type = Handshake (22)
+SSL_connect:TLSv1.3 read encrypted extensions
+    Certificate, Length=1358
+      context (len=0): 
+      certificate_list, length=1354
+        ASN.1Cert, length=1349
+------details-----
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            37:b6:41:2b:71:38:7d:72:43:67:50:92:f6:1f:c3:50:f7:92:74:34
+        Signature Algorithm: rsassaPss        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x20
+        Trailer Field: 0x01 (default)
+        Issuer: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = Sunanda Roy, emailAddress = sroy9@gmu.edu
+        Validity
+            Not Before: Aug  7 20:47:03 2025 GMT
+            Not After : Sep  6 20:47:03 2025 GMT
+        Subject: C = US, ST = VA, L = Fairfax, O = GMU, OU = ECE, CN = Sunanda Roy, emailAddress = sroy9@gmu.edu
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (3072 bit)
+                Modulus:
+                    00:b1:cd:c3:fd:c8:ad:67:d7:56:f5:20:8b:bc:d1:
+                    02:a0:55:1d:b4:7a:d7:2c:0f:8d:d5:32:25:12:58:
+                    02:b0:de:41:c8:4e:70:4f:c5:15:ff:ab:aa:13:60:
+                    b9:c1:61:56:bb:12:8c:aa:7a:fd:1e:54:f1:5c:50:
+                    75:86:80:0c:3e:2f:5b:b7:bc:0d:ab:1d:02:26:d7:
+                    9e:81:59:35:76:da:ef:89:ff:ab:d6:e0:01:1f:a5:
+                    e5:0b:03:e0:c7:71:68:73:4d:ab:97:d9:85:4c:bb:
+                    5c:cd:62:fb:4e:8b:3d:7b:79:59:1b:32:c9:e4:52:
+                    f2:57:6f:a3:08:be:5f:6b:82:92:17:92:11:bb:cc:
+                    dc:87:cc:9b:ba:b6:2b:d1:a0:51:51:4e:c4:5e:b3:
+                    5a:20:94:20:9a:0a:ce:e1:32:1e:cc:9b:47:7c:c2:
+                    b6:ec:ec:dd:ef:9f:80:12:47:a7:91:42:ff:6b:dd:
+                    38:8c:9b:ad:92:96:9c:4f:e4:f9:b4:f5:cb:f6:98:
+                    c9:ae:5f:10:8f:69:25:84:e3:5a:d8:63:4a:d5:c1:
+                    16:a3:e7:48:a7:e9:42:96:47:c5:40:64:ed:6d:52:
+                    0c:22:3f:0a:5c:8c:2c:0c:37:9f:00:60:1f:d5:d8:
+                    c3:5b:bd:16:63:93:c2:0b:4b:07:bb:dd:04:f3:c0:
+                    b2:f8:c3:99:82:9b:92:8d:9e:00:56:db:fb:f4:d7:
+                    15:93:ed:4f:99:00:34:1c:ad:9a:ce:89:9c:54:a1:
+                    28:e1:35:4a:a6:5f:09:d7:35:4f:49:a7:b1:77:10:
+                    52:0a:74:05:0c:34:ac:1d:b5:0d:10:04:43:27:1b:
+                    92:fe:f8:e9:cf:6a:fb:dd:aa:f0:df:95:d6:7e:bd:
+                    c7:d7:6f:75:bc:c7:54:94:1a:1e:f6:de:b4:d2:9f:
+                    f7:c5:07:75:89:5e:23:69:a6:8b:d6:b3:6d:cb:51:
+                    46:bc:a5:85:fc:35:6f:94:bd:76:0c:3a:27:e1:fe:
+                    28:f7:42:7d:ac:26:26:13:56:ad
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                B0:00:53:5C:4C:B3:D1:1D:2A:EC:1A:2C:80:8C:EC:24:8B:61:E5:0F
+            X509v3 Authority Key Identifier: 
+                B2:3E:45:B9:A4:D3:AC:08:BF:6A:2B:9A:67:51:F8:A5:8F:F0:0B:13
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+    Signature Algorithm: rsassaPss
+    Signature Value:        
+        Hash Algorithm: sha256
+        Mask Algorithm: mgf1 with sha256
+         Salt Length: 0x20
+        Trailer Field: 0x01 (default)
+        1d:05:5b:f1:ae:af:b0:a6:78:1d:2b:07:31:ed:d7:97:31:84:
+        f8:61:14:5f:1d:d3:83:49:f1:3f:31:2c:13:ce:39:32:c7:a9:
+        5f:37:61:b7:47:f4:4e:d5:d5:cb:99:80:c5:04:0b:31:50:4e:
+        4a:36:79:e2:32:1b:93:ba:0a:4d:09:35:05:4a:90:64:98:4c:
+        ad:c5:3d:c9:f6:7f:df:4b:eb:ff:37:51:90:80:85:f8:6a:00:
+        9f:c3:c7:ce:37:57:30:5f:48:e0:83:71:89:c1:b4:a5:df:b8:
+        a1:e4:d1:e1:cf:cd:3d:90:78:93:7e:63:28:e9:7a:81:94:f9:
+        07:3e:24:fa:e8:7d:d2:d8:f9:5e:d5:03:9f:d5:ac:28:be:1c:
+        80:69:36:f5:e6:a5:62:8a:c6:92:88:48:f5:80:4e:26:c0:78:
+        12:94:de:95:a7:4b:88:b3:ac:9c:da:08:79:18:ac:50:df:dd:
+        a6:27:66:59:72:bf:0e:5b:d3:6a:80:73:40:d0:0f:9c:36:cc:
+        0e:ac:30:78:96:95:a5:c4:52:24:97:27:2b:ec:55:5a:71:d3:
+        60:66:d2:47:32:4b:4c:f6:60:6b:c9:02:d6:9a:cf:f7:2d:d9:
+        89:68:63:b2:29:93:10:ee:11:7d:88:53:94:1f:95:3a:f5:fa:
+        07:43:ae:53:9f:a3:39:3b:82:c8:84:01:7a:5d:76:e5:06:8b:
+        66:ff:c6:f9:fe:7e:65:d1:8d:f8:44:aa:e8:b8:cc:0f:e7:06:
+        06:16:72:0a:9b:24:bb:a6:33:29:2f:79:b1:93:18:02:5b:94:
+        a4:8c:86:f4:26:92:ac:18:55:68:66:ec:57:6a:59:a0:9e:47:
+        b1:3c:d7:b5:87:2f:e3:b9:5e:66:8a:eb:9c:be:8d:ee:69:9e:
+        d2:d3:95:11:1b:cc:a2:c6:11:15:e7:98:4f:62:e7:07:3f:6b:
+        bb:91:6e:e6:3f:b8:cf:a0:14:27:77:a3:aa:32:e5:56:42:f7:
+        4a:50:df:2e:c7:7e
+-----BEGIN CERTIFICATE-----
+MIIFQTCCA3WgAwIBAgIUN7ZBK3E4fXJDZ1CS9h/DUPeSdDQwQQYJKoZIhvcNAQEK
+MDSgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIDAgEgMHwxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4GA1UEBwwHRmFp
+cmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxFDASBgNVBAMMC1N1bmFu
+ZGEgUm95MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MB4XDTI1MDgwNzIw
+NDcwM1oXDTI1MDkwNjIwNDcwM1owfDELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZB
+MRAwDgYDVQQHDAdGYWlyZmF4MQwwCgYDVQQKDANHTVUxDDAKBgNVBAsMA0VDRTEU
+MBIGA1UEAwwLU3VuYW5kYSBSb3kxHDAaBgkqhkiG9w0BCQEWDXNyb3k5QGdtdS5l
+ZHUwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQCxzcP9yK1n11b1IIu8
+0QKgVR20etcsD43VMiUSWAKw3kHITnBPxRX/q6oTYLnBYVa7Eoyqev0eVPFcUHWG
+gAw+L1u3vA2rHQIm156BWTV22u+J/6vW4AEfpeULA+DHcWhzTauX2YVMu1zNYvtO
+iz17eVkbMsnkUvJXb6MIvl9rgpIXkhG7zNyHzJu6tivRoFFRTsRes1oglCCaCs7h
+Mh7Mm0d8wrbs7N3vn4ASR6eRQv9r3TiMm62SlpxP5Pm09cv2mMmuXxCPaSWE41rY
+Y0rVwRaj50in6UKWR8VAZO1tUgwiPwpcjCwMN58AYB/V2MNbvRZjk8ILSwe73QTz
+wLL4w5mCm5KNngBW2/v01xWT7U+ZADQcrZrOiZxUoSjhNUqmXwnXNU9Jp7F3EFIK
+dAUMNKwdtQ0QBEMnG5L++OnPavvdqvDfldZ+vcfXb3W8x1SUGh723rTSn/fFB3WJ
+XiNppovWs23LUUa8pYX8NW+UvXYMOifh/ij3Qn2sJiYTVq0CAwEAAaNTMFEwHQYD
+VR0OBBYEFLAAU1xMs9EdKuwaLICM7CSLYeUPMB8GA1UdIwQYMBaAFLI+Rbmk06wI
+v2ormmdR+KWP8AsTMA8GA1UdEwEB/wQFMAMBAf8wQQYJKoZIhvcNAQEKMDSgDzAN
+BglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEFAKIDAgEg
+A4IBgQAdBVvxrq+wpngdKwcx7deXMYT4YRRfHdODSfE/MSwTzjkyx6lfN2G3R/RO
+1dXLmYDFBAsxUE5KNnniMhuTugpNCTUFSpBkmEytxT3J9n/fS+v/N1GQgIX4agCf
+w8fON1cwX0jgg3GJwbSl37ih5NHhz809kHiTfmMo6XqBlPkHPiT66H3S2Ple1QOf
+1awovhyAaTb15qViisaSiEj1gE4mwHgSlN6Vp0uIs6yc2gh5GKxQ392mJ2ZZcr8O
+W9NqgHNA0A+cNswOrDB4lpWlxFIklycr7FVacdNgZtJHMktM9mBryQLWms/3LdmJ
+aGOyKZMQ7hF9iFOUH5U69foHQ65Tn6M5O4LIhAF6XXblBotm/8b5/n5l0Y34RKro
+uMwP5wYGFnIKmyS7pjMpL3mxkxgCW5SkjIb0JpKsGFVoZuxXalmgnkexPNe1hy/j
+uV5miuucvo3uaZ7S05URG8yixhEV55hPYucHP2u7kW7mP7jPoBQnd6OqMuVWQvdK
+UN8ux34=
+-----END CERTIFICATE-----
+------------------
+        No extensions
+
+depth=1 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+verify return:1
+Mean execution time of function SHA256_Update, rounds 3 = 1.498459 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 1.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 1 = 0.000000 microseconds.
+depth=0 C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+verify return:1
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 19
+  Inner Content Type = Alert (21)
+    Level=fatal(2), description=internal error(80)
+
+SSL3 alert read:fatal:internal error
+SSL_connect:error in error
+4016919B7F000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:ssl/record/rec_layer_s3.c:916:SSL alert number 80
+---
+Certificate chain
+ 0 s:C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+   i:C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+   a:PKEY: RSA, 3072 (bit); sigalg: rsassaPss
+   v:NotBefore: Aug  7 20:47:03 2025 GMT; NotAfter: Sep  6 20:47:03 2025 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIFQTCCA3WgAwIBAgIUN7ZBK3E4fXJDZ1CS9h/DUPeSdDQwQQYJKoZIhvcNAQEK
+MDSgDzANBglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEF
+AKIDAgEgMHwxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJWQTEQMA4GA1UEBwwHRmFp
+cmZheDEMMAoGA1UECgwDR01VMQwwCgYDVQQLDANFQ0UxFDASBgNVBAMMC1N1bmFu
+ZGEgUm95MRwwGgYJKoZIhvcNAQkBFg1zcm95OUBnbXUuZWR1MB4XDTI1MDgwNzIw
+NDcwM1oXDTI1MDkwNjIwNDcwM1owfDELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZB
+MRAwDgYDVQQHDAdGYWlyZmF4MQwwCgYDVQQKDANHTVUxDDAKBgNVBAsMA0VDRTEU
+MBIGA1UEAwwLU3VuYW5kYSBSb3kxHDAaBgkqhkiG9w0BCQEWDXNyb3k5QGdtdS5l
+ZHUwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQCxzcP9yK1n11b1IIu8
+0QKgVR20etcsD43VMiUSWAKw3kHITnBPxRX/q6oTYLnBYVa7Eoyqev0eVPFcUHWG
+gAw+L1u3vA2rHQIm156BWTV22u+J/6vW4AEfpeULA+DHcWhzTauX2YVMu1zNYvtO
+iz17eVkbMsnkUvJXb6MIvl9rgpIXkhG7zNyHzJu6tivRoFFRTsRes1oglCCaCs7h
+Mh7Mm0d8wrbs7N3vn4ASR6eRQv9r3TiMm62SlpxP5Pm09cv2mMmuXxCPaSWE41rY
+Y0rVwRaj50in6UKWR8VAZO1tUgwiPwpcjCwMN58AYB/V2MNbvRZjk8ILSwe73QTz
+wLL4w5mCm5KNngBW2/v01xWT7U+ZADQcrZrOiZxUoSjhNUqmXwnXNU9Jp7F3EFIK
+dAUMNKwdtQ0QBEMnG5L++OnPavvdqvDfldZ+vcfXb3W8x1SUGh723rTSn/fFB3WJ
+XiNppovWs23LUUa8pYX8NW+UvXYMOifh/ij3Qn2sJiYTVq0CAwEAAaNTMFEwHQYD
+VR0OBBYEFLAAU1xMs9EdKuwaLICM7CSLYeUPMB8GA1UdIwQYMBaAFLI+Rbmk06wI
+v2ormmdR+KWP8AsTMA8GA1UdEwEB/wQFMAMBAf8wQQYJKoZIhvcNAQEKMDSgDzAN
+BglghkgBZQMEAgEFAKEcMBoGCSqGSIb3DQEBCDANBglghkgBZQMEAgEFAKIDAgEg
+A4IBgQAdBVvxrq+wpngdKwcx7deXMYT4YRRfHdODSfE/MSwTzjkyx6lfN2G3R/RO
+1dXLmYDFBAsxUE5KNnniMhuTugpNCTUFSpBkmEytxT3J9n/fS+v/N1GQgIX4agCf
+w8fON1cwX0jgg3GJwbSl37ih5NHhz809kHiTfmMo6XqBlPkHPiT66H3S2Ple1QOf
+1awovhyAaTb15qViisaSiEj1gE4mwHgSlN6Vp0uIs6yc2gh5GKxQ392mJ2ZZcr8O
+W9NqgHNA0A+cNswOrDB4lpWlxFIklycr7FVacdNgZtJHMktM9mBryQLWms/3LdmJ
+aGOyKZMQ7hF9iFOUH5U69foHQ65Tn6M5O4LIhAF6XXblBotm/8b5/n5l0Y34RKro
+uMwP5wYGFnIKmyS7pjMpL3mxkxgCW5SkjIb0JpKsGFVoZuxXalmgnkexPNe1hy/j
+uV5miuucvo3uaZ7S05URG8yixhEV55hPYucHP2u7kW7mP7jPoBQnd6OqMuVWQvdK
+UN8ux34=
+-----END CERTIFICATE-----
+subject=C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+issuer=C=US, ST=VA, L=Fairfax, O=GMU, OU=ECE, CN=Sunanda Roy, emailAddress=sroy9@gmu.edu
+---
+No client certificate CA names sent
+Peer Temp Key: DH, 2048 bits
+---
+SSL handshake has read 1793 bytes and written 415 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_128_GCM_SHA256
+Protocol: TLSv1.3
+Server public key is 3072 bit
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+4016919B7F000000:error:0A000197:SSL routines:SSL_shutdown:shutdown while in init:ssl/ssl_lib.c:2834:
