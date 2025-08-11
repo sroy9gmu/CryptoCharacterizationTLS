@@ -1,0 +1,79 @@
+Read Diffie-Hellman parameters.
+Processed 1 CA certificate(s).
+Duration of call #0 of nettle_sha256_update = 9 microseconds
+nettle_rsa_compute_root_tr, rsa-sign-tr.c, 433
+Duration of call #0 of _nettle_rsa_sec_compute_root_tr = 45448 microseconds
+Duration of call #1 of nettle_sha256_update = 2 microseconds
+Duration of call #0 of __gmpz_powm = 525 microseconds
+HTTP Server listening on IPv4 0.0.0.0 port 5556...done
+HTTP Server listening on IPv6 :: port 5556...done
+
+* Accepted connection from IPv4 127.0.0.1 port 42116 on Mon Aug 11 07:36:37 202
+Duration of call #1 of __gmpz_powm = 26479 microseconds
+Duration of call #2 of __gmpz_powm = 26203 microseconds
+Duration of call #3 of __gmpz_powm = 26165 microseconds
+Duration of call #2 of nettle_sha256_update = 8 microseconds
+Duration of call #3 of nettle_sha256_update = 1 microseconds
+Duration of call #6 of nettle_sha256_update = 1 microseconds
+Duration of call #7 of nettle_sha256_update = 1 microseconds
+Duration of call #11 of nettle_sha256_update = 1 microseconds
+Duration of call #12 of nettle_sha256_update = 4 microseconds
+Duration of call #14 of nettle_sha256_update = 9 microseconds
+Duration of call #15 of nettle_sha256_update = 1 microseconds
+Duration of call #16 of nettle_sha256_update = 1 microseconds
+Duration of call #17 of nettle_sha256_update = 1 microseconds
+Duration of call #19 of nettle_sha256_update = 1 microseconds
+Duration of call #20 of nettle_sha256_update = 1 microseconds
+Duration of call #24 of nettle_sha256_update = 1 microseconds
+Duration of call #27 of nettle_sha256_update = 10 microseconds
+Duration of call #28 of nettle_sha256_update = 1 microseconds
+Duration of call #29 of nettle_sha256_update = 1 microseconds
+Duration of call #32 of nettle_sha256_update = 1 microseconds
+Duration of call #33 of nettle_sha256_update = 2 microseconds
+Duration of call #36 of nettle_sha256_update = 1 microseconds
+Duration of call #37 of nettle_sha256_update = 1 microseconds
+Duration of call #40 of nettle_sha256_update = 27 microseconds
+Duration of call #41 of nettle_sha256_update = 2 microseconds
+Duration of call #43 of nettle_sha256_update = 1 microseconds
+nettle_rsa_compute_root_tr, rsa-sign-tr.c, 433
+Duration of call #1 of _nettle_rsa_sec_compute_root_tr = 29424 microseconds
+Duration of call #45 of nettle_sha256_update = 5 microseconds
+Duration of call #46 of nettle_sha256_update = 1 microseconds
+Duration of call #47 of nettle_sha256_update = 1 microseconds
+Duration of call #49 of nettle_sha256_update = 24 microseconds
+Duration of call #50 of nettle_sha256_update = 1 microseconds
+Duration of call #0 of nettle_gcm_encrypt = 6 microseconds
+Duration of call #1 of nettle_gcm_encrypt = 7 microseconds
+Duration of call #2 of nettle_gcm_encrypt = 1 microseconds
+Duration of call #3 of nettle_gcm_encrypt = 50 microseconds
+Duration of call #4 of nettle_gcm_encrypt = 1 microseconds
+Duration of call #5 of nettle_gcm_encrypt = 14 microseconds
+Duration of call #6 of nettle_gcm_encrypt = 1 microseconds
+Duration of call #7 of nettle_gcm_encrypt = 1 microseconds
+Duration of call #8 of nettle_gcm_encrypt = 1 microseconds
+Duration of call #56 of nettle_sha256_update = 1 microseconds
+Duration of call #58 of nettle_sha256_update = 1 microseconds
+Duration of call #59 of nettle_sha256_update = 1 microseconds
+Duration of call #62 of nettle_sha256_update = 21 microseconds
+Duration of call #63 of nettle_sha256_update = 1 microseconds
+Duration of call #64 of nettle_sha256_update = 1 microseconds
+Duration of call #66 of nettle_sha256_update = 1 microseconds
+Duration of call #67 of nettle_sha256_update = 21 microseconds
+Duration of call #68 of nettle_sha256_update = 1 microseconds
+Duration of call #69 of nettle_sha256_update = 1 microseconds
+Duration of call #70 of nettle_sha256_update = 1 microseconds
+Duration of call #72 of nettle_sha256_update = 1 microseconds
+Duration of call #73 of nettle_sha256_update = 1 microseconds
+Duration of call #75 of nettle_sha256_update = 1 microseconds
+Duration of call #76 of nettle_sha256_update = 1 microseconds
+Duration of call #80 of nettle_sha256_update = 21 microseconds
+Duration of call #81 of nettle_sha256_update = 1 microseconds
+Duration of call #82 of nettle_sha256_update = 1 microseconds
+Duration of call #85 of nettle_sha256_update = 1 microseconds
+Duration of call #86 of nettle_sha256_update = 1 microseconds
+Duration of call #89 of nettle_sha256_update = 1 microseconds
+Duration of call #90 of nettle_sha256_update = 1 microseconds
+* Received alert '42': Certificate is bad.
+Error in handshake: A TLS fatal alert has been received.
+
+
