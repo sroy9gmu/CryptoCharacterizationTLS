@@ -2,9 +2,65 @@ Number of groups: 1
 build version: Mbed TLS 3.6.3 (build 50725632)
 
   . Seeding the random number generator... ok
-  . Loading the CA root certificate ... failed
-  !  mbedtls_x509_crt_parse returned -0x3c80
+  . Loading the CA root certificate ...pk_get_pk_alg, pkparse.c, 486, 0
+mbedtls_pk_parse_subpubkey, pkparse.c, 540, 0
+x509_crt_parse_der_core, x509_crt.c, 1233, 0
+mbedtls_x509_crt_parse, x509_crt.c, 1472, 0
+mbedtls_x509_crt_parse_file, x509_crt.c, 1520, 0
+main, ssl/ssl_server2.c, 2592, 0
+ ok (0 skipped)
+  . Loading the server cert. and key...pk_get_pk_alg, pkparse.c, 486, 0
+mbedtls_pk_parse_subpubkey, pkparse.c, 540, 0
+x509_crt_parse_der_core, x509_crt.c, 1233, 0
+mbedtls_x509_crt_parse, x509_crt.c, 1472, 0
+mbedtls_x509_crt_parse_file, x509_crt.c, 1520, 0
+pk_get_pk_alg, pkparse.c, 486, 0
+ ok (key types: RSA, none)
+  . Loading DHM parameters... ok
+  . Setting up the SSL/TLS structure... ok
+  . Bind on tcp://*:4433/ ... ok
+  . Waiting for a remote connection ... ok
+  . Performing the SSL/TLS handshake...Duration of call #1 of mbedtls_sha256_update = 5 microseconds
+Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 8551 microseconds
+Duration of call #6 of mbedtls_sha256_update = 1 microseconds
+Duration of call #7 of mbedtls_sha256_update = 2 microseconds
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 6518 microseconds
+Duration of call #11 of mbedtls_sha256_update = 1 microseconds
+Duration of call #13 of mbedtls_sha256_update = 1 microseconds
+Duration of call #14 of mbedtls_sha256_update = 3 microseconds
+Duration of call #15 of mbedtls_sha256_update = 1 microseconds
+Duration of call #44 of mbedtls_sha256_update = 1 microseconds
+Duration of call #0 of mbedtls_gcm_update = 1 microseconds
+Duration of call #50 of mbedtls_sha256_update = 10 microseconds
+Duration of call #1 of mbedtls_gcm_update = 14 microseconds
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 1092 microseconds
+Duration of call #3 of mbedtls_mpi_exp_mod_optionally_safe = 5903 microseconds
+Duration of call #4 of mbedtls_mpi_exp_mod_optionally_safe = 5249 microseconds
+Duration of call #5 of mbedtls_mpi_exp_mod_optionally_safe = 784 microseconds
+Duration of call #0 of mbedtls_rsa_private = 16833 microseconds
+Duration of call #52 of mbedtls_sha256_update = 4 microseconds
+Duration of call #2 of mbedtls_gcm_update = 6 microseconds
+Duration of call #56 of mbedtls_sha256_update = 1 microseconds
+Duration of call #58 of mbedtls_sha256_update = 1 microseconds
+Duration of call #60 of mbedtls_sha256_update = 1 microseconds
+Duration of call #63 of mbedtls_sha256_update = 1 microseconds
+Duration of call #3 of mbedtls_gcm_update = 1 microseconds
+Duration of call #64 of mbedtls_sha256_update = 1 microseconds
+Duration of call #67 of mbedtls_sha256_update = 1 microseconds
+Duration of call #71 of mbedtls_sha256_update = 1 microseconds
+Duration of call #73 of mbedtls_sha256_update = 1 microseconds
+Duration of call #78 of mbedtls_sha256_update = 1 microseconds
+Duration of call #83 of mbedtls_sha256_update = 1 microseconds
+Duration of call #86 of mbedtls_sha256_update = 1 microseconds
+Duration of call #91 of mbedtls_sha256_update = 1 microseconds
+Duration of call #93 of mbedtls_sha256_update = 1 microseconds
+Duration of call #96 of mbedtls_sha256_update = 1 microseconds
+Duration of call #101 of mbedtls_sha256_update = 1 microseconds
+Duration of call #104 of mbedtls_sha256_update = 1 microseconds
+Duration of call #106 of mbedtls_sha256_update = 1 microseconds
+ failed
+  ! mbedtls_ssl_handshake returned -0x50
 
-Last error was: -0x3C80 - PK - Key algorithm is unsupported (only RSA and EC are supported)
+Last error was: -80 - NET - Connection was reset by peer
 
-  . Cleaning up... done.
+  . Waiting for a remote connection ...

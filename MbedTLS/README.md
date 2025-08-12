@@ -11,6 +11,8 @@ Links
 
     3. https://mbed-tls.readthedocs.io/en/latest/kb/how-to/generate-a-self-signed-certificate/
 
+    4. https://mbed-tls.readthedocs.io/en/latest/kb/cryptography/providing-diffie-hellman-or-dhm-parameters/
+
 Issues
 
     1. https://github.com/Mbed-TLS/mbedtls/issues/10174
@@ -87,19 +89,54 @@ Security Parameters
 
 Steps   
 
-    1. Start server and client in separate windows
+    1. Generate a private key for the CA
+
+        RSA-PSS: 
+        openssl genpkey -algorithm RSA -out rsa_pvt.pem -pkeyopt rsa_keygen_bits:3072 -text
+
+        DSA: 
+
+
+    2. Generate the X509 certificate for the CA:
+
+        RSA-PSS: 
+        openssl req -new -x509 -nodes -days 365000 -key rsa_pvt.pem -out rsa_cert.pem
+
+        DSA:
+
+
+    3. Generate the client and server's private key and certificate request:
+
+        RSA-PSS: 
+        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_srv_pvt.pem -out rsa_srv_req.pem
+        openssl req -newkey rsa:3072 -nodes -days 365000 -keyout rsa_cli_pvt.pem -out rsa_cli_req.pem
+
+        DSA:
+
+
+    4. Generate the X509 certificate for the server (may need regeneration):
+
+        RSA-PSS: 
+        openssl req -in rsa_srv_req.pem -out rsa_srv_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
+        openssl req -in rsa_cli_req.pem -out rsa_cli_cert.pem -verify -x509 -CA rsa_cert.pem -CAkey rsa_pvt.pem
+
+        DSA: 
+
+
+    5. Generate DH parameters for key exchange between server and client:
+        /usr/local/bin/openssl dhparam -out dh_param.pem 3072
+
+    6. Start server and client in separate windows
 
         cd programs/ssl
 
         FFDH, RSA-PSS:  
         ./ssl_server2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_srv_cert.pem key_file=x86/rsa_srv_pvt.pem dhm_file=x86/dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
-        ../ssl_client2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_cli_cert.pem key_file=x86/rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ./ssl_client2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_cli_cert.pem key_file=x86/rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
         ECDH, ECDSA:
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=dsa_cert.pem crt_file=dsa_srv_cert.pem key_file=dsa_srv_pvt.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
-        
-        ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_client2 ca_file=rsa_cert_mbd.pem crt_file=rsa_cli_cert_mbd.pem key_file=rsa_cli_pvt_mbd.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
+
 
 Results
 
