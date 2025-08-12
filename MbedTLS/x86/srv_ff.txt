@@ -20,7 +20,8 @@ pk_get_pk_alg, pkparse.c, 486, 0
   . Setting up the SSL/TLS structure... ok
   . Bind on tcp://*:4433/ ... ok
   . Waiting for a remote connection ... ok
-  . Performing the SSL/TLS handshake...Duration of call #1 of mbedtls_sha256_update = 5 microseconds
+  . Performing the SSL/TLS handshake...
+Duration of call #1 of mbedtls_sha256_update = 5 microseconds
 Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 8551 microseconds
 Duration of call #6 of mbedtls_sha256_update = 1 microseconds
 Duration of call #7 of mbedtls_sha256_update = 2 microseconds
