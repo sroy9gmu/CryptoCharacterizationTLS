@@ -9,6 +9,8 @@ Links
 
     2. Example: https://github.com/Mbed-TLS/mbedtls/tree/39e2e4c3cb6b0c07f6d1a12d974393c8a0830d89/programs#ssltls-feature-demonstrators
 
+    3. https://mbed-tls.readthedocs.io/en/latest/kb/how-to/generate-a-self-signed-certificate/
+
 Issues
 
     1. https://github.com/Mbed-TLS/mbedtls/issues/10174
@@ -87,12 +89,12 @@ Steps
 
     1. Start server and client in separate windows
 
-        cd programs/ssl/x86
+        cd programs/ssl
 
         FFDH, RSA-PSS:  
-        ../ssl_server2 ca_file=rsa_cert.pem crt_file=rsa_srv_cert.pem key_file=rsa_srv_pvt.pem dhm_file=dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ./ssl_server2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_srv_cert.pem key_file=x86/rsa_srv_pvt.pem dhm_file=x86/dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
-        ../ssl_client2 ca_file=rsa_cert.pem crt_file=rsa_cli_cert.pem key_file=rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ../ssl_client2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_cli_cert.pem key_file=x86/rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
         ECDH, ECDSA:
         ../../mbedtls-mbedtls-3.6.3/programs/ssl/ssl_server2 ca_file=dsa_cert.pem crt_file=dsa_srv_cert.pem key_file=dsa_srv_pvt.pem groups="secp256r1" sig_algs="ecdsa_secp256r1_sha256" force_version=tls13 tls13_kex_modes=ephemeral_all
