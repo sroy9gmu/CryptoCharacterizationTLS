@@ -1,0 +1,40 @@
+Total execution time of all direct invocations: 160910.0
+
+Breakdown of total execution time (direct invocation).
+Function name: mbedtls_sha256_update, time (microseconds): 72.0
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 118447.0
+Function name: mbedtls_gcm_update, time (microseconds): 45.0
+Function name: mbedtls_rsa_private, time (microseconds): 42346.0
+
+Number of direct invocations.
+Function name: mbedtls_sha256_update, time (microseconds): 37
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 6
+Function name: mbedtls_gcm_update, time (microseconds): 4
+Function name: mbedtls_rsa_private, time (microseconds): 1
+
+Execution time of each direct invocation.
+Function name: mbedtls_sha256_update, time (microseconds): 1.3384851627136252
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): 12367.723645222391
+Function name: mbedtls_gcm_update, time (microseconds): 6.7007379176690165
+Function name: mbedtls_rsa_private, time (microseconds): 42346.00000000001
+
+**************Debug**************
+Breakdown of total execution time of mbedtls_mpi_exp_mod_optionally_safe.
+SSL state: process client hello, time (microseconds): 118447.0
+
+List of execution times of mbedtls_mpi_exp_mod_optionally_safe
+SSL state: process client hello, time (microseconds): [43472.0, 39140.0, 3151.0, 14833.0, 14813.0, 3038.0]
+SSL state: write server hello, time (microseconds): []
+SSL state: write encrypted extensions, time (microseconds): []
+SSL state: write certificate request, time (microseconds): []
+SSL state: write server certificate, time (microseconds): []
+SSL state: write certificate verify, time (microseconds): []
+SSL state: write server finished, time (microseconds): []
+
+List of execution times of ['mbedtls_mpi_exp_mod_optionally_safe', 'mbedtls_gcm_update', 'mbedtls_sha256_update']
+
+Function name: mbedtls_sha256_update, time (microseconds): ['12.00', '9.00', '8.00', '7.00', '2.00']
+
+Function name: mbedtls_mpi_exp_mod_optionally_safe, time (microseconds): ['43472.00', '39140.00', '14833.00', '14813.00', '3151.00']
+
+Function name: mbedtls_gcm_update, time (microseconds): ['28.00', '12.00', '3.00', '2.00']

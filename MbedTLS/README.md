@@ -131,9 +131,9 @@ Steps
         cd programs/ssl
 
         FFDH, RSA-PSS:  
-        ./ssl_server2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_srv_cert.pem key_file=x86/rsa_srv_pvt.pem dhm_file=x86/dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ./ssl_server2 ca_file=4b/rsa_cert.pem crt_file=4b/rsa_srv_cert.pem key_file=4b/rsa_srv_pvt.pem dhm_file=4b/dh_param.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
-        ./ssl_client2 ca_file=x86/rsa_cert.pem crt_file=x86/rsa_cli_cert.pem key_file=x86/rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
+        ./ssl_client2 ca_file=4b/rsa_cert.pem crt_file=4b/rsa_cli_cert.pem key_file=4b/rsa_cli_pvt.pem groups="ffdhe2048" force_version=tls13 tls13_kex_modes=ephemeral_all force_ciphersuite=TLS1-3-AES-128-GCM-SHA256
 
         ECDH, ECDSA:
 
