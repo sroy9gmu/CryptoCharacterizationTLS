@@ -3,32 +3,37 @@ Key Exchange: ffdhe2048
 Signature: rsassaPss
 Encryption and Hashing: 
 
-Total execution time of all direct invocations: 1728319.452989
+Total execution time of all direct invocations: 1727056.099005
 
 Breakdown of total execution time (direct invocation).
-Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 1693548.684534
-Function name: SHA256_Update, time (microseconds): 3.942472
-Function name: rsa_ossl_private_encrypt, time (microseconds): 34766.825983
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 1692268.3814639999
+Function name: SHA256_Update, time (microseconds): 6.288572
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 34.0
+Function name: rsa_ossl_private_encrypt, time (microseconds): 34747.428969
 
 Number of direct invocations.
 Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 104
-Function name: SHA256_Update, time (microseconds): 3
+Function name: SHA256_Update, time (microseconds): 5
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 3
 Function name: rsa_ossl_private_encrypt, time (microseconds): 1
 
 Execution time of each direct invocation.
-Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 15844.156660250614
-Function name: SHA256_Update, time (microseconds): 1.296506168163291
-Function name: rsa_ossl_private_encrypt, time (microseconds): 34766.825983000024
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 15833.064850936895
+Function name: SHA256_Update, time (microseconds): 1.2456176802063368
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 3.9578916096804058
+Function name: rsa_ossl_private_encrypt, time (microseconds): 34747.428969000015
 
 **************Debug**************
 Breakdown of total execution time of bn_mod_exp_mont_fixed_top.
-SSL state: read client hello, time (microseconds): 9345.684534
-SSL state: write certificate, time (microseconds): 1684203.0
+SSL state: read client hello, time (microseconds): 9384.381464
+SSL state: write certificate, time (microseconds): 1682884.0
 
 List of execution times of bn_mod_exp_mont_fixed_top
-SSL state: read client hello, time (microseconds): [4658.684534, 4687.0]
-SSL state: write certificate, time (microseconds): [3050.0, 16815.0, 16818.0, 16775.0, 16787.0, 16805.0, 16742.0, 16767.0, 16758.0, 16779.0, 16742.0, 16807.0, 16767.0, 16784.0, 16767.0, 16734.0, 16774.0, 16737.0, 16793.0, 16734.0, 16801.0, 16794.0, 16828.0, 16768.0, 16821.0, 16786.0, 16740.0, 16790.0, 16738.0, 16791.0, 16741.0, 16790.0, 16798.0, 16747.0, 16763.0, 16735.0, 16765.0, 16730.0, 16805.0, 16742.0, 16835.0, 16761.0, 16779.0, 16796.0, 16745.0, 16773.0, 16749.0, 16824.0, 16741.0, 16791.0, 16767.0, 16784.0, 16771.0, 16735.0, 16783.0, 16745.0, 16805.0, 16732.0, 16782.0, 16755.0, 16819.0, 16785.0, 16767.0, 16764.0, 16740.0, 3023.0, 16866.0, 16778.0, 16760.0, 16834.0, 16757.0, 16828.0, 16752.0, 16837.0, 16781.0, 16809.0, 16784.0, 16820.0, 16820.0, 16779.0, 16796.0, 16771.0, 16795.0, 16783.0, 16794.0, 16804.0, 16824.0, 16795.0, 16754.0, 16804.0, 16762.0, 16834.0, 16778.0, 16813.0, 16782.0, 16807.0, 16818.0, 16773.0, 16812.0, 16780.0, 16792.0, 16768.0]
+SSL state: read client hello, time (microseconds): [4664.381464, 4720.0]
+SSL state: write certificate, time (microseconds): [3053.0, 16789.0, 16852.0, 16771.0, 16758.0, 16768.0, 16735.0, 16771.0, 16740.0, 16779.0, 16737.0, 16814.0, 16783.0, 16768.0, 16811.0, 16732.0, 16807.0, 16729.0, 16768.0, 16725.0, 16773.0, 16734.0, 16798.0, 16746.0, 16754.0, 16763.0, 16738.0, 16780.0, 16735.0, 16784.0, 16753.0, 16785.0, 16746.0, 16791.0, 16768.0, 16732.0, 16753.0, 16772.0, 16785.0, 16753.0, 16769.0, 16724.0, 16781.0, 16736.0, 16813.0, 16743.0, 16790.0, 16777.0, 16739.0, 16796.0, 16786.0, 16764.0, 16746.0, 16754.0, 16746.0, 16787.0, 16776.0, 16726.0, 16786.0, 16721.0, 16767.0, 16726.0, 16796.0, 16733.0, 16799.0, 3011.0, 16834.0, 16788.0, 16824.0, 16734.0, 16780.0, 16757.0, 16780.0, 16752.0, 16811.0, 16784.0, 16741.0, 16774.0, 16738.0, 16782.0, 16749.0, 16794.0, 16739.0, 16793.0, 16765.0, 16782.0, 16773.0, 16780.0, 16794.0, 16741.0, 16784.0, 16736.0, 16785.0, 16754.0, 16777.0, 16760.0, 16777.0, 16778.0, 16741.0, 16841.0, 16738.0, 16799.0]
 
-Function name: bn_mod_exp_mont_fixed_top, time (microseconds): ['16866.00', '16837.00', '16835.00', '16834.00', '16834.00']
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): ['16852.00', '16841.00', '16834.00', '16824.00', '16814.00']
 
-Function name: SHA256_Update, time (microseconds): ['1.46', '1.46', '1.02']
+Function name: SHA256_Update, time (microseconds): ['1.48', '1.43', '1.19', '1.15', '1.02']
+
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): ['31.00', '2.00', '1.00']

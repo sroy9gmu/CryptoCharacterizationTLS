@@ -997,7 +997,7 @@ int CRYPTO_gcm128_encrypt(GCM128_CONTEXT *ctx,
             }
 
             ctx->mres = mres;
-            return 0;
+            //return 0;
         } while (0);
     }
         if (gettimeofday(&tend, NULL) == 0) {
