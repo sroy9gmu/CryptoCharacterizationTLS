@@ -1,0 +1,82 @@
+Number of groups: 1
+build version: Mbed TLS 3.6.3 (build 50725632)
+
+  . Seeding the random number generator... ok
+  . Loading the CA root certificate ... ok (0 skipped)
+  . Loading the server cert. and key... ok (key types: RSA, none)
+  . Loading DHM parameters... ok
+  . Setting up the SSL/TLS structure... ok
+  . Bind on tcp://*:4433/ ... ok
+  . Waiting for a remote connection ... ok
+  . Performing the SSL/TLS handshake...
+Duration of call #0 of mbedtls_sha256_update = 1 microseconds
+Duration of call #1 of mbedtls_sha256_update = 11 microseconds
+Duration of call #2 of mbedtls_sha256_update = 2 microseconds
+Duration of call #4 of mbedtls_sha256_update = 1 microseconds
+Duration of call #0 of mbedtls_mpi_exp_mod_optionally_safe = 62446 microseconds
+Duration of call #6 of mbedtls_sha256_update = 1 microseconds
+Duration of call #7 of mbedtls_sha256_update = 8 microseconds
+Duration of call #1 of mbedtls_mpi_exp_mod_optionally_safe = 61966 microseconds
+Duration of call #8 of mbedtls_sha256_update = 2 microseconds
+Duration of call #11 of mbedtls_sha256_update = 1 microseconds
+Duration of call #13 of mbedtls_sha256_update = 1 microseconds
+Duration of call #14 of mbedtls_sha256_update = 3 microseconds
+Duration of call #15 of mbedtls_sha256_update = 1 microseconds
+Duration of call #17 of mbedtls_sha256_update = 1 microseconds
+Duration of call #20 of mbedtls_sha256_update = 1 microseconds
+Duration of call #22 of mbedtls_sha256_update = 1 microseconds
+Duration of call #25 of mbedtls_sha256_update = 1 microseconds
+Duration of call #27 of mbedtls_sha256_update = 1 microseconds
+Duration of call #30 of mbedtls_sha256_update = 1 microseconds
+Duration of call #32 of mbedtls_sha256_update = 1 microseconds
+Duration of call #35 of mbedtls_sha256_update = 1 microseconds
+Duration of call #37 of mbedtls_sha256_update = 2 microseconds
+Duration of call #40 of mbedtls_sha256_update = 1 microseconds
+Duration of call #42 of mbedtls_sha256_update = 1 microseconds
+Duration of call #45 of mbedtls_sha256_update = 1 microseconds
+Duration of call #46 of mbedtls_sha256_update = 1 microseconds
+Duration of call #48 of mbedtls_sha256_update = 1 microseconds
+Duration of call #0 of mbedtls_gcm_update = 4 microseconds
+Duration of call #50 of mbedtls_sha256_update = 20 microseconds
+Duration of call #1 of mbedtls_gcm_update = 45 microseconds
+Duration of call #2 of mbedtls_mpi_exp_mod_optionally_safe = 6736 microseconds
+Duration of call #3 of mbedtls_mpi_exp_mod_optionally_safe = 32080 microseconds
+Duration of call #4 of mbedtls_mpi_exp_mod_optionally_safe = 32013 microseconds
+Duration of call #5 of mbedtls_mpi_exp_mod_optionally_safe = 6328 microseconds
+Duration of call #0 of mbedtls_rsa_private = 89454 microseconds
+Duration of call #51 of mbedtls_sha256_update = 1 microseconds
+Duration of call #52 of mbedtls_sha256_update = 12 microseconds
+Duration of call #2 of mbedtls_gcm_update = 17 microseconds
+Duration of call #53 of mbedtls_sha256_update = 1 microseconds
+Duration of call #56 of mbedtls_sha256_update = 1 microseconds
+Duration of call #58 of mbedtls_sha256_update = 1 microseconds
+Duration of call #60 of mbedtls_sha256_update = 1 microseconds
+Duration of call #63 of mbedtls_sha256_update = 1 microseconds
+Duration of call #3 of mbedtls_gcm_update = 5 microseconds
+Duration of call #64 of mbedtls_sha256_update = 1 microseconds
+Duration of call #67 of mbedtls_sha256_update = 1 microseconds
+Duration of call #69 of mbedtls_sha256_update = 1 microseconds
+Duration of call #71 of mbedtls_sha256_update = 1 microseconds
+Duration of call #73 of mbedtls_sha256_update = 1 microseconds
+Duration of call #76 of mbedtls_sha256_update = 1 microseconds
+Duration of call #78 of mbedtls_sha256_update = 1 microseconds
+Duration of call #79 of mbedtls_sha256_update = 1 microseconds
+Duration of call #81 of mbedtls_sha256_update = 1 microseconds
+Duration of call #83 of mbedtls_sha256_update = 1 microseconds
+Duration of call #86 of mbedtls_sha256_update = 1 microseconds
+Duration of call #88 of mbedtls_sha256_update = 1 microseconds
+Duration of call #91 of mbedtls_sha256_update = 1 microseconds
+Duration of call #93 of mbedtls_sha256_update = 1 microseconds
+Duration of call #96 of mbedtls_sha256_update = 1 microseconds
+Duration of call #98 of mbedtls_sha256_update = 1 microseconds
+Duration of call #100 of mbedtls_sha256_update = 1 microseconds
+Duration of call #101 of mbedtls_sha256_update = 1 microseconds
+Duration of call #103 of mbedtls_sha256_update = 1 microseconds
+Duration of call #106 of mbedtls_sha256_update = 1 microseconds
+ failed
+  ! mbedtls_ssl_handshake returned -0x50
+
+Last error was: -80 - NET - Connection was reset by peer
+
+  . Waiting for a remote connection ...
+
