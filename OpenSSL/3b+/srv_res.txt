@@ -1,0 +1,39 @@
+List of crypto algorithms (direct invocation).
+Key Exchange: ffdhe2048
+Signature: rsassaPss
+Encryption and Hashing: 
+
+Total execution time of all direct invocations: 2718213.032934
+
+Breakdown of total execution time (direct invocation).
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 2663572.9657469997
+Function name: SHA256_Update, time (microseconds): 7.3972739999999995
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 52.0
+Function name: rsa_ossl_private_encrypt, time (microseconds): 54580.669913
+
+Number of direct invocations.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 104
+Function name: SHA256_Update, time (microseconds): 6
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 3
+Function name: rsa_ossl_private_encrypt, time (microseconds): 1
+
+Execution time of each direct invocation.
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): 24857.241908114964
+Function name: SHA256_Update, time (microseconds): 1.2112761771305398
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): 6.557672186169712
+Function name: rsa_ossl_private_encrypt, time (microseconds): 54580.669912999976
+
+**************Debug**************
+Breakdown of total execution time of bn_mod_exp_mont_fixed_top.
+SSL state: read client hello, time (microseconds): 14094.965747
+SSL state: write certificate, time (microseconds): 2649478.0
+
+List of execution times of bn_mod_exp_mont_fixed_top
+SSL state: read client hello, time (microseconds): [7028.965747, 7066.0]
+SSL state: write certificate, time (microseconds): [4738.0, 26135.0, 26022.0, 26060.0, 26023.0, 26060.0, 26232.0, 26212.0, 26247.0, 26121.0, 26206.0, 26215.0, 26354.0, 26183.0, 26144.0, 26001.0, 26143.0, 26270.0, 26233.0, 26199.0, 25999.0, 26009.0, 25993.0, 26425.0, 26022.0, 26011.0, 25997.0, 25982.0, 26015.0, 26064.0, 26119.0, 26199.0, 26225.0, 26144.0, 26133.0, 25998.0, 26010.0, 25996.0, 26115.0, 26198.0, 26229.0, 26177.0, 26068.0, 26018.0, 25997.0, 26015.0, 26004.0, 26066.0, 26064.0, 26011.0, 26080.0, 26404.0, 26072.0, 26152.0, 26009.0, 26069.0, 26052.0, 25986.0, 26003.0, 26005.0, 26006.0, 26363.0, 26017.0, 26016.0, 26220.0, 4601.0, 26025.0, 26011.0, 26004.0, 26005.0, 26008.0, 26002.0, 26047.0, 26015.0, 26004.0, 26004.0, 36592.0, 36508.0, 33888.0, 27989.0, 26082.0, 26033.0, 26025.0, 26007.0, 26040.0, 26140.0, 26024.0, 26016.0, 26041.0, 26007.0, 26023.0, 25991.0, 26033.0, 26062.0, 26019.0, 26126.0, 26193.0, 26231.0, 26338.0, 26099.0, 26617.0, 26073.0]
+
+Function name: bn_mod_exp_mont_fixed_top, time (microseconds): ['36592.00', '36508.00', '33888.00', '27989.00', '26617.00']
+
+Function name: SHA256_Update, time (microseconds): ['1.53', '1.52', '1.31', '1.04', '1.00']
+
+Function name: CRYPTO_gcm128_encrypt, time (microseconds): ['47.00', '3.00', '2.00']

@@ -1,0 +1,117 @@
+Connecting to ::1
+CONNECTED(00000003)
+SSL_connect:before SSL initialization
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 50 = 7028.410070 microseconds.
+Sent TLS Record
+Header:
+  Version = TLS 1.0 (0x301)
+  Content Type = Handshake (22)
+  Length = 410
+    ClientHello, Length=406
+      client_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x73269440
+        random_bytes (len=28): BED6AAAF3B61800E6EBC1CA4C20E837566E81E39957476B824213960
+      session_id (len=32): D690896DBCEDF92B000E937E91BC5D111F15C01FFE1361296CB2A47C82CCA40C
+      cipher_suites (len=2)
+        {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_methods (len=1)
+        No Compression (0x00)
+      extensions, length = 331
+        extension_type=supported_groups(10), length=6
+          ffdhe2048 (256)
+          ffdhe3072 (257)
+        extension_type=session_ticket(35), length=0
+        extension_type=encrypt_then_mac(22), length=0
+        extension_type=extended_master_secret(23), length=0
+        extension_type=signature_algorithms(13), length=26
+          mldsa65 (0x0905)
+          mldsa87 (0x0906)
+          mldsa44 (0x0904)
+          rsa_pss_pss_sha256 (0x0809)
+          rsa_pss_pss_sha384 (0x080a)
+          rsa_pss_pss_sha512 (0x080b)
+          rsa_pss_rsae_sha256 (0x0804)
+          rsa_pss_rsae_sha384 (0x0805)
+          rsa_pss_rsae_sha512 (0x0806)
+          rsa_pkcs1_sha256 (0x0401)
+          rsa_pkcs1_sha384 (0x0501)
+          rsa_pkcs1_sha512 (0x0601)
+        extension_type=supported_versions(43), length=3
+          TLS 1.3 (772)
+        extension_type=psk_key_exchange_modes(45), length=2
+          psk_dhe_ke (1)
+        extension_type=key_share(51), length=262
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 5F1E96E949B1543F24ABFF88C45E01CE82C3F95C566DEBC770AFCCF902CD73B18489AC087956648EFBB793AD5BDA11103082380C7DDDDBED0C4F5995B696E27B5D27F75C13B9BB4275F82491800F200AA3DEE47F46DE99D343D76601F881A1722D9F1AF7619DCA069A5D1B0531250D0428301483B89AFF30190EB720BA6A349C8A313747222D3D274FBBB158B18314C4A0B5678723021E6C5A6C90105B1D8482766335B20CE84E0F7DC284F3865703E69EC7EEA8CE2CEB06E0993B20EE8AEBDD187E5A038617EC476A58D46A10EFF9789EAD6D4495D5A714027CCEC0C1E85F3A406A17D23893707B4BBD04472B8E84760B87C0BC58EADCA345AF8DCDD3EE284B
+
+SSL_connect:SSLv3/TLS write client hello
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Handshake (22)
+  Length = 346
+SSL_connect:SSLv3/TLS write client hello
+    ServerHello, Length=342
+      server_version=0x303 (TLS 1.2)
+      Random:
+        gmt_unix_time=0x5FE36FE7
+        random_bytes (len=28): 4FD88C5EE3C093CD8ECD79BD42429E732242BEAF5409009C38100C44
+      session_id (len=32): D690896DBCEDF92B000E937E91BC5D111F15C01FFE1361296CB2A47C82CCA40C
+      cipher_suite {0x13, 0x01} TLS_AES_128_GCM_SHA256
+      compression_method: No Compression (0x00)
+      extensions, length = 270
+        extension_type=supported_versions(43), length=2
+            TLS 1.3 (772)
+        extension_type=key_share(51), length=260
+            NamedGroup: ffdhe2048 (256)
+            key_exchange:  (len=256): 3FEA5A79DD23FEE4DA36C4B9D37BF11A01096FB04869890275318ADD68EDEFDE55A1A0B4DE93D72A515CCCDE61A04C43CD1AA52C9E3850724A1CFB1E50C58DA202370D52587B9F2F38197FC9F1B42B39A8AE24A3E46E92BF706749CA2EE8E111166D6AE7596107E75E6C4736BA7DCD46666236C10B9875080982BC6DDA089936598E7693A29827F8957CCD6CB7F755BFCE95D6391B590A25412EC174976013A082C1B524252D795B2E63032E060DD245741CB82C77AFFBCBD61C9E851C5AF74DE0683364261051E0AF5149452BE36437D0DC7A1E4CBE22738B8146C235309A784C972AC65376548A95D8E20069E6F2348232F17EE2E9C0E5D5F004CF0D8181FB
+
+Mean execution time of function bn_mod_exp_mont_fixed_top, rounds 1 = 7112.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 7 = 1.512471 microseconds.
+Mean execution time of function SHA256_Update, rounds 9 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Mean execution time of function SHA256_Update, rounds 4 = 0.000000 microseconds.
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ChangeCipherSpec (20)
+  Length = 1
+    change_cipher_spec (1)
+
+Received TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = ApplicationData (23)
+  Length = 23
+Sent TLS Record
+Header:
+  Version = TLS 1.2 (0x303)
+  Content Type = Alert (21)
+  Length = 2
+    Level=fatal(2), description=bad record mac(20)
+
+SSL3 alert write:fatal:bad record mac
+SSL_connect:error in error
+4066619D7F000000:error:0A000119:SSL routines:tls_get_more_records:decryption failed or bad record mac:ssl/record/methods/tls_common.c:869:
+4066619D7F000000:error:0A000139:SSL routines::record layer failure:ssl/record/rec_layer_s3.c:696:
+---
+no peer certificate available
+---
+No client certificate CA names sent
+Peer Temp Key: DH, 2048 bits
+---
+SSL handshake has read 385 bytes and written 422 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_128_GCM_SHA256
+Protocol: TLSv1.3
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+4066619D7F000000:error:0A000197:SSL routines:SSL_shutdown:shutdown while in init:ssl/ssl_lib.c:2834:
