@@ -62,8 +62,8 @@ Steps
         cd wolfssl
 
         FFDH, RSA-PSS:        
-        ./examples/server/server -v 4 -c 4b/rsa_srv_cert.pem -k 4b/rsa_srv_pvt.pem -A 4b/rsa_cert.pem -D 4b/dh_param.pem
-        ./examples/client/client -h 127.0.0.1 -v 4 -c 4b/rsa_cli_cert.pem -k 4b/rsa_cli_pvt.pem -A 4b/rsa_cert.pem -y
+        ./examples/server/server -v 4 -c 3b+/rsa_srv_cert.pem -k 3b+/rsa_srv_pvt.pem -A 3b+/rsa_cert.pem -D 3b+/dh_param.pem
+        ./examples/client/client -h 127.0.0.1 -v 4 -c 3b+/rsa_cli_cert.pem -k 3b+/rsa_cli_pvt.pem -A 3b+/rsa_cert.pem -y
 
         ECDH, ECDSA:
         ./examples/server/server -v 4 -c x86/dsa_srv_cert.pem -k x86/dsa_srv_pvt.pem -A x86/dsa_cert.pem

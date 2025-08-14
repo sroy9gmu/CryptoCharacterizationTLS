@@ -1,0 +1,34 @@
+List of crypto algorithms (direct invocation).
+Key Exchange: FFDHE_2048
+Signature: 
+Encryption and Hashing: AES_128_GCM_SHA256
+
+Total execution time of all direct invocations: 173403.95478
+
+Breakdown of total execution time (direct invocation).
+Function name: Sha256Update, time (microseconds): 170.0
+Function name: _sp_exptmod_mont_ex, time (microseconds): 89817.95478
+Function name: AES_GCM_encrypt_C, time (microseconds): 105.0
+Function name: RsaFunctionPrivate, time (microseconds): 83311.0
+
+Number of direct invocations.
+Function name: Sha256Update, time (microseconds): 83
+Function name: _sp_exptmod_mont_ex, time (microseconds): 3
+Function name: AES_GCM_encrypt_C, time (microseconds): 7
+Function name: RsaFunctionPrivate, time (microseconds): 1
+
+Execution time of each direct invocation.
+Function name: Sha256Update, time (microseconds): 1.344495769923089
+Function name: _sp_exptmod_mont_ex, time (microseconds): 25853.180527186527
+Function name: AES_GCM_encrypt_C, time (microseconds): 8.853239038457483
+Function name: RsaFunctionPrivate, time (microseconds): 83311.00000000006
+
+**************Debug**************
+
+List of execution times of ['_sp_exptmod_mont_ex', 'AES_GCM_encrypt_C', 'Sha256Update']
+
+Function name: Sha256Update, time (microseconds): ['21.00', '21.00', '12.00', '8.00', '6.00']
+
+Function name: _sp_exptmod_mont_ex, time (microseconds): ['39837.00', '38802.00', '11178.95']
+
+Function name: AES_GCM_encrypt_C, time (microseconds): ['50.00', '29.00', '7.00', '7.00', '5.00']
