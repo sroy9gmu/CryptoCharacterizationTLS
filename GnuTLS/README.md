@@ -63,9 +63,9 @@ Steps
         cd src
         
         FFDH, RSA-PSS:
-        ./gnutls-serv --dhparams=x86/dh_param.pem --x509cafile=x86/rsa_cert.pem --x509keyfile=x86/rsa_srv_pvt.pem --x509certfile=x86/rsa_srv_cert.pem --priority="NORMAL:-KX-ALL:+DHE-RSA:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" -p 5555
+        ./gnutls-serv --dhparams=3b+/dh_param.pem --x509cafile=3b+/rsa_cert.pem --x509keyfile=3b+/rsa_srv_pvt.pem --x509certfile=3b+/rsa_srv_cert.pem --priority="NORMAL:-KX-ALL:+DHE-RSA:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" -p 5555
 
-        ./gnutls-cli --x509cafile=x86/rsa_cert.pem --x509keyfile=x86/rsa_cli_pvt.pem --x509certfile=x86/rsa_cli_cert.pem --priority="NORMAL:-KX-ALL:+DHE-RSA:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" 127.0.0.1:5555
+        ./gnutls-cli --x509cafile=3b+/rsa_cert.pem --x509keyfile=3b+/rsa_cli_pvt.pem --x509certfile=3b+/rsa_cli_cert.pem --priority="NORMAL:-KX-ALL:+DHE-RSA:+SIGN-RSA-PSS-SHA256:-VERS-ALL:+VERS-TLS1.3:-CIPHER-ALL:+AES-128-GCM:-GROUP-ALL:+GROUP-FFDHE2048" 127.0.0.1:5555
 
         ECDH, ECDSA:
 

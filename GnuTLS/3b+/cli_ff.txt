@@ -1,0 +1,61 @@
+Processed 1 CA certificate(s).
+Processed 1 client X.509 certificates...
+Resolving '127.0.0.1:5555'...
+Connecting to '127.0.0.1:5555'...
+Duration of call #0 of __gmpz_powm = 31257 microseconds
+Duration of call #1 of __gmpz_powm = 34927 microseconds
+Duration of call #2 of __gmpz_powm = 34713 microseconds
+Duration of call #0 of nettle_sha256_update = 69 microseconds
+Duration of call #1 of nettle_sha256_update = 2 microseconds
+Duration of call #2 of nettle_sha256_update = 1 microseconds
+Duration of call #4 of nettle_sha256_update = 1 microseconds
+Duration of call #5 of nettle_sha256_update = 2 microseconds
+Duration of call #8 of nettle_sha256_update = 1 microseconds
+Duration of call #9 of nettle_sha256_update = 1 microseconds
+Duration of call #10 of nettle_sha256_update = 4 microseconds
+Duration of call #12 of nettle_sha256_update = 10 microseconds
+Duration of call #13 of nettle_sha256_update = 1 microseconds
+Duration of call #14 of nettle_sha256_update = 2 microseconds
+Duration of call #15 of nettle_sha256_update = 1 microseconds
+Duration of call #16 of nettle_sha256_update = 1 microseconds
+Duration of call #17 of nettle_sha256_update = 1 microseconds
+Duration of call #18 of nettle_sha256_update = 2 microseconds
+Duration of call #19 of nettle_sha256_update = 1 microseconds
+Duration of call #21 of nettle_sha256_update = 1 microseconds
+Duration of call #22 of nettle_sha256_update = 2 microseconds
+Duration of call #25 of nettle_sha256_update = 9 microseconds
+Duration of call #26 of nettle_sha256_update = 1 microseconds
+Duration of call #27 of nettle_sha256_update = 1 microseconds
+Duration of call #30 of nettle_sha256_update = 1 microseconds
+Duration of call #31 of nettle_sha256_update = 1 microseconds
+Duration of call #34 of nettle_sha256_update = 1 microseconds
+Duration of call #35 of nettle_sha256_update = 1 microseconds
+- Successfully sent 1 certificate(s) to server.
+Duration of call #38 of nettle_sha256_update = 35 microseconds
+Duration of call #39 of nettle_sha256_update = 4 microseconds
+Duration of call #3 of __gmpz_powm = 914 microseconds
+Duration of call #40 of nettle_sha256_update = 8 microseconds
+Duration of call #42 of nettle_sha256_update = 1 microseconds
+Duration of call #43 of nettle_sha256_update = 17 microseconds
+- Server has requested a certificate.
+- Certificate type: X.509
+- Got a certificate list of 1 certificates.
+- Certificate[0] info:
+ - Duration of call #44 of nettle_sha256_update = 9 microseconds
+Duration of call #45 of nettle_sha256_update = 5 microseconds
+subject `EMAIL=sroy9@gmu.edu,CN=Sunanda Roy,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', issuer `EMAIL=sroy9@gmu.edu,CN=Sunanda Roy,OU=ECE,O=GMU,L=Fairfax,ST=VA,C=US', serial 0x4048040be486942fa74712f3747076f78108c466, RSA key 3072 bits, signed using RSA-PSS-SHA256, activated `2025-08-14 01:04:22 UTC', expires `2025-09-13 01:04:22 UTC', pin-sha256="iD/02M2nbAfjn7GWn94I4IKC61lTKouRocateUDUa+E="
+	Public Key ID:
+		sha1:6eae01ec2b0cc249656a21a377f59d38e51b75b9
+		sha256:883ff4d8cda76c07e39fb1969fde08e08282eb59532a8b91a1c6ad7940d46be1
+	Public Key PIN:
+		pin-sha256:iD/02M2nbAfjn7GWn94I4IKC61lTKouRocateUDUa+E=
+
+Duration of call #46 of nettle_sha256_update = 17 microseconds
+Duration of call #4 of __gmpz_powm = 602 microseconds
+Duration of call #47 of nettle_sha256_update = 1 microseconds
+Duration of call #48 of nettle_sha256_update = 1 microseconds
+Duration of call #49 of nettle_sha256_update = 1 microseconds
+- Status: The certificate is NOT trusted. The name in the certificate does not match the expected. 
+*** PKI verification of server certificate failed...
+*** Fatal error: Error in the certificate.
+Duration of call #0 of nettle_gcm_encrypt = 11 microseconds
