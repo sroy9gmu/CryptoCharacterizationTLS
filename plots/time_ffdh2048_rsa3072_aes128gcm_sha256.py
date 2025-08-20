@@ -41,9 +41,12 @@ width = 0.2  # the width of the bars
 
 fig, ax = plt.subplots(layout='constrained')
 bottom = np.zeros(4)
+colors = ['red', 'green', 'blue', 'purple']
+i = 0
 for boolean, dur in durs.items():
-    p = ax.bar(libs, dur, width, label=boolean, bottom=bottom)
+    p = ax.bar(libs, dur, width, label=boolean, bottom=bottom, color=colors[i])
     bottom += dur
+    i += 1
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Duration (microseconds)')

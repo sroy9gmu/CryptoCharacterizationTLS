@@ -31,12 +31,15 @@ x = np.arange(len(libs))  # the label locations
 width = 0.2  # the width of the bars
 mul = 0
 
+colors = ['blue', 'purple', 'green','red']
+i = 0
 fig, ax = plt.subplots(layout='constrained')
 for lib, dur in durs.items():
     offset = width * mul
-    rects = ax.bar(x + offset, dur, width, label=lib)
+    rects = ax.bar(x + offset, dur, width, label=lib, color=colors[i])
     # ax.bar_label(rects, padding=3)
     mul += 1
+    i += 1
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('Duration (microseconds)')
