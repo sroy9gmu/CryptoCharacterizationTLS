@@ -20,12 +20,13 @@ import numpy as np
 # }
 # print(matplotlib.__version__)
 libs = ['OpenSSL', 'wolfSSL', 'MbedTLS', 'GnuTLS']
-durs4 = {
-    'Hashing': (6.3, 149, 72, 203),
-    'Symmetric Encryption': (34, 71, 45, 82),
-    'Signing': (34747.4, 35339, 42346, 74872),
-    # 'FFDH-2048': (1692268.4, 38079.8, 118447, 79372),
-    'Key Exchange': (169226, 38079.8, 118447, 79372),   
+
+durs3 = {
+    'Hashing': (7.4, 170, 105, 261),
+    'Symmetric Encryption': (52, 105, 71, 139),
+    'Signing': (54580.7, 83311, 89454, 100362),
+    # 'FFDH-2048': (2663573, 89817.9, 201569, 95617),
+    'Key Exchange': (266357, 89817.9, 201569, 95617),   
 }
 
 bottom = np.zeros(3)
@@ -36,7 +37,7 @@ fig, ax = plt.subplots(layout='constrained')
 bottom = np.zeros(4)
 colors = ['red', 'green', 'blue', 'orange']
 i = 0
-for boolean, dur in durs4.items():
+for boolean, dur in durs3.items():
     p = ax.bar(libs, dur, width, label=boolean, bottom=bottom, color=colors[i])
     bottom += dur
     i += 1
@@ -55,10 +56,10 @@ ax.set_position([box.x0+ box.width * 0.1, box.y0 + box.height * 0.1,
 # Put a legend below current axis
 ax.legend(loc='upper center', bbox_to_anchor=(0.4, -0.07), ncol=5)
 
-dur_osl = durs4['Hashing'][0] + durs4['Key Exchange'][0] + durs4['Signing'][0] + durs4['Hashing'][0]
-dur_wsl = durs4['Hashing'][1] + durs4['Key Exchange'][1] + durs4['Signing'][1] + durs4['Hashing'][1]
-dur_mbd = durs4['Hashing'][2] + durs4['Key Exchange'][2] + durs4['Signing'][2] + durs4['Hashing'][2]
-dur_gtl = durs4['Hashing'][3] + durs4['Key Exchange'][3] + durs4['Signing'][3] + durs4['Hashing'][3]
+dur_osl = durs3['Hashing'][0] + durs3['Key Exchange'][0] + durs3['Signing'][0] + durs3['Hashing'][0]
+dur_wsl = durs3['Hashing'][1] + durs3['Key Exchange'][1] + durs3['Signing'][1] + durs3['Hashing'][1]
+dur_mbd = durs3['Hashing'][2] + durs3['Key Exchange'][2] + durs3['Signing'][2] + durs3['Hashing'][2]
+dur_gtl = durs3['Hashing'][3] + durs3['Key Exchange'][3] + durs3['Signing'][3] + durs3['Hashing'][3]
 ylim = max(dur_osl,dur_wsl,dur_mbd,dur_gtl)
 ax.set_ylim(0, ylim)
 # ax.set_yscale('log')

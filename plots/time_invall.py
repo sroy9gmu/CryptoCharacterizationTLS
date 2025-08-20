@@ -21,10 +21,10 @@ import numpy as np
 
 libs = ('OpenSSL', 'wolfSSL', 'MbedTLS', 'GnuTLS')
 durs = {
-    'Signing': (34626.8, 35588, 42559, 27226.1), 
-    'Key Exchange': (15821.5, 11122.2, 11044, 6616.3),   
-    'Symmetric Encryption': (5.1, 6.7, 6.1, 3.4), 
-    'Hashing': (1.2, 1.3, 1.2, 1.9), 
+    'Signing': (34747.4, 35339, 42346, 36568.6), 
+    'Key Exchange': (15833.1, 11131.8, 12367.7, 9880.6),   
+    'Symmetric Encryption': (3.9, 5.7, 6.7, 3.1), 
+    'Hashing': (1.2, 1.3, 1.3, 1.8), 
 }
 
 x = np.arange(len(libs))  # the label locations
