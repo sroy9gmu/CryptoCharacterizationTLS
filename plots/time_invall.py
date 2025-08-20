@@ -31,7 +31,7 @@ x = np.arange(len(libs))  # the label locations
 width = 0.2  # the width of the bars
 mul = 0
 
-colors = ['blue', 'purple', 'green','red']
+colors = ['blue', 'orange', 'green','red']
 i = 0
 fig, ax = plt.subplots(layout='constrained')
 for lib, dur in durs.items():

@@ -41,7 +41,7 @@ width = 0.2  # the width of the bars
 
 fig, ax = plt.subplots(layout='constrained')
 bottom = np.zeros(4)
-colors = ['red', 'green', 'blue', 'purple']
+colors = ['red', 'green', 'blue', 'orange']
 i = 0
 for boolean, dur in durs.items():
     p = ax.bar(libs, dur, width, label=boolean, bottom=bottom, color=colors[i])
